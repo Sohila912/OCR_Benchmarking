@@ -1,7 +1,3 @@
-Here is the text from the receipt:
-
-***
-
 Print No. 1 by ST-001  
 **DATE** 25/09/16 15:47  
 **Ref. :** #00163-1  

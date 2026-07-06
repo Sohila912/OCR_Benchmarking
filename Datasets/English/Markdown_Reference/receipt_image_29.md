@@ -1,7 +1,3 @@
-Here is the text transcribed from the In-N-Out receipt:
-
-***
-
 2013-08-10 | L1 T2 | 3:04 PM
 ---|---|---
 

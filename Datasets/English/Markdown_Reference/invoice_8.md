@@ -1,5 +1,3 @@
-**Invoice Details**
-
 *   **Invoice no:** 51109301
 *   **Date of issue:** 03/07/2023
 

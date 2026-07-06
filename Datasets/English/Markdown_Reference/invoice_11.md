@@ -1,5 +1,3 @@
-**Invoice Details**
-
 *   **Invoice no:** 51109311
 *   **Date of issue:** 02/05/2023
 

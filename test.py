@@ -8,7 +8,7 @@ import re
 # ======================================================
 
 GROUND_TRUTH = Path("Datasets/English/Markdown_Reference")
-OCR_OUTPUT = Path("Outputs/English/tesseractocr")
+OCR_OUTPUT = Path("Outputs/English/graniteocr")
 
 # ======================================================
 
@@ -177,7 +177,7 @@ for ref_file in reference_files:
 
 df = pd.DataFrame(results)
 
-df.to_excel("Evaluation Results/TesseractOCR_Evaluation.xlsx", index=False)
+df.to_excel("Evaluation Results/Granite_OCR_Evaluation.xlsx", index=False)
 
 print(df)
 

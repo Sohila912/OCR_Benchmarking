@@ -27,7 +27,7 @@ class TesseractRunner:
                 try:
                     text = pytesseract.image_to_string(
                         temp.name,
-                        lang="ara"  # For Arabic, use "ara" and for English, use "eng"
+                        lang="ara+eng"  # For Arabic, use "ara" and for English, use "eng"
                     )
 
                     # Validate the OCR output

@@ -7,7 +7,7 @@ class PaddleRunner:
     def __init__(self):
         self.ocr = PaddleOCR(
             use_angle_cls=True,
-            lang="ar" #For Arabic, use "ar"
+            lang="ar" #For Arabic, use "ar" and for English, use "en"
         )
 
     def run(self, pdf_path):

@@ -8,7 +8,7 @@ import re
 # ======================================================
 
 GROUND_TRUTH = Path("Datasets/Mix/Markdown_Reference")
-OCR_OUTPUT = Path("Outputs/Mix/paddleocr")
+OCR_OUTPUT = Path("Outputs/Mix/markerocr")
 
 # ======================================================
 
@@ -162,7 +162,7 @@ for ref_file in reference_files:
 
 df = pd.DataFrame(results)
 
-output_path = "Evaluation Results/Mix/Paddle_OCR_Mix_Evaluation.xlsx"
+output_path = "Evaluation Results/Mix/marker_OCR_Mix_Evaluation.xlsx"
 df.to_excel(output_path, index=False)
 
 print(df)

@@ -8,7 +8,7 @@ import re
 # ======================================================
 
 GROUND_TRUTH = Path("Datasets/English/Markdown_Reference")
-OCR_OUTPUT = Path("Outputs/English/graniteocr")
+OCR_OUTPUT = Path("Outputs/English/baiduocr")
 
 # ======================================================
 
@@ -38,6 +38,12 @@ def normalize_text(text):
     # --------------------------------------------------
 
     text = re.sub(r'(\w)-\s*\n\s*(\w)', r'\1\2', text)
+    text = re.sub(r'<PAGE>', ' ', text)
+    text = re.sub(r'<PAGE BREAK>', ' ', text)
+    # Remove all Markdown images
+    text = re.sub(r'!\[.*?\]\(.*?\)', ' ', text)
+    # Remove HTML/XML tags
+    text = re.sub(r'<[^>]+>', ' ', text)
 
     # --------------------------------------------------
     # Replace remaining newlines with spaces
@@ -177,7 +183,7 @@ for ref_file in reference_files:
 
 df = pd.DataFrame(results)
 
-df.to_excel("Evaluation Results/Granite_OCR_Evaluation.xlsx", index=False)
+df.to_excel("Evaluation Results/Baidu_OCR_Evaluation.xlsx", index=False)
 
 print(df)
 

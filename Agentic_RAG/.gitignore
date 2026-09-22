@@ -1,6 +1,6 @@
 # Virtual environment
 .venv/
-OCR_Benchmarking/.venv/
+.env
 # Python bytecode
 __pycache__/
 *.py[cod]

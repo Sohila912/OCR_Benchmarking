@@ -1,2 +1,15 @@
 # Virtual environment
 .venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+runtime/**
+!runtime/uploads/
+!runtime/uploads/Tweet_20.pdf
+!runtime/uploads/Tweet_22.pdf
+!runtime/uploads/Tweet_23.pdf
+!runtime/uploads/Tweet_24.pdf
+!runtime/uploads/Tweet_25.pdf
+!runtime/uploads/crowd_1.pdf
+models/

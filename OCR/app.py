@@ -1,436 +1,141 @@
-# from contextlib import asynccontextmanager
-# from typing import Dict, List
+﻿"""FastAPI entry point: multipart PDFs in, normalized OCR documents out."""
 
-# from fastapi import FastAPI, HTTPException
-# from pydantic import BaseModel
-
-# from runners.marker_runner import MarkerRunner
-# from runners.paddle_runner import PaddleRunner
-# from runners.Tesseract_runner import TesseractRunner
-
-
-# # ============================================================
-# # Initialize OCR engines ONCE when FastAPI starts
-# # ============================================================
-
-# @asynccontextmanager
-# async def lifespan(app: FastAPI):
-
-#     print("\n========================================")
-#     print("Initializing OCR engines...")
-#     print("========================================")
-
-#     print("\n--- Initializing Marker ---")
-#     app.state.marker = MarkerRunner()
-
-#     print("\n--- Initializing Paddle ---")
-#     app.state.paddle = PaddleRunner()
-
-#     print("\n--- Initializing Tesseract ---")
-#     app.state.tesseract = TesseractRunner()
-
-#     print("\n========================================")
-#     print("OCR engines are ready.")
-#     print("========================================\n")
-
-#     yield
-
-#     print("\nShutting down OCR engines...")
-
-
-# app = FastAPI(
-#     title="OCR Benchmarking API",
-#     lifespan=lifespan
-# )
-
-
-# class ExtractRequest(BaseModel):
-#     engine: str
-#     pdf_path: str
-
-
-# class CompareRequest(BaseModel):
-#     pdf_path: str
-
-
-# class ExtractResponse(BaseModel):
-#     engine: str
-#     pdf_path: str
-#     markdown: str
-
-
-# class CompareResponse(BaseModel):
-#     pdf_path: str
-#     results: List[Dict[str, str]]
-
-
-# # ============================================================
-# # Map engine names to initialized runners
-# # ============================================================
-
-# def get_runner(engine_name: str):
-
-#     if engine_name == "marker":
-#         return app.state.marker
-
-#     if engine_name == "paddle":
-#         return app.state.paddle
-
-#     if engine_name == "tesseract":
-#         return app.state.tesseract
-
-#     raise HTTPException(
-#         status_code=400,
-#         detail=f"Unsupported engine: {engine_name}"
-#     )
-
-
-# # ============================================================
-# # Routes
-# # ============================================================
-
-# @app.get("/")
-# def root() -> Dict[str, str]:
-#     return {
-#         "message": "OCR Benchmarking API",
-#         "docs": "/docs"
-#     }
-
-
-# @app.get("/health")
-# def health() -> Dict[str, str]:
-#     return {"status": "ok"}
-
-
-# @app.get("/tools")
-# def tools() -> Dict[str, List[str]]:
-#     return {
-#         "tools": [
-#             "marker",
-#             "paddle",
-#             "tesseract"
-#         ]
-#     }
-
-
-# # ============================================================
-# # Single engine extraction
-# # ============================================================
-
-# @app.post("/extract", response_model=ExtractResponse)
-# def extract(request: ExtractRequest) -> ExtractResponse:
-
-#     engine_name = request.engine.lower()
-
-#     runner = get_runner(engine_name)
-
-#     markdown = runner.extract(request.pdf_path)
-
-#     return ExtractResponse(
-#         engine=engine_name,
-#         pdf_path=request.pdf_path,
-#         markdown=markdown
-#     )
-
-
-# # ============================================================
-# # Compare all engines
-# # ============================================================
-
-# @app.post("/extract/compare", response_model=CompareResponse)
-# def extract_compare(
-#     request: CompareRequest
-# ) -> CompareResponse:
-
-#     results = []
-
-#     for engine_name in [
-#         "marker",
-#         "paddle",
-#         "tesseract"
-#     ]:
-
-#         runner = get_runner(engine_name)
-
-#         markdown = runner.extract(request.pdf_path)
-
-#         results.append({
-#             "engine": engine_name,
-#             "markdown": markdown
-#         })
-
-#     return CompareResponse(
-#         pdf_path=request.pdf_path,
-#         results=results
-#     ) 
+import logging
 from contextlib import asynccontextmanager
-from pathlib import Path
-from typing import Dict, List
 
-from fastapi import FastAPI, HTTPException, UploadFile, File, Form
-from pydantic import BaseModel
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
+from starlette.concurrency import run_in_threadpool
 
-from runners.marker_runner import MarkerRunner
-from runners.paddle_runner import PaddleRunner
-from runners.Tesseract_runner import TesseractRunner
+from OCR.config import Settings, load_settings
+from OCR.errors import (OCRError, ExtractionError, InvalidDocumentError, UploadTooLargeError,
+                        UnsupportedProviderError, ProviderInitializationError, ProviderNotReadyError)
+from OCR.schemas import OCRIssue, OCRResult
+from OCR.service import OCRService, ingest_pdf
 
-
-# ============================================================
-# DIRECTORIES
-# ============================================================
-
-BASE_DIR = Path(__file__).resolve().parent
-
-UPLOAD_DIR = BASE_DIR / "uploads"
-UPLOAD_DIR.mkdir(exist_ok=True)
+logger = logging.getLogger(__name__)
 
 
-# ============================================================
-# OCR ENGINE INITIALIZATION
-# ============================================================
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-
-    print("\n========================================")
-    print("Initializing OCR engines...")
-    print("========================================")
-
-    print("\n--- Initializing Marker ---")
-    app.state.marker = MarkerRunner()
-
-    print("\n--- Initializing PaddleOCR ---")
-    app.state.paddle = PaddleRunner()
-
-    print("\n--- Initializing Tesseract ---")
-    app.state.tesseract = TesseractRunner()
-
-    print("\n========================================")
-    print("OCR engines are ready.")
-    print("========================================\n")
-
-    yield
-
-    print("\nShutting down OCR engines...")
-
-
-app = FastAPI(
-    title="OCR Benchmarking API",
-    description="OCR Benchmarking Platform",
-    version="1.0.0",
-    lifespan=lifespan
-)
-
-
-# ============================================================
-# RESPONSE MODELS
-# ============================================================
-
-class ExtractResponse(BaseModel):
-    engine: str
-    filename: str
-    markdown: str
-
-
-class CompareResult(BaseModel):
-    engine: str
-    markdown: str
+class CompareEntry(BaseModel):
+    provider: str
+    result: OCRResult | None = None
+    errors: list[OCRIssue] = Field(default_factory=list)
 
 
 class CompareResponse(BaseModel):
+    document_id: str
     filename: str
-    results: List[CompareResult]
+    results: list[CompareEntry]
 
 
-# ============================================================
-# ENGINE MANAGEMENT
-# ============================================================
-
-def get_runner(engine_name: str):
-
-    engine_name = engine_name.lower()
-
-    if engine_name == "marker":
-        return app.state.marker
-
-    if engine_name == "paddle":
-        return app.state.paddle
-
-    if engine_name == "tesseract":
-        return app.state.tesseract
-
-    raise HTTPException(
-        status_code=400,
-        detail=f"Unsupported engine: {engine_name}"
-    )
+def error_status(exc: OCRError) -> int:
+    if isinstance(exc, UploadTooLargeError):
+        return 413
+    if isinstance(exc, (InvalidDocumentError, UnsupportedProviderError)):
+        return 400
+    if isinstance(exc, (ProviderInitializationError, ProviderNotReadyError)):
+        return 503
+    return 500
 
 
-# ============================================================
-# SAVE UPLOADED FILE
-# ============================================================
-
-async def save_pdf(file: UploadFile) -> Path:
-
-    if not file.filename:
-        raise HTTPException(
-            status_code=400,
-            detail="No filename provided."
-        )
-
-    if not file.filename.lower().endswith(".pdf"):
-        raise HTTPException(
-            status_code=400,
-            detail="Only PDF files are supported."
-        )
-
-    file_path = UPLOAD_DIR / file.filename
-
-    content = await file.read()
-
-    with open(file_path, "wb") as f:
-        f.write(content)
-
-    return file_path
+def public_error(exc: OCRError) -> str:
+    if error_status(exc) in (400, 413):
+        return str(exc)
+    return "OCR provider is unavailable or extraction failed. Check server logs and provider configuration."
 
 
-# ============================================================
-# ROOT
-# ============================================================
+class RequestSizeLimit:
+    """Limit the whole multipart body before unbounded spooling can occur."""
+    def __init__(self, app, max_bytes: int):
+        self.app, self.max_bytes = app, max_bytes
 
-@app.get("/")
-def root() -> Dict[str, str]:
-
-    return {
-        "message": "OCR Benchmarking API",
-        "docs": "/docs"
-    }
-
-
-# ============================================================
-# HEALTH
-# ============================================================
-
-@app.get("/health")
-def health() -> Dict[str, str]:
-
-    return {
-        "status": "ok"
-    }
-
-
-# ============================================================
-# AVAILABLE TOOLS
-# ============================================================
-
-@app.get("/tools")
-def tools() -> Dict[str, List[str]]:
-
-    return {
-        "tools": [
-            "marker",
-            "paddle",
-            "tesseract"
-        ]
-    }
-
-
-# ============================================================
-# SINGLE ENGINE EXTRACTION
-# ============================================================
-
-@app.post("/extract", response_model=ExtractResponse)
-async def extract(
-    engine: str = Form(...),
-    file: UploadFile = File(...)
-):
-
-    engine_name = engine.lower()
-
-    runner = get_runner(engine_name)
-
-    pdf_path = await save_pdf(file)
-
-    try:
-
-        markdown = runner.extract(
-            str(pdf_path)
-        )
-
-    except Exception as e:
-
-        raise HTTPException(
-            status_code=500,
-            detail=f"{engine_name} extraction failed: {str(e)}"
-        )
-
-    return ExtractResponse(
-        engine=engine_name,
-        filename=file.filename,
-        markdown=markdown
-    )
-
-
-# ============================================================
-# COMPARE ALL ENGINES
-# ============================================================
-
-@app.post("/extract/compare", response_model=CompareResponse)
-async def extract_compare(
-    file: UploadFile = File(...)
-):
-
-    pdf_path = await save_pdf(file)
-
-    results = []
-
-    engines = [
-        "marker",
-        "paddle",
-        "tesseract"
-    ]
-
-    for engine_name in engines:
-
-        runner = get_runner(engine_name)
-
+    async def __call__(self, scope, receive, send):
+        if scope['type'] != 'http':
+            return await self.app(scope, receive, send)
+        size = 0
+        headers = dict(scope.get('headers', []))
+        length = headers.get(b'content-length')
         try:
+            too_large = length is not None and int(length) > self.max_bytes
+        except ValueError:
+            too_large = False
+        detail = {'code': 'upload_too_large', 'message': 'Request body exceeds the configured upload limit.'}
+        if too_large:
+            return await JSONResponse(status_code=413, content={'detail': detail})(scope, receive, send)
 
-            print(
-                f"\nRunning {engine_name} on "
-                f"{file.filename}..."
-            )
+        async def bounded_receive():
+            nonlocal size
+            message = await receive()
+            if message['type'] == 'http.request':
+                size += len(message.get('body', b''))
+                if size > self.max_bytes:
+                    raise HTTPException(status_code=413, detail=detail)
+            return message
 
-            markdown = runner.extract(
-                str(pdf_path)
-            )
+        await self.app(scope, bounded_receive, send)
 
-            results.append(
-                CompareResult(
-                    engine=engine_name,
-                    markdown=markdown
-                )
-            )
 
-            print(
-                f"{engine_name} completed."
-            )
+def create_app(settings: Settings | None = None, service: OCRService | None = None) -> FastAPI:
+    settings = settings if settings is not None else load_settings()
+    service = service if service is not None else OCRService(settings)
 
-        except Exception as e:
+    @asynccontextmanager
+    async def lifespan(application):
+        # No models are initialized or downloaded on startup.
+        settings.temp_dir.mkdir(parents=True, exist_ok=True)
+        yield
 
-            results.append(
-                CompareResult(
-                    engine=engine_name,
-                    markdown=(
-                        f"ERROR: {str(e)}"
-                    )
-                )
-            )
+    application = FastAPI(title='OCR Benchmarking / OCR Service', version='2.0.0', lifespan=lifespan)
+    application.state.ocr_service = service
+    application.add_middleware(RequestSizeLimit, max_bytes=settings.max_upload_bytes + 1024 * 1024)
 
-            print(
-                f"{engine_name} failed: {str(e)}"
-            )
+    @application.exception_handler(OCRError)
+    async def ocr_error_handler(request: Request, exc: OCRError):
+        logger.warning('OCR request failed: %s', exc, exc_info=True)
+        return JSONResponse(status_code=error_status(exc), content={'detail': {
+            'code': exc.code, 'message': public_error(exc), 'provider': exc.provider}})
 
-    return CompareResponse(
-        filename=file.filename,
-        results=results
-    )
+    @application.get('/')
+    def root():
+        return {'message': 'OCR Benchmarking / OCR Service', 'docs': '/docs', 'schema_version': '1.0'}
+
+    @application.get('/health')
+    def health():
+        return {'status': 'ok', 'providers': [item.model_dump() for item in service.health()]}
+
+    @application.get('/tools')
+    def tools():
+        return {'tools': list(service.providers), 'default': settings.provider}
+
+    async def save(file: UploadFile):
+        try:
+            return await run_in_threadpool(ingest_pdf, file.file, file.filename, settings)
+        except OSError as exc:
+            raise ExtractionError('Could not store the upload.') from exc
+        finally:
+            await file.close()
+
+    @application.post('/extract', response_model=OCRResult)
+    async def extract(file: UploadFile = File(...), engine: str | None = Form(None)):
+        service.select(engine)
+        document = await save(file)
+        return await run_in_threadpool(service.extract, document, engine)
+
+    @application.post('/extract/compare', response_model=CompareResponse)
+    async def compare(file: UploadFile = File(...)):
+        document = await save(file)
+        results = []
+        for provider in service.providers:
+            try:
+                result = await run_in_threadpool(service.extract, document, provider)
+                results.append(CompareEntry(provider=provider, result=result))
+            except OCRError as exc:
+                logger.warning('OCR comparison failed for %s: %s', provider, exc, exc_info=True)
+                results.append(CompareEntry(provider=provider, errors=[OCRIssue(code=exc.code, message=public_error(exc))]))
+        return CompareResponse(document_id=document.document_id, filename=document.filename, results=results)
+
+    return application
+
+
+app = create_app()

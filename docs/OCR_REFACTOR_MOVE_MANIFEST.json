@@ -1,0 +1,2522 @@
+﻿[
+    {
+        "source":  "OCR\\runners\\deepseek_runner.py",
+        "destination":  "benchmarks\\legacy\\runners\\deepseek_runner.py",
+        "sha256":  "CE7739FDA2611AEEDF17FFA203576A68908D58D23EC3715D289932D32303F82A"
+    },
+    {
+        "source":  "OCR\\runners\\glm_runner.py",
+        "destination":  "benchmarks\\legacy\\runners\\glm_runner.py",
+        "sha256":  "529798A5481987BF0EC32A15E2A9D2632557AAAABD7E32DA6890851B2CF980CF"
+    },
+    {
+        "source":  "OCR\\runners\\granitedockling_runner.py",
+        "destination":  "benchmarks\\legacy\\runners\\granitedockling_runner.py",
+        "sha256":  "E8B3E7F6BAE1B73DC12F0BE304886DAECAA34500157B840B87556409BEC78696"
+    },
+    {
+        "source":  "OCR\\runners\\granite_arabic_runner.py",
+        "destination":  "benchmarks\\legacy\\runners\\granite_arabic_runner.py",
+        "sha256":  "AB2184C6C0B772800678D9F5522FC6DFD52A210BC8F17A0B951E7F89BBFB5B02"
+    },
+    {
+        "source":  "OCR\\runners\\marker_runner.py",
+        "destination":  "benchmarks\\legacy\\runners\\marker_runner.py",
+        "sha256":  "945087AD8EA32BD14B2E3D1728229F0F0CF5D7775DD53E52528E20061275CDC5"
+    },
+    {
+        "source":  "OCR\\runners\\paddle_runner.py",
+        "destination":  "benchmarks\\legacy\\runners\\paddle_runner.py",
+        "sha256":  "8CBE4F40BD267E3253C98B67C2DCB592597A0F485E03BA29BAC366E101CF8761"
+    },
+    {
+        "source":  "OCR\\runners\\surya_runner.py",
+        "destination":  "benchmarks\\legacy\\runners\\surya_runner.py",
+        "sha256":  "4B048F5AA3F8D3C4EB0CDE296A66704A8462F25A21E78D4ADDEC272A37A0F83C"
+    },
+    {
+        "source":  "OCR\\runners\\Tesseract_runner.py",
+        "destination":  "benchmarks\\legacy\\runners\\Tesseract_runner.py",
+        "sha256":  "0906C25EB224CE329784DCA9F63F7AA5EEDFB243EFECC1DAF04BBF6BEBE5EE56"
+    },
+    {
+        "source":  "OCR\\runners\\__pycache__\\marker_runner.cpython-310.pyc",
+        "destination":  "benchmarks\\legacy\\runners\\__pycache__\\marker_runner.cpython-310.pyc",
+        "sha256":  "8A950537F8F166C89CA21A560CD71C886BF5C19743EDE82D14EF8A948FBB915E"
+    },
+    {
+        "source":  "OCR\\runners\\__pycache__\\marker_runner.cpython-313.pyc",
+        "destination":  "benchmarks\\legacy\\runners\\__pycache__\\marker_runner.cpython-313.pyc",
+        "sha256":  "F0BE62847B300B03D0D528F4A002156A0570F97B256AADFE9E3A989E37AB7D30"
+    },
+    {
+        "source":  "OCR\\runners\\__pycache__\\paddle_runner.cpython-310.pyc",
+        "destination":  "benchmarks\\legacy\\runners\\__pycache__\\paddle_runner.cpython-310.pyc",
+        "sha256":  "829CA011B5A7E8C36E1935D7A996EC9B100D8734FFFB2DABCE4D2E997397E6C2"
+    },
+    {
+        "source":  "OCR\\runners\\__pycache__\\paddle_runner.cpython-313.pyc",
+        "destination":  "benchmarks\\legacy\\runners\\__pycache__\\paddle_runner.cpython-313.pyc",
+        "sha256":  "61B5ACF5E1D638BFB73B7959FB780D55A97474FA9F6EF70BE2CA23D80F07E0B1"
+    },
+    {
+        "source":  "OCR\\runners\\__pycache__\\Tesseract_runner.cpython-310.pyc",
+        "destination":  "benchmarks\\legacy\\runners\\__pycache__\\Tesseract_runner.cpython-310.pyc",
+        "sha256":  "9E9C93CCD723D6EDB3F9187E14788E992E1B0807D5A74A6804AE68F073450259"
+    },
+    {
+        "source":  "OCR\\runners\\__pycache__\\Tesseract_runner.cpython-313.pyc",
+        "destination":  "benchmarks\\legacy\\runners\\__pycache__\\Tesseract_runner.cpython-313.pyc",
+        "sha256":  "E5661BC85FB616FC3F376C6C527E03983B7682D8F178F1B2E9ED87FA13787176"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\diary_29.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\diary_29.pdf",
+        "sha256":  "DECAFBCCB9D132FC510321581F0B6FDE247D17F7198F29FA1E71D87668B17C75"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_18.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_18.pdf",
+        "sha256":  "3A59A33E11B227B6C2585E318E41309A5A4D81BFA34E51689F42FD594971A05C"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_19.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_19.pdf",
+        "sha256":  "7481776E6425FD40F1EAF7B117B206894DCA12BCA2F502B457250C2EF53F6CA5"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_20.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_20.pdf",
+        "sha256":  "4DBEF2C31EB776B7B096B0D6553AC10573314C22C09080EC2EDEB1E035E7BF16"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_21.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_21.pdf",
+        "sha256":  "B507748D2B5F7A9E499DD6B5D5FD1E349629E960BB2DEFC6F1CAAAFBAD16ACB8"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_22.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_22.pdf",
+        "sha256":  "CB32B244BB0EFF5ABEAC28FDB8AE9E06E794210DD7F2650F9F5DE306FA29A273"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_23.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_23.pdf",
+        "sha256":  "4DF1E2C5216B4316911E613C94E6DE499F365BC876E054D5F88119605C2F1356"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_24.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_24.pdf",
+        "sha256":  "33C59AEEC0B81778DFD3980E5D215EC2BCA768D5476DB69B29ADBBBFFD169710"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_25.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_25.pdf",
+        "sha256":  "38127680CC7E5821A58CB4A3749D4C417E5DA024E175B3F32A0085661FA4DE1C"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_26.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_26.pdf",
+        "sha256":  "9F99141E62DA18CD1B1B42B3F99B0F20382475CC06163C36296CF74321D2657C"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_27.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_27.pdf",
+        "sha256":  "9EB7CA64E009DD3952578A4F9B06C262169FC8FDD6AEF877E8D7F1F2880E1926"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_28.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_28.pdf",
+        "sha256":  "6E52FD0CD32ABF6A455BA9012A9A59279765D13482E7B3C6AD1EFA0D5721B096"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_1.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_1.pdf",
+        "sha256":  "515A690FCB17B43D0CAFB50B285A66DD4AE0B43241B036AB11583227B6128ABA"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_10.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_10.pdf",
+        "sha256":  "318D72AAEAF908BD1DAEBA29C9986C8A5CC24FCE1BE060F69A78B5A2F4B29574"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_11.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_11.pdf",
+        "sha256":  "C3FB76B9C6F2453BA5C475E2F51F06120BB0855AD189F7B8E596D33BA1B09648"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_12.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_12.pdf",
+        "sha256":  "A1A44D80A795AEBEE56430A70B11D10DC7F076DBDA9CC75D8DB8ABA3243B90E9"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_13.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_13.pdf",
+        "sha256":  "81BB270D996CA78EBA83EE7F7502951F1734539BA4451FF1B55A5CDEE9FF6CFF"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_14.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_14.pdf",
+        "sha256":  "06CA7D96A77B286D73C6464220E8C06531E0292677AFCC8A5404E4DF81E04000"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_15.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_15.pdf",
+        "sha256":  "B9114A4A58C4C803048DF099BA08E439930F9405831385EA6E9ABDEBE8C82F70"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_16.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_16.pdf",
+        "sha256":  "E5AE4EC95CC0FFDEE06A9A4486CE5DE9D9C414175BC4E97D2C21DC0262E81A28"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_17.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_17.pdf",
+        "sha256":  "43E39909670E462767378A5E6505E720B94CF8B981F01DB9D256842EC9D9AD7C"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_2.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_2.pdf",
+        "sha256":  "40A3F553BFFCE1F9788BD4818AFC7BC44C2628F694679420D81F71FC99765DC2"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_3.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_3.pdf",
+        "sha256":  "C13DD29B8258AF106241073D9181DD824B522851D4EDB8C60B87B9FB6E01D07A"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_4.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_4.pdf",
+        "sha256":  "14C34C404356CEC25681A3D9070C91CD63EDF933B56B7573806D7604457919AA"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_5.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_5.pdf",
+        "sha256":  "996B16D5A13B249DB874D4572209A60697E112433251DD938353E048680D7F69"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_6.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_6.pdf",
+        "sha256":  "E664BA1DF2467737FCE7913960BC8BFD0FBD26360055BC1E34A68D4F5910E570"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_7.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_7.pdf",
+        "sha256":  "7696BF0C8D7E913BCCB0DF929B7DD25A1E30332E6C3043345A1054DCEDCECEEB"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_8.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_8.pdf",
+        "sha256":  "F54E628CA8762C0D5A3DAAF3DC8EA10CF8E70C42D3E263BFA91F52CF651185D0"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\News_article_9.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\News_article_9.pdf",
+        "sha256":  "623AE864EF045BC2D7CC9DD9DCC8E1F01E88FFC748411FFACFD2FA1923DB0F41"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Dataset\\Quran_30.pdf",
+        "destination":  "benchmarks\\datasets\\Arabic\\Dataset\\Quran_30.pdf",
+        "sha256":  "F04115270B52C8F34BCD55A20A0F3F139FA5F3750CCB90A803AD584B2EB533CA"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\diary_29.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\diary_29.md",
+        "sha256":  "CA93E5842E754F2D6DE93FDCF3ED35E311EF6B57B9DA1F44AD33D8C0DEFCE40C"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_18.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_18.md",
+        "sha256":  "AC5B2D5F234359D4F035E69F1B3423D03998C9FBBFCDB82FDCD611B7F43D0D05"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_19.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_19.md",
+        "sha256":  "736AC6004169BC6B633120E1633390AE8A7351C2900C06A9BDCB5FFF3185236F"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_20.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_20.md",
+        "sha256":  "342EBCC2D93900044E6702E8825442227191DAE2CE58C20A7382DB0BD403C2FA"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_21.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_21.md",
+        "sha256":  "8754001FDFA0C6D1D1CB77B8A3B107A4CC3639DA1A17749D0F5A63E0D266D27A"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_22.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_22.md",
+        "sha256":  "E7EBE1FBEC338ADC4A3F4347735201ACF888D299220564EA5DAC51F97F99DA9C"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_23.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_23.md",
+        "sha256":  "61FCEF1AE8C3DCB584756814AB0A36A792CDF5C7D7E4B7B970DDBBC9FED93E6D"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_24.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_24.md",
+        "sha256":  "BE0617420C17036F21314B3B48C94310D9705AE56CF3E2E918E26248A8EEDBA3"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_25.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_25.md",
+        "sha256":  "AB14DE1950BB35819453651528FCEFACCD2C6E9930903CB802AC5A47506F6340"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_26.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_26.md",
+        "sha256":  "6DE85AEA991BC718E6119874E61FE6ED4AEC40705610C6073069FEE83881524F"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_27.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_27.md",
+        "sha256":  "7596CBE94D030F13CAEAA50BF43C5B876A4019458AD8A3A7BDD3D0E88D39EF16"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_28.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_28.md",
+        "sha256":  "C784B614AEB927806A5D21EED87B4613757261118BB7E7A2671039A9BAD492E2"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_1.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_1.md",
+        "sha256":  "63CE4D077A971B6AA0244607BE86057F83103F815555DC2B9C864D47E7D9ED53"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_10.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_10.md",
+        "sha256":  "0266A6BC84153E10678ACD8A857503EA551295EA755BE268C72DCC9C44DEDB26"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_11.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_11.md",
+        "sha256":  "803FE7888B46EC185FF42F2CDB2EBC1AE59A4FEA3369D38A184A6BE2CFFA3AAD"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_12.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_12.md",
+        "sha256":  "2618FDCC48551D8D360977E20D1170C95E5E053FA021A2C34BF69DB812783761"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_13.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_13.md",
+        "sha256":  "20D879BC560D2170A225E0E70329D10D7F4A25054917EF6CE8DC4F0815583419"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_14.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_14.md",
+        "sha256":  "C3CE78ED84F0685112C58114345696D5B8A96B4A692871CDAFDDB61EDD966177"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_15.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_15.md",
+        "sha256":  "FE4A63B283F6BDA114888FEB9667FAFDA64B0F88D77F8E0E18FA5DA0C72A7D7A"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_16.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_16.md",
+        "sha256":  "E9B9AD2D37958137D922B9DFCF02702F4439B8B44A53641402EFCE302DC35EE9"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_17.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_17.md",
+        "sha256":  "BE4DA8697978909A94A0B09E3BA6A96431DC17E7F1919CA1D82C790CF6AAF7E7"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_2.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_2.md",
+        "sha256":  "17374A92B8D8E61E690C4CD67E7DF0898474D5C9FBBEEF5FC2BC242C475F3AFF"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_3.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_3.md",
+        "sha256":  "CF034A95ADD85348989CD8332A647E287A08ABEE54C2E5C006B609D2A648BCEF"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_4.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_4.md",
+        "sha256":  "8F8CC4BE6368313CC4A9E87FE2358851BA0FA81D7F837AAAEF003B59995066A1"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_5.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_5.md",
+        "sha256":  "B84007AD3287055497C6CB748A2A167800522F6612B17FB0D5596715AB123B8E"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_6.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_6.md",
+        "sha256":  "3CEC10CAE19A68CC5EB2F2D123A88C4A45F246B83B1CE20D4822FC0C235B3CED"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_7.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_7.md",
+        "sha256":  "5BEA354AAA0B4AF4DDC15869F2DBC6ADE3ED1684F22D18191877C3118385D416"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_8.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_8.md",
+        "sha256":  "964D2000B5B6216338B19ED78786D268F084674278171A57FE755297F6C4EE3A"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\News_article_9.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\News_article_9.md",
+        "sha256":  "2AFC61B485BCF1F0A444327B46333F0BAF8D3C61C6D0DC56D54C6316863EA043"
+    },
+    {
+        "source":  "OCR\\Datasets\\Arabic\\Markdown_Reference\\Quran_30.md",
+        "destination":  "benchmarks\\datasets\\Arabic\\Markdown_Reference\\Quran_30.md",
+        "sha256":  "BEB8E4A9A1D1DBEEDEF19749A79A5A3E798ABD47637A6455881E1E7ECB15B6B0"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Comm_protocol_15.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Comm_protocol_15.pdf",
+        "sha256":  "6F55D0F988A5C1DA17193ED5A60F5F2E80C5592EC88F8927FABB20FE6A46BDB0"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\crowd_1.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\crowd_1.pdf",
+        "sha256":  "588DA82962BEFC978862815E86FE464C1D2BE7F93BEDD7C13E862F89BF08DF43"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\invoice_10.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\invoice_10.pdf",
+        "sha256":  "70D8F00D5543F4ABB86611BED7A4AFD4BC0F8C84442B87D1F9AF1F7832158E24"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\invoice_11.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\invoice_11.pdf",
+        "sha256":  "569C4222744DA01A55555F78C54AC2EA9E5E3670A30518ED4B82324E217F5205"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\invoice_12.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\invoice_12.pdf",
+        "sha256":  "B0C79B704FAB4BF91D4EE47B1C4AB174CBFE1C3318F18854846D1A386F45E33D"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\invoice_8.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\invoice_8.pdf",
+        "sha256":  "1E823688F4DD4EFAF4F6A75C124CCCEF0E7864BF7AD6F053B94B9714949B4F79"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\invoice_9.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\invoice_9.pdf",
+        "sha256":  "4D8986E69005E5CEA3310BFB6BECC696E5A9F5FC6CD256F70BB6AEA187A6E1E1"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Lab_work_13.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Lab_work_13.pdf",
+        "sha256":  "C0C237A2F0F962185CE04D0C851C9809AD780B35ECF704861CEF9F73835F21F2"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\multicolcnn_2.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\multicolcnn_2.pdf",
+        "sha256":  "2B0E8314FF2C2680DD309CE46A49D740084D66EB39549337D2DAA91215C426F8"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\receipt_image_27.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\receipt_image_27.pdf",
+        "sha256":  "84B7829847BECA25B5FD243D00DC2582A4BF0BD80E0246A563CFFD518B066F9B"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\receipt_image_28.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\receipt_image_28.pdf",
+        "sha256":  "7AF5E0567EF26CBEE9145F5C197688EF1DCCA43D3720CD8FE22A67B64D92E110"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\receipt_image_29.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\receipt_image_29.pdf",
+        "sha256":  "5BE1EF88A508B82B5B83483F189603658D656BDF744D4542CC11C44B00AA282C"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\receipt_image_30.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\receipt_image_30.pdf",
+        "sha256":  "7A4F7917F816E1D9A9B7FDCAF03A61481E576B6C2780109D8CAFAAC14BB62C8F"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\receipt_image_31.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\receipt_image_31.pdf",
+        "sha256":  "F85FA02B63059C510CC2193D4096300442AC4C4FDA3428EFD9601B68B694394B"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\receipt_image_32.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\receipt_image_32.pdf",
+        "sha256":  "50635D3057078514C900563D52037420DC97A40B4ADBBFB16C12A731990977E6"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Research_Paper_14.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Research_Paper_14.pdf",
+        "sha256":  "D8246C49F8CD055B56EACC3F7A150673E842D0CB2789811F36D9CA78DED54988"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Subnetworks_table_7.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Subnetworks_table_7.pdf",
+        "sha256":  "668346155C7D9C3B2D01B8F2DB9D998194D0D9BF4E46AEFD793B576436F92921"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\switch_trans_3.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\switch_trans_3.pdf",
+        "sha256":  "AB2242DF11CD6426E0B4A5871BE9D7F64F21AC502527B6C378A53B91B7C8BDF8"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\thinkdsp_4.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\thinkdsp_4.pdf",
+        "sha256":  "FA417CB83A628945654B5DE7D6956F728E9F46E717FFDD92119FB38F610A584F"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\thinkos_5.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\thinkos_5.pdf",
+        "sha256":  "8AB15A0885BDABC75E846D8ADC3D1D16577DC282BFFD03AF2B3A9371325D8408"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\thinkpython_6.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\thinkpython_6.pdf",
+        "sha256":  "4EE0F52255E6E03D97C17BDA81CFC748FFE2F367A4792B15D0E938D8F96CF8B3"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_16.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_16.pdf",
+        "sha256":  "3635EA0087D0148500AE2F84085BA2D13370CBEDDE81B15B906A28B07A77C8A5"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_17.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_17.pdf",
+        "sha256":  "B52A9681E5735EA28A654AF871E7914B7B37396F091E99A453D268E3D577DA2D"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_18.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_18.pdf",
+        "sha256":  "E0FC61763CF27FF0F43A1C7916E044E4956349294F8CF627F48B02EA66B4843B"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_19.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_19.pdf",
+        "sha256":  "A1A30926CD078A61A5A5CF4DE4C5EB1E6CECA206FB79DE36FB3D546535BBCA14"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_20.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_20.pdf",
+        "sha256":  "A50A78D0975625F7175C2ACFFC4B96D9AD8382C266327884EEF7CDEBF3E20BD2"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_21.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_21.pdf",
+        "sha256":  "950C36AE555FAD3C347E00C3AD3E70847A9E4C9953B5AFC65741FF6A1968C4C9"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_22.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_22.pdf",
+        "sha256":  "E8B5E3A91B70A275E9C96C31E5E89075007F44E13EED01AE0DC602CDD56D8B66"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_23.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_23.pdf",
+        "sha256":  "3D4AE0E3AA23B3A8579FD9EC609E5D49A2F0E62DC8C253CCBC2C8B7F1F843260"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_24.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_24.pdf",
+        "sha256":  "5E408038AF42AC4455572836FB99560DD62AE46C4181D28A0523B5ADC9ABFBFD"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_25.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_25.pdf",
+        "sha256":  "B13F7C74FF02F72EA4E5789356E405586506525A8049160A3749FD92145F042D"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Dataset\\Tweet_26.pdf",
+        "destination":  "benchmarks\\datasets\\English\\Dataset\\Tweet_26.pdf",
+        "sha256":  "789E298AE72D73FEA9B1F8CD995C6DC3F134AE7857CF0B9E93BA3D75D496D58F"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Comm_protocol_15.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Comm_protocol_15.md",
+        "sha256":  "115DD78C0D22763AC670D4C6FFE0DBD2030444F922DC779BB9E749D179F08C4C"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\crowd_1.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\crowd_1.md",
+        "sha256":  "486BC6995BB4B56151A4A61EA4921C7CD80BDAB0399CDF7BEEDB3083C85DFAB3"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\invoice_10.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\invoice_10.md",
+        "sha256":  "7344523A556A9632CE13FE28ECFCE09B407C217752B77A013885966CE966CF8A"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\invoice_11.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\invoice_11.md",
+        "sha256":  "6F6B3568388C02436D5E957CD7F58B0ADCC7164150305EA8F6C8ACDD078B5B83"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\invoice_12.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\invoice_12.md",
+        "sha256":  "DC0DEC31D96A3405AB5492B7E357F0362FC639D191EC0D665431462B40CC71FB"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\invoice_8.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\invoice_8.md",
+        "sha256":  "3AAA4353B59B3803560F1D59C3F88AA2BC5282B4C63D029CD883D55D6BF5B77D"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\invoice_9.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\invoice_9.md",
+        "sha256":  "FAA2C13AEAA545B43420FD93EC0C671F35E1D514D66224012C63162D25001E07"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Lab_work_13.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Lab_work_13.md",
+        "sha256":  "5AE82E019BC5B733D01D110DDF17DDC2589AF1AD5D5958BF732A1A074F9467D1"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\multicolcnn_2.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\multicolcnn_2.md",
+        "sha256":  "C1CE03EE0C391CC22F1A9107DC3005620852298B68666F14B6A6347793F21F1B"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\receipt_image_27.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\receipt_image_27.md",
+        "sha256":  "763EB363B6C2354BA08A975C305C8CBAECA0CD08AD743C122A253F1D753215AD"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\receipt_image_28.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\receipt_image_28.md",
+        "sha256":  "5A7EA5DACB0760E15417F06E77B1BAF76F6EFCF214F423F07F61CA78E5282F25"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\receipt_image_29.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\receipt_image_29.md",
+        "sha256":  "081874186FA443F42CB51F0228CC6EA7E4A450A35F619B00C9D1E6F785273175"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\receipt_image_30.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\receipt_image_30.md",
+        "sha256":  "2ED6AB8B53CDBA705DB47F4C0FE07223D6FDC98C0599558E41DA51E3120C6C33"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\receipt_image_31.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\receipt_image_31.md",
+        "sha256":  "6BE63DD181865AB275C4F0BB8F9E23626F9909405CA489354A78470961FD7CF0"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\receipt_image_32.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\receipt_image_32.md",
+        "sha256":  "73B5641B6CE052F35ED6252D0AC562887C782544EDA8017E60CCBE759CDB172E"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Research_Paper_14.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Research_Paper_14.md",
+        "sha256":  "6C628D33382914D3769B3BE3AC696B063BF4564BA2640AD35A9C639B64D86E79"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Subnetworks_table_7.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Subnetworks_table_7.md",
+        "sha256":  "BA1A5AA6995A04A8FC9918E50965DC0E0ECD14A41AD2E8551FE87BE31EA23A71"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\switch_trans_3.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\switch_trans_3.md",
+        "sha256":  "52A61577863B88CFDFB0DDDC00952F582BB00DB2531CC6918EB3356BAF21BCD6"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\thinkdsp_4.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\thinkdsp_4.md",
+        "sha256":  "427AA6AC1EECCFB584D04A1579951C15D8AF1BCE11D67D5AD84C8BC0134B28A5"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\thinkos_5.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\thinkos_5.md",
+        "sha256":  "87EB924711A70F49269B508280E3B672356FF5C917D815F01B0B47C4A11397BC"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\thinkpython_6.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\thinkpython_6.md",
+        "sha256":  "08BC3D3C6BADB43A0EC22899B7B8CC0FEC7A39EA7FE929ABF69E256E10395F26"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_16.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_16.md",
+        "sha256":  "90E4FC3C0B03C8F1B1CB4FC881D956F32A58C3A88A002AF69FEB0CECF8E83E2B"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_17.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_17.md",
+        "sha256":  "6C9E7CDAF7B3A38C784C830C1ADB000D67E5A05B08205A72E246A547113D6C02"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_18.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_18.md",
+        "sha256":  "381947BE2A2C01E9741063A2A438FF9CB236905BE1ADE76386AF6A5F31B1D09C"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_19.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_19.md",
+        "sha256":  "4B8056AAEA32C19526F55D9A635D538D573D24F0ED96CDF28D643B472846D5A6"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_20.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_20.md",
+        "sha256":  "F384A1D4247351B8FF871DD7568903E23BC87828DCE8952E10F755C2639C0D52"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_21.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_21.md",
+        "sha256":  "1DE4F8F37039E5A7A96E6C2BE08357D76168914FAE387670F37B6528DB161E17"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_22.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_22.md",
+        "sha256":  "56E112AED1723E3BBA1E4FF4FCC41CDDF6C6C1803D8D66B993E5D05670E189C2"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_23.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_23.md",
+        "sha256":  "572EE52C846BAAAC429112EA0248D41D0BEF7DD29311BB24872AF01AF0AE99DE"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_24.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_24.md",
+        "sha256":  "B627EE5194CAB980562E0404A321F9A36CC5B4FDA8CAD51A98D30F35753A4EDA"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_25.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_25.md",
+        "sha256":  "13A87E18CD0B4BB2CB1C3AF7A3FDE0446B1F44B105F43A1AB69DEC875B9FD2E1"
+    },
+    {
+        "source":  "OCR\\Datasets\\English\\Markdown_Reference\\Tweet_26.md",
+        "destination":  "benchmarks\\datasets\\English\\Markdown_Reference\\Tweet_26.md",
+        "sha256":  "A2911C09D1CD2692601A9EA55E49F6D57E3296CECECE9CA87FEC43942A175F22"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\Article_4.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\Article_4.pdf",
+        "sha256":  "03DA76CC4746848CC47698261690E52F9F2CE8838C0B22CB17EA8DF17F2AA7A1"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\invoice_10.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\invoice_10.pdf",
+        "sha256":  "12AFD95680EF0B03EAB7CAA1B498B3CAC24532BD4C6399A89F5EDD4F9EDC11F4"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\invoice_5.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\invoice_5.pdf",
+        "sha256":  "102DDE6AC67325E942694977CE0901F1E49803AEBCA2142236355C208255BF22"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\invoice_6.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\invoice_6.pdf",
+        "sha256":  "BECAC9B8D92C8F7F9DCF0511C05570805A7E3E68E5A801286CF0FFEC906B10B9"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\invoice_7.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\invoice_7.pdf",
+        "sha256":  "29DB7772D95064CCA2C245FB5906B364A37DA048A08EEF9ED7B00108BC668958"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\invoice_8.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\invoice_8.pdf",
+        "sha256":  "96087BAB92475C12AE08DF34FC136CDC69C4C693F275B9629A32E3337EE4A032"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\invoice_9.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\invoice_9.pdf",
+        "sha256":  "40A62798CC701528EE212854F2C0E6D8E4814E799478D6DBC5E3AC25D4CC3261"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\poetry_2.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\poetry_2.pdf",
+        "sha256":  "55C6DE6DE9D8BC55FA56631D022093F57EC4BE4841BCB8DA5D466422A7477D6E"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\Postcard_1.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\Postcard_1.pdf",
+        "sha256":  "362F5F14C8C9974F530618845EB76CD75676582B84F7EE6546DF48578B072B8E"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Dataset\\Postcard_3.pdf",
+        "destination":  "benchmarks\\datasets\\Mix\\Dataset\\Postcard_3.pdf",
+        "sha256":  "477CA41CDBDD4646FFD54EEABFAB066BE074C88478D1446F7433D9C43A8FE47B"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\Article_4.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\Article_4.md",
+        "sha256":  "E623565441F8E187211AB2785664CA194176294B8589605BD1D203EF09B42DC7"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\invoice_10.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\invoice_10.md",
+        "sha256":  "3AFE311448844E8058CB6B8EC68BBC67742DDFBEAED1892952DF4B657ADCB929"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\Invoice_5.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\Invoice_5.md",
+        "sha256":  "60F913BC4AEF65699B4EF6E5907497C24335FBCF6F4747DCC68713453EE20DA9"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\invoice_6.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\invoice_6.md",
+        "sha256":  "C0F8B286B74E3EA029F60215DD4C3376A302BD9C571CFDF9778DB0D98479C1CC"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\invoice_7.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\invoice_7.md",
+        "sha256":  "0902358316EB0710991F4918FE0BB12EEB44E17A6782DFDBC2615549B1BE6075"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\invoice_8.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\invoice_8.md",
+        "sha256":  "613D1C1280625CBF20BE2DFB98A8EAAF37B29AA92E499A7D0F49739E020F7C10"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\invoice_9.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\invoice_9.md",
+        "sha256":  "613D1C1280625CBF20BE2DFB98A8EAAF37B29AA92E499A7D0F49739E020F7C10"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\poetry_2.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\poetry_2.md",
+        "sha256":  "2FD0E97D8B226BBF10C75D88CC6787E96A6FCF20931735BE6A1341195508254C"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\Postcard_1.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\Postcard_1.md",
+        "sha256":  "C6E21661B50A21AB5603C1522B3FC318ADBE695BC91ED846646AA248D5280B82"
+    },
+    {
+        "source":  "OCR\\Datasets\\Mix\\Markdown_Reference\\Postcard_3.md",
+        "destination":  "benchmarks\\datasets\\Mix\\Markdown_Reference\\Postcard_3.md",
+        "sha256":  "E4F50C132602AFE94A1EFB1D61284CCDE045C9916519974AF93AE2047C0EF722"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\diary_29.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\diary_29.md",
+        "sha256":  "E5DC819883D3C4B39A4A3F3054652D05BBCEB23AE07F1D5F396B3CB309CCE5FB"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_18.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_18.md",
+        "sha256":  "FA0FB27987AAC765B65F3C938376A56CE107641326686E4146A54A005A2307CC"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_19.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_19.md",
+        "sha256":  "3B0D0C4725EDED66F0719C30408BCFF2E99DD21A849898D40D3746699E0045DC"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_20.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_20.md",
+        "sha256":  "7382B50C67935C285D8C9EFD80B50B017FD40CAAEBB746CF7298E61EA0B34FB4"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_21.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_21.md",
+        "sha256":  "79B87AD260C25D1B5178F104644A77AF44C8D56845C05E156AAEDE03311B50A2"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_22.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_22.md",
+        "sha256":  "8EB61B9CFC4C8A7987C4D01ECF00797EDDB5AEBCB5C6E2A3D15584BAB78A1D42"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_23.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_23.md",
+        "sha256":  "A19691B9AAABC950129AAD97E2D96615E77435EB273A0357FB768DA8379E5F8A"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_24.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_24.md",
+        "sha256":  "7619B8F209193C1F7D6722FEECAA29396BFBEA0FEA12E4FAFA0626DF94B88DF1"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_25.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_25.md",
+        "sha256":  "7F750C1996E7722D28E308EB5345AAA80207B25535B6ED3B9A3834F822E07FAA"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_26.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_26.md",
+        "sha256":  "B8CB03BF8897F83BC334F0442C19802033B6819430CE9B873CCA324E59F2497F"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_27.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_27.md",
+        "sha256":  "D1BD31A0D9C306D033F5A56C0D83866B1D7C26237DCB2D7D151C1D22D37634DD"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_28.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_28.md",
+        "sha256":  "63F42EFCBD847DF261A4D836E0DAFCCD97A4CD0FD094CEA1C3FA708CBBF99C10"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_1.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_1.md",
+        "sha256":  "0650E40637C9C8F4C99CE30F34F956A85B98202AD25EDAFCC2AA906A34EBEC04"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_10.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_10.md",
+        "sha256":  "B7EB8D4165A205273BAF0748C44359B476142530DD6AF075992FFFDF365B387A"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_11.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_11.md",
+        "sha256":  "3C70194848B5308BD0E8C24C85A1160DA9CB07AF998ED5E98533213E121FCDB7"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_12.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_12.md",
+        "sha256":  "644E6F084EC9C9133E326B8D19B3D9560DC48CA3BB94517148021C880BE8D990"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_13.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_13.md",
+        "sha256":  "30F85B265E09A0660E0DE378D889CF7788924D9715E2A81F975D974464DBA9B2"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_14.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_14.md",
+        "sha256":  "8561C2A306425DFA94C23719C51ABEC52B1FF7E7BC0830A42A68B4E6262F5999"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_15.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_15.md",
+        "sha256":  "2DCACFB9D0E3999E29CCE8417C0A7A541B8993A7C5564CB19B3BC57FB66D008E"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_16.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_16.md",
+        "sha256":  "421928A478233F2332BC7739CBEFD5152051EC6281B50340B4B91EB823255891"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_17.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_17.md",
+        "sha256":  "ADEB4727D2627F465FC6AFA76A92539A81C1D58428673881E6618E277EB646D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_2.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_2.md",
+        "sha256":  "493BE8D45B738805A1FF720C3F328FF68A57687492FA5CFC231E711B20239C23"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_3.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_3.md",
+        "sha256":  "E840A55484CFF267F3F3FB63B725798E4BF810FBBF65EFFCE12C04F3E7DF058E"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_4.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_4.md",
+        "sha256":  "8D8C98118B3A96FF58B8D0492DAA6151E288D101FD12773E2CA733DC609FD0E0"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_5.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_5.md",
+        "sha256":  "D264B32FAF0DB9917E200D2EE2FBB1F3C2A9B998105B740BC34E197FC5CA8D9E"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_6.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_6.md",
+        "sha256":  "F296C3E1E861B1F58B581E8B1311BA4AC4967EDD5C1871440D651B974F35F6D9"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_7.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_7.md",
+        "sha256":  "9D5FC6548353012897807C27375C8E892F27B7317EE5B7C2EC76E2426804069B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_8.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_8.md",
+        "sha256":  "3BC812A8B572BC0DE02BED5FF6A47B9BCB42F2419EFB845D2F81378541238826"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\News_article_9.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\News_article_9.md",
+        "sha256":  "7A7DDE782875DBF1EB887FF93D07DD85CC115EE6500C669303F1574D90E5B10A"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\graniteocr\\Quran_30.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\graniteocr\\Quran_30.md",
+        "sha256":  "089737191465E25D523094892586BFD474F678AB10F6669A3EE0A9FBF92C916B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\diary_29.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\diary_29.md",
+        "sha256":  "8FA50C2147DCB1E8BB3170C10541763770670250D139D62E65840D7D8E17A6F0"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_18.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_18.md",
+        "sha256":  "B0F55A5521DA5112282D27F8C6CB35EEA9D43EFFA0D9D5E56F3BDFC604F58321"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_19.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_19.md",
+        "sha256":  "736AC6004169BC6B633120E1633390AE8A7351C2900C06A9BDCB5FFF3185236F"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_20.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_20.md",
+        "sha256":  "731AD480130421A71B5EC2A0D26E6A441D3BEB943DEF1492F9448777F1BFE01C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_21.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_21.md",
+        "sha256":  "8754001FDFA0C6D1D1CB77B8A3B107A4CC3639DA1A17749D0F5A63E0D266D27A"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_22.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_22.md",
+        "sha256":  "E7EBE1FBEC338ADC4A3F4347735201ACF888D299220564EA5DAC51F97F99DA9C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_23.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_23.md",
+        "sha256":  "61FCEF1AE8C3DCB584756814AB0A36A792CDF5C7D7E4B7B970DDBBC9FED93E6D"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_24.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_24.md",
+        "sha256":  "D4456F60682A2C6099E46570F19D1350005B6CD7E30DEBC638B58748ED115DB8"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_25.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_25.md",
+        "sha256":  "9EC34293F8256133B1C71BF885569C1DD9104DAEC7A3D9916D45CC2AAD0403E0"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_26.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_26.md",
+        "sha256":  "76B61FB03FA7A7CAB29E37C231F13EEDE2E7BE516A272A070790C37FBBF193CB"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_27.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_27.md",
+        "sha256":  "71B39A4359520DA873B9EC10A643894D7FEF33E1AF6A4F4C2D0B388EEA14FB66"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_28.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_28.md",
+        "sha256":  "B2ABC34AE6442459081ECF82E1F32476855C050591BF31F946C1AF5C6DF0261C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_1.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_1.md",
+        "sha256":  "2E1FCB1EBC220F22ACF77458FD7FE8AA5686141E68B75300089BCFE836AAA8E7"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_10.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_10.md",
+        "sha256":  "8D3A9E5F0D6C2292297158EFA1CC880BFAF724E946320CFFDA04625341C865D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_11.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_11.md",
+        "sha256":  "D9E20220E6F1B9B7B47F3717316D6F9E5938CBC6F5DF875D9B625976D6CC7548"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_12.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_12.md",
+        "sha256":  "D6365AA952FDB331630883A84C0C78FB716F93B4E275A8D10FF0CB44F7D5B37B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_13.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_13.md",
+        "sha256":  "C50B2BA5B9CAE80DBC3C9DCA4CF0F2B2D0CEDB726186FB3B8EBAB01621A151E6"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_14.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_14.md",
+        "sha256":  "C3CE78ED84F0685112C58114345696D5B8A96B4A692871CDAFDDB61EDD966177"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_15.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_15.md",
+        "sha256":  "E3F215F40E2BA6804E49FF83579F10C25F9A424E03C5870446598FDFD47A8852"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_16.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_16.md",
+        "sha256":  "FEB354C1A7A12200C6BD4DF30B86B42FFD53FA4D9FAB0C2B96E667B241CBD23B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_17.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_17.md",
+        "sha256":  "340B8CAA967006EC8F35499D5FAD3BE184A95C303520B6A296AE6AB431571E14"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_2.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_2.md",
+        "sha256":  "916EAA63FD25F05467DA0FB7BF19B96D53E7FEB8FFBF8BE746B689A41AD7484A"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_3.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_3.md",
+        "sha256":  "651E1FACF04CB451F91613DE8408425A7BE8BC3281D4383634CEB8F3F8EAF9E2"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_4.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_4.md",
+        "sha256":  "8F8CC4BE6368313CC4A9E87FE2358851BA0FA81D7F837AAAEF003B59995066A1"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_5.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_5.md",
+        "sha256":  "F8698FF405823DB8A0A309E2D2A3329FFF5AE919664E6756C40D347B1F1B037C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_6.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_6.md",
+        "sha256":  "6A713316C4440BC3CC608529A99DDFAF4938F58950549E0E95097E503090F140"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_7.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_7.md",
+        "sha256":  "B74A59E3CBB7B4EF3DE6DDB6D04B4D49D8F80BAA9F7A7DD7DC9A569EE0A8D0A6"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_8.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_8.md",
+        "sha256":  "C5245A4C8349B3D2F5C97E59F40ABAB47B971EE63494A516A2063C98B742D792"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\News_article_9.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\News_article_9.md",
+        "sha256":  "3CC3E726EF218F806AAC0BBD1867F05869C2D0C27F50B9CF5535B2FCE87943B9"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\markerocr\\Quran_30.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\markerocr\\Quran_30.md",
+        "sha256":  "74BB69B37CEEA424F5FE4E66F30224DC0E33926F6FAD3C9E09432E72C15D837B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\diary_29.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\diary_29.md",
+        "sha256":  "04ADE78F94455A7E2E01EBED01E86CC59E29699026736718DE0A6FAD0542C75B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_18.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_18.md",
+        "sha256":  "18151063D08EB377CFC5D486D1DA623FE2D6EA3C1C57472EE5B50B6BE80CA31C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_19.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_19.md",
+        "sha256":  "DFD217F1738BBF702C65B50E7E9D2D56947FBC1DF75BFF4C131229ADCD4FADF5"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_20.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_20.md",
+        "sha256":  "82EE6FBA1C6BD0FDB750593C4590E8DA0F2E737E5AFAF1D51443706B8F70D709"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_21.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_21.md",
+        "sha256":  "05FB18ADE0A433F2FA6A673AF688D51B0BE17AE5F8290F8E27C85683AD85C0EB"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_22.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_22.md",
+        "sha256":  "6715938CE6D71512D430031FC0E9C8E7333A39DFAA24B21D253942E39BF5C184"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_23.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_23.md",
+        "sha256":  "72623BB2BD033937C4262E5DBEF006E293B8A6FD89E94591C1BFF486D99608D6"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_24.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_24.md",
+        "sha256":  "1C8AD9B54A0ACE4494960D9300D42AB9AC3064524E51F67DF5D90349329F143C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_25.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_25.md",
+        "sha256":  "D36E81C2A553E041A419EDC2BCE0F0D09A3E6B3E0D29F8F065DD333A5FCCE43C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_26.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_26.md",
+        "sha256":  "27280FB2A6C9945E5F09A91D709828C76756D9B5B8F0B7CB28EB183712CF4CFB"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_27.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_27.md",
+        "sha256":  "421E32F324C662561A2B9600E16DB8FBC8C32F85D0CF3DA7E8E52D955DD3E3A1"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_28.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_28.md",
+        "sha256":  "28DA9FB8835001B363B8306558821ED274500459873BB342658967D86484D617"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_1.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_1.md",
+        "sha256":  "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_10.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_10.md",
+        "sha256":  "205995EAB58FAF779C6E628F7CEDF2B2B62E87FEC7207A3151DA52048F2353D2"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_11.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_11.md",
+        "sha256":  "7EA454E58F558502E384E727EBDB135D108B614CA99383F07A20BAC99DB8241E"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_12.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_12.md",
+        "sha256":  "2D998A3CF0238D10092BA7FC52EFA691777B65615B89DA446FBD0C863C93BA5C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_13.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_13.md",
+        "sha256":  "39249BC144997F8118C88AE3FF068AC9C225327CA6DFB0C6AEDE5EF13D7245B2"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_14.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_14.md",
+        "sha256":  "9C7272EE58D8623E3E1FD6DB08C682A0AE2922E0E53F240E60574024C33C39AD"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_15.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_15.md",
+        "sha256":  "9E6EB4055075084529273BB67728B07C23A5788CF9737780795E0AA970B14209"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_16.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_16.md",
+        "sha256":  "2F0A1F1748104B9A0BC0C163C4CE8F72E1CDD44FB5DF8972005D854F9C51C9EC"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_17.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_17.md",
+        "sha256":  "AC532E554173972C44EF7A3F925FE534FB334E8C28AD140B100B35BB6F5262F9"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_2.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_2.md",
+        "sha256":  "6D417D85BD7892FE30B1ED815C583C3C7F98205BED1F6FA1A8E7541707F86743"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_3.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_3.md",
+        "sha256":  "C98FFA04EDF8B672E673447D5DDF467D83799E1628EE580995A7FC41F71E345E"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_4.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_4.md",
+        "sha256":  "8E45ED7A53D633B34DD9AC1BDB0BC0DC00170DC2B20A4A2D138614FAA8FD0697"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_5.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_5.md",
+        "sha256":  "C4BE1FCF3A3F818C8A0AC849D7BF7ED1C41300336367B304892E304CF6645B12"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_6.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_6.md",
+        "sha256":  "5C9E1C3EEE607D4874211CC2B535DD48AB3E1575F69B7C68C1F27E4A6208AEE0"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_7.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_7.md",
+        "sha256":  "9E3FAE37B875F6C0F12449569C658D61CF272EA52B508665CFDB25B678235434"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_8.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_8.md",
+        "sha256":  "9A681669B1C39DFAF4E12ED665CDAC66C30214690BDFA3ADB609B1F0324EFABC"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\News_article_9.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\News_article_9.md",
+        "sha256":  "E70C6F11D67AB492BA1E7E650CC516350EE3F41B80C28FA44920C7A4BB29AF60"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\paddleocr\\Quran_30.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\paddleocr\\Quran_30.md",
+        "sha256":  "39025AFAD208D88E008AF52C6492A574F2BE8F6D6A725DF3FFC3881F46BDB53B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\diary_29.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\diary_29.md",
+        "sha256":  "BB99A86E91BAF9B0747D3B07A8C28D4FDB24D7F7EFBC8CAF25E3CB4B2759A492"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_18.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_18.md",
+        "sha256":  "95AD1E989833DCDB4EA0ACD7542CD594FEE852D49A42E0C93BE0A0EC2EB1A8DE"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_19.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_19.md",
+        "sha256":  "0350FDEF950B739DF5EF6084730A7CD91814B5F719E74418821D8AC486750A21"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_20.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_20.md",
+        "sha256":  "9416C24C332005C3EB05C7615033F4F9446F4995BA0D28FB3B2B7E4967F33D51"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_21.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_21.md",
+        "sha256":  "75672147039EF9B4871C8D101462333EB745A640C2DAC3352E519C53627B8881"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_22.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_22.md",
+        "sha256":  "88F8A41B7B59A92C04B53DBCEB0F26EBDDA2C23CF6FDF858819991CCC89ED6A3"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_23.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_23.md",
+        "sha256":  "1EBCC973ACC36F8A854D929CA87DE1A9FD5C2607BC84BF6841034A466BD63384"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_24.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_24.md",
+        "sha256":  "6C38EBC4B63B7EAD05FD2DD517B9E081BD9DEBEAC751190294CA95539F32F94E"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_25.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_25.md",
+        "sha256":  "ED746424E79CFBA923950913589ED5A0B02A7CD7CEC568F6EA9E1EB784DACB99"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_26.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_26.md",
+        "sha256":  "C3855D5696BC6ECADC0D3CB923BD2DA0B1323987A9D3B80E4673474223CEDD14"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_27.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_27.md",
+        "sha256":  "48E22055355EAC5EF9D59C2F1E0747E0493C9B08E42BE767FC516C0889E173CE"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_28.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_28.md",
+        "sha256":  "B08B0AEC8721CEC1BF266D9F12312A1D85D5E4885EBE7F3F8C381849B445614A"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_1.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_1.md",
+        "sha256":  "43D1C904984848AF0D0296FBA3E8480478A93B00E2604E796250ED26129DB512"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_10.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_10.md",
+        "sha256":  "851FB423EEEDB4743C26C6753042D0A64E7F5404C9C7F34A4FE71DDD778DFCEB"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_11.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_11.md",
+        "sha256":  "D5E90CD67B6F0A8F2A602CA30C807D3AEE84AD8C2F352464C518C2DF52711254"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_12.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_12.md",
+        "sha256":  "BE1E92779AC3F1DAED368BBB2638EDCB9F6B83DCD761E5033CD39D26740482FE"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_13.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_13.md",
+        "sha256":  "56D976D41CF9C9B40638DDF971444FB79E746AD256BE8CFDE65C437ADF0A46DD"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_14.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_14.md",
+        "sha256":  "3F0C72BAE5B3408F2E9F7C34A12425F6429068DD4665C3EE89269F04BAA677A8"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_15.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_15.md",
+        "sha256":  "C0BE1AFFF2B664F791773197261DE34C2376D8B68A5E26F316712E551D9AFCAC"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_16.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_16.md",
+        "sha256":  "553EB089FCAE90F27B6A083A607FE03CDE50827732B401C7CFC2CD1B34FC73A3"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_17.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_17.md",
+        "sha256":  "9B344C6527478E9F38D87372306C76F141BA4AEDE2BAEF749E90E1C4242D591D"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_2.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_2.md",
+        "sha256":  "ADC1ADA93A1347410ECC56E206C499396C214CB20D074DC2A77AFDCE884022CE"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_3.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_3.md",
+        "sha256":  "DF2A2A13E7EBE48D3A52E19780224CB72396BA48EF81FAE05917057B036E6925"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_4.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_4.md",
+        "sha256":  "242E488B621FD498E8FA2092880A51FFDC9249AB8D72502E5D4A32426017322E"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_5.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_5.md",
+        "sha256":  "AF5CFE44C283A5EC284E436942EF6F4028B61F00018E4CB7AFE7BDAA6B66E71D"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_6.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_6.md",
+        "sha256":  "38B0FBB0F15ADF85CAAB4AF92FC356C7487A8E4B276AC5352C3D253E0016F3C6"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_7.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_7.md",
+        "sha256":  "8871CFBC417350C22AF85AC9CC913D730D058D72BD03A3C09A849B2858DFB053"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_8.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_8.md",
+        "sha256":  "F185E05649B616CAD3902246CB2A857F8573424716E074621DCEBA653F212279"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\News_article_9.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\News_article_9.md",
+        "sha256":  "8407A7098F228174C0502A6C7610B789B886B560646B619BEED243AB286067EE"
+    },
+    {
+        "source":  "OCR\\Outputs\\Arabic\\tesseractocr\\Quran_30.md",
+        "destination":  "benchmarks\\outputs\\Arabic\\tesseractocr\\Quran_30.md",
+        "sha256":  "658F9B64611AF1CD13558764E85B3689DFB4963EADD50AE5C4BF265091AF2CBE"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Comm_protocol_15.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Comm_protocol_15.md",
+        "sha256":  "E7C0F6AB078EA10CC01D1A44CE9BDBA1AB0A39C51A01FEF3717F8544E14F2A92"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\crowd_1.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\crowd_1.md",
+        "sha256":  "1DC878F59930B53B6DC7BC90D2215398CB7E58B99772BA27B90BB97F45C6C76E"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\invoice_10.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\invoice_10.md",
+        "sha256":  "D65BD2F068B3D2080496787925EA85C5B9640B922A377EAEE1D6EB45EA4C8446"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\invoice_11.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\invoice_11.md",
+        "sha256":  "67121F827ECE242B0EEAAD77D11E641BFB7ECD09572FAB5B9BEE8FA517A5FC00"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\invoice_12.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\invoice_12.md",
+        "sha256":  "C0D77240767F88617E9F2706DF5700940FDFA45E403B9473095C7A963DB8BD33"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\invoice_8.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\invoice_8.md",
+        "sha256":  "F3B055441BFAF41CA115EE28E9BDB62E23C2F4EA3EF6C5B25C6CD26728022750"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\invoice_9.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\invoice_9.md",
+        "sha256":  "F61651B3436B87C6985B0D43E9C5BF50FC419E13222C73EECF49D82A5C4CD953"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Lab_work_13.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Lab_work_13.md",
+        "sha256":  "5C0ECB3A0C5735092F1316A112404FADD6176E650D0ABFB9430F69B98214B014"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\multicolcnn_2.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\multicolcnn_2.md",
+        "sha256":  "BB7013F3336A2F10E6802000F5FF15E76BD4771CA2687468D27E31249DEF869E"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\receipt_image_27.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\receipt_image_27.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\receipt_image_28.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\receipt_image_28.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\receipt_image_29.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\receipt_image_29.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\receipt_image_30.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\receipt_image_30.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\receipt_image_31.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\receipt_image_31.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\receipt_image_32.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\receipt_image_32.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Research_Paper_14.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Research_Paper_14.md",
+        "sha256":  "D950EE477C54BB7A39231A3ADA110BE815564BC8D61AD206CB9838A170C420B1"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Subnetworks_table_7.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Subnetworks_table_7.md",
+        "sha256":  "5C0ECB3A0C5735092F1316A112404FADD6176E650D0ABFB9430F69B98214B014"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\switch_trans_3.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\switch_trans_3.md",
+        "sha256":  "925375EE52A5475E7853C457C252F354BA4AB64A345D1BE0E8ECBCFD94076B1F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\thinkdsp_4.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\thinkdsp_4.md",
+        "sha256":  "2ECF744340DECC224A16632FA75DFB437FEE922CF64BB88F71B1B5BBD2C84646"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\thinkos_5.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\thinkos_5.md",
+        "sha256":  "AC600A19FB9798B9D022AC3C7F1401ACE788041E89AA16DF04ED230B3D77A0B2"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\thinkpython_6.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\thinkpython_6.md",
+        "sha256":  "FC6ED6D833AAB50869E2672ABD948885E6E03941C11A93C8FFC92D07247D1870"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_16.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_16.md",
+        "sha256":  "CEFA273362AAB62E56206526408496315D94B21CA06928F18585763CC4136B81"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_17.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_17.md",
+        "sha256":  "B24C50B78DED3E6B6B682872CC996746C832D08F80ADE60D590284CB340ED98D"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_18.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_18.md",
+        "sha256":  "B2DBC5E4DAB6D043CF6D96F731A4CDC278A8CE79673A9909CE59FA7E3EDD8A36"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_19.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_19.md",
+        "sha256":  "B0B32E7AA14C8CBCE1554FD2812BCC809814600243DACB18EB1391BDF8CB6E4E"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_20.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_20.md",
+        "sha256":  "0292F8381CBEFB1CADADF80DA8781544E270A8C622F03F8B6B7986830F6305E8"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_21.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_21.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_22.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_22.md",
+        "sha256":  "380E1C5DD6F6F5FACC9DF29BD006715A79681DC3DB888A02699021AEDA625C24"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_23.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_23.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_24.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_24.md",
+        "sha256":  "5E1986758A7D25C7123340614E1D2FD152CA73C59F6410A028AEC439E7E861D7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_25.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_25.md",
+        "sha256":  "3BE9564E01189525FC18E37C06BDB108181CCDE2E22F5D23BE150583505335A5"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\baiduocr\\Tweet_26.md",
+        "destination":  "benchmarks\\outputs\\English\\baiduocr\\Tweet_26.md",
+        "sha256":  "5552C52DDA90FC4949DD0608DBF960E6A6B92CA2F3AF346F30AA056FDE2DB44B"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Comm_protocol_15.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Comm_protocol_15.md",
+        "sha256":  "94A49B2D70616ED394C858940242B84A7A5BB6315D23FE27631C11C00D86C21F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\crowd_1.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\crowd_1.md",
+        "sha256":  "B659D2BD4FA6BCB799A7AF27F81AF6B36EF85FBDCDA09CF5930A99F9D54692F5"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\invoice_10.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\invoice_10.md",
+        "sha256":  "74DEE1E63B15D586C6EB9D862C7456FE3B221D0B7341C231F4C4DBABF2CE2392"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\invoice_11.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\invoice_11.md",
+        "sha256":  "E9B305F6B066A923D1D6D4C3F4F9723D4B18566F27A15553BB40FDD73B8AF7E1"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\invoice_12.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\invoice_12.md",
+        "sha256":  "1F74FCC7EA2B8B5D719EB1983796C561905BE1F841C4054386FD0959E7A9E6AC"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\invoice_8.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\invoice_8.md",
+        "sha256":  "9BA86A90B6CE0EA6A7D937017B322C28FAF0C5B1E1E611B3B5A6F97AE166B9BC"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\invoice_9.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\invoice_9.md",
+        "sha256":  "36AFDF2BEE86FFFDA3B286A6434C08A0660E3B0B13DE4303BD82C734D2A3F8A8"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Lab_work_13.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Lab_work_13.md",
+        "sha256":  "8EAAD107E66EF2AABB0FC132911F809FD01687A384BA2A5BEACF0F8CB2D1FC10"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\multicolcnn_2.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\multicolcnn_2.md",
+        "sha256":  "64CC35146D78963566B44AA9C2ABF0B104273CCC5680A7C8257ACF8F0F7B0503"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\receipt_image_27.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\receipt_image_27.md",
+        "sha256":  "85AE3AD1C72D4E6F47867C0FB86991F40B013593831BA740CA9968457ADBA9E2"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\receipt_image_28.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\receipt_image_28.md",
+        "sha256":  "A03B8F0D56EFA7BAA935DF7B13ED5213CDF96CA8714EC16B57DB1D79AEA537FA"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\receipt_image_29.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\receipt_image_29.md",
+        "sha256":  "A663984B554E57093E3F1D0959911902A853B59BDD46D1C8029F0D0E83A673D9"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\receipt_image_30.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\receipt_image_30.md",
+        "sha256":  "C24F10C52919B202FE53268F5C67B7BFC8D7AFF227304E0C546A5303860593FC"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\receipt_image_31.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\receipt_image_31.md",
+        "sha256":  "3FFD7133EEB64652E09A20305C0EE923ECD2D1C431B13C92FE3835BA61A9957F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\receipt_image_32.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\receipt_image_32.md",
+        "sha256":  "B4CBB8C092BF7C9AEEED0A3972BF1723CBA2497796D219021F4608BFA1921D1A"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Research_Paper_14.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Research_Paper_14.md",
+        "sha256":  "D9E636F4091A993551BD1B73301B79CD754F860F7A6A6C2EC2D8B1B57A191F91"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Subnetworks_table_7.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Subnetworks_table_7.md",
+        "sha256":  "8EAAD107E66EF2AABB0FC132911F809FD01687A384BA2A5BEACF0F8CB2D1FC10"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\switch_trans_3.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\switch_trans_3.md",
+        "sha256":  "CA6CD47C15FCDDF9837B67A75D66911ABBA5AB57CE88096FEC1D2FAEFF6F0A26"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\thinkdsp_4.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\thinkdsp_4.md",
+        "sha256":  "47A840B0E0706363AB9BD5C671A251C4E202BCA0584F1B05624648D2EC1D1D56"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\thinkos_5.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\thinkos_5.md",
+        "sha256":  "DA7A541DC4CBC304B1D29F4491303EC983AA77B333A2F135C6C74D18B7C5C044"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\thinkpython_6.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\thinkpython_6.md",
+        "sha256":  "27FF9E346A4A7EAFEEDA2586CC46D040822410ACB0266C9C361E3EFD41A0B763"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_16.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_16.md",
+        "sha256":  "D091554D65349B0B97905DCF5DC764CA4229D24904E95F59B7CC90EAD258A843"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_17.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_17.md",
+        "sha256":  "F77731376F72CD92CAE0EF42FC361B9D5B7ED3847E43498008CF7FAFE9ED7143"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_18.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_18.md",
+        "sha256":  "C0AA133BB1C5F288CD25730E9D1555E00D32E6019CA86EC6ED0037A37EF61DCD"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_19.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_19.md",
+        "sha256":  "F1A80450073F7E4B09E518342827EC5F009F592AD89B60B39CD4DFF2EDC46B39"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_20.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_20.md",
+        "sha256":  "A954B4CB200591EBA9FE7192DCFB0E313D90B7787651CB44BE05D230225ADE0E"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_21.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_21.md",
+        "sha256":  "A3D9F55E29D80BAAD60D70885EB71E9883AAEF6957B9AA7004D1B172926B031D"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_22.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_22.md",
+        "sha256":  "5339148E33B0DB4A89D2CDBB9B6A0A47F7055A506F5F8859192905026B638135"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_23.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_23.md",
+        "sha256":  "F54F592028DEFFD0857F24A21D5BD94976C4968A0534328397E47A8701B5E9C2"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_24.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_24.md",
+        "sha256":  "AF40F7F30A1B12E91EF4F2FDACA5B998449914BBE63D886680A47C0F55C19B82"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_25.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_25.md",
+        "sha256":  "99F0ED63B88C711CBEDEDD8A60AA267135D85B69D15531A9C5AF8BD0BD858F4C"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\graniteocr\\Tweet_26.md",
+        "destination":  "benchmarks\\outputs\\English\\graniteocr\\Tweet_26.md",
+        "sha256":  "99331C8A71EE7DAB6E94CD7286A17B7CF91EC432B9DE89043A6149A52E943F15"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Comm_protocol_15.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Comm_protocol_15.md",
+        "sha256":  "D50DD1C5CDBEBB76F5A6542152A70ACF6289211414837A2D31EA81A273FC79B1"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\crowd_1.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\crowd_1.md",
+        "sha256":  "EB9D8028D94F57D90492C5EAFBF17D925E74334285001AF5A0E947F3CD7B9D47"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\invoice_10.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\invoice_10.md",
+        "sha256":  "A162EBC74B29D8A48EA39D2DBD0DED267E8C3A6D3FC68C58A19700530C68CECA"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\invoice_11.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\invoice_11.md",
+        "sha256":  "289DA335649499B0C8BFB286CF63F19EA8269B970E99B7613AD3C52455ADD8C4"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\invoice_12.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\invoice_12.md",
+        "sha256":  "B2E05EE959A044D6BC9E6CFAC49C0AC55C233F0A1BCD22BB7721DA91FBC949CE"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\invoice_8.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\invoice_8.md",
+        "sha256":  "F7FF3E728E5CDE880F2AA069223FCE9CF7B93C789B9E6BC3F48F1D87196A5833"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\invoice_9.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\invoice_9.md",
+        "sha256":  "5C86969AEDA93EBB9026F2D069CEC26742FD6386C4764AAB97E4B902D62D964A"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Lab_work_13.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Lab_work_13.md",
+        "sha256":  "91FB228FCFF0380807606ED319B7426A6F0D94E4056AE437DC5DAA570295A9E7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\multicolcnn_2.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\multicolcnn_2.md",
+        "sha256":  "F064460BF12186F2D198ABD5D60D8BF8CF75B52091A3EE8B32465F7C5476C5EB"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\receipt_image_27.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\receipt_image_27.md",
+        "sha256":  "B228258E7BD2B387267A31215656CF0B84F5906E08F6D4A8B198387D25072D38"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\receipt_image_28.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\receipt_image_28.md",
+        "sha256":  "9E31505548EAA2AC67B9E7521AC311A5D378801BCA7A9A3840EA594FB5CD2891"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\receipt_image_29.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\receipt_image_29.md",
+        "sha256":  "224B30B6E7D49AE4E2BD4DC071770CE1F0D9CBF5BC2DAD563269F2AD15A1B34C"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\receipt_image_30.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\receipt_image_30.md",
+        "sha256":  "DAFC2973249854E8C70DA867DCF3DAC52034AB18E94CE556BDC4D16293D92CF2"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\receipt_image_31.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\receipt_image_31.md",
+        "sha256":  "55BFD32DB6A066538F48DC4A5338EE79EDE2705C47CF03E1ADC24C1D54BBD4D6"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\receipt_image_32.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\receipt_image_32.md",
+        "sha256":  "D3E746626E18A2DCECDBFA17DBAA2A81EA1DC9BB1A185A0D52090D03A365846E"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Research_Paper_14.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Research_Paper_14.md",
+        "sha256":  "0A68E2C560B854A6DA4CA4E2FA3E5E9A5F9F5351BAD084204BC034267B74848D"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Subnetworks_table_7.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Subnetworks_table_7.md",
+        "sha256":  "91FB228FCFF0380807606ED319B7426A6F0D94E4056AE437DC5DAA570295A9E7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\switch_trans_3.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\switch_trans_3.md",
+        "sha256":  "14053147E47AC0D92004BAD41A1BE441E5C42CEBEC832CDBB7F4CDFD2EFD3CF0"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\thinkdsp_4.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\thinkdsp_4.md",
+        "sha256":  "B6AA30C8BB51404249064E1772752B13E8C93DB3AF32D189010F084345201435"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\thinkos_5.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\thinkos_5.md",
+        "sha256":  "32D65645E6F140B34EC6C975941A692FBC0A2ED3E523F1F20A90B8EDB6AF57DA"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\thinkpython_6.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\thinkpython_6.md",
+        "sha256":  "E4419BB6E3FB19E10D50DE2ED590C11543471101036F7F8AB989F91FA40ACFDC"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_16.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_16.md",
+        "sha256":  "CB2FD8DF7E47FB7DC40D01945D2D46E54A0A232A8E18855422ADCDF37EB11885"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_17.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_17.md",
+        "sha256":  "D9613F565DF0FA01E0BAD4C56C149F584F05C473B560C2503180B69CD6365D6C"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_18.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_18.md",
+        "sha256":  "5A05E4FDF8EEEEE62330548CE60FB6A3D13C8A92BE3C6F4BECEE8C4527732DC2"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_19.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_19.md",
+        "sha256":  "1C76FD03E4B6FA02A770427E8CBD7903C4EC2925CDE87CE965CE367F8427ED1F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_20.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_20.md",
+        "sha256":  "16C2AAB3AF97D2B24CF079CBA334BFD476DB41E93D644FA24C435EC32D1ABFD8"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_21.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_21.md",
+        "sha256":  "7B99539DE9367B1622C4B3A60687E4BB27066FC8C37D7208761B206595403591"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_22.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_22.md",
+        "sha256":  "37FDE4778DBA0124DFD64899F8BE4DB0AD9679D747FA69EE740DF1BC37F7A518"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_23.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_23.md",
+        "sha256":  "DFEC90C62F75444531581769C99111C2911C7C1EA10978D73D2BADB4DD14A1EC"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_24.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_24.md",
+        "sha256":  "506F255847D1DD2629C852C17E7F5F0892616159AFEC8B17FFA024B92F6A132F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_25.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_25.md",
+        "sha256":  "BEA0404C5F767FD21D973668C90563FDAD9D4318A0077625D4035D054A94D84F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\markerocr\\Tweet_26.md",
+        "destination":  "benchmarks\\outputs\\English\\markerocr\\Tweet_26.md",
+        "sha256":  "548AB8F94E7BDA0887290E1E8C24B396926D5F4857625BF987ABFB4E59E2D3D1"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Comm_protocol_15.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Comm_protocol_15.md",
+        "sha256":  "A975A40AF5063C06061769DAF99E1A90543FB317716D3007585CC590FFE99990"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\crowd_1.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\crowd_1.md",
+        "sha256":  "01745476F631EF3CBCC8A01451074F31E5D819142347712B3C9E57AC6228BE08"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\invoice_10.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\invoice_10.md",
+        "sha256":  "EF8D3566A522ECCE62D2FCA467AA8F7BDB2BEABF693771B848002FADA4A74D2E"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\invoice_11.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\invoice_11.md",
+        "sha256":  "8230E233A88DCA46A40C20D67EBF3F2C05DEF57BEDA0BE50567EBD39083D910D"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\invoice_12.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\invoice_12.md",
+        "sha256":  "CE425C8C4F3E8C94F31692F129E7088B508C99E067BA1FF744AABB16F7574E7D"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\invoice_8.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\invoice_8.md",
+        "sha256":  "44A8A535BB1AE1C1CC0BB8C30DB7201A60F5895FDEA987EE170B04583D1BF747"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\invoice_9.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\invoice_9.md",
+        "sha256":  "1BD0AA054DE373E7C70A63B741107715BFD28CEC61D39BA022371587E35EE553"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Lab_work_13.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Lab_work_13.md",
+        "sha256":  "2A46718B8F9989E5CFBA085AB8CCB6E1FD6BF3A4F3AEF3C93632241C9F0D66A3"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\multicolcnn_2.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\multicolcnn_2.md",
+        "sha256":  "2F7493AAEBC6FE3173D2D885AF25D0BC2542384D1580C12ADC7B2F72E143A1D6"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\receipt_image_27.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\receipt_image_27.md",
+        "sha256":  "893A5EA83D45FF70C1806A4BDB1404E2F5848C36D99034FE2EEFCEE755E2951B"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\receipt_image_28.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\receipt_image_28.md",
+        "sha256":  "B7556B51E94CCFFB039AA4D8F8B6F6E45D12FEFEB842DF49F290B43D3B998930"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\receipt_image_29.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\receipt_image_29.md",
+        "sha256":  "6C7963A9B9DE126484A391784A7C9973803484B5EA1182B788498A115BC27884"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\receipt_image_30.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\receipt_image_30.md",
+        "sha256":  "34AF89CACED76F4A48ABC3595D5F02005A6CB9F4F1A0414399404CBE46313B34"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\receipt_image_31.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\receipt_image_31.md",
+        "sha256":  "F085C93B2581C6B24517D45090F81C653CF541F55E071922BF9F97A21F20D5BD"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\receipt_image_32.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\receipt_image_32.md",
+        "sha256":  "B4F90EB7EFC1C0E0DC8DA33549C5F639EDD3C82DFC5B04ADDFAB1EC33626BBD1"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Research_Paper_14.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Research_Paper_14.md",
+        "sha256":  "74E8924ADFCC8B7B914A71EF039147160B340EE8BC359392CC10B0EAC4759F2F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Subnetworks_table_7.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Subnetworks_table_7.md",
+        "sha256":  "2A46718B8F9989E5CFBA085AB8CCB6E1FD6BF3A4F3AEF3C93632241C9F0D66A3"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\switch_trans_3.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\switch_trans_3.md",
+        "sha256":  "BF6AE331C30501B80483CABBD24A9020C53E877B65B72BB0B7DDA4FE40F8A8C8"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\thinkdsp_4.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\thinkdsp_4.md",
+        "sha256":  "E4836CC9EFBA9B3FC94E5A5BFF666036EEC6ECD3CD630B5AE9A4E4B1C31EE4CF"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\thinkos_5.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\thinkos_5.md",
+        "sha256":  "3E19D4F23A7EEC7243A573C9000AE93ECB7F2A2F9C2D52B15056AC4DB1813350"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\thinkpython_6.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\thinkpython_6.md",
+        "sha256":  "5F2863B1039DD5A029D485D19F5AAF4325588C7B87F5B4A83D4667BFA1E7CE22"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_16.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_16.md",
+        "sha256":  "4FBB3734A20345DE0D6B2DE203F468EEF3A0DCE90AFD123827ACDE000DA362B9"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_17.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_17.md",
+        "sha256":  "AEC507CE92B0E9F64E69AF7CC1887E974088629E6736595159CD274DA9AB550E"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_18.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_18.md",
+        "sha256":  "8513F0C416AAEB0F0BF5F03E2065D80DD09BAD4401B7F3571FFD5408229A0787"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_19.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_19.md",
+        "sha256":  "55175024ED3D923625BDC866E35951DAB71B47F4C637756659365DE3BC3A791F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_20.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_20.md",
+        "sha256":  "4BABBEA63583BB0081C7BD0A0745C22C1FAFC298EF7881E55CEBC13A1FA0FC11"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_21.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_21.md",
+        "sha256":  "F25C3C132B2C88F98C7111DBEA46094FA78F36E1B1D72E8CA6D8B766299E2E29"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_22.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_22.md",
+        "sha256":  "766EDC05B5AD6EDAD78D18A088B5112D6466A01D8DF4D2C1CF97C6F76A6E06D1"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_23.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_23.md",
+        "sha256":  "ECAA56B6C9534728959855CFD46492081921803EBF71E4E7CF7E5F03571AD72E"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_24.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_24.md",
+        "sha256":  "32DF59A06E0992E7540DF94F41A6912526E99B43EC6714A4920B19A66D38CA00"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_25.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_25.md",
+        "sha256":  "CB38D47E04B6B465952AC86AD3F7DCB5B6A93F7E5881BE3140BD3505D471A597"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\paddleocr\\Tweet_26.md",
+        "destination":  "benchmarks\\outputs\\English\\paddleocr\\Tweet_26.md",
+        "sha256":  "2BB0B2B890A3550CF4BD81501093B492B6BE6682045A4BD4053CE32E73997AE7"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Comm_protocol_15.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Comm_protocol_15.md",
+        "sha256":  "40D2DE9E46989CF06887232553665AF893137B4BE29E715A4927A8FBDE270247"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\crowd_1.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\crowd_1.md",
+        "sha256":  "098553F505FE77CD25208C212FFA54C2013A684023C40663366F3B2C7A6B8C22"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\invoice_10.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\invoice_10.md",
+        "sha256":  "84BE83F7282329DE18583450FA6C65BA784F210E039702BBB5D1CA4102C04794"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\invoice_11.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\invoice_11.md",
+        "sha256":  "FA1C6B3D81840C4A9EE5A8F6CF6B9A31E06C2C2140D2FDBD6DD61123404C828F"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\invoice_12.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\invoice_12.md",
+        "sha256":  "3330C3C305DEF009A034AB48CBAF8CD5F4F2081011846F6298D79C68CD14AD32"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\invoice_8.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\invoice_8.md",
+        "sha256":  "08FA3B112999C52722B20B29D065133C99F9870ECFF968505B238C14378F67DD"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\invoice_9.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\invoice_9.md",
+        "sha256":  "D60DEF1B6925014430E14A7A82C827D1F4071CE19CB327157FA04163BD19B4C2"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Lab_work_13.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Lab_work_13.md",
+        "sha256":  "17C399B14F005FA5582320AF2D63CC48FA74E3AF10F7211D525BCD235E760138"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\multicolcnn_2.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\multicolcnn_2.md",
+        "sha256":  "706A33831CF6C7AB98B2D040D2EA093C0D874F1F1A589C804CBA5F1F26E83361"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\receipt_image_27.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\receipt_image_27.md",
+        "sha256":  "FFF22FD17F89244D6117C6D99D1134E512D4751B9FB73FF78E8DBCBEBB744D87"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\receipt_image_28.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\receipt_image_28.md",
+        "sha256":  "F36A1756634F1E6665EC124D5D9C8B79EE8A971DDD2CDEADDE5EE7AB4AE791CC"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\receipt_image_29.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\receipt_image_29.md",
+        "sha256":  "8D7D5FC3209D5B0090DC4BD2E4A514627E60EFEB292ED60FA54CDAE08DAC31F0"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\receipt_image_30.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\receipt_image_30.md",
+        "sha256":  "5A11D35A26E479B6340F7D6848FF67712CDEE774572BC0A404B8C4902F930A40"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\receipt_image_31.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\receipt_image_31.md",
+        "sha256":  "C503C2AFDB245D6D821E9DA01F1C44E88B1EDD7506A8C934708F0F475E38EF0B"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\receipt_image_32.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\receipt_image_32.md",
+        "sha256":  "BB99A86E91BAF9B0747D3B07A8C28D4FDB24D7F7EFBC8CAF25E3CB4B2759A492"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Research_Paper_14.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Research_Paper_14.md",
+        "sha256":  "514A0BE10CEBE300F04FD014069DBCABBAA71F073164DFC23623CBA0C15E4691"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Subnetworks_table_7.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Subnetworks_table_7.md",
+        "sha256":  "17C399B14F005FA5582320AF2D63CC48FA74E3AF10F7211D525BCD235E760138"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\switch_trans_3.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\switch_trans_3.md",
+        "sha256":  "2DBAE947EE19CDFB75235145338740D109DF9126D22594F3493F7ECE64C6ECD9"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\thinkdsp_4.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\thinkdsp_4.md",
+        "sha256":  "62472AA14372949750022D31808AD68592E28DD3B64A3FEA36B4DE2D186EEA20"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\thinkos_5.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\thinkos_5.md",
+        "sha256":  "60FE03D47D2581F07C8BC9EF71A3A6877C89F07EC3B864F36EF256EDE38B7D9A"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\thinkpython_6.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\thinkpython_6.md",
+        "sha256":  "66B3E557E7094419F04801D9D40E9FCF0E6C8506397FD93F72744F94C7AECA60"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_16.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_16.md",
+        "sha256":  "C2B616BD94819E8EC5D79A85354F2F11A13EFF9B9FA135642C5ED03553C74496"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_17.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_17.md",
+        "sha256":  "9FA41CEA564B4DE9C27508F0D139FDE51D4019FC6ECA1D421BE8BEEA583F0743"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_18.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_18.md",
+        "sha256":  "9F571470517FD1AAFB4E092CBA1BC72B1B13F065D579ECB2D597A257079F264D"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_19.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_19.md",
+        "sha256":  "0F0E81C228C1D0C99D26C1ED1A228032A6D9C584543564358C7B1E4F670962F5"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_20.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_20.md",
+        "sha256":  "4307DB45C995BE3BCE4D087A0554BDE06B21DC4F15F0DD5E6AD22C785AA99E94"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_21.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_21.md",
+        "sha256":  "B83B946E4F8F4269755349888CBFDFB8DD0820387BF230F9CF8BD911FE26E1A0"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_22.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_22.md",
+        "sha256":  "9A5D3F98E751D4B2EF117E81F184714CECBB4A2E500F839D0F3DAF86C82D4FB2"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_23.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_23.md",
+        "sha256":  "6DF783DFFD374E72D054BB15D044079E5F2D533642EB20B238F00996FDAAC1AF"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_24.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_24.md",
+        "sha256":  "A24A35404FC42A6B42B2FA6B5922118CCF633482D4F3E299E61831FEEE8F5922"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_25.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_25.md",
+        "sha256":  "B21A57E0915BC885710621FE7E8935CBA978EF67E2F5E8774CD5CE90AA41BB13"
+    },
+    {
+        "source":  "OCR\\Outputs\\English\\tesseractocr\\Tweet_26.md",
+        "destination":  "benchmarks\\outputs\\English\\tesseractocr\\Tweet_26.md",
+        "sha256":  "75005B5938FE96F2AC70A38B0297F1151CAE16FF54837997F827FE0DF9378ADD"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\Article_4.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\Article_4.md",
+        "sha256":  "4AB59B2C9E5AEEAFE83871EE1F0552DD7CC49EAE5CE3E2218127DB3F553DEA4F"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\invoice_10.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\invoice_10.md",
+        "sha256":  "E8F3CF4C67C079458C85E234BA16365E4C8ABD256998013B17B9862CB1F68D7A"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\invoice_5.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\invoice_5.md",
+        "sha256":  "B228258E7BD2B387267A31215656CF0B84F5906E08F6D4A8B198387D25072D38"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\invoice_6.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\invoice_6.md",
+        "sha256":  "320BDD08E1C224876F4CF34294A353D8B904D167103533AD91AA4F93EBD9E0C8"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\invoice_7.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\invoice_7.md",
+        "sha256":  "B228258E7BD2B387267A31215656CF0B84F5906E08F6D4A8B198387D25072D38"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\invoice_8.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\invoice_8.md",
+        "sha256":  "65932DE60135286D758EAA88F8C1CDA97A35B7ACCB97C276E52523ECDFD56052"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\invoice_9.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\invoice_9.md",
+        "sha256":  "6EFC77FF99A114A2AB31FCCA64BB448475DB12B2A6ADC25461C1635CB8162877"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\poetry_2.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\poetry_2.md",
+        "sha256":  "DFC52A77A6AAD5C83B0462CF437190DC6448A24106D219138964ED867B4BBE1B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\Postcard_1.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\Postcard_1.md",
+        "sha256":  "0D540B46D6ADBCCD8F690C97BD23CB894561DB4E2CB27F4D8610420B3617F86A"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\markerocr\\Postcard_3.md",
+        "destination":  "benchmarks\\outputs\\Mix\\markerocr\\Postcard_3.md",
+        "sha256":  "68F795FFEB7FBB5CB9D6F3253EAF9CF0868794869710676461C02F93F07D9EE3"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\Article_4.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\Article_4.md",
+        "sha256":  "7E0DBA8FFE711C0F1DF268A4438DC0D3F7C8FEACD7CD4F626E66C3040A8C236D"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\invoice_10.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\invoice_10.md",
+        "sha256":  "45BC17BBA010ACAF4A91D31FDFE6F34504462A7AFB13078E2FAB6692D8F1CC82"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\invoice_5.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\invoice_5.md",
+        "sha256":  "847F0EBFC2D565D88885F6CD090341A61F9CD578A46B9E0792728260B92A3296"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\invoice_6.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\invoice_6.md",
+        "sha256":  "69DE20B0EE3AB21B32E13C7BA8527A69FDD39DD2A3D618EB71524734792EEA9C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\invoice_7.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\invoice_7.md",
+        "sha256":  "E9A077DA3A6FEE60141CC7D29859EFA4B55D68BD5ADC0AD45770490132903D17"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\invoice_8.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\invoice_8.md",
+        "sha256":  "4257830551AC5B42F1E478F89A0731585E63F6872C253F6B06C03167A0388F0F"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\invoice_9.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\invoice_9.md",
+        "sha256":  "3C369589D1E2A240414D40F151FBA85D4FD38126EDC24409F7E451028779C84D"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\poetry_2.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\poetry_2.md",
+        "sha256":  "65A50D4F82963FADE8636E3CFE74A6E3104EFAD28BE0EDC096686EA45CEE9C22"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\Postcard_1.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\Postcard_1.md",
+        "sha256":  "4F63C6A2503DFA4B32A66A9333CF04AF400518BD4D61309166474F305C5D7EC7"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\paddleocr\\Postcard_3.md",
+        "destination":  "benchmarks\\outputs\\Mix\\paddleocr\\Postcard_3.md",
+        "sha256":  "C92E6D5E23E5DECA9A579A86824D733CB068FE2DFA101E65FA52DC84512D396C"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\Article_4.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\Article_4.md",
+        "sha256":  "C76B39119A41013BC92AB4F9295E6BBBAB4D72F2BF0A93A48916A4FE05C15384"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\invoice_10.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\invoice_10.md",
+        "sha256":  "1C9030C23B7CC51DA7A8B051A34E2947A5B59AEA58D9407C6685AEEAB88E6E09"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\invoice_5.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\invoice_5.md",
+        "sha256":  "E90F0023AADBFD679F19B7C680196A7137813B73B1A576C4C208AA942318752B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\invoice_6.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\invoice_6.md",
+        "sha256":  "2DF555BE8517DED18CC6C62867DBB49A0E59118479EF3B217447769135FC2EF2"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\invoice_7.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\invoice_7.md",
+        "sha256":  "EE96F7FCB68C2D5163BE6F338F389E0E7237DCD1D8440F79041F909DAD01C463"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\invoice_8.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\invoice_8.md",
+        "sha256":  "88F05C702A1AE2766913933D40CEC205AC681CB4AA40C0F087A54A7683E65F56"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\invoice_9.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\invoice_9.md",
+        "sha256":  "470187364932BB58A78D8AFFC3AFC6CA3BB9ADD00A67F515B3848BA81D654CB5"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\poetry_2.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\poetry_2.md",
+        "sha256":  "C2561477B947A7670B4937F37240FEE926DBA19A3A17D22C5B985E85020BB73B"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\Postcard_1.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\Postcard_1.md",
+        "sha256":  "4AD4581FD8B64E2F1366C6A0F859CE44E46B442B1EE0074E52A3A3EB6173F6CF"
+    },
+    {
+        "source":  "OCR\\Outputs\\Mix\\tesseractocr\\Postcard_3.md",
+        "destination":  "benchmarks\\outputs\\Mix\\tesseractocr\\Postcard_3.md",
+        "sha256":  "5BA613D945607870E6BCAEB8A90BFB2603CA1B9256E094D2D1DAC2AC02A26CDE"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\Arabic\\Granite_OCR_Arabic_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\Arabic\\Granite_OCR_Arabic_Evaluation.xlsx",
+        "sha256":  "3EEB805DD284236800B195638550BAC239C7487984B1FB0E7151729C4E449E00"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\Arabic\\Marker_OCR_Arabic_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\Arabic\\Marker_OCR_Arabic_Evaluation.xlsx",
+        "sha256":  "15C0E6A03C851C6816413A15356B0BE76E8AEE01BDF9E975187E29F17FC4D9F0"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\Arabic\\Paddle_OCR_Arabic_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\Arabic\\Paddle_OCR_Arabic_Evaluation.xlsx",
+        "sha256":  "1002A5636ED454A694910DAED7C5827D94506F9665CD01BF3894D4F835E67D55"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\Arabic\\Tesseract_OCR_Arabic_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\Arabic\\Tesseract_OCR_Arabic_Evaluation.xlsx",
+        "sha256":  "5E24E957ABB845B3278031561430EE6EDBD85468814B39AF23804A5FDF1B06EC"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\English\\Baidu_OCR_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\English\\Baidu_OCR_Evaluation.xlsx",
+        "sha256":  "55ECE4C5FB907907E6A030D4619525BE1B5FBCF02D909B2009FF3ECB310188A3"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\English\\Granite_OCR_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\English\\Granite_OCR_Evaluation.xlsx",
+        "sha256":  "6DC10FB3FC44521E7CFB678DADB9009F325CA3604EC8EDDB07C94DCA761DCB55"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\English\\MarkerOCR_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\English\\MarkerOCR_Evaluation.xlsx",
+        "sha256":  "BFDE0CEB46223287D111715D6BFE08C8D8EBBCC4182EE5E52A1142A22EC85D8C"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\English\\PaddleOCR_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\English\\PaddleOCR_Evaluation.xlsx",
+        "sha256":  "01DAB14DD5F0731E0A8279A67C53B8D9B1C59CBF51409244779FECA0E8F69453"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\English\\TesseractOCR_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\English\\TesseractOCR_Evaluation.xlsx",
+        "sha256":  "04CB4AA20AE37157FE8D8906AE059CADFFC351611CC7CEAA1964F3381123C3F3"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\Mix\\marker_OCR_Mix_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\Mix\\marker_OCR_Mix_Evaluation.xlsx",
+        "sha256":  "C9CE2956C3A9E14B479022962BC0EA8898AB77964A422DD6C8CBA5B29BF8F810"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\Mix\\Paddle_OCR_Mix_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\Mix\\Paddle_OCR_Mix_Evaluation.xlsx",
+        "sha256":  "DF825B01C6DAFC34922D4BDAB419A19C36358AA4C43044A27089B50D7CCEEB36"
+    },
+    {
+        "source":  "OCR\\Evaluation Results\\Mix\\Tesseract_OCR_Mix_Evaluation.xlsx",
+        "destination":  "benchmarks\\results\\Mix\\Tesseract_OCR_Mix_Evaluation.xlsx",
+        "sha256":  "058DA2B2D2F2AAE0B0C091EC9889CBACBEE73F0F0A19F36BBF7C95A840B1620E"
+    },
+    {
+        "source":  "OCR\\test.py",
+        "destination":  "benchmarks\\evaluation\\evaluate_english.py",
+        "sha256":  "9FA1CA15497633F2596AA8117C8C27FDB4C17DF81AAB512E3B4CC31BBC93644F"
+    },
+    {
+        "source":  "OCR\\test_arabic.py",
+        "destination":  "benchmarks\\evaluation\\evaluate_arabic.py",
+        "sha256":  "4CCAAB732ED44ACA415408AD734BEC3CD15C396B4B9D0409FE9E7C85A17187A6"
+    },
+    {
+        "source":  "OCR\\test_mix.py",
+        "destination":  "benchmarks\\evaluation\\evaluate_mix.py",
+        "sha256":  "2245F9AF2435041BFF024E1FAF9EDD9F8B9F1F2C481B167A6F9F7BBB4A96EF0E"
+    },
+    {
+        "source":  "OCR\\diagnose.py",
+        "destination":  "benchmarks\\evaluation\\diagnose.py",
+        "sha256":  "FE6596DE51269D360144B938EA74C0CCBC439836644720BAD8D533B088522A3C"
+    },
+    {
+        "source":  "OCR\\detailed_analysis.py",
+        "destination":  "benchmarks\\evaluation\\detailed_analysis.py",
+        "sha256":  "76CAED2F9AD7A8CC0142BDE550F65F3D081E496FF3FBD1B201A0FFC1A115E48C"
+    },
+    {
+        "source":  "OCR\\benchmark.ipynb",
+        "destination":  "benchmarks\\notebooks\\benchmark.ipynb",
+        "sha256":  "6059CFF565A39BFF4D06C4FF8963E97E8F6390CFAC6860E3C14DBA68EE71111C"
+    },
+    {
+        "source":  "OCR\\benchmark_surya.ipynb",
+        "destination":  "benchmarks\\notebooks\\benchmark_surya.ipynb",
+        "sha256":  "026E2F50376343789546C8288E8422A0CE2671F544FED91CBC1D39C910F14212"
+    },
+    {
+        "source":  "OCR\\setup.ipynb",
+        "destination":  "experiments\\setup.ipynb",
+        "sha256":  "766F3FB341721E5F1E2606CEC63F11B627D78C84F90B25F146EFC636B0EBE78E"
+    },
+    {
+        "source":  "OCR\\setup_executed.ipynb",
+        "destination":  "experiments\\setup_executed.ipynb",
+        "sha256":  "F22A3888B0D99A970C1410501ADA7AB1FFD7E47BF097E00387D8A9D58D37BAAF"
+    },
+    {
+        "source":  "OCR\\tmp_inspect_surya.py",
+        "destination":  "experiments\\tmp_inspect_surya.py",
+        "sha256":  "D0BCD4456A5DEB2ED84851B11D92F5E13BFB85DDF2E543AEA8A9B50840D1A832"
+    },
+    {
+        "source":  "OCR\\tmp_verify_surya.py",
+        "destination":  "experiments\\tmp_verify_surya.py",
+        "sha256":  "CB939A7D946C31C196460E5E77906974885506AD0BCC1B93607C616068AFB322"
+    },
+    {
+        "source":  "OCR\\tests\\test_api.py",
+        "destination":  "tests\\test_api.py",
+        "sha256":  "DB5E73F9E57776DF5BA4C02B214738023E5538242D3ECC29145AA6E49141C9AB"
+    },
+    {
+        "source":  "OCR\\tests\\test_paddle_runner.py",
+        "destination":  "tests\\legacy\\test_paddle_runner.py",
+        "sha256":  "4C349497BD41D0DE190DE04B18F0AC661DBBBE922EE7B721E383643C6CD7C110"
+    },
+    {
+        "source":  "OCR\\tests\\test_surya_runner.py",
+        "destination":  "tests\\legacy\\test_surya_runner.py",
+        "sha256":  "F175800047AE6121C7D05957B2B469A8662DF653817C7448861DB7A938A37A26"
+    },
+    {
+        "source":  "OCR\\uploads\\crowd_1.pdf",
+        "destination":  "runtime\\uploads\\crowd_1.pdf",
+        "sha256":  "588DA82962BEFC978862815E86FE464C1D2BE7F93BEDD7C13E862F89BF08DF43"
+    },
+    {
+        "source":  "OCR\\uploads\\Tweet_20.pdf",
+        "destination":  "runtime\\uploads\\Tweet_20.pdf",
+        "sha256":  "A50A78D0975625F7175C2ACFFC4B96D9AD8382C266327884EEF7CDEBF3E20BD2"
+    },
+    {
+        "source":  "OCR\\uploads\\Tweet_22.pdf",
+        "destination":  "runtime\\uploads\\Tweet_22.pdf",
+        "sha256":  "E8B5E3A91B70A275E9C96C31E5E89075007F44E13EED01AE0DC602CDD56D8B66"
+    },
+    {
+        "source":  "OCR\\uploads\\Tweet_23.pdf",
+        "destination":  "runtime\\uploads\\Tweet_23.pdf",
+        "sha256":  "3D4AE0E3AA23B3A8579FD9EC609E5D49A2F0E62DC8C253CCBC2C8B7F1F843260"
+    },
+    {
+        "source":  "OCR\\uploads\\Tweet_24.pdf",
+        "destination":  "runtime\\uploads\\Tweet_24.pdf",
+        "sha256":  "5E408038AF42AC4455572836FB99560DD62AE46C4181D28A0523B5ADC9ABFBFD"
+    },
+    {
+        "source":  "OCR\\uploads\\Tweet_25.pdf",
+        "destination":  "runtime\\uploads\\Tweet_25.pdf",
+        "sha256":  "B13F7C74FF02F72EA4E5789356E405586506525A8049160A3749FD92145F042D"
+    },
+    {
+        "source":  "OCR\\Documentation\\OCR Tools.docx",
+        "destination":  "docs\\OCR Tools.docx",
+        "sha256":  "94720204724606DF782C012D751F70E57969DFA05CB938BB0BA4857B2DEA73E1"
+    },
+    {
+        "source":  "OCR\\run_app.bat",
+        "destination":  "run_app.bat",
+        "sha256":  "3626DF5403B6F13852929C3A900158567B3475071172DCDDFE3EA8DA5B4F5EE0"
+    },
+    {
+        "source":  "OCR\\Requirements.txt",
+        "destination":  "requirements.txt",
+        "sha256":  "CC4CF6B14B29E58306E9F76C1C77AE0A7FD9664618500E142F9F0635A7123955"
+    },
+    {
+        "source":  "OCR\\README.md",
+        "destination":  "README.md",
+        "sha256":  "4AED4B179AFF4A1E26D085EED7F418913989AD4BA389BC67D091397F09732E5F"
+    }
+]

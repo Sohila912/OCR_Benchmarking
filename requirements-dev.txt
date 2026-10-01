@@ -1,0 +1,8 @@
+# Isolated tests; no OCR model packages required.
+-r requirements.txt
+pytest==9.0.2
+httpx==0.28.1
+numpy>=1.26,<3
+pandas>=2.2,<3
+jiwer==4.0.0
+openpyxl>=3.1,<4

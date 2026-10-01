@@ -1,0 +1,4 @@
+# Optional selected providers. Install only when ready to provision their local assets.
+# Native inference runtime/device installation is separate; see README.
+paddleocr[doc-parser]==3.6.0
+docling==2.80.0

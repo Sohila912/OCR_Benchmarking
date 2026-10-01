@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-01",
+  "python": "3.13.7",
+  "pytest": "9.0.2",
+  "command": "python -B -m pytest tests -q -p no:cacheprovider --basetemp=runtime/test-tmp-20261001 --junitxml=runtime/test-results.xml",
+  "tests": 94,
+  "passed": 94,
+  "failed": 0,
+  "errors": 0,
+  "skipped": 0,
+  "warnings_emitted": 0,
+  "pytest_reported_seconds": 2.37,
+  "code_failures": 0,
+  "missing_dependency_failures": 0,
+  "scope": "Mocked provider/API/unit/contract tests and temporary-fixture benchmark evaluation; five isolated legacy runner checks included.",
+  "not_run": [
+    "Real OCR/model inference",
+    "Real Poppler/Tesseract smoke checks",
+    "GPU validation",
+    "Historical dataset accuracy runs",
+    "Interactive Streamlit/launcher check",
+    "Clean optional-model installation"
+  ],
+  "earlier_pdf_helper_check": {
+    "tests": 8,
+    "passed": 8,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "warnings_emitted": 0,
+    "import_isolation": "passed"
+  }
+}

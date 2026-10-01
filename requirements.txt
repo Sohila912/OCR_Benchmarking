@@ -1,0 +1,10 @@
+# Core API and lightweight Tesseract PDF adapter. No model downloads at startup.
+fastapi==0.128.0
+uvicorn[standard]>=0.30.0,<1
+pydantic>=2.11.9,<3
+python-multipart==0.0.22
+python-dotenv==1.2.1
+pdf2image==1.17.0
+Pillow>=10.4.0,<13
+requests>=2.32.0,<3
+streamlit>=1.40,<2

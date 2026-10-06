@@ -2,6 +2,7 @@
 
 from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
+import gc
 
 from OCR.config import Settings
 from OCR.errors import InvalidDocumentError, ProviderNotReadyError
@@ -31,6 +32,16 @@ class LocalProvider(OCRProvider):
 
     def health(self) -> ProviderHealth:
         return self._health
+
+    def unload(self) -> None:
+        released = False
+        for attribute in ("_pipeline", "_converter"):
+            if hasattr(self, attribute):
+                delattr(self, attribute)
+                released = True
+        if released:
+            gc.collect()
+            self._state("uninitialized", "Released model memory after switching providers.")
 
     def _state(self, status: str, detail: str | None = None) -> None:
         self._health = ProviderHealth(provider=self.provider_id, status=status, detail=detail)

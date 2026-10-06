@@ -1,0 +1,5 @@
+# CPU setup used by run_app.bat on this Windows machine.
+-r requirements.txt
+-r requirements-models.txt
+paddlepaddle==3.2.2
+hf_xet==1.6.0

@@ -19,7 +19,7 @@ def probe_tesseract(command: str, languages: str, timeout: int) -> str:
     version = subprocess.run([command, "--version"], capture_output=True, text=True,
                              encoding="utf-8", errors="replace", check=True, timeout=timeout)
     identity = (version.stdout or version.stderr).splitlines()[0]
-    if not re.search(r"tesseract\s+5\.", identity, re.IGNORECASE):
+    if not re.search(r"tesseract\s+v?5\.", identity, re.IGNORECASE):
         raise RuntimeError("The selected adapter requires Tesseract 5.")
     result = subprocess.run([command, "--list-langs"], capture_output=True, text=True,
                             encoding="utf-8", errors="replace", check=True, timeout=timeout)

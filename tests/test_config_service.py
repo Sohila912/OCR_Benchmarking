@@ -1,4 +1,5 @@
 ﻿import io
+import os
 import pytest
 from pathlib import Path
 from pydantic import ValidationError
@@ -22,6 +23,16 @@ def test_env_file_and_environment_precedence(tmp_path, monkeypatch):
 def test_relative_paths_are_repo_relative(monkeypatch, tmp_path):
     monkeypatch.chdir(tmp_path)
     assert Settings(upload_dir='runtime/uploads').upload_dir == REPOSITORY_ROOT/'runtime/uploads'
+
+
+def test_poppler_install_root_resolves_to_binary_directory(tmp_path):
+    install_root = tmp_path/'poppler'
+    binary_directory = install_root/'Library'/'bin'
+    binary_directory.mkdir(parents=True)
+    suffix = '.exe' if os.name == 'nt' else ''
+    for executable in ('pdfinfo', 'pdftoppm'):
+        (binary_directory/f'{executable}{suffix}').touch()
+    assert Settings(poppler_path=install_root).poppler_path == binary_directory
 
 
 @pytest.mark.parametrize('values',[{'provider':'marker'}, {'api_port':70000}, {'pdf_dpi':0}, {'temp_dir':''}, {'operation_timeout':0}])
@@ -79,3 +90,25 @@ def test_new_settings_are_all_environment_backed(tmp_path, monkeypatch):
     assert current.api_port == 8011
     assert current.temp_dir == REPOSITORY_ROOT/'runtime/test-tmp'
     assert current.paddle_vl_model_dir == REPOSITORY_ROOT/'models/vl'
+
+
+def test_switching_provider_releases_previous_model_before_loading(settings):
+    resident = set()
+
+    class MemoryProvider(FakeProvider):
+        def initialize(self):
+            assert not (resident - {self.name})
+            resident.add(self.name)
+            super().initialize()
+
+        def unload(self):
+            resident.discard(self.name)
+            self.ready = False
+
+    first, second = MemoryProvider('tesseract'), MemoryProvider('docling')
+    service = OCRService(settings, {'tesseract': first, 'docling': second})
+    document = OCRDocument(document_id='doc', filename='x.pdf', path=Path('x.pdf'))
+    for name in ('tesseract', 'docling', 'tesseract'):
+        service.extract(document, name)
+        assert resident == {name}
+    assert first.initializations == 2

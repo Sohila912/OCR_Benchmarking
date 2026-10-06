@@ -63,6 +63,17 @@ class Settings(BaseModel):
             path = REPOSITORY_ROOT / path
         return path.resolve()
 
+    @field_validator("poppler_path")
+    @classmethod
+    def resolve_poppler_install_root(cls, value: Path | None) -> Path | None:
+        if value is None:
+            return None
+        binary_directory = value / "Library" / "bin"
+        suffix = ".exe" if os.name == "nt" else ""
+        if all((binary_directory / f"{name}{suffix}").is_file() for name in ("pdfinfo", "pdftoppm")):
+            return binary_directory
+        return value
+
 
 def load_settings(env_file: Path | None = REPOSITORY_ROOT / ".env") -> Settings:
     """Read .env then environment overrides, without mutating os.environ.

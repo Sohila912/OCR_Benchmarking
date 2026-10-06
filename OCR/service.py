@@ -78,6 +78,10 @@ class OCRService:
     def extract(self, document: OCRDocument, provider: str | None = None) -> OCRResult:
         selected = self.select(provider)
         with self._lock:
+            # Keep only the selected heavy pipeline resident on small-memory PCs.
+            for other in self.providers.values():
+                if other is not selected:
+                    other.unload()
             try:
                 selected.initialize()
                 result = selected.extract(document)

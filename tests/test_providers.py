@@ -66,7 +66,7 @@ def test_tesseract_initialization_repeat_safe(settings,monkeypatch):
 def test_tesseract_probe_checks_languages(monkeypatch):
     import OCR.providers.tesseract as module
     def run(args,**kwargs):
-        return types.SimpleNamespace(stdout='tesseract 5.5.0' if '--version' in args else 'List of languages:\neng\n',stderr='')
+        return types.SimpleNamespace(stdout='tesseract v5.5.0' if '--version' in args else 'List of languages:\neng\n',stderr='')
     monkeypatch.setattr(module.subprocess,'run',run)
     assert '5.5' in probe_tesseract('tesseract','eng',10)
     with pytest.raises(RuntimeError,match='ara'):

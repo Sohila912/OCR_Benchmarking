@@ -44,6 +44,9 @@ class OCRProvider(ABC):
     silently substitute another engine or embed failure messages in OCR text.
     """
 
+    def unload(self) -> None:
+        """Release cached inference resources when switching providers."""
+
     @abstractmethod
     def initialize(self) -> None:
         """Initialize using installed dependencies and existing local assets.

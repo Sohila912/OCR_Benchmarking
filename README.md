@@ -2,6 +2,51 @@
 
 ## Overview
 
+### Windows launcher
+
+Double-click `run_app.bat`. The launcher prefers `.venv-ocr`, then other working
+Python environments, and skips stale environments whose base Python was removed.
+Keep the launcher window open while using the app at http://127.0.0.1:8501.
+Use `run_app.bat -CheckOnly` for dependency/path checks or
+`run_app.bat -SmokeCheck` to start and stop both services without opening a browser.
+
+On a normal launch, if the pinned Paddle/Docling packages or their local model
+files are missing, the launcher offers to install `requirements-models.txt` and
+download both providers' assets. `-CheckOnly` and `-SmokeCheck` do not install
+optional model packages or download weights.
+
+Set `OCR_POPPLER_PATH=C:\poppler-26.02.0` in `.env` only once. The application
+resolves the installation root to `Library/bin`; a later duplicate setting would
+override the correct path.
+
+The explicit model download and real extraction checks are:
+
+```powershell
+.venv-ocr\Scripts\python.exe scripts\provision_models.py
+.venv-ocr\Scripts\python.exe scripts\check_models.py
+```
+
+Downloads are saved under `models/`. The check uses a small scanned invoice and
+saves results under `runtime/model-check/`; it fails if a provider cannot extract
+the expected amount. It requires installed model packages and native runtimes.
+Use `--provider tesseract`, `--provider docling`, or `--provider paddle_vl` with
+the check script to diagnose one provider.
+
+For a fresh CPU environment, install `requirements-windows-cpu.txt` before
+provisioning. `requirements-windows-cpu.lock.txt` records the exact installed
+Windows/Python 3.13 package versions, including development dependencies.
+
+Verification on 2026-10-05: launcher preflight and API/Streamlit startup passed;
+96 tests passed. Real scanned-PDF extraction passed separately for all three
+providers. On this 8 GB RAM CPU machine, cold runs took approximately 0.7 seconds
+for Tesseract, 27 seconds for Docling, and 381 seconds for PaddleOCR-VL (including
+model loading). Large documents may take substantially longer. Switching
+providers releases the previous model pipeline before loading the next one;
+switching back reloads its weights. English recognition was tested; the installed
+Tesseract language packs are `eng` and `osd`. Arabic Tesseract/Docling recognition
+still requires the `ara` language pack. The older refactor milestone notes below
+describe the state before this machine setup and verification.
+
 A local PDF OCR service with FastAPI, a Streamlit client, and preserved English, Arabic, and mixed-language benchmarks. Three provider adapters return the same versioned document format, including available page/block provenance, source identity, warnings, and errors.
 
 The application and API are covered by **94 passing tests** (2026-10-01). OCR models are mocked in these tests. Actual model accuracy, a fresh full model installation, GPU execution, and real Poppler/Tesseract extraction have **not** been validated in this milestone. No RAG pipeline is implemented.

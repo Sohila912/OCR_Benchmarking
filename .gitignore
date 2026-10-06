@@ -1,5 +1,6 @@
 # Virtual environment
 .venv/
+.venv-ocr/
 __pycache__/
 *.py[cod]
 .pytest_cache/

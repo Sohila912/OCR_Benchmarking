@@ -1,0 +1,255 @@
+{
+  "results": [
+    {
+      "id": "1f5e7d78a84d4ff68899eabc9d1d2809",
+      "batch_id": "d6933dfbf2f54faea50b30fbf2332b97",
+      "timestamp": "2026-10-15T09:09:24.280409+00:00",
+      "dataset_id": "Docker synthetic smoke",
+      "dataset_name": "Docker synthetic smoke",
+      "document_id": "828530d30b2566a36929dd4e5e0a0019b183f0d7095c3d3ae7149e88c648fc65",
+      "reference_hash": "e756544146a6159de2bef4f06a5df1f37558eb772eec73ff3bf324fde9ab986e",
+      "provider": "tesseract",
+      "normalization": {
+        "mode": "plain_text",
+        "unicode": "NFC",
+        "whitespace": true,
+        "line_breaks": true,
+        "casefold": false,
+        "punctuation": false
+      },
+      "method": "levenshtein-jiwer4-v1",
+      "status": "success",
+      "origin": "upload",
+      "runtime_versions": {
+        "jiwer": "4.0.0",
+        "paddleocr": "3.6.0",
+        "paddlepaddle": "3.2.2",
+        "docling": "2.80.0",
+        "torch": "2.14.1+cpu",
+        "torchvision": "0.29.1+cpu",
+        "ollama": "0.6.3"
+      },
+      "metrics": {
+        "cer": 0,
+        "wer": 0,
+        "characters": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 14,
+          "edits": 0
+        },
+        "words": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 3,
+          "edits": 0
+        },
+        "exact_match": true,
+        "character_similarity": 1,
+        "normalization": {
+          "mode": "plain_text",
+          "unicode": "NFC",
+          "whitespace": true,
+          "line_breaks": true,
+          "casefold": false,
+          "punctuation": false
+        },
+        "method": "levenshtein-jiwer4-v1"
+      },
+      "model_name": "Tesseract",
+      "model_version": "tesseract 5.5.0",
+      "package_version": null,
+      "model_digest": null,
+      "duration_seconds": 0.5569880740000599,
+      "initialization_seconds": 0.24506193299998813,
+      "inference_seconds": 0.31192614100007177
+    },
+    {
+      "id": "6b16b5d606e3475bb5099da3ca70764b",
+      "batch_id": "665be0fdf34b4ed8b5148f7f9ef51981",
+      "timestamp": "2026-10-15T09:09:24.867596+00:00",
+      "dataset_id": "Docker synthetic smoke",
+      "dataset_name": "Docker synthetic smoke",
+      "document_id": "828530d30b2566a36929dd4e5e0a0019b183f0d7095c3d3ae7149e88c648fc65",
+      "reference_hash": "e756544146a6159de2bef4f06a5df1f37558eb772eec73ff3bf324fde9ab986e",
+      "provider": "docling",
+      "normalization": {
+        "mode": "plain_text",
+        "unicode": "NFC",
+        "whitespace": true,
+        "line_breaks": true,
+        "casefold": false,
+        "punctuation": false
+      },
+      "method": "levenshtein-jiwer4-v1",
+      "status": "success",
+      "origin": "upload",
+      "runtime_versions": {
+        "jiwer": "4.0.0",
+        "paddleocr": "3.6.0",
+        "paddlepaddle": "3.2.2",
+        "docling": "2.80.0",
+        "torch": "2.14.1+cpu",
+        "torchvision": "0.29.1+cpu",
+        "ollama": "0.6.3"
+      },
+      "metrics": {
+        "cer": 0,
+        "wer": 0,
+        "characters": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 14,
+          "edits": 0
+        },
+        "words": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 3,
+          "edits": 0
+        },
+        "exact_match": true,
+        "character_similarity": 1,
+        "normalization": {
+          "mode": "plain_text",
+          "unicode": "NFC",
+          "whitespace": true,
+          "line_breaks": true,
+          "casefold": false,
+          "punctuation": false
+        },
+        "method": "levenshtein-jiwer4-v1"
+      },
+      "model_name": "Docling standard PDF + Tesseract",
+      "model_version": null,
+      "package_version": "2.80.0",
+      "model_digest": null,
+      "duration_seconds": 23.915600135999966,
+      "initialization_seconds": 16.090262618999986,
+      "inference_seconds": 7.82533751699998
+    },
+    {
+      "id": "50ecfa180b37472dbfc6a3dbe76af110",
+      "batch_id": "2465e27ac0684983837deeaf7d225811",
+      "timestamp": "2026-10-15T09:09:49.111612+00:00",
+      "dataset_id": "Docker synthetic smoke",
+      "dataset_name": "Docker synthetic smoke",
+      "document_id": "828530d30b2566a36929dd4e5e0a0019b183f0d7095c3d3ae7149e88c648fc65",
+      "reference_hash": "e756544146a6159de2bef4f06a5df1f37558eb772eec73ff3bf324fde9ab986e",
+      "provider": "paddle_vl",
+      "normalization": {
+        "mode": "plain_text",
+        "unicode": "NFC",
+        "whitespace": true,
+        "line_breaks": true,
+        "casefold": false,
+        "punctuation": false
+      },
+      "method": "levenshtein-jiwer4-v1",
+      "status": "failed",
+      "origin": "upload",
+      "runtime_versions": {
+        "jiwer": "4.0.0",
+        "paddleocr": "3.6.0",
+        "paddlepaddle": "3.2.2",
+        "docling": "2.80.0",
+        "torch": "2.14.1+cpu",
+        "torchvision": "0.29.1+cpu",
+        "ollama": "0.6.3"
+      },
+      "error": "provider_resources_unavailable: Check provider diagnostics.",
+      "duration_seconds": 3.5113309580000305
+    },
+    {
+      "id": "7d188f0056c0470a970e02c61b8d3afe",
+      "batch_id": "d5a24780181745fcb2cbc13255fc38e0",
+      "timestamp": "2026-10-15T09:09:52.967932+00:00",
+      "dataset_id": "Docker synthetic smoke",
+      "dataset_name": "Docker synthetic smoke",
+      "document_id": "828530d30b2566a36929dd4e5e0a0019b183f0d7095c3d3ae7149e88c648fc65",
+      "reference_hash": "e756544146a6159de2bef4f06a5df1f37558eb772eec73ff3bf324fde9ab986e",
+      "provider": "qwen_ollama",
+      "normalization": {
+        "mode": "plain_text",
+        "unicode": "NFC",
+        "whitespace": true,
+        "line_breaks": true,
+        "casefold": false,
+        "punctuation": false
+      },
+      "method": "levenshtein-jiwer4-v1",
+      "status": "success",
+      "origin": "upload",
+      "runtime_versions": {
+        "jiwer": "4.0.0",
+        "paddleocr": "3.6.0",
+        "paddlepaddle": "3.2.2",
+        "docling": "2.80.0",
+        "torch": "2.14.1+cpu",
+        "torchvision": "0.29.1+cpu",
+        "ollama": "0.6.3"
+      },
+      "metrics": {
+        "cer": 0,
+        "wer": 0,
+        "characters": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 14,
+          "edits": 0
+        },
+        "words": {
+          "substitutions": 0,
+          "deletions": 0,
+          "insertions": 0,
+          "reference_length": 3,
+          "edits": 0
+        },
+        "exact_match": true,
+        "character_similarity": 1,
+        "normalization": {
+          "mode": "plain_text",
+          "unicode": "NFC",
+          "whitespace": true,
+          "line_breaks": true,
+          "casefold": false,
+          "punctuation": false
+        },
+        "method": "levenshtein-jiwer4-v1"
+      },
+      "model_name": "Qwen2.5-VL 3B via Ollama",
+      "model_version": "qwen2.5vl:3b",
+      "package_version": "0.6.3",
+      "model_digest": "fb90415cde1ef08aa669ae74b082d49b158729b6db1ab183c941417d507e71a1",
+      "duration_seconds": 225.099505033,
+      "initialization_seconds": 0.4021561389999988,
+      "inference_seconds": 224.69734889400002
+    }
+  ],
+  "comparison": {
+    "same_document_and_reference": true,
+    "same_evaluation_policy": true,
+    "summaries": [
+      {
+        "provider": "tesseract",
+        "model_version": "tesseract 5.5.0",
+        "dataset_id": "Docker synthetic smoke",
+        "model_name": "Tesseract",
+        "package_version": null,
+        "model_digest": null,
+        "selected_runs": 2,
+        "documents": 1,
+        "evaluations": 1,
+        "failed_evaluations": 0,
+        "micro_cer": 0,
+        "micro_wer": 0
+      }
+    ],
+    "aggregation": "Micro rates = total edits / total reference units; newest selected run per document/reference/provider/model/dataset/policy. Failed outputs are excluded; inspect coverage. Different datasets or policies are not equivalent."
+  }
+}

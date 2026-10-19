@@ -38,7 +38,7 @@ class ProviderHealth(BaseModel):
 
 
 class OCRProvider(ABC):
-    """Explicit lifecycle contract for the three application adapters.
+    """Explicit lifecycle contract for application adapters.
 
     Constructing an adapter must not initialize models. Providers must not
     silently substitute another engine or embed failure messages in OCR text.

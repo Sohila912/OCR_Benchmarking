@@ -7,7 +7,7 @@ from OCR.schemas import OCRResult, OCRPage, OCRBlock, attach_text_provenance
 
 @pytest.fixture
 def settings(tmp_path):
-    return Settings(upload_dir=tmp_path/'uploads', temp_dir=tmp_path/'tmp', output_dir=tmp_path/'outputs')
+    return Settings(upload_dir=tmp_path/'uploads', temp_dir=tmp_path/'tmp', output_dir=tmp_path/'outputs', benchmark_db=tmp_path/'history.sqlite3')
 
 
 class FakeProvider(OCRProvider):

@@ -13,6 +13,7 @@ from OCR.pdf import get_pdf_page_count, render_pdf_page, require_pdf_renderer
 from OCR.providers.base import OCRDocument
 from OCR.providers.common import LocalProvider
 from OCR.schemas import BoundingBox, OCRBlock, OCRIssue, OCRPage, OCRResult
+from OCR.logging_utils import log_event
 
 
 def probe_tesseract(command: str, languages: str, timeout: int) -> str:
@@ -95,7 +96,8 @@ class TesseractProvider(LocalProvider):
                     )
                 pages.append(page_from_tsv(output.stdout, number, image.width, image.height))
             except Exception as exc:
-                logging.getLogger(__name__).warning("Tesseract page %s failed", number, exc_info=True)
+                log_event(logging.getLogger(__name__), "page_failed", level=logging.WARNING,
+                          provider=self.provider_id, page_number=number, error_type=type(exc).__name__)
                 pages.append(OCRPage(page_number=number, errors=[OCRIssue(
                     code="page_extraction_failed", message=f"Page extraction failed ({type(exc).__name__}).",
                     page_number=number)]))

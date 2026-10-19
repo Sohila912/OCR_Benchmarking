@@ -8,9 +8,10 @@ class OCRError(Exception):
 
     code = "ocr_error"
 
-    def __init__(self, message: str, *, provider: str | None = None) -> None:
+    def __init__(self, message: str, *, provider: str | None = None, public_message: str | None = None) -> None:
         super().__init__(message)
         self.provider = provider
+        self.public_message = public_message
 
 
 class ProviderInitializationError(OCRError):
@@ -43,3 +44,21 @@ class UnsupportedProviderError(OCRError):
 
 class UploadTooLargeError(InvalidDocumentError):
     code = "upload_too_large"
+
+
+class ProviderResourceError(ProviderInitializationError):
+    """Known hardware capacity cannot safely initialize this provider."""
+
+    code = "provider_resources_unavailable"
+
+
+def public_error_message(exc: OCRError) -> str:
+    """Expose only explicitly safe diagnostics, never raw runtime exceptions."""
+    if exc.public_message:
+        return exc.public_message
+    if isinstance(exc, (InvalidDocumentError, UnsupportedProviderError)):
+        return str(exc)
+    name = {"paddle_vl": "PaddleOCR-VL", "docling": "Docling", "tesseract": "Tesseract",
+            "qwen_ollama": "Qwen/Ollama"}.get(exc.provider, "OCR provider")
+    phase = "initialization" if isinstance(exc, (ProviderInitializationError, ProviderNotReadyError)) else "extraction"
+    return f"{name} {phase} failed. Open Settings / Provider Status for runtime and model diagnostics."

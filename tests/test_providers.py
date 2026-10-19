@@ -120,6 +120,7 @@ def test_paddle_mapping_no_fabricated_confidence():
 
 def test_paddle_initialization_explicit_local_models(settings,tmp_path,monkeypatch):
     import OCR.providers.paddle_vl as module
+    monkeypatch.setattr(module,'paddle_memory_issue',lambda settings:None)  # Mock lifecycle test is independent of runner RAM.
     assets=tmp_path/'assets';assets.mkdir();(assets/'config.json').write_text('{}')
     settings=settings.model_copy(update={'paddle_vl_model_dir':assets,'paddle_layout_model_dir':assets})
     factory=Mock()
@@ -181,7 +182,7 @@ def test_paddle_extraction_restores_document_page_numbers(settings,document,monk
     raw=types.SimpleNamespace(json={'res':{'width':2,'height':2,'parsing_res_list':[
         {'block_label':'text','block_content':'hello','block_bbox':[0,0,2,2],'block_order':1}]}},markdown={'markdown_texts':'hello'})
     provider._pipeline=Mock()
-    provider._pipeline.predict.side_effect=[[raw],RuntimeError('failed')]
+    provider._pipeline.predict.side_effect=[iter([raw]),RuntimeError('failed')]
     monkeypatch.setattr(module,'get_pdf_page_count',lambda *a,**kw:2)
     class Image:
         def __init__(self):self.closed=False

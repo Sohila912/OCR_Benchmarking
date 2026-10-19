@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-15",
+  "command": ".venv-ocr/Scripts/python.exe -m pytest tests -q --basetemp runtime/test-ground-truth-final",
+  "passed": 159,
+  "failed": 0,
+  "errors": 0,
+  "warnings": 3,
+  "scope": "Unit, mocked provider/API, Streamlit AppTest, exact metrics and Arabic/Unicode handling, SQLite history/filtering/comparison/immutability/interruption recovery, dataset mapping/import validation, export serialization and legacy regressions. No model downloads in automated tests.",
+  "lint": "Correctness lint passed",
+  "actual_inference": "Docker Tesseract, Docling and Qwen passed the synthetic fixture. Paddle was OOM-killed at 3.7 GiB before the guard; final guard returns a recorded resource failure. See GROUND_TRUTH_REPORT.md."
+}

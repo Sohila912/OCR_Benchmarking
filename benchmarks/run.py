@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import logging
 from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
@@ -10,14 +11,18 @@ from OCR.config import load_settings
 from OCR.errors import OCRError
 from OCR.providers.base import OCRDocument
 from OCR.service import OCRService, PROVIDER_TYPES
+from OCR.logging_utils import log_event
 
 
 def main() -> int:
+    logging.basicConfig(level=logging.INFO, format="%(message)s")
+    logger = logging.getLogger(__name__)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--language", choices=("English", "Arabic", "Mix"), required=True)
     parser.add_argument("--provider", choices=tuple(PROVIDER_TYPES), required=True)
     parser.add_argument("--output-dir", type=Path, help="New, non-existing run directory")
     args = parser.parse_args()
+    log_event(logger, "benchmark_started", provider=args.provider, language=args.language)
     root = Path(__file__).resolve().parent
     run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ") + "-" + uuid4().hex[:8]
     output = args.output_dir or root / "outputs" / args.language / (args.provider + "-" + run_id)
@@ -48,6 +53,8 @@ def main() -> int:
             records.append({"file": source.name, "errors": [{"code": exc.code, "message": str(exc)}]})
     (output / "run.json").write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Run outputs: {output}")
+    log_event(logger, "benchmark_completed", provider=args.provider, documents=len(records),
+              failed=sum(bool(record.get("errors")) for record in records))
     return 1 if not records or any(r.get("errors") for r in records) else 0
 
 

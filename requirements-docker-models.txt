@@ -1,0 +1,3 @@
+# Optional CPU model runtimes; no weights downloaded during image build.
+-r requirements-models.txt
+paddlepaddle==3.2.2

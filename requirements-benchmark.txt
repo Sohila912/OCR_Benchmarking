@@ -1,0 +1,4 @@
+# Optional evaluation functionality; used by CLI and Streamlit benchmarking.
+pandas>=2.2,<3
+jiwer==4.0.0
+openpyxl>=3.1,<4

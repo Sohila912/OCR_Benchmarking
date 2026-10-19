@@ -1,0 +1,64 @@
+services:
+  api:
+    build:
+      context: .
+      args:
+        INSTALL_LOCAL_MODELS: ${OCR_INSTALL_LOCAL_MODELS:-true}
+    environment:
+      OCR_API_HOST: 0.0.0.0
+      OCR_PROVIDER: tesseract
+      OCR_TESSERACT_LANG: ${OCR_TESSERACT_LANG:-eng}
+      OCR_RETAIN_UPLOADS: 'false'
+      OLLAMA_HOST: ${OLLAMA_DOCKER_HOST:-http://host.docker.internal:11434}
+      OLLAMA_OCR_MODEL: ${OLLAMA_OCR_MODEL:-qwen2.5vl:3b}
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_KEEP_ALIVE:-300}
+      OLLAMA_NUM_GPU: ${OLLAMA_NUM_GPU:-0}
+      OLLAMA_NUM_CTX: ${OLLAMA_NUM_CTX:-4096}
+      OLLAMA_MAX_IMAGE_PIXELS: ${OLLAMA_MAX_IMAGE_PIXELS:-1000000}
+      OLLAMA_OCR_TIMEOUT: ${OLLAMA_OCR_TIMEOUT:-1800}
+      OCR_PADDLE_VL_MODEL_DIR: /models/PaddleOCR-VL-1.6
+      OCR_PADDLE_LAYOUT_MODEL_DIR: /models/PP-DocLayoutV3
+      OCR_DOCLING_ARTIFACTS_PATH: /models/docling
+      OCR_PADDLE_MIN_MEMORY_GIB: ${OCR_PADDLE_MIN_MEMORY_GIB:-6}
+      OCR_PADDLE_DEVICE: cpu
+      OCR_DOCLING_DEVICE: cpu
+      HF_HOME: /home/ocr/.cache/huggingface
+      OCR_BENCHMARK_DB: /app/runtime/benchmarks.sqlite3
+      OCR_BENCHMARK_RETENTION_DAYS: ${OCR_BENCHMARK_RETENTION_DAYS:-90}
+    ports:
+      - "127.0.0.1:${OCR_DOCKER_API_PORT:-8000}:8000"
+    volumes:
+      - ocr-runtime:/app/runtime
+      - ./models:/models:ro
+      - ocr-model-cache:/home/ocr/.cache
+      - ./benchmarks/datasets:/app/benchmarks/datasets:ro
+      - ./benchmarks/outputs:/app/benchmarks/outputs:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 5
+  frontend:
+    build: .
+    command: ["python", "-m", "streamlit", "run", "frontend/app.py", "--server.address", "0.0.0.0"]
+    environment:
+      OCR_API_URL: http://api:8000
+      OCR_RETAIN_UPLOADS: 'false'
+    ports:
+      - "127.0.0.1:${OCR_DOCKER_UI_PORT:-8501}:8501"
+    volumes:
+      - ./benchmarks/datasets:/app/benchmarks/datasets:ro
+      - ./benchmarks/outputs:/app/benchmarks/outputs:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8501/_stcore/health', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 5
+    depends_on:
+      api:
+        condition: service_healthy
+volumes:
+  ocr-runtime:
+  ocr-model-cache:

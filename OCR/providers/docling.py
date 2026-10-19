@@ -45,8 +45,17 @@ def normalize_docling(document: OCRDocument, result, model_version: str | None,
             if text is not None and span is not None:
                 start, end = span
                 if not 0 <= start <= end <= len(text):
-                    raise ValueError("Docling returned an invalid item character span.")
-                text = text[start:end]
+                    # Some Docling releases emit character spans against the
+                    # page-level text stream rather than this item's text.
+                    # Keep the item text instead of turning a recoverable
+                    # provenance mismatch into a fatal extraction error.
+                    warnings.append(OCRIssue(
+                        code="invalid_item_character_span",
+                        message=f"Item {data.get('self_ref')} returned a span outside its text; full item text was retained.",
+                        page_number=number,
+                    ))
+                else:
+                    text = text[start:end]
             if text is None and data.get("data", {}).get("table_cells"):
                 # Table text is supplied by cells; structure is preserved in raw metadata.
                 # Do not assign a multi-page table's entire content to a single page.

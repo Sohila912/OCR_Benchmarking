@@ -1,4 +1,5 @@
-# Optional selected providers. Install only when ready to provision their local assets.
+# Provider packages used by the local OCR models.
 # Native inference runtime/device installation is separate; see README.
 paddleocr[doc-parser]==3.6.0
 docling==2.80.0
+ollama>=0.4.0,<1

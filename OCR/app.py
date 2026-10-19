@@ -1,6 +1,7 @@
-﻿"""FastAPI entry point: multipart PDFs in, normalized OCR documents out."""
+"""FastAPI entry point: multipart PDFs in, normalized OCR documents out."""
 
 import logging
+import re
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
@@ -9,8 +10,9 @@ from pydantic import BaseModel, Field
 from starlette.concurrency import run_in_threadpool
 
 from OCR.config import Settings, load_settings
+from OCR.logging_utils import log_event
 from OCR.errors import (OCRError, ExtractionError, InvalidDocumentError, UploadTooLargeError,
-                        UnsupportedProviderError, ProviderInitializationError, ProviderNotReadyError)
+                        UnsupportedProviderError, ProviderInitializationError, ProviderNotReadyError, public_error_message)
 from OCR.schemas import OCRIssue, OCRResult
 from OCR.service import OCRService, ingest_pdf
 
@@ -40,9 +42,7 @@ def error_status(exc: OCRError) -> int:
 
 
 def public_error(exc: OCRError) -> str:
-    if error_status(exc) in (400, 413):
-        return str(exc)
-    return "OCR provider is unavailable or extraction failed. Check server logs and provider configuration."
+    return public_error_message(exc)
 
 
 class RequestSizeLimit:
@@ -53,11 +53,12 @@ class RequestSizeLimit:
     async def __call__(self, scope, receive, send):
         if scope['type'] != 'http':
             return await self.app(scope, receive, send)
+        limit = self.max_bytes + (2 * 1024 * 1024 if scope.get("path") == "/benchmarks/run" else 0)
         size = 0
         headers = dict(scope.get('headers', []))
         length = headers.get(b'content-length')
         try:
-            too_large = length is not None and int(length) > self.max_bytes
+            too_large = length is not None and int(length) > limit
         except ValueError:
             too_large = False
         detail = {'code': 'upload_too_large', 'message': 'Request body exceeds the configured upload limit.'}
@@ -69,7 +70,7 @@ class RequestSizeLimit:
             message = await receive()
             if message['type'] == 'http.request':
                 size += len(message.get('body', b''))
-                if size > self.max_bytes:
+                if size > limit:
                     raise HTTPException(status_code=413, detail=detail)
             return message
 
@@ -84,6 +85,10 @@ def create_app(settings: Settings | None = None, service: OCRService | None = No
     async def lifespan(application):
         # No models are initialized or downloaded on startup.
         settings.temp_dir.mkdir(parents=True, exist_ok=True)
+        # Single API worker: only request-owned benchmark files from interrupted jobs.
+        for path in settings.upload_dir.glob("benchmark-*.pdf"):
+            if re.fullmatch(r"benchmark-[0-9a-f]{32}\.pdf", path.name) and not path.is_symlink():
+                path.unlink(missing_ok=True)
         yield
 
     application = FastAPI(title='OCR Benchmarking / OCR Service', version='2.0.0', lifespan=lifespan)
@@ -92,7 +97,7 @@ def create_app(settings: Settings | None = None, service: OCRService | None = No
 
     @application.exception_handler(OCRError)
     async def ocr_error_handler(request: Request, exc: OCRError):
-        logger.warning('OCR request failed: %s', exc, exc_info=True)
+        log_event(logger, 'request_failed', level=logging.WARNING, code=exc.code, provider=exc.provider)
         return JSONResponse(status_code=error_status(exc), content={'detail': {
             'code': exc.code, 'message': public_error(exc), 'provider': exc.provider}})
 
@@ -116,25 +121,43 @@ def create_app(settings: Settings | None = None, service: OCRService | None = No
         finally:
             await file.close()
 
+    def cleanup_upload(document):
+        if not settings.retain_uploads:
+            try:
+                document.path.unlink(missing_ok=True)
+            except OSError:
+                log_event(logger, 'upload_cleanup_failed', level=logging.WARNING)
+
     @application.post('/extract', response_model=OCRResult)
     async def extract(file: UploadFile = File(...), engine: str | None = Form(None)):
         service.select(engine)
         document = await save(file)
-        return await run_in_threadpool(service.extract, document, engine)
+        try:
+            return await run_in_threadpool(service.extract, document, engine)
+        finally:
+            cleanup_upload(document)
 
     @application.post('/extract/compare', response_model=CompareResponse)
     async def compare(file: UploadFile = File(...)):
         document = await save(file)
         results = []
-        for provider in service.providers:
-            try:
-                result = await run_in_threadpool(service.extract, document, provider)
-                results.append(CompareEntry(provider=provider, result=result))
-            except OCRError as exc:
-                logger.warning('OCR comparison failed for %s: %s', provider, exc, exc_info=True)
-                results.append(CompareEntry(provider=provider, errors=[OCRIssue(code=exc.code, message=public_error(exc))]))
-        return CompareResponse(document_id=document.document_id, filename=document.filename, results=results)
+        log_event(logger, 'comparison_started', providers=len(service.providers))
+        try:
+            for provider in service.providers:
+                try:
+                    result = await run_in_threadpool(service.extract, document, provider)
+                    results.append(CompareEntry(provider=provider, result=result))
+                except OCRError as exc:
+                    log_event(logger, 'comparison_provider_failed', level=logging.WARNING,
+                              provider=provider, code=exc.code)
+                    results.append(CompareEntry(provider=provider, errors=[OCRIssue(code=exc.code, message=public_error(exc))]))
+            log_event(logger, 'comparison_completed', providers=len(results))
+            return CompareResponse(document_id=document.document_id, filename=document.filename, results=results)
+        finally:
+            cleanup_upload(document)
 
+    from OCR.benchmark_api import register
+    register(application, service, settings)
     return application
 
 

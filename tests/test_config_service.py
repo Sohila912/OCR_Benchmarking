@@ -65,7 +65,7 @@ def test_oversized_stream_is_bounded_and_not_persisted(settings):
 
 def test_registry_is_exact_and_lazy(settings):
     service = OCRService(settings)
-    assert set(service.providers) == {'paddle_vl','docling','tesseract'}
+    assert set(service.providers) == {'paddle_vl','docling','tesseract','qwen_ollama'}
     assert all(p.status == 'uninitialized' for p in service.health())
     with pytest.raises(UnsupportedProviderError):
         service.select('paddle')

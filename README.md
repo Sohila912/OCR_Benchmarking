@@ -1,323 +1,192 @@
-# OCR Benchmarking / OCR Service
+﻿# OCR Benchmarking
 
-## Overview
+A local OCR extraction service and multilingual benchmark toolkit. Compare Tesseract, Docling, PaddleOCR-VL and Qwen through a Streamlit workspace or FastAPI, with a shared versioned result format that preserves source, page and block provenance.
 
-### Windows launcher
+## Quick start
 
-Double-click `run_app.bat`. The launcher prefers `.venv-ocr`, then other working
-Python environments, and skips stale environments whose base Python was removed.
-Keep the launcher window open while using the app at http://127.0.0.1:8501.
-Use `run_app.bat -CheckOnly` for dependency/path checks or
-`run_app.bat -SmokeCheck` to start and stop both services without opening a browser.
+For exact verified Docker and Windows startup steps, see [Quickstart](docs/QUICKSTART.md).
 
-On a normal launch, if the pinned Paddle/Docling packages or their local model
-files are missing, the launcher offers to install `requirements-models.txt` and
-download both providers' assets. `-CheckOnly` and `-SmokeCheck` do not install
-optional model packages or download weights.
-
-Set `OCR_POPPLER_PATH=C:\poppler-26.02.0` in `.env` only once. The application
-resolves the installation root to `Library/bin`; a later duplicate setting would
-override the correct path.
-
-The explicit model download and real extraction checks are:
+Use Python 3.10 or newer; optional model packages have additional platform requirements. From the repository root:
 
 ```powershell
-.venv-ocr\Scripts\python.exe scripts\provision_models.py
-.venv-ocr\Scripts\python.exe scripts\check_models.py
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+Copy-Item .env.example .env
+.venv\Scripts\python.exe -m OCR
 ```
 
-Downloads are saved under `models/`. The check uses a small scanned invoice and
-saves results under `runtime/model-check/`; it fails if a provider cannot extract
-the expected amount. It requires installed model packages and native runtimes.
-Use `--provider tesseract`, `--provider docling`, or `--provider paddle_vl` with
-the check script to diagnose one provider.
+In a second terminal:
 
-For a fresh CPU environment, install `requirements-windows-cpu.txt` before
-provisioning. `requirements-windows-cpu.lock.txt` records the exact installed
-Windows/Python 3.13 package versions, including development dependencies.
+```powershell
+.venv\Scripts\python.exe -m streamlit run frontend/app.py
+```
 
-Verification on 2026-10-05: launcher preflight and API/Streamlit startup passed;
-96 tests passed. Real scanned-PDF extraction passed separately for all three
-providers. On this 8 GB RAM CPU machine, cold runs took approximately 0.7 seconds
-for Tesseract, 27 seconds for Docling, and 381 seconds for PaddleOCR-VL (including
-model loading). Large documents may take substantially longer. Switching
-providers releases the previous model pipeline before loading the next one;
-switching back reloads its weights. English recognition was tested; the installed
-Tesseract language packs are `eng` and `osd`. Arabic Tesseract/Docling recognition
-still requires the `ara` language pack. The older refactor milestone notes below
-describe the state before this machine setup and verification.
+On Linux/macOS use `.venv/bin/python` instead. The original `OCR/streamlit_app.py` path remains supported. Windows users can also double-click `run_app.bat`: it prefers `.venv-ocr`, checks native dependencies, starts Ollama when needed, and verifies the configured Qwen tag. Normal launcher runs can download missing Ollama assets and offer optional provider setup. `run_app.bat -CheckOnly` and `-SmokeCheck` do not provision models.
 
-A local PDF OCR service with FastAPI, a Streamlit client, and preserved English, Arabic, and mixed-language benchmarks. Three provider adapters return the same versioned document format, including available page/block provenance, source identity, warnings, and errors.
+Install Tesseract 5 with `eng` (and `ara` for Arabic), and Poppler for PDF rendering. Configure executable paths only when unavailable on PATH. `OCR_POPPLER_PATH` accepts a binary directory or a Windows installation root containing `Library/bin`. Copy the environment template once; do not overwrite an existing configuration.
 
-The application and API are covered by **94 passing tests** (2026-10-01). OCR models are mocked in these tests. Actual model accuracy, a fresh full model installation, GPU execution, and real Poppler/Tesseract extraction have **not** been validated in this milestone. No RAG pipeline is implemented.
+## Workspace
 
-## Architecture
+Upload a PDF, select one engine or a comparison subset, and inspect text, Markdown source, page details and provenance. Results persist across Streamlit reruns and downloads. JSON, text and available Markdown can be exported. Engines run sequentially to limit memory; CPU vision models can take minutes per page. Request durations include queueing, model loading and HTTP overhead, and are not accuracy scores.
+
+The sidebar separates Overview, Document Processing, Benchmarking, Results & Comparison, and Settings / Provider Status. The dashboard uses actual service inventory and session activity. Optional first-page previews reuse the PDF renderer and stay in session memory. Comparison supports full-document and page-level text side by side. Repeated document/engine submissions require explicit intent; navigation and downloads do not resubmit OCR.
+
+## System architecture
 
 ```mermaid
-flowchart TD
-    A[Streamlit or multipart HTTP client] --> B[FastAPI: validate and store PDF]
-    B --> C[OCRService: select and initialize provider]
-    C --> D[PaddleOCR-VL-1.6]
-    C --> E[Docling standard + Tesseract]
-    C --> F[Tesseract 5 CLI]
-    D --> G[OCRResult schema 1.0]
-    E --> G
-    F --> G
-    G --> H[JSON response and local output file]
-    G -. future boundary .-> I[Separate RAG ingestion]
+flowchart LR
+    UI[Streamlit workspace] --> API[FastAPI: bounded multipart PDF]
+    API --> Service[OCRService: serialized lazy inference]
+    Service --> Providers[Tesseract / Docling / Paddle-VL / Qwen-Ollama]
+    Providers --> Schema[OCRResult schema 1.0]
+    Schema --> Output[JSON / text / Markdown]
+    UI --> Evaluation[Backend ground-truth evaluation and SQLite history]
+    Evaluation --> References[Labeled references and OCR outputs]
+    CLI[Benchmark CLI] --> Metrics[Preserved historical CLI policies]
+    Metrics --> References[Labeled references and OCR outputs]
+    Schema -. future contract .-> RAG[Separate RAG ingestion]
 ```
 
-Models load on the first extraction for that provider, never during construction or API startup. Health reads known state without inference. One process serializes inference with a lock; blocking OCR runs outside the API event loop. There are no queues, databases, external OCR services, or automatic provider substitutions.
+## Providers
 
-## Supported OCR Providers
-
-| API ID | Purpose and strengths | Limitations | Hardware / CPU / GPU |
-| --- | --- | --- | --- |
-| `paddle_vl` | PaddleOCR-VL-1.6-0.9B with PP-DocLayoutV3; multilingual scans, layout, tables, provider Markdown and block boxes | Can omit/hallucinate text; Arabic/RTL accuracy unmeasured here. No invented OCR confidence. Image rotation/unwarping, chart/seal recognition, and cross-page restructuring are disabled in this adapter. | Local native Paddle backend; CPU default, `gpu:0` configurable. Requires VL/layout assets, Paddle runtime, Poppler. Plan roughly 16 GB RAM and 6–8 GB VRAM for initial GPU trials; these are estimates, not measured minimums. |
-| `docling` | Standard PDF pipeline with Tesseract CLI OCR; native PDF text, hierarchy, structured tables, item/page provenance | Not Granite-Docling or EasyOCR. Table/RTL errors remain possible. Multi-page table cells without page attribution stay in raw metadata/Markdown instead of being assigned fabricated page text. | CPU default; `cuda:0` may accelerate applicable Torch components. Tesseract remains CPU-based. Requires local layout/table assets and Tesseract; no Poppler needed for this path. Plan 8–16 GB RAM; optional GPU capacity depends on documents/models. |
-| `tesseract` | Tesseract 5 CLI; lightweight fallback/reference, TSV word hierarchy, boxes and original confidence | Weak on complex tables, poor scans and mixed-script reading order. No semantic table reconstruction or true Markdown. | CPU only; no GPU/model Python framework required. Needs Tesseract, language packs and Poppler. Sequential pages limit memory; large page dimensions still consume substantial RAM. |
-
-These are three complementary providers, with Tesseract reused by Docling. `tesseract` is the safe default to avoid implicitly loading the largest model. The intended richer multilingual provider remains `paddle_vl`.
-
-Paddle's native CPU/GPU support and runtime requirements are described in its [official usage guide](https://www.paddleocr.ai/latest/en/version3.x/pipeline_usage/PaddleOCR-VL.html). See also [Docling offline configuration](https://docling-project.github.io/docling/usage/advanced_options/) and [Tesseract documentation](https://tesseract-ocr.github.io/tessdoc/).
-
-## Project Structure
-
-```text
-OCR/                    Active package: API, settings, service, schemas, PDF helpers
-  providers/            Common interface and three selected adapters
-benchmarks/
-  datasets/             Original PDFs and Markdown_Reference: English, Arabic, Mix
-  outputs/              Preserved historical outputs; separate new run directories
-  results/              Preserved XLSX files; new results default to runs/
-  evaluation/           Language-specific WER/CER evaluators and diagnostics
-  legacy/               Eight original runners and original API/dependency/launcher snapshots
-  notebooks/            Preserved benchmark notebooks (historical paths/environments)
-experiments/             Preserved setup notebooks and Surya diagnostics
-runtime/                 Uploads, normalized JSON outputs, temporary/test artifacts
-tests/                  Unit, contract, API and fixture benchmark tests; legacy/ checks
-docs/                   Final report, handoff, schema, migration evidence, research document
-Agentic_RAG/             Untouched placeholder; not part of OCR runtime
-```
-
-`OCR/.python-version`, nested ignore rules, old virtual environments and empty moved-from directories remain historical leftovers. The launcher uses the **root** `.venv`. Notebook saved outputs and environments are historical records, not setup instructions.
-
-## Requirements
-
-- Application syntax/dependency targets: Python **3.10–3.13**, 64-bit. The suite actually ran on **Python 3.13.7**. Use **Python 3.11 x64** as a conservative starting point for a new Windows model environment; the full optional stack has not been validated locally on it.
-- Windows PowerShell or Command Prompt. Core installation needs the packages in `requirements.txt`; tests/evaluation use `requirements-dev.txt`.
-- Tesseract **5.x** plus `eng` traineddata; install `ara` as well for `ara+eng`. Both Tesseract-backed providers require these assets. Follow the Windows distribution link from [Tesseract installation guidance](https://tesseract-ocr.github.io/tessdoc/Installation.html).
-- Poppler `pdfinfo` and `pdftoppm` for Tesseract/Paddle PDF rendering. Install a Windows build and put its binary directory on PATH or set `OCR_POPPLER_PATH`. See [pdf2image installation](https://pdf2image.readthedocs.io/en/latest/installation.html).
-- Optional models: `requirements-models.txt` targets PaddleOCR **3.6.0** and Docling **2.80.0**. These are integration targets, not a resolved, locally verified lockfile. Their transitive dependencies may need compatibility work on Windows.
-- GPU is optional. Paddle GPU installation must match the GPU/CUDA wheel; do not install CPU and GPU Paddle distributions together. Docling GPU execution requires a compatible Torch build. No GPU is needed for unit tests.
-
-## Installation
-
-Run these commands from the repository root in a **fresh checkout/environment**, with the intended Python selected:
-
-```powershell
-python --version
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-python -m pip install -r requirements-dev.txt
-```
-
-If multiple Python versions are installed, use `py -3.11 -m venv .venv` instead of the venv command above. In **Command Prompt**, activate with:
-
-```bat
-.venv\Scripts\activate.bat
-```
-
-If PowerShell blocks activation, use `.\.venv\Scripts\python.exe` in place of `python`; activation is not required. Existing virtual environments from another Python installation must not be assumed valid. This refactor did not repair the pre-existing environments.
-
-For the optional selected model providers, install their packages explicitly:
-
-```powershell
-python -m pip install -r requirements-models.txt
-```
-
-For local Paddle CPU inference, the upstream guide gives this runtime installation:
-
-```powershell
-python -m pip install paddlepaddle==3.2.1 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
-```
-
-For GPU inference, select the matching GPU wheel from the official Paddle installation guide instead. The pre-existing Paddle 3.0.0 environment is below the documented native VL runtime requirement. No Paddle upgrade was performed by this refactor.
-
-Model provisioning is a separate, intentional download step. **The API never provisions assets for you.** In the activated model environment, download Docling's layout and standard table assets:
-
-```powershell
-docling-tools models download layout tableformer --output-dir models/docling
-```
-
-This command follows the pinned [Docling model CLI](https://github.com/docling-project/docling/blob/v2.80.0/docling/cli/models.py). Configure `OCR_DOCLING_ARTIFACTS_PATH=models/docling` afterward.
-
-Paddle's official model repositories are [PaddleOCR-VL-1.6](https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6/tree/main) and [PP-DocLayoutV3](https://huggingface.co/PaddlePaddle/PP-DocLayoutV3/tree/main). The model packages supply `huggingface_hub`; an explicit download can be made with:
-
-```powershell
-python -c "from huggingface_hub import snapshot_download; snapshot_download('PaddlePaddle/PaddleOCR-VL-1.6', local_dir='models/PaddleOCR-VL-1.6')"
-python -c "from huggingface_hub import snapshot_download; snapshot_download('PaddlePaddle/PP-DocLayoutV3', local_dir='models/PP-DocLayoutV3')"
-```
-
-These commands download model files and were **not run** during this refactor. Record the actual repository commit revisions used; for reproducible provisioning, pass each verified commit as `revision=`. The VL directory needs its complete model/config/tokenizer files, including `inference.yml`; the native layout directory needs `inference.json`, `inference.pdiparams` and `inference.yml`. Point the two Paddle environment settings to these directories. Arbitrary empty folders do not satisfy asset requirements.
-
-Adapters set Hugging Face offline flags before loading model libraries, supply local asset paths, disable remote Docling services, and disable Paddle model-source checks and unused preprocessing models. A full offline model smoke test is still outstanding; these flags are not an OS-level network sandbox.
-
-## Environment Configuration
-
-Copy the template and edit the copy:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-`load_settings()` reads the repository-root `.env` without modifying the process environment. Existing environment variables take precedence. Relative directory paths resolve against the repository root, regardless of the working directory. `.env` is ignored by Git and needs no API keys. Leave unused optional paths commented out; an empty path is invalid.
-
-| Setting | Default | Meaning |
+| ID | Integration | Requirements |
 | --- | --- | --- |
-| `OCR_PROVIDER` | `tesseract` | Default provider when multipart `engine` is omitted |
-| `OCR_UPLOAD_DIR` | `runtime/uploads` | Retained input PDFs |
-| `OCR_TEMP_DIR` | `runtime/tmp` | Application upload staging and Tesseract page PNGs |
-| `OCR_OUTPUT_DIR` | `runtime/outputs` | Persisted normalized result JSON |
-| `OCR_PDF_DPI` | `300` | Shared Tesseract/Paddle rendering DPI; not Docling's native pipeline resolution |
-| `OCR_POPPLER_PATH` | unset | Optional Poppler binary directory; otherwise PATH |
-| `OCR_TESSERACT_CMD` | `tesseract` | Executable on PATH or an explicit executable path |
-| `OCR_TESSERACT_LANG` | `eng` | Tesseract languages, e.g. `ara+eng`, including the Docling OCR backend |
-| `OCR_API_HOST` | `127.0.0.1` | Bind address for `python -m OCR` |
-| `OCR_API_PORT` | `8000` | Bind port for `python -m OCR` |
-| `OCR_API_URL` | `http://127.0.0.1:8000` | Streamlit's API address; update it if host/port change |
-| `OCR_MAX_UPLOAD_BYTES` | `52428800` | Maximum PDF bytes (50 MiB); multipart body limit adds 1 MiB overhead |
-| `OCR_MAX_PAGES` | `100` | Maximum PDF pages |
-| `OCR_OPERATION_TIMEOUT` | `120` | Seconds for Poppler/Tesseract operations and Docling document timeout; **not** a hard Paddle inference or whole-request deadline |
-| `OCR_PADDLE_VL_MODEL_DIR` | unset | Complete local VL-1.6 assets |
-| `OCR_PADDLE_LAYOUT_MODEL_DIR` | unset | Complete local PP-DocLayoutV3 assets |
-| `OCR_PADDLE_MODEL_REVISION` | unset | Operator-recorded asset revision; not automatically verified |
-| `OCR_PADDLE_DEVICE` | `cpu` | Native Paddle device, e.g. `gpu:0` |
-| `OCR_DOCLING_ARTIFACTS_PATH` | unset | Local Docling model bundle |
-| `OCR_DOCLING_MODEL_REVISION` | unset | Operator-recorded bundle revision; not automatically verified |
-| `OCR_DOCLING_DEVICE` | `cpu` | Docling device, e.g. `cuda:0` |
+| `tesseract` | Lightweight CLI OCR, words/boxes/confidence | Tesseract 5 language packs and Poppler; default engine |
+| `docling` | Standard document pipeline with Tesseract OCR and table/layout models | Optional packages, local Docling assets, Tesseract |
+| `paddle_vl` | PaddleOCR-VL-1.6 with PP-DocLayoutV3 | Optional packages, compatible native Paddle runtime, local model directories, Poppler |
+| `qwen_ollama` | Qwen2.5-VL via local Ollama | Ollama server, configured model tag, Python client (included in core requirements), Poppler |
 
-Configured recognition languages are recorded as configuration metadata, never as detected document language. Model/page/block fields unsupported by a provider remain null.
-
-## Running the API
-
-From the repository root:
+Install `requirements-models.txt` for optional integrations. Native Paddle/Torch device setup is platform-specific; do not install CPU and GPU Paddle distributions together. `requirements-windows-cpu.txt` and its lock preserve the Windows CPU setup. Model packages/weights do not load at API startup. Providers never silently substitute another engine.
 
 ```powershell
-python -m OCR
+python scripts/provision_models.py
+python scripts/check_models.py --provider tesseract
 ```
 
-This reads `OCR_API_HOST`/`OCR_API_PORT`. The equivalent explicit Uvicorn entry point is:
+Provisioning intentionally downloads to `models/`. Real checks write `runtime/model-check/`. Preserve model revisions for reproducible results. Qwen provisioning is managed by the Windows launcher/Ollama; select `qwen_ollama` in the API, UI or benchmark CLI. Its direct async helper remains `OCR.providers.qwen_ollama.parse_document`.
 
-```powershell
-python -m uvicorn OCR.app:app --host 127.0.0.1 --port 8000
-```
+## Configuration
 
-The explicit Uvicorn command's host/port arguments control binding; it does not use those two settings automatically. Use one worker for the current in-process inference policy. API documentation is at `http://127.0.0.1:8000/docs`.
+Repository-root `.env` is read without modifying the process environment; environment variables take precedence. Relative paths resolve from the repository root, not the current working directory. See [.env.example](.env.example) for portable defaults. Omit unused optional paths rather than setting empty values.
 
-## Running Streamlit
+| Setting | Default / purpose |
+| --- | --- |
+| `OCR_PROVIDER` | `tesseract` |
+| `OCR_API_HOST`, `OCR_API_PORT` | `127.0.0.1`, `8000` for module CLI |
+| `OCR_API_URL` | `http://127.0.0.1:8000`, frontend connection |
+| `OCR_UPLOAD_DIR`, `OCR_TEMP_DIR`, `OCR_OUTPUT_DIR` | Runtime upload, staging and normalized result directories |
+| `OCR_MAX_UPLOAD_BYTES`, `OCR_MAX_PAGES` | 50 MiB, 100 pages |
+| `OCR_RETAIN_UPLOADS` | Compatibility default `true`; template/Compose use `false` to remove request PDFs after processing |
+| `OCR_PDF_DPI` | 300 for Poppler-backed adapters |
+| `OCR_OPERATION_TIMEOUT` | 120 seconds for applicable native operations; not a whole-job deadline |
+| `OCR_TESSERACT_LANG` | `eng`; set `ara+eng` after installing both language packs |
+| `OCR_PADDLE_VL_MODEL_DIR`, `OCR_PADDLE_LAYOUT_MODEL_DIR` | Complete local Paddle model assets |
+| `OCR_DOCLING_ARTIFACTS_PATH` | Complete local Docling assets |
+| `OCR_PADDLE_DEVICE`, `OCR_DOCLING_DEVICE` | `cpu` |
+| `OLLAMA_HOST`, `OLLAMA_OCR_MODEL` | `http://localhost:11434`, `qwen2.5vl:3b` |
+| `OLLAMA_OCR_TIMEOUT`, `OLLAMA_KEEP_ALIVE` | 1800 seconds/page, 300 seconds loaded |
+| `OLLAMA_NUM_CTX`, `OLLAMA_MAX_IMAGE_PIXELS` | 4096, 1000000; resolution/quality tradeoff |
+| `OLLAMA_NUM_GPU` | Unset for auto; `0` forces CPU on small GPUs |
 
-In a second activated terminal at the repository root:
+## API and normalized output
 
-```powershell
-python -m streamlit run OCR/streamlit_app.py --server.address 127.0.0.1
-```
-
-The UI uses `OCR_API_URL`, discovers current provider IDs from `/tools`, supports single/all-provider extraction, and downloads normalized JSON and available Markdown. Root `run_app.bat` opens both processes using root `.venv`; the launcher and live UI were source-reviewed, not interactively exercised in this milestone.
-
-## Using the API
-
-Use `curl.exe` explicitly on Windows to avoid PowerShell's older `curl` alias:
+Run `python -m OCR` or `python -m uvicorn OCR.app:app --host 127.0.0.1 --port 8000 --workers 1`. Interactive API documentation: `http://127.0.0.1:8000/docs`.
 
 ```powershell
 curl.exe http://127.0.0.1:8000/health
 curl.exe http://127.0.0.1:8000/tools
-curl.exe -X POST http://127.0.0.1:8000/extract -F "engine=tesseract" -F "file=@benchmarks/datasets/English/Dataset/crowd_1.pdf;type=application/pdf"
-curl.exe -X POST http://127.0.0.1:8000/extract/compare -F "file=@benchmarks/datasets/English/Dataset/crowd_1.pdf;type=application/pdf"
+curl.exe -X POST http://127.0.0.1:8000/extract -F "engine=tesseract" -F "file=@document.pdf;type=application/pdf"
+curl.exe -X POST http://127.0.0.1:8000/extract/compare -F "file=@document.pdf;type=application/pdf"
 ```
 
-`POST /extract` accepts multipart `file` plus optional `engine`, and returns **OCRResult directly**. The old `{engine, filename, markdown}` response and JSON `pdf_path` request are obsolete. The version is `schema_version: "1.0"`; see [the JSON Schema](docs/ocr-result.schema.json).
+`POST /extract` returns `OCRResult` schema 1.0 directly. `/extract/compare` stores the PDF once and returns `{document_id, filename, results}` with per-provider results/errors. The frontend uses sequential `/extract` calls for per-engine progress. HTTP 200 can contain recoverable document/page errors; inspect them before scoring. Unknown provider metadata stays null. Health reads known lifecycle state without inference; discovery does not guarantee installed dependencies.
 
-`POST /extract/compare` stores the PDF once and returns `{document_id, filename, results}`. Each entry has `{provider, result, errors}`. An unavailable provider has `result: null` and structured errors; HTTP 200 does not mean every comparison succeeded. Successful extraction with recoverable page errors also returns HTTP 200: inspect `errors` at document and page levels.
+Application errors: 400 invalid document/provider, 413 upload too large, 422 multipart validation, 503 unavailable provider and 500 extraction/storage failure. Application error details contain code, message and provider. See [JSON schema](docs/ocr-result.schema.json).
 
-Errors: **400** invalid PDF/name/provider; **413** size limit; **422** malformed/missing multipart fields; **503** unavailable dependencies/provider initialization; **500** fatal extraction/storage failure. Application OCR errors use `detail: {code, message, provider}`; standard FastAPI validation errors keep FastAPI's validation format. PDF-header checking is only an early filter; the parser performs actual document validation.
+JSON results are retained under `runtime/`, with generated storage names. Set `OCR_RETAIN_UPLOADS=false` to remove only the current request's uploaded PDF after success or failure; comparison retains it until all providers finish. Existing documents are never swept. Source SHA-256 and original filename remain in normalized provenance even when source bytes are no longer retained. Benchmark requests instead bypass normalized-output persistence and remove their PDFs regardless of this extraction setting. Metrics-only benchmark history has a separate retention policy.
 
-`/health` returning `status: ok` means the API responds. Each provider independently reports `uninitialized`, `ready`, or `unavailable`. Health does not load missing models. `/tools` lists supported integrations, not guaranteed installed models.
+## Benchmarks and tests
 
-## Running OCR
+Open **Benchmarking → Ground-truth evaluation**. Upload a PDF and its UTF-8 Markdown reference (maximum 2 MiB), explicitly confirm the pairing, select providers and a dataset name, choose normalization, then run. The reference is ground truth and is never sent through OCR. Review CER/WER, exact match, measured OCR duration, original texts and normalized changes. Download metrics JSON/CSV, extracted text and a detailed Markdown comparison report. Uploaded content is shown as text, never unsafe HTML.
 
-Select `engine=tesseract`, `engine=docling`, or `engine=paddle_vl` in the multipart request or select it in Streamlit. Set `OCR_PROVIDER` to change the default. For Arabic/mixed scans with either Tesseract-backed path, configure `OCR_TESSERACT_LANG=ara+eng` and install both language packs before starting the API. Paddle multilingual recognition does not use that Tesseract language setting.
+CER = character Levenshtein substitutions + deletions + insertions, divided by normalized reference character count. WER uses whitespace-separated word tokens. Rates are unrounded in storage and may exceed 1 (100%); lower is better. Empty normalized references are rejected. Empty OCR output is scored as deletions. Exact match compares normalized strings. Character similarity is 1 − character edits / max(reference length, output length); it is a defined similarity, not an official accuracy score.
 
-A direct Python caller may construct `Settings`, `OCRDocument`, and a provider, then call `initialize()` followed by `extract(document)`. Constructors and `health()` do not initialize models. `OCRService` adds provider selection, provenance checking and JSON persistence; direct adapter calls do not persist results.
+The default evaluation uses NFC Unicode normalization, whitespace and line-break normalization, and conservative removal of common Markdown syntax. Arabic letters and diacritics, punctuation and case are preserved. Choose **Raw Markdown** to score formatting, or **Plain text from Markdown** to remove common heading/list/emphasis/link/code-fence markers while retaining text. This is a conservative syntax conversion, not a rendered-document parser; inspect tables, HTML and complex nested syntax. Case folding, punctuation removal and NFKC are opt-in. Both inputs use the same settings; originals stay unchanged.
 
-## Running Benchmarks
+**Existing datasets** loads the repository's English/Arabic/Mix mappings. Confirm each PDF/reference association before rerunning it. Existing OCR Markdown can be rescored and saved as a new `legacy:<folder>` evaluation; original timestamps, model versions and OCR durations remain unknown. This imports newly calculated metrics, not fabricated historical measurements. Original datasets and outputs are read-only in Docker and never overwritten.
 
-Historical files remain under `benchmarks/datasets`, `benchmarks/outputs` and `benchmarks/results`. Language folders are exactly `English`, `Arabic`, and **`Mix`**.
+**Benchmark history** filters by provider ID, dataset name and date. Inspect records, compare selected runs, export metrics, or permanently delete a record. Compare document/reference hashes and normalization/method metadata before drawing conclusions. Dataset aggregates use micro CER/WER = total edits / total reference units and show document counts. Repeated selected runs use the newest measurement per document/reference/provider/model/package/dataset/policy; unrelated datasets are labelled separately. Historical text is intentionally unavailable after the session: export detailed reports before clearing it.
 
-Evaluate existing output with the preserved language-specific normalization and WER/CER policy:
+SQLite history defaults to `runtime/benchmarks.sqlite3` (`OCR_BENCHMARK_DB`) on the API's `ocr-runtime` Docker volume. Only metric/provenance metadata and hashes are persisted, with a default 90-day retention (`OCR_BENCHMARK_RETENTION_DAYS`). Expired records are pruned on history access or saving. In-progress runs are recorded before OCR; interrupted runs become failed on API restart, with no fabricated score. Benchmark source PDFs are deleted after the request; only benchmark-owned crash leftovers are removed at single-worker startup and extracted/reference text stays in the response/session only. The separate Document Processing workflow retains normalized JSON under its existing policy.
 
-```powershell
-python -m benchmarks.evaluation.evaluate_english --ocr-output benchmarks/outputs/English/baiduocr
-python -m benchmarks.evaluation.evaluate_arabic --ocr-output benchmarks/outputs/Arabic/tesseractocr
-python -m benchmarks.evaluation.evaluate_mix --ocr-output benchmarks/outputs/Mix/markerocr
-```
+The evaluator is `levenshtein-jiwer4-v1` in `OCR/evaluation.py`. Backend endpoints: `POST /benchmarks/run`, `GET /benchmarks/history`, `POST /benchmarks/compare`, `DELETE /benchmarks/history/{id}`, `GET /benchmarks/datasets`, and `POST /benchmarks/datasets/run`. See `/docs` for multipart fields. Install `requirements-benchmark.txt` for the preserved CLI spreadsheet reports. The new backend evaluator uses explicit safe defaults; historical CLI language policies/formulas remain unchanged and must not be mixed with the new method without checking configuration.
 
-Those historical provider defaults deliberately match the old scripts. Baidu outputs are historical artifacts; Baidu is not an application provider. Evaluators write a fresh, uniquely named XLSX under `benchmarks/results/runs/`. Optional `--reference PATH` and `--result NEW_FILE.xlsx` arguments override paths; an existing result file is rejected. Missing output files are reported and skipped, as in the original scripts. No matches produce an explicit error. These are unweighted means of per-file metrics; historical cleanup can remove meaningful text and should not be mistaken for a new accuracy policy.
-
-Generate new OCR output only after provisioning the selected provider:
+Original PDFs, Markdown references and historical outputs/results are preserved for `English`, `Arabic` and `Mix`. Generate a fresh run only after provisioning its provider:
 
 ```powershell
 python -m benchmarks.run --language English --provider tesseract --output-dir benchmarks/outputs/English/tesseract-new-run
-python -m benchmarks.run --language Arabic --provider paddle_vl --output-dir benchmarks/outputs/Arabic/paddle-vl-1.6-new-run
-python -m benchmarks.run --language Mix --provider docling --output-dir benchmarks/outputs/Mix/docling-tesseract-new-run
-```
-
-Each output directory must be new. Omit `--output-dir` for a provider/timestamp/UUID directory. Runs save a manifest, normalized JSON and `.md` files containing provider Markdown when available, otherwise OCR text. Failed/partial documents are recorded in the manifest and excluded from Markdown scoring; check the failure count so a partial run is not presented as full-dataset accuracy. Point the matching evaluator's `--ocr-output` at the new directory. Never label VL-1.6 output as conventional legacy PaddleOCR.
-
-The preserved notebooks contain historical/Colab paths and setup cells. Use the current module commands above; do not execute installation notebooks as the application setup workflow.
-
-## Running Tests
-
-Install `requirements-dev.txt`, then from the repository root:
-
-```powershell
+python -m benchmarks.evaluation.evaluate_english --ocr-output benchmarks/outputs/English/tesseract-new-run
+python -m benchmarks.evaluation.evaluate_arabic --ocr-output benchmarks/outputs/Arabic/tesseractocr
+python -m benchmarks.evaluation.evaluate_mix --ocr-output benchmarks/outputs/Mix/markerocr
+python -m pip install -r requirements-dev.txt
 python -B -m pytest tests -q -p no:cacheprovider
+python -m ruff check OCR frontend benchmarks/evaluation benchmarks/run.py scripts tests
 ```
 
-The approved recorded run also used `--basetemp=runtime/test-tmp-20261001 --junitxml=runtime/test-results.xml`. Pytest can clear its `--basetemp` on reuse; use only a dedicated test directory. Tests mock heavyweight models and do not download them, invoke real OCR binaries, or process historical datasets. Fixture evaluators create only temporary XLSX files.
+Install development requirements before using evaluation tools. Runs require new output directories and save manifests, normalized JSON and scoring Markdown. Failed/partial documents are recorded and excluded from scoring: inspect failures to avoid misleading accuracy claims. Evaluators preserve historical language-specific normalization and unweighted per-document WER/CER, and reject overwriting reports. New evaluation reports go to `benchmarks/results/runs/`. Legacy notebooks record old environments and are not current setup instructions.
 
-Recorded result: **94 passed, 0 failed, 0 skipped, no warnings emitted**, 2.37 seconds. See [test evidence](docs/OCR_TEST_RESULTS.json) and [the final report](docs/OCR_REFACTOR_REPORT.md). A passing mocked suite is not a model-backed acceptance result.
+## Repository layout
 
-## Outputs
+```text
+OCR/                    Canonical backend, schemas, providers, API and CLI
+frontend/                Canonical Streamlit UI, views and HTTP transport
+benchmarks/              Datasets, evaluation, historical results and runners
+scripts/                 Windows launch, provisioning and real model checks
+tests/                   API, provider, schema, benchmark and frontend checks
+docs/                    Audit, schema and reproducibility evidence
+experiments/             Preserved research notebooks
+Agentic_RAG/             Future integration placeholder
+```
 
-| Artifact | Default location / behavior |
-| --- | --- |
-| Uploaded PDFs | `runtime/uploads/<generated-id>.pdf`; original filename and SHA-256 retained in metadata. Six pre-existing uploads remain under their original names. |
-| Normalized OCR results | `runtime/outputs/<generated-id>.json`; new file per successful/partial extraction, no overwrite. Document ID is the input SHA-256 for HTTP uploads and benchmark runs. |
-| Temporary application files | `runtime/tmp`; staging and Tesseract temporary PNGs are context-managed. Multipart spooling and third-party model libraries may also use OS temp/cache locations. |
-| Benchmark OCR | `benchmarks/outputs/<language>/<new-run>/`; manifest plus normalized JSON and scoring Markdown. |
-| Benchmark evaluation | `benchmarks/results/runs/<timestamp-id>.xlsx`, or explicit fresh `--result`. |
-| Test evidence | JUnit/fixtures under `runtime/` for the recorded command; durable summary under `docs/`. |
+The existing backend layout is deliberately retained to preserve imports and external integrations. `pyproject.toml` supports project metadata and installation; run repository-based benchmark/data workflows from a checkout.
 
-Uploads and results are retained; there is no automatic retention cleanup or retrieval/download API. Generated runtime files, `.env` and model directories are ignored by Git. The six preserved uploads have explicit ignore exceptions so migration does not hide previously present files from a later commit. No files were staged or committed by the refactor.
+## Containers and operational scope
 
-## Future RAG Integration
+```sh
+docker compose up --build
+```
 
-The boundary is **OCR -> OCRResult schema 1.0 -> separate future ingestion**. RAG should validate the schema, preserve the original result artifact, and carry document/provider/page/block IDs and exact text spans forward. Page spans address `result.text`; block spans address `page.text`; offsets use Unicode characters and half-open ranges, not UTF-8 bytes or UTF-16 indices. Geometry carries explicit units and origin. Unknown block structure stays null.
+Compose builds a full CPU API image by default and a lightweight UI image. The API installs Docling, PaddleOCR-VL, CPU Torch and Paddle 3.2.2; the UI avoids those heavy packages. Both include the Ollama Python client, Tesseract, Poppler and English/Arabic language packs. No weights are downloaded during build/startup. Linux native packages include OpenGL/OpenMP libraries required by the model packages. A lightweight API can be selected with `OCR_INSTALL_LOCAL_MODELS=false`; Docling/Paddle will then honestly report missing dependencies.
 
-RAG will own semantic cleanup, chunking, embeddings, vector storage, retrieval, reranking, LangGraph, generation and citation rendering. None is implemented or imported by OCR. The first proposed RAG task is a standalone ingestion-contract validator and citation round-trip fixture, after explicit approval.
+Existing `./models` assets mount read-only at `/models`; a writable `ocr-model-cache` volume persists library caches. Compose sets the explicit Paddle VL/layout and Docling paths. Missing or incomplete assets require operator provisioning; do not use provisioning commands unless you intend to download large weights. The model-download script supports `python scripts/provision_models.py --provider docling` or `--provider paddle_vl` after installing model dependencies locally.
+
+Compose forwards `OLLAMA_DOCKER_HOST` (default `http://host.docker.internal:11434`) and the exact `OLLAMA_OCR_MODEL` tag to the API. The host's existing Ollama server is reused; no second server is installed. On Docker Desktop Windows verify `ollama list` and host connectivity; if needed configure Ollama's server binding as documented in [Ollama's FAQ](https://docs.ollama.com/faq), allowing only the intended local Docker access. A model pull such as `ollama pull qwen2.5vl:3b` downloads large weights and is an explicit operator step. Compose uses CPU for local Paddle/Docling. Paddle CPU initialization has a configurable 6 GiB memory-capacity safety floor (`OCR_PADDLE_MIN_MEMORY_GIB`); the observed 3.7 GiB Docker environment was OOM-killed without this guard. Use a host with enough physical RAM for a larger Docker memory budget, then verify inference; the floor does not guarantee sufficient capacity. The tested host has about 7.7 GiB of visible RAM, so allocating 8 GiB to Docker on it is not appropriate. Compose forwards `OLLAMA_NUM_GPU` (default `0` for CPU); set it deliberately for host GPU execution.
+
+API/UI bind host loopback ports 8000/8501. Containers do not load the machine-specific root `.env`; Compose explicitly forwards supported settings. `OCR_DOCKER_API_PORT` and `OCR_DOCKER_UI_PORT` change host ports. Run `docker compose up -d --build --wait`, then visit `http://localhost:8501`.
+
+Settings / Provider Status calls `GET /providers/diagnostics` for missing dependencies, unconfigured paths, unavailable models, unreachable Ollama, initialization failures and inference failures. Passing preflight is not Ready: run a small PDF through Document Processing (or benchmarking), then refresh status. Ready means complete actual extraction succeeded in the current API process, not that accuracy was proven. A health check confirms the web service only.
+
+This remains a local, single-process application. Authentication, job queues, cross-process model locks and hard whole-request cancellation are not implemented. A client timeout may leave inference active; inspect history before rerunning. No deployment, commit or push is performed by this change.
+
+Application event logs use JSON records for initialization, extraction, failures and benchmarks, excluding document filenames, extracted text and exception messages. Third-party libraries may emit their own diagnostics. GitHub Actions runs lint, basic imports/provider registration and mocked tests on Windows/Linux with Python 3.11/3.13; it needs no model downloads, GPU or Ollama server.
+
+Current provider diagnostics and verification evidence are recorded in [ground-truth implementation report](docs/GROUND_TRUTH_REPORT.md). Earlier readiness reports describe the previous implementation.
+
+Models, environments, secrets and new generated runs are ignored. Existing tracked upload samples and historical data remain tracked: review source permissions, dataset licenses, research documents and notebook outputs before public release. No history rewrite or publication is performed. See [repository audit](docs/REPOSITORY_AUDIT.md).
+
+## Future RAG contract
+
+OCR emits schema 1.0; a separate future ingestion service owns cleanup, chunking, embeddings, retrieval and generation. Preserve original artifacts, document/provider/page/block identities and exact text spans. Page offsets address document text, block offsets address page text; Unicode character offsets are half-open. Geometry declares units and origin. No RAG runtime is implemented.
 
 ## Troubleshooting
 
-- **Python cannot start / stale `.venv`:** verify the selected base Python and `.venv/pyvenv.cfg`. Use a fresh environment with an installed interpreter. The historical `OCR/.python-version` does not configure root launch commands.
-- **PowerShell activation fails:** call `.venv\Scripts\python.exe` directly, or activate with `activate.bat` in Command Prompt.
-- **Multipart dependency error:** install the current core requirements in the same interpreter used to launch Uvicorn. Use `python -m pip`, not an unrelated `pip` executable.
-- **Poppler unavailable:** verify `pdfinfo -v` and `pdftoppm -v`, or point `OCR_POPPLER_PATH` at their binary directory. Poppler is unnecessary for the Docling provider.
-- **Tesseract unavailable/language missing:** verify `tesseract --version` (5.x) and `tesseract --list-langs`; install the configured traineddata and check executable discovery. `ara+eng` requires both packs.
-- **Model initialization returns 503:** inspect server logs. Ensure optional packages and complete local assets exist; inspect `/health`. An empty/nonexistent asset directory fails explicitly. No alternate provider is silently used.
-- **Windows model wheel/DLL or GPU errors:** confirm Python architecture, wheel availability, CUDA/driver/Torch/Paddle compatibility and local assets. The full optional Windows stack remains unverified; CPU settings are available, but CPU may be slow. Do not use the old setup notebooks to repair the current environment.
-- **Long Paddle request:** the current native adapter has no enforced inference deadline/cancellation. Reduce PDF size/page count or use smaller validation documents before batch runs.
-- **413 / page-limit rejection:** check `OCR_MAX_UPLOAD_BYTES`/`OCR_MAX_PAGES`. Limits are resource controls, not evidence that a PDF is safe or accurately recognized.
-- **UI cannot reach API:** start `python -m OCR` first and match `OCR_API_URL` to its address. A ready API can still have uninitialized/unavailable providers.
-- **Benchmark results differ from expectations:** verify the exact provider/model/revision and export field, configured language packs, failed documents, and historical normalization policy. Local Arabic/English/mixed accuracy has not been measured for the new adapters.
+- API connection fails: start the API and check `OCR_API_URL`.
+- Native executable missing: check Tesseract language packs and Poppler PATH/settings.
+- Optional provider unavailable: inspect logs and complete local assets/packages; empty directories are insufficient.
+- Qwen slow or GPU memory low: use CPU settings where needed and a small PDF; increasing image resolution can improve small-text recognition but increases work.
+- Stale virtual environment: create an environment with an installed base interpreter; the launcher skips invalid ones.
+- Benchmark mismatch: inspect export field, model revision, language configuration, failures and historical normalization before comparing scores.
+
+### Final Paddle resource and UI verification
+
+See [the focused final report](docs/FINAL_OCR_UI_REPORT.md) for the measured Paddle CPU memory blocker, actionable error handling, frontend improvements and verification evidence. A successful health check does not prove model inference.

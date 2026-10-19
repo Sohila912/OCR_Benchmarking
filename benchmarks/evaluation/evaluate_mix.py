@@ -122,50 +122,10 @@ def main():
     from benchmarks.evaluation.options import evaluation_options
     args = evaluation_options(GROUND_TRUTH, OCR_OUTPUT)
     ground_truth, ocr_output = args.reference, args.ocr_output
-    results = []
-
-    reference_files = sorted(ground_truth.glob("*.md"))
-
-    for ref_file in reference_files:
-
-        pred_file = ocr_output / ref_file.name
-
-        if not pred_file.exists():
-            print(f"Missing: {ref_file.name}")
-            continue
-
-        with open(ref_file, "r", encoding="utf-8") as f:
-            reference = f.read()
-
-        with open(pred_file, "r", encoding="utf-8") as f:
-            prediction = f.read()
-
-        reference_clean = normalize_text(reference)
-        prediction_clean = normalize_text(prediction)
-
-        cer_score = cer(reference_clean, prediction_clean)
-        wer_score = wer(reference_clean, prediction_clean)
-
-        results.append({
-            "File": ref_file.name,
-            "CER": round(cer_score, 4),
-            "WER": round(wer_score, 4),
-            "Character Accuracy (%)": round((1 - cer_score) * 100, 2),
-            "Word Accuracy (%)": round((1 - wer_score) * 100, 2),
-            "Reference Characters": len(reference_clean),
-            "OCR Characters": len(prediction_clean),
-            "Reference Words": len(reference_clean.split()),
-            "OCR Words": len(prediction_clean.split()),
-            "Char Difference": len(prediction_clean) - len(reference_clean),
-            "Word Difference": len(prediction_clean.split()) - len(reference_clean.split())
-        })
-
-    # ======================================================
-    # Results
-    # ======================================================
-
-    if not results:
-        raise ValueError("No matching reference/output files; no spreadsheet written.")
+    from benchmarks.evaluation.metrics import evaluate_directory
+    results, missing = evaluate_directory(ground_truth, ocr_output, "Mix")
+    for filename in missing:
+        print(f"Missing: {filename}")
     df = pd.DataFrame(results)
 
     df.to_excel(args.result, index=False)

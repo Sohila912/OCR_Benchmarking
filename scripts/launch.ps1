@@ -4,10 +4,18 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+# Some Windows environments expose both PATH and Path. PowerShell preserves
+# both names in the inherited environment block, and Start-Process rejects the
+# duplicate keys. Keep one canonical Path entry for all child processes.
+$normalizedPath = $env:Path
+$env:PATH = $null
+$env:Path = $normalizedPath
 $repoRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $repoRoot
 $backend = $null
 $frontend = $null
+$apiOutMonitor = $null
+$apiErrMonitor = $null
 
 function Find-Python {
     # Prefer working project environments, then an explicit override/discovered installations.
@@ -73,6 +81,118 @@ function Assert-FreePort([string]$HostName, [int]$Port) {
     } finally { $client.Dispose() }
 }
 
+function Ensure-Ollama([string]$OllamaHost, [string]$Model) {
+    # Avoid Windows localhost/IPv6 proxy resolution quirks when talking to the
+    # local Ollama daemon from PowerShell.
+    $requestHost = $OllamaHost -replace '://localhost(?=[:/]|$)', '://127.0.0.1'
+    $tagsUrl = ($requestHost.TrimEnd('/')) + '/api/tags'
+    $tags = $null
+    try { $tags = Invoke-RestMethod -Uri $tagsUrl -Method Get -TimeoutSec 2 } catch { }
+    if (!$tags) {
+        $ollamaCommand = Get-Command ollama.exe -ErrorAction SilentlyContinue
+        if (!$ollamaCommand) {
+            $runningOllama = Get-Process -Name ollama -ErrorAction SilentlyContinue | Select-Object -First 1
+            if ($runningOllama -and $runningOllama.Path) {
+                $ollamaCommand = [pscustomobject]@{ Source = $runningOllama.Path }
+            }
+        }
+        if (!$ollamaCommand) {
+            $knownOllamaPaths = @(
+                (Join-Path $env:LOCALAPPDATA 'Programs\Ollama\ollama.exe'),
+                (Join-Path $env:ProgramFiles 'Ollama\ollama.exe')
+            )
+            foreach ($candidate in $knownOllamaPaths) {
+                $exists = $false
+                try { $exists = $candidate -and (Test-Path -LiteralPath $candidate -PathType Leaf -ErrorAction SilentlyContinue) } catch { }
+                if ($exists) {
+                    $ollamaCommand = [pscustomobject]@{ Source = $candidate }
+                    break
+                }
+            }
+        }
+        if ($ollamaCommand) {
+            Write-Host "Ollama API is unavailable; starting Ollama at $OllamaHost..."
+            try { Start-Process -FilePath $ollamaCommand.Source -ArgumentList 'serve' -WindowStyle Hidden -ErrorAction Stop | Out-Null }
+            catch {
+                throw "Could not start Ollama: $($_.Exception.Message)"
+            }
+            $deadline = (Get-Date).AddSeconds(30)
+            while ((Get-Date) -lt $deadline -and !$tags) {
+                Start-Sleep -Milliseconds 500
+                try { $tags = Invoke-RestMethod -Uri $tagsUrl -Method Get -TimeoutSec 2 } catch { }
+            }
+        } else {
+            throw 'Ollama API is unavailable and ollama.exe was not found. Install Ollama or start its server before running the application.'
+        }
+    }
+    if (!$tags) {
+        throw 'Ollama did not become ready within 30 seconds. Start Ollama and run the application again.'
+    }
+
+    $installed = @($tags.models | ForEach-Object { [string]$_.name })
+    if ($installed -contains $Model) {
+        Write-Host "Ollama model ready: $Model" -ForegroundColor Green
+        return
+    }
+
+    Write-Host "Ollama model $Model is missing; downloading through /api/pull..."
+    Add-Type -AssemblyName System.Net.Http
+    $client = New-Object System.Net.Http.HttpClient
+    $client.Timeout = [TimeSpan]::FromHours(6)
+    try {
+        $body = ConvertTo-Json @{ name = $Model; stream = $true } -Compress
+        $content = New-Object -TypeName System.Net.Http.StringContent -ArgumentList @($body, [Text.Encoding]::UTF8, 'application/json')
+        $request = New-Object -TypeName System.Net.Http.HttpRequestMessage -ArgumentList @([System.Net.Http.HttpMethod]::Post, (($requestHost.TrimEnd('/')) + '/api/pull'))
+        $request.Content = $content
+        # Read the newline-delimited pull stream as it arrives so the launcher
+        # prints download progress instead of appearing frozen for an hour.
+        $response = $client.SendAsync($request, [System.Net.Http.HttpCompletionOption]::ResponseHeadersRead).GetAwaiter().GetResult()
+        if (!$response.IsSuccessStatusCode) {
+            throw "Ollama /api/pull failed with HTTP $([int]$response.StatusCode): $Model"
+        }
+        $reader = New-Object -TypeName System.IO.StreamReader -ArgumentList @($response.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
+        $pullError = $null
+        $lastPullStatus = $null
+        $lastPullPercent = -1
+        while (($line = $reader.ReadLine()) -ne $null) {
+            if (!$line.Trim()) { continue }
+            try {
+                $event = $line | ConvertFrom-Json
+                if ($event.error) { $pullError = [string]$event.error; Write-Host "Ollama pull error: $pullError" -ForegroundColor Yellow; break }
+                if ($event.status) {
+                    $percent = if ($event.completed -and $event.total) { [math]::Round(100 * $event.completed / $event.total, 1) } else { -1 }
+                    if ($event.status -ne $lastPullStatus -or ($percent -ge 0 -and $percent -ne $lastPullPercent)) {
+                        $progress = if ($percent -ge 0) { " ($percent%)" } else { '' }
+                        Write-Host "Ollama pull: $($event.status)$progress"
+                        $lastPullStatus = [string]$event.status
+                        $lastPullPercent = $percent
+                    }
+                }
+            } catch { Write-Host "Ollama pull: $line" }
+        }
+        $reader.Dispose()
+        $request.Dispose()
+        if ($pullError) {
+            throw "Ollama model download was incomplete: $pullError"
+        }
+    } catch {
+        throw "Ollama model download failed or was interrupted: $($_.Exception.Message)"
+    } finally {
+        $client.Dispose()
+    }
+
+    # A successful stream is not enough: verify Ollama registered the exact tag.
+    try { $tags = Invoke-RestMethod -Uri $tagsUrl -Method Get -TimeoutSec 5 } catch {
+        throw 'Ollama pull finished, but /api/tags could not be queried; model availability is unconfirmed.'
+    }
+    $installed = @($tags.models | ForEach-Object { [string]$_.name })
+    if ($installed -contains $Model) {
+        Write-Host "Ollama model ready: $Model" -ForegroundColor Green
+    } else {
+        throw "Ollama pull completed, but exact model tag '$Model' is still missing. The download may be incomplete or registered under a different tag."
+    }
+}
+
 try {
     Write-Host "`nOCR Benchmarking / OCR Service" -ForegroundColor Cyan
     $python = Find-Python
@@ -89,7 +209,7 @@ print(json.dumps([name for name in modules if importlib.util.find_spec(name) is 
         Write-Host "Missing packages: $($missing -join ', ')" -ForegroundColor Yellow
         if ($CheckOnly -or $SmokeCheck) { throw 'Install requirements.txt in the selected Python environment before verification.' }
         Write-Host "First-time setup can install the core requirements into: $python"
-        Write-Host 'Optional Paddle/Docling packages and model files are installed separately.'
+        Write-Host 'Paddle/Docling packages and model files are installed separately.'
         $answer = Read-Host 'Install these dependencies now? Type Y to approve'
         if ($answer -notmatch '^(y|yes)$') { throw 'Dependency installation was not approved. Nothing was installed.' }
         & $python -m pip install -r (Join-Path $repoRoot 'requirements.txt')
@@ -106,7 +226,8 @@ import json
 from OCR.config import load_settings
 s = load_settings()
 print(json.dumps({'host': s.api_host, 'port': s.api_port, 'provider': s.provider, 'tesseract': s.tesseract_cmd,
-                  'poppler': str(s.poppler_path) if s.poppler_path else None, 'languages': s.tesseract_lang}))
+                  'poppler': str(s.poppler_path) if s.poppler_path else None, 'languages': s.tesseract_lang,
+                  'ollama_host': s.ollama_host, 'ollama_model': s.ollama_ocr_model}))
 '@
     $config = (& $python -B -c $settingsProbe) | ConvertFrom-Json
     if ($LASTEXITCODE -ne 0) { throw 'Invalid application configuration. Check .env and the error above.' }
@@ -158,20 +279,24 @@ import re
 from OCR.config import REPOSITORY_ROOT, load_settings
 
 requirements = {}
-for raw in (REPOSITORY_ROOT / "requirements-models.txt").read_text(encoding="utf-8-sig").splitlines():
-    line = raw.split("#", 1)[0].strip()
+for raw in (REPOSITORY_ROOT / 'requirements-models.txt').read_text(encoding='utf-8-sig').splitlines():
+    line = raw.split('#', 1)[0].strip()
     if not line:
         continue
-    match = re.fullmatch(r"([A-Za-z0-9_.-]+)==([^;\s]+)", line)
+    # Use single quotes here because PowerShell strips embedded double quotes
+    # when passing a here-string to python's -c argument.
+    match = re.fullmatch(r'([A-Za-z0-9_.-]+)(?:\[[^\]]+\])?==([^;\s]+)', line)
     if not match:
-        raise ValueError(f"Unsupported model requirement: {line}")
-    requirements[match.group(1).lower().replace("_", "-")] = match.group(2)
+        # Ranged optional dependencies (for example ollama>=...,<1) are
+        # installed normally but are not version-pinned for this probe.
+        continue
+    requirements[match.group(1).lower().replace('_', '-')] = match.group(2)
 
 settings = load_settings()
 paths = {
-    "paddle_vl": settings.paddle_vl_model_dir or REPOSITORY_ROOT / "models" / "PaddleOCR-VL-1.6",
-    "paddle_layout": settings.paddle_layout_model_dir or REPOSITORY_ROOT / "models" / "PP-DocLayoutV3",
-    "docling": settings.docling_artifacts_path or REPOSITORY_ROOT / "models" / "docling",
+    'paddle_vl': settings.paddle_vl_model_dir or REPOSITORY_ROOT / 'models' / 'PaddleOCR-VL-1.6',
+    'paddle_layout': settings.paddle_layout_model_dir or REPOSITORY_ROOT / 'models' / 'PP-DocLayoutV3',
+    'docling': settings.docling_artifacts_path or REPOSITORY_ROOT / 'models' / 'docling',
 }
 versions = {}
 for package, required in requirements.items():
@@ -179,22 +304,22 @@ for package, required in requirements.items():
         installed = importlib.metadata.version(package)
     except importlib.metadata.PackageNotFoundError:
         installed = None
-    versions[package] = {"required": required, "installed": installed, "ready": installed == required}
+    versions[package] = {'required': required, 'installed': installed, 'ready': installed == required}
 
 def has_files(path, required_files=()):
     return path.is_dir() and all((path / name).is_file() for name in required_files) and any(
-        item.is_file() for item in path.rglob("*"))
+        item.is_file() for item in path.rglob('*'))
 
 assets = {
-    "paddle_vl": has_files(paths["paddle_vl"], ("inference.yml",)),
-    "paddle_layout": has_files(paths["paddle_layout"], ("inference.json", "inference.pdiparams", "inference.yml")),
-    "docling": has_files(paths["docling"]),
+    'paddle_vl': has_files(paths['paddle_vl'], ('inference.yml',)),
+    'paddle_layout': has_files(paths['paddle_layout'], ('inference.json', 'inference.pdiparams', 'inference.yml')),
+    'docling': has_files(paths['docling']),
 }
 print(json.dumps({
-    "versions": versions,
-    "assets": assets,
-    "paths": {name: str(path) for name, path in paths.items()},
-    "ready": all(item["ready"] for item in versions.values()) and all(assets.values()),
+    'versions': versions,
+    'assets': assets,
+    'paths': {name: str(path) for name, path in paths.items()},
+    'ready': all(item['ready'] for item in versions.values()) and all(assets.values()),
 }))
 '@
         $modelStatus = (& $python -B -c $modelProbe) | ConvertFrom-Json
@@ -231,6 +356,10 @@ print(json.dumps({
 
     if ($CheckOnly) { Write-Host 'Launcher preflight passed.' -ForegroundColor Green; exit 0 }
 
+    # A normal launch requires Ollama and the configured model. The model is
+    # pulled only when /api/tags confirms that its exact tag is absent.
+    if (!$SmokeCheck) { Ensure-Ollama $config.ollama_host $config.ollama_model }
+
     $localHost = $config.host
     if ($localHost -eq '0.0.0.0') { $localHost = '127.0.0.1' }
     if ($localHost -eq '::') { $localHost = '::1' }
@@ -248,9 +377,14 @@ print(json.dumps({
     $apiErr = Join-Path $logDir "$runId-api.err.log"
     $uiOut = Join-Path $logDir "$runId-ui.out.log"
     $uiErr = Join-Path $logDir "$runId-ui.err.log"
+    New-Item -ItemType File -Path $apiOut, $apiErr, $uiOut, $uiErr -Force | Out-Null
     Write-Host "Logs: $logDir"
     Write-Host 'Starting API...'
     $backend = Start-Process -FilePath $python -ArgumentList '-B -m OCR' -WorkingDirectory $repoRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput $apiOut -RedirectStandardError $apiErr
+    # Stream the API's model lifecycle messages into this launcher terminal while
+    # retaining complete stdout/stderr log files under runtime/logs.
+    $apiOutMonitor = Start-Process -FilePath 'powershell.exe' -ArgumentList @('-NoProfile', '-Command', "Get-Content -LiteralPath '$apiOut' -Tail 0 -Wait") -WorkingDirectory $repoRoot -NoNewWindow -PassThru
+    $apiErrMonitor = Start-Process -FilePath 'powershell.exe' -ArgumentList @('-NoProfile', '-Command', "Get-Content -LiteralPath '$apiErr' -Tail 0 -Wait") -WorkingDirectory $repoRoot -NoNewWindow -PassThru
     Wait-Ready "$apiUrl/health" $backend 'API'
     Write-Host 'Starting Streamlit...'
     $frontend = Start-Process -FilePath $python -ArgumentList '-B -m streamlit run OCR/streamlit_app.py --server.address 127.0.0.1 --server.port 8501 --server.headless true --browser.gatherUsageStats false' -WorkingDirectory $repoRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput $uiOut -RedirectStandardError $uiErr
@@ -258,7 +392,8 @@ print(json.dumps({
     Write-Host "`nReady: http://127.0.0.1:8501" -ForegroundColor Green
     Write-Host "API docs: $apiUrl/docs"
     if ($SmokeCheck) { Write-Host 'Both services passed startup verification; stopping verification processes.'; exit 0 }
-    Start-Process 'http://127.0.0.1:8501'
+    try { Start-Process 'http://127.0.0.1:8501' -ErrorAction Stop }
+    catch { Write-Host 'Could not open the browser automatically. Open http://127.0.0.1:8501 manually.' -ForegroundColor Yellow }
     Write-Host 'Keep this launcher open while using OCR.'
     Read-Host 'Press Enter here to stop both services' | Out-Null
 } catch {
@@ -267,7 +402,7 @@ print(json.dumps({
     if ($uiErr -and (Test-Path -LiteralPath $uiErr)) { Get-Content -LiteralPath $uiErr -Tail 12 }
     exit 1
 } finally {
-    foreach ($ownedProcess in @($frontend, $backend)) {
+    foreach ($ownedProcess in @($apiOutMonitor, $apiErrMonitor, $frontend, $backend)) {
         if ($null -ne $ownedProcess) {
             $ownedProcess.Refresh()
             if (!$ownedProcess.HasExited) { Stop-Process -InputObject $ownedProcess -ErrorAction SilentlyContinue }

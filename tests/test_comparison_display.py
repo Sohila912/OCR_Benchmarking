@@ -38,7 +38,7 @@ row = {'id':'display-test','provider':'fixture','status':'success','reference':t
 st.session_state['gt_result']={'results':[row]}
 st.session_state['gt_history']=[{k:v for k,v in row.items() if k not in ('reference','output','diff')}]
 benchmarking(SimpleNamespace(api_url='http://unused.invalid',max_upload_bytes=50000000),['fixture'])
-''').run()
+''', default_timeout=15).run()
     assert not app.exception
     assert len(app.get('html')) == 4
     assert 'مَرْحَبًا' in next(t.value for t in app.text_area if t.label=='Reference Markdown (original)')

@@ -28,6 +28,29 @@ def normalize_docling(document: OCRDocument, result, model_version: str | None,
             if data.get("text"):
                 warnings.append(OCRIssue(code="missing_item_provenance", message=f"Item {data.get('self_ref')} has no page provenance."))
             continue
+        item_text = data.get("text")
+        single_page = len({int(p["page_no"]) for p in provenance}) == 1
+        spans = [p.get("charspan") for p in provenance]
+        valid_spans = item_text is not None and all(
+            isinstance(span, (list, tuple)) and len(span) == 2
+            and all(isinstance(offset, int) for offset in span)
+            and 0 <= span[0] <= span[1] <= len(item_text)
+            for span in spans
+        )
+        if valid_spans:
+            valid_spans = all(left[1] <= right[0] for left, right in zip(spans, spans[1:]))
+        # Page attribution is unambiguous for a single-page item. Its text is
+        # already normalized by Docling; spans can still address pre-cleanup
+        # text (e.g. before dehyphenation). Never slice or repeat that item.
+        whole_item = single_page or not valid_spans
+        if item_text is not None and not single_page and not valid_spans:
+            warnings.append(OCRIssue(
+                code="invalid_item_character_span",
+                message=f"Item {data.get('self_ref')} has ambiguous multi-page text spans; "
+                        "its full text was retained once on its first provenance page. "
+                        "Exact page attribution is unavailable; original provenance is preserved.",
+                page_number=int(provenance[0]["page_no"]),
+            ))
         for occurrence, prov in enumerate(provenance):
             number = int(prov["page_no"])
             page = pages.setdefault(number, OCRPage(page_number=number, blocks=[]))
@@ -39,22 +62,12 @@ def normalize_docling(document: OCRDocument, result, model_version: str | None,
                     box = BoundingBox(x_min=min(raw_box["l"], raw_box["r"]), x_max=max(raw_box["l"], raw_box["r"]),
                                       y_min=min(raw_box["t"], raw_box["b"]), y_max=max(raw_box["t"], raw_box["b"]),
                                       units="points", origin="top_left" if origin == "TOPLEFT" else "bottom_left")
-            text = data.get("text")
-            span = prov.get("charspan")
-            # Docling charspan refers to the item's text, avoiding duplication across pages.
-            if text is not None and span is not None:
-                start, end = span
-                if not 0 <= start <= end <= len(text):
-                    # Some Docling releases emit character spans against the
-                    # page-level text stream rather than this item's text.
-                    # Keep the item text instead of turning a recoverable
-                    # provenance mismatch into a fatal extraction error.
-                    warnings.append(OCRIssue(
-                        code="invalid_item_character_span",
-                        message=f"Item {data.get('self_ref')} returned a span outside its text; full item text was retained.",
-                        page_number=number,
-                    ))
+            text = item_text
+            if text is not None:
+                if whole_item:
+                    text = text if occurrence == 0 else None
                 else:
+                    start, end = spans[occurrence]
                     text = text[start:end]
             if text is None and data.get("data", {}).get("table_cells"):
                 # Table text is supplied by cells; structure is preserved in raw metadata.
@@ -70,6 +83,7 @@ def normalize_docling(document: OCRDocument, result, model_version: str | None,
                 block_id=f"{source_ref}:prov{occurrence}" if source_ref else None,
                 block_type=data.get("label"), text=text, bounding_box=box,
                 provider_metadata={"source_ref": source_ref, "provenance": prov,
+                                   "text_assignment": "whole_item_once" if whole_item else "item_character_span",
                                    "hierarchy_depth": depth, "item": data},
             ))
     ordered = [pages[n] for n in sorted(pages)]

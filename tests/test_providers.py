@@ -153,6 +153,39 @@ def test_docling_mapping_preserves_page_item_provenance(document):
     assert OCRResult.model_validate_json(result.model_dump_json()).pages[1].text_start==7
 
 
+def docling_text_result(document, text, provenance):
+    item={'self_ref':'#/texts/8','label':'text','text':text,'prov':provenance}
+    doc=types.SimpleNamespace(export_to_dict=lambda:{'pages':{}},
+        iterate_items=lambda:[(types.SimpleNamespace(model_dump=lambda **kw:item),0)],
+        export_to_markdown=lambda **kw:text)
+    return normalize_docling(document,types.SimpleNamespace(document=doc,errors=[],status='success'),'2.80.0',None)
+
+
+@pytest.mark.parametrize('spans',[[[0,99]],[[0,5],[5,99]],[[0,5],[5,10]],[None],[[0,0]]])
+def test_docling_single_page_retains_normalized_text_once(document,spans):
+    text='helloمرحبا'
+    provenance=[{'page_no':1,'charspan':span} for span in spans]
+    result=docling_text_result(document,text,provenance)
+    assert result.text==text
+    assert not result.warnings
+    assert len(result.pages[0].blocks)==len(spans)
+    assert [b.text for b in result.pages[0].blocks]==[text]+[None]*(len(spans)-1)
+    assert result.pages[0].blocks[-1].provider_metadata['provenance']==provenance[-1]
+    assert OCRResult.model_validate_json(result.model_dump_json()).text==text
+
+
+@pytest.mark.parametrize('spans',[[[0,5],[5,99]],[[0,7],[5,10]],[[0,5],None],[[0,5],['bad',10]]])
+def test_docling_ambiguous_multi_page_spans_do_not_duplicate_text(document,spans):
+    text='helloمرحبا'
+    result=docling_text_result(document,text,[{'page_no':i+1,'charspan':span} for i,span in enumerate(spans)])
+    assert result.text.count(text)==1
+    assert result.pages[0].blocks[0].text==text
+    assert result.pages[1].blocks[0].text is None
+    assert len(result.warnings)==1
+    assert result.warnings[0].code=='invalid_item_character_span'
+    assert 'Exact page attribution is unavailable' in result.warnings[0].message
+
+
 def test_docling_initialization_uses_tesseract_not_defaults(settings,tmp_path,monkeypatch):
     import OCR.providers.docling as module
     assets=tmp_path/'assets';assets.mkdir();(assets/'config.json').write_text('{}')

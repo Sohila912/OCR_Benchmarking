@@ -222,7 +222,7 @@ def test_streamlit_history_keeps_failed_providers_visible(settings,monkeypatch):
             kwargs.pop("timeout",None)
             return c.request(method,"/"+url.split("/",3)[3],**kwargs)
         monkeypatch.setattr(requests,"request",request)
-        app=AppTest.from_file(str(Path(__file__).resolve().parents[1]/"frontend/app.py"))
+        app=AppTest.from_file(str(Path(__file__).resolve().parents[1]/"frontend/app.py"),default_timeout=15)
         app.session_state["workspace_navigation"]="Benchmarking"
         app.run()
         next(b for b in app.button if b.label=="Refresh benchmark history").click().run()

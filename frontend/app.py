@@ -15,6 +15,7 @@ import streamlit as st
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from OCR.config import load_settings
 from frontend.client import extract_document, request_error
+from frontend.progress import run_with_progress
 from frontend.views import overview, comparison, provider_settings
 from frontend.ground_truth import benchmarking
 from frontend.design import apply_theme, workflow, PROVIDER_NAMES
@@ -168,8 +169,8 @@ def render_processing(settings, providers, default):
             bar = st.progress(0, text="Preparing extraction")
             for index, provider in enumerate(order):
                 with st.status(f"{provider}: extracting", expanded=True) as status:
-                    entry = extract_document(settings.api_url, upload.name, payload, provider)
-                    result = entry.get("result")
+                    entry = run_with_progress(lambda: extract_document(settings.api_url, upload.name, payload, provider), f"{PROVIDER_NAMES.get(provider, provider)} is extracting text")
+                    result = entry.get("result") or {}
                     status.update(label=f"{provider}: {'needs review' if entry.get('error') or result.get('errors') else 'complete'}",
                                   state="error" if entry.get("error") or result.get("errors") else "complete", expanded=False)
                     if entry.get("error"):
@@ -178,6 +179,7 @@ def render_processing(settings, providers, default):
                     if entry.get("result"):
                         render_entry(entry)
                 bar.progress((index + 1) / len(order), text=f"Finished {index + 1} of {len(order)} engines")
+            st.session_state["extraction_notice"] = True
             st.rerun()
 
     entries = st.session_state["ocr_entries"]
@@ -195,8 +197,24 @@ def render_processing(settings, providers, default):
 
 
 
+@st.dialog("Your extraction is ready")
+def extraction_complete():
+    entries = st.session_state.get("ocr_entries", [])
+    completed = sum(bool(entry.get("result")) for entry in entries)
+    st.write(f"{completed} of {len(entries)} engines returned results. Inspect and export the output below.")
+    st.info("Next: open Benchmarking and upload the same PDF with its reference Markdown to measure recognition quality.")
+    if st.button("Go to Benchmarking", type="primary"):
+        st.session_state["navigation_target"] = "Benchmarking"
+        st.rerun()
+    if st.button("Stay and inspect output"):
+        st.rerun()
+
+
 def main() -> None:
     st.set_page_config(page_title="OCR Benchmarking", page_icon=":material/description:", layout="wide")
+    apply_theme()
+    if st.session_state.get("navigation_target"):
+        st.session_state["workspace_navigation"] = st.session_state.pop("navigation_target")
     try:
         settings = load_settings()
     except ValueError:
@@ -245,6 +263,8 @@ def main() -> None:
             st.session_state.pop("ocr_run_filename", None)
             st.rerun()
         st.caption("PDF input · JSON / text / Markdown exports")
+    if st.session_state.pop("extraction_notice", False):
+        extraction_complete()
     if navigation == "Overview":
         overview(providers, health)
     elif navigation == "Document Processing":

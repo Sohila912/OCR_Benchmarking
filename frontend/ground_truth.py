@@ -6,11 +6,12 @@ from html import escape
 import requests
 import streamlit as st
 from frontend.design import benchmark_chart
+from frontend.progress import run_with_progress
 
 
 def api(settings, method, path, **kwargs):
     try:
-        response = requests.request(method, settings.api_url + path, timeout=(5, 7200), **kwargs)
+        response = run_with_progress(lambda: requests.request(method, settings.api_url + path, timeout=(5, 7200), **kwargs), "Evaluating document" if method == "POST" else "Contacting benchmark service")
         response.raise_for_status()
         return response.json()
     except requests.RequestException:
@@ -56,10 +57,14 @@ def results(response, prefix="") :
     for row in rows:
         m = (row.get("metrics") or {})
         summary.append({"Provider": row["provider"], "Status": row["status"], "CER": m.get("cer"), "WER": m.get("wer"),
-                        "Exact match": m.get("exact_match"), "OCR seconds": row.get("duration_seconds")})
+                        "Match percentage": m.get("character_similarity") * 100 if m.get("character_similarity") is not None else None, "OCR seconds": row.get("duration_seconds")})
     st.subheader("Evaluation results")
-    st.dataframe(summary, hide_index=True)
-    benchmark_chart(rows, "benchmark_result_chart")
+    st.dataframe(summary, hide_index=True, column_config={
+        "Match percentage": st.column_config.NumberColumn(format="%.2f%%"),
+        "CER": st.column_config.NumberColumn(format="percent"),
+        "WER": st.column_config.NumberColumn(format="percent"),
+    })
+    benchmark_chart(rows, prefix + "benchmark_result_chart")
     st.caption("Lower CER/WER is better; rates may exceed 1 (100%). OCR duration excludes HTTP and queueing. Initialization and inference are measured separately.")
     exports([{k:v for k,v in r.items() if k not in ("reference", "output", "diff")} for r in rows], prefix + "current_benchmark")
     for row in rows:
@@ -72,7 +77,7 @@ def results(response, prefix="") :
             cards = st.columns(4)
             cards[0].metric("CER", f'{m["cer"]:.2%}')
             cards[1].metric("WER", f'{m["wer"]:.2%}')
-            cards[2].metric("Exact match", str(m["exact_match"]))
+            cards[2].metric("Match percentage", f'{m["character_similarity"]:.2%}')
             duration = row.get("duration_seconds")
             cards[3].metric("OCR duration", f"{duration:.2f}s" if duration is not None else "Unknown")
             st.caption(f'Initialization: {row.get("initialization_seconds")}s · Inference: {row.get("inference_seconds")}s')
@@ -140,10 +145,12 @@ def benchmarking(settings, providers):
         if pdf and pdf.size > settings.max_upload_bytes:
             st.error("PDF exceeds upload limit.")
         if st.button("Run Benchmark", type="primary", disabled=not(pdf and ref and paired and chosen and dataset_name.strip()) or bool(pdf and pdf.size>settings.max_upload_bytes)):
-            with st.spinner("Running providers sequentially and evaluating ground truth"):
+            with st.status("Evaluating document against your reference…", expanded=True) as status:
                 result = api(settings, "POST", "/benchmarks/run", files={"file": (pdf.name, pdf.getvalue(), "application/pdf"), "reference": (ref.name, ref.getvalue(), "text/markdown")}, data={"providers": json.dumps(chosen), "normalization": json.dumps(options), "dataset": dataset_name, "paired": "true"})
+                status.update(label="Evaluation complete" if result else "Evaluation needs attention", state="complete" if result else "error", expanded=False)
             if result:
                 st.session_state["gt_result"] = result
+                st.toast("Benchmark ready. Explore the chart and text differences below.", icon="✅")
         if st.session_state.get("gt_result"):
             results(st.session_state["gt_result"])
             if st.button("Clear benchmark text from session"):
@@ -179,7 +186,7 @@ def benchmarking(settings, providers):
             st.session_state["gt_history"] = api(settings,"GET","/benchmarks/history",params=params)
         rows = st.session_state.get("gt_history") or []
         if rows:
-            st.dataframe([{**{k:r.get(k) for k in ("id","timestamp","dataset_id","provider","model_version","status")}, **{k:(r.get("metrics") or {}).get(k) for k in ("cer","wer","exact_match")}} for r in rows], hide_index=True)
+            st.dataframe([{**{k:r.get(k) for k in ("id","timestamp","dataset_id","provider","model_version","status")}, **{k:(r.get("metrics") or {}).get(k) for k in ("cer","wer")}, "Match percentage": f'{r["metrics"]["character_similarity"]:.2%}' if (r.get("metrics") or {}).get("character_similarity") is not None else None} for r in rows], hide_index=True)
             exports(rows,"benchmark_history")
             ids = st.multiselect("Runs to inspect and compare", [r["id"] for r in rows])
             for row in rows:

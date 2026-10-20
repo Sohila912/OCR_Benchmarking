@@ -39,18 +39,37 @@ def workflow(active):
 
 
 def benchmark_chart(rows, key):
+    """Render explicit bars without depending on the browser's Vega runtime."""
+    from html import escape
+    import math
+
     successful = [r for r in rows if r.get("status") == "success" and r.get("metrics")]
     if not successful:
         return
-    import altair as alt
     view = st.radio("Comparison chart", ["Error rates", "Processing time"], horizontal=True, key=key)
-    if view == "Error rates":
-        data = [{"Provider": PROVIDER_NAMES.get(r["provider"], r["provider"]), "Metric": metric.upper(), "Value": r["metrics"][metric]} for r in successful for metric in ("cer", "wer")]
-        chart = alt.Chart(alt.Data(values=data)).mark_bar(cornerRadiusEnd=4).encode(y="Provider:N", yOffset="Metric:N", x=alt.X("Value:Q", axis=alt.Axis(format=".0%"), title="Error rate · lower is better"), color=alt.Color("Metric:N", scale=alt.Scale(range=["#2563eb", "#8b5cf6"])), tooltip=["Provider:N", "Metric:N", alt.Tooltip("Value:Q", format=".2%")])
-    else:
-        data = [{"Provider": PROVIDER_NAMES.get(r["provider"], r["provider"]), "Seconds": r["duration_seconds"]} for r in successful if r.get("duration_seconds") is not None]
-        if not data:
-            st.info("Processing durations are unavailable for these runs.")
-            return
-        chart = alt.Chart(alt.Data(values=data)).mark_bar(color="#2563eb", cornerRadiusEnd=4).encode(y="Provider:N", x="Seconds:Q", tooltip=["Provider:N", alt.Tooltip("Seconds:Q", format=".2f")])
-    st.altair_chart(chart.properties(height=max(140, len(successful) * 65)).interactive(), width="stretch")
+    bars = []
+    for row in successful:
+        provider = PROVIDER_NAMES.get(row["provider"], row["provider"])
+        metrics = (("CER", row["metrics"].get("cer"), "#2563eb"),
+                   ("WER", row["metrics"].get("wer"), "#8b5cf6")) if view == "Error rates" else (
+                   ("OCR time", row.get("duration_seconds"), "#2563eb"),)
+        for metric, value, color in metrics:
+            if isinstance(value, (int, float)) and math.isfinite(value) and value >= 0:
+                bars.append((provider, metric, value, color))
+    if not bars:
+        st.info("Processing durations are unavailable for these runs.")
+        return
+    maximum = max((bar[2] for bar in bars), default=0) or 1
+    content = []
+    for provider, metric, value, color in bars:
+        label = escape(f"{provider} · {metric}")
+        display = f"{value:.2%}" if view == "Error rates" else f"{value:.2f} s"
+        width = value / maximum * 100
+        content.append(f'''<div style="margin:16px 0">
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:6px">
+          <span>{label}</span><strong>{display}</strong></div>
+          <div style="height:22px;background:#e8eef8;border-radius:5px;overflow:hidden">
+          <div role="img" aria-label="{label}: {display}" style="width:{width:.4f}%;height:22px;background:{color};border-radius:5px"></div>
+          </div></div>''')
+    st.html('<section aria-label="Provider comparison chart" style="padding:8px 20px;border:1px solid #dce5f3;border-radius:12px">' + ''.join(content) + '</section>')
+    st.caption("Error rate · lower is better. Each bar uses the same scale." if view == "Error rates" else "OCR processing time in seconds · lower is better. Each bar uses the same scale.")

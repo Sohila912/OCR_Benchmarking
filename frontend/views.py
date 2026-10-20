@@ -97,7 +97,16 @@ def provider_settings(settings, providers, health):
         if isinstance(payload, list):
             diagnostics = {item["provider"]: item for item in payload if isinstance(item, dict) and "provider" in item}
         with st.expander("Runtime diagnostic details"):
-            st.dataframe(payload, hide_index=True)
+            display = []
+            for item in diagnostics.values():
+                lifecycle = item.get("lifecycle", "Unknown")
+                if lifecycle == "uninitialized" and item.get("inference_verified"):
+                    lifecycle = "Unloaded after successful test"
+                elif lifecycle == "uninitialized":
+                    lifecycle = "Not loaded"
+                display.append({"Provider": item["provider"], "Verification": item.get("state"),
+                                "Model memory": lifecycle, "Details": item.get("detail")})
+            st.dataframe(display, hide_index=True)
     except (requests.RequestException, ValueError):
         st.warning("Provider diagnostics unavailable.")
     st.caption("Ready requires successful actual inference in the current API process. Upload a small PDF in Document Processing to smoke-test a provider; refresh this page afterward.")
@@ -118,10 +127,16 @@ def provider_settings(settings, providers, health):
             else:
                 st.info(state)
             st.caption(message)
-            st.caption(f"Lifecycle (initialization only): {states.get(provider, 'Unknown')}")
+            lifecycle = diagnostic.get("lifecycle", states.get(provider, "Unknown"))
+            if lifecycle == "uninitialized" and diagnostic.get("inference_verified"):
+                st.caption("Model memory: unloaded after successful test. It will reload automatically on the next extraction.")
+            elif lifecycle == "uninitialized":
+                st.caption("Model memory: not loaded yet.")
+            else:
+                st.caption(f"Model memory: {lifecycle}")
             if states.get(provider) in ("unavailable", "error"):
                 st.warning("This engine is unavailable. Review its installed packages, model assets and native runtime before retrying.")
-    st.info("Uninitialized means the engine has not loaded yet. It does not confirm that model files or native dependencies are installed.")
+    st.info("Verification records successful inference in this API process. Model memory is separate: switching engines can unload a tested model to free RAM; it reloads on the next request.")
     st.subheader("Processing policy")
     st.dataframe([
         {"Setting": "Default engine", "Value": settings.provider},

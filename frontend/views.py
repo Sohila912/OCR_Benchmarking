@@ -40,7 +40,7 @@ def overview(providers, health):
     if entries:
         st.dataframe([{"Document": st.session_state.get("ocr_run_filename", "Document"),
                        "Engine": e["provider"], "Status": "Needs review" if e.get("error") or (e.get("result") or {}).get("errors") else "Complete",
-                       "Request seconds": round(e["elapsed"], 2) if "elapsed" in e else None} for e in entries], hide_index=True)
+                       "Request seconds": round(e["elapsed"], 2) if e.get("elapsed") is not None else None} for e in entries], hide_index=True)
     else:
         st.info("No documents processed in this session. Start with a PDF or evaluate an existing benchmark run.")
     if health:

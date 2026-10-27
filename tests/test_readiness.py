@@ -119,8 +119,15 @@ def test_saved_benchmark_scores_fixture_and_survives_navigation(monkeypatch, tmp
         next(b for b in app.button if b.label == "Evaluate selected dataset document").click().run()
         assert not app.exception
         assert app.session_state["dataset_result"]["results"][0]["metrics"]["wer"] == 0
+        assert app.session_state["ocr_entries"][0]["elapsed"] is None
         next(r for r in app.radio if r.label == "Navigation").set_value("Overview").run()
         assert not app.exception
+        assert app.dataframe[0].value["Request seconds"].isna().all()
+        next(r for r in app.radio if r.label == "Navigation").set_value("Results & Comparison").run()
+        assert not app.exception
+        assert app.dataframe[0].value["OCR seconds"].isna().all()
+        assert any(metric.label == "OCR duration" and metric.value == "Unknown" for metric in app.metric)
+        assert any(text.label == "Extracted text" and text.value == "hello world" for text in app.text_area)
         next(r for r in app.radio if r.label == "Navigation").set_value("Benchmarking").run()
         assert not app.exception
         assert app.session_state["dataset_result"]["results"][0]["metrics"]["wer"] == 0

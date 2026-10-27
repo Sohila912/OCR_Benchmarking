@@ -98,6 +98,9 @@ def register(application, service, settings):
             store.save(row)
             if row["status"] == "success":
                 row.update(reference=reference, output=text, diff=differences(reference, text, options))
+                # Session response only: history remains metrics-only.
+                if result is not None:
+                    row["ocr_result"] = result.model_dump(mode="json")
             rows.append(row)
         return {"batch_id": batch, "results": rows}
 

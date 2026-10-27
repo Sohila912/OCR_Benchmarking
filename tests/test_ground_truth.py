@@ -155,6 +155,85 @@ def test_streamlit_uploaded_reference_results_exports_and_reruns(settings,monkey
         assert len(app.session_state["gt_history"])==1
         assert "output" not in app.session_state["gt_history"][0]
 
+
+@pytest.mark.parametrize("names,failed", [
+    (["tesseract"], None),
+    (["tesseract", "docling"], None),
+    (["tesseract", "docling", "paddle_vl", "extra_engine"], None),
+    (["tesseract", "docling"], "docling"),
+])
+def test_benchmark_models_reach_comparison_and_survive_navigation(settings, monkeypatch, names, failed):
+    import streamlit as st
+    from pathlib import Path
+    from streamlit.testing.v1 import AppTest
+    from OCR.schemas import OCRResult, OCRPage
+
+    class DistinctProvider(FakeProvider):
+        def extract(self, document):
+            if self.name == failed:
+                raise ExtractionError("private diagnostic")
+            return OCRResult(document_id=document.document_id, filename=document.filename,
+                             source=document.source, source_metadata=document.source_metadata,
+                             provider=self.name, text=self.name + " text",
+                             markdown="# " + self.name, model_name=self.name + " model",
+                             pages=[OCRPage(page_number=1, text=self.name + " page")])
+
+    pdf = Mock(name="pdf"); pdf.name = "sample.pdf"; pdf.size = 15
+    pdf.getvalue.return_value = b"%PDF-1.4 mock"
+    ref = Mock(name="ref"); ref.name = "truth.md"; ref.size = 5
+    ref.getvalue.return_value = b"Hello"
+    monkeypatch.setattr(st, "file_uploader", lambda label, **kw: pdf if "PDF" in label else ref)
+    monkeypatch.setattr(requests, "get", lambda url, **kw: Mock(
+        raise_for_status=lambda: None, json=lambda: {"tools": names, "default": names[0]}
+        if url.endswith("/tools") else {"providers": []}))
+    service = OCRService(settings, {name: DistinctProvider(name) for name in names})
+    with TestClient(create_app(settings, service)) as c:
+        responses = []
+        def request(method, url, **kwargs):
+            kwargs.pop("timeout", None)
+            response = c.request(method, "/" + url.split("/", 3)[3], **kwargs)
+            responses.append(response.json())
+            return response
+        monkeypatch.setattr(requests, "request", request)
+        app = AppTest.from_file(str(Path(__file__).resolve().parents[1] / "frontend/app.py"), default_timeout=20)
+        app.session_state["workspace_navigation"] = "Benchmarking"
+        # Reproduce an earlier single-engine extraction being displayed.
+        app.session_state["ocr_entries"] = [{"provider": "stale", "result": {"text": "old"}}]
+        app.run()
+        next(x for x in app.checkbox if x.label.startswith("I confirm the PDF")).check().run()
+        next(x for x in app.multiselect if x.label == "OCR providers").set_value(names).run()
+        next(x for x in app.button if x.label == "Run Benchmark").click().run()
+        assert not app.exception
+        rows = responses[0]["results"]
+        assert [r["provider"] for r in rows] == names
+        for row in rows:
+            if row["provider"] != failed:
+                assert row["ocr_result"]["text"] == row["provider"] + " text"
+        history = c.get("/benchmarks/history").json()
+        assert all("ocr_result" not in row and "output" not in row for row in history)
+        for page in ["Results & Comparison", "Benchmarking", "Results & Comparison"]:
+            app.radio(key="workspace_navigation").set_value(page).run()
+            assert not app.exception
+            assert [e["provider"] for e in app.session_state["ocr_entries"]] == names
+            if page == "Benchmarking":
+                continue
+            assert [t.label for t in app.tabs if t.label in names] == names
+            summary = app.dataframe[0].value
+            assert list(summary["Engine"]) == names
+            for name in names:
+                if name == failed:
+                    assert any("extraction_failed" in e.value for e in app.error)
+                    assert summary.loc[summary.Engine == name, "Status"].iloc[0] == "Failed"
+                else:
+                    assert any(t.label == "Extracted text" and t.value == name + " text" for t in app.text_area)
+                    assert any(t.label == "Markdown source" and t.value == "# " + name for t in app.text_area)
+                    assert any(t.value == name + " page" for t in app.text)
+                    assert any(name + " model" in str(df.value) for df in app.dataframe)
+                    row = summary[summary.Engine == name].iloc[0]
+                    assert row["Characters"] == len(name + " text") and row["Pages"] == 1
+                    assert row["OCR seconds"] >= 0
+        assert len(responses) == 1
+
 def test_initialization_and_inference_diagnostic_evidence(settings):
     from OCR.provider_diagnostics import diagnose
     from OCR.providers.base import OCRDocument

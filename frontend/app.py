@@ -40,7 +40,9 @@ def render_entry(entry: dict) -> None:
     metrics = st.columns(3)
     metrics[0].metric("Pages returned", len(pages) if pages is not None else "Unknown")
     metrics[1].metric("Text characters", len(result.get("text") or ""))
-    metrics[2].metric("Request duration", f"{entry['elapsed']:.1f}s")
+    duration = entry.get("elapsed")
+    metrics[2].metric("OCR duration" if entry.get("timing_source") == "benchmark" else "Request duration",
+                      f"{duration:.1f}s" if duration is not None else "Unknown")
     for issue in result.get("warnings", []):
         st.warning(issue["message"])
     for issue in result.get("errors", []):
@@ -54,7 +56,8 @@ def render_entry(entry: dict) -> None:
     with markdown_tab:
         if result.get("markdown") is not None:
             # Source view preserves OCR content and avoids untrusted link rendering.
-            st.text_area("Markdown source", result["markdown"], height=360, disabled=True, key=f"{provider}_markdown_source")
+            st.text_area("Markdown source", result["markdown"], height=360, disabled=True,
+                         key=f"{provider}_markdown_source_{hashlib.sha256(result['markdown'].encode()).hexdigest()}")
         else:
             st.info("This provider did not return Markdown.")
     with pages_tab:

@@ -58,12 +58,13 @@ def comparison(render_entry):
         return
     st.caption(f"Document: {st.session_state.get('ocr_run_filename', 'Document')}")
     successful = [entry for entry in entries if entry.get("result")]
-    st.dataframe([{"Engine": e["provider"], "Request seconds": round(e.get("elapsed", 0), 2),
+    benchmark = any(e.get("timing_source") == "benchmark" for e in entries)
+    st.dataframe([{"Engine": e["provider"], "OCR seconds" if benchmark else "Request seconds": round(e["elapsed"], 2) if e.get("elapsed") is not None else None,
                    "Characters": len((e.get("result") or {}).get("text") or ""),
                    "Pages": len((e.get("result") or {}).get("pages") or []),
-                   "Status": "Failed" if e.get("error") else "Partial" if e["result"]["errors"] else "Complete"}
+                   "Status": "Failed" if e.get("error") else "Partial" if e["result"].get("errors") else "Complete"}
                   for e in entries], hide_index=True)
-    st.caption("Duration includes transport, queueing and model loading. Text length is not accuracy.")
+    st.caption("OCR duration excludes HTTP and queueing; includes initialization and inference. Text length is not accuracy." if benchmark else "Duration includes transport, queueing and model loading. Text length is not accuracy.")
     if len(successful) >= 2:
         chosen = st.multiselect("Engines for side-by-side review", [e["provider"] for e in successful],
                                 default=[e["provider"] for e in successful[:2]], max_selections=2)

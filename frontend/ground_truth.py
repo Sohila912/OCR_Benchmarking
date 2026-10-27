@@ -1,5 +1,6 @@
 """Ground-truth UI; scoring, datasets and persistence belong to the API."""
 import csv
+import hashlib
 import io
 import json
 from html import escape
@@ -7,6 +8,27 @@ import requests
 import streamlit as st
 from frontend.design import benchmark_chart
 from frontend.progress import run_with_progress
+
+
+def store_comparison_results(response, filename, digest=None):
+    """Publish the entire benchmark batch in the document display format."""
+    entries = []
+    for row in response["results"]:
+        entry = {"provider": row["provider"], "elapsed": row.get("duration_seconds"),
+                 "timing_source": "benchmark"}
+        if row["status"] == "success":
+            entry["result"] = row.get("ocr_result") or {
+                "provider": row["provider"], "document_id": row.get("document_id"),
+                "filename": filename, "text": row.get("output", ""),
+                "markdown": row.get("output"), "pages": None, "errors": [],
+                "model_name": row.get("model_name"), "model_version": row.get("model_version"),
+            }
+        else:
+            entry["error"] = row.get("error") or "Extraction failed; no scored output is available."
+        entries.append(entry)
+    st.session_state["ocr_entries"] = entries
+    st.session_state["ocr_run_filename"] = filename
+    st.session_state["ocr_run_digest"] = digest
 
 
 def api(settings, method, path, **kwargs):
@@ -23,7 +45,7 @@ def exports(rows, prefix):
     st.download_button("Metrics JSON", json.dumps(rows, ensure_ascii=False, indent=2), prefix + ".json", "application/json", key=prefix+"json")
     flattened = []
     for row in rows:
-        flat = {k: json.dumps(v, ensure_ascii=False) if isinstance(v, (dict, list)) else v for k, v in row.items() if k not in ("reference", "output", "diff")}
+        flat = {k: json.dumps(v, ensure_ascii=False) if isinstance(v, (dict, list)) else v for k, v in row.items() if k not in ("reference", "output", "diff", "ocr_result")}
         flat.update({k: (row.get("metrics") or {}).get(k) for k in ("cer", "wer", "exact_match")})
         flattened.append(flat)
     if flattened:
@@ -66,7 +88,7 @@ def results(response, prefix="") :
     })
     benchmark_chart(rows, prefix + "benchmark_result_chart")
     st.caption("Lower CER/WER is better; rates may exceed 1 (100%). OCR duration excludes HTTP and queueing. Initialization and inference are measured separately.")
-    exports([{k:v for k,v in r.items() if k not in ("reference", "output", "diff")} for r in rows], prefix + "current_benchmark")
+    exports([{k:v for k,v in r.items() if k not in ("reference", "output", "diff", "ocr_result")} for r in rows], prefix + "current_benchmark")
     for row in rows:
         with st.expander(row["provider"], expanded=len(rows)==1):
             st.caption("Saved benchmark run: " + row["id"])
@@ -100,7 +122,7 @@ def results(response, prefix="") :
             st.download_button("OCR extracted text", row["output"], row["provider"]+".txt", key=row["id"]+"txt")
             # Indented code blocks prevent uploaded Markdown from becoming report HTML.
             quote = lambda text: "\n".join("    " + line for line in text.splitlines())
-            report = "# OCR comparison\n\n## Metadata and metrics\n\n" + quote(json.dumps({k:v for k,v in row.items() if k not in ("reference", "output", "diff")}, ensure_ascii=False, indent=2))
+            report = "# OCR comparison\n\n## Metadata and metrics\n\n" + quote(json.dumps({k:v for k,v in row.items() if k not in ("reference", "output", "diff", "ocr_result")}, ensure_ascii=False, indent=2))
             report += "\n\n## Reference\n\n" + quote(row["reference"]) + "\n\n## OCR output\n\n" + quote(row["output"]) + "\n\n## Differences\n\n" + quote(json.dumps(diff, ensure_ascii=False, indent=2))
             st.download_button("Comparison report Markdown", report, "comparison.md", key=row["id"]+"report")
 
@@ -150,6 +172,7 @@ def benchmarking(settings, providers):
                 status.update(label="Evaluation complete" if result else "Evaluation needs attention", state="complete" if result else "error", expanded=False)
             if result:
                 st.session_state["gt_result"] = result
+                store_comparison_results(result, pdf.name, hashlib.sha256(pdf.getvalue()).hexdigest())
                 st.toast("Benchmark ready. Explore the chart and text differences below.", icon="✅")
         if st.session_state.get("gt_result"):
             results(st.session_state["gt_result"])
@@ -170,6 +193,7 @@ def benchmarking(settings, providers):
                 result = api(settings,"POST","/benchmarks/datasets/run",json={**mapping,"providers":engines,"confirmed":True,"normalization":options,"output":None if source=="Rerun PDF" else source})
                 if result:
                     st.session_state["dataset_result"] = result
+                    store_comparison_results(result, mapping["pdf"] or mapping["reference"])
             if st.session_state.get("dataset_result"):
                 results(st.session_state["dataset_result"], "dataset_")
     with history:

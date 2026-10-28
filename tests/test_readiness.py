@@ -152,5 +152,12 @@ def test_duplicate_processing_requires_explicit_intent(monkeypatch):
     assert next(b for b in app.button if b.label == "Run extraction").disabled
     app.run()
     assert post.call_count == 1
+    assert post.call_args.kwargs["data"]["force_reprocess"] == "false"
+    next(c for c in app.checkbox if c.label == "Force Reprocess").check().run()
+    assert not next(b for b in app.button if b.label == "Run extraction").disabled
+    next(b for b in app.button if b.label == "Run extraction").click().run()
+    assert not app.exception and post.call_count == 2
+    assert post.call_args.kwargs["data"]["force_reprocess"] == "true"
+    next(c for c in app.checkbox if c.label == "Force Reprocess").uncheck().run()
     next(c for c in app.checkbox if c.label == "Submit again intentionally").check().run()
     assert not next(b for b in app.button if b.label == "Run extraction").disabled

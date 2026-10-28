@@ -34,6 +34,9 @@ class Settings(BaseModel):
     provider: Literal["paddle_vl", "docling", "tesseract", "qwen_ollama"] = "tesseract"
     temp_dir: Path = REPOSITORY_ROOT / "runtime" / "tmp"
     output_dir: Path = REPOSITORY_ROOT / "runtime" / "outputs"
+    cache_enabled: bool = True
+    cache_wait_seconds: float = Field(default=7200, gt=0)
+    cache_pipeline_revision: str = Field(default="1", min_length=1)
     api_host: str = Field(default="127.0.0.1", min_length=1)
     api_port: int = Field(default=8000, ge=1, le=65535)
     max_upload_bytes: int = Field(default=50 * 1024 * 1024, gt=0)

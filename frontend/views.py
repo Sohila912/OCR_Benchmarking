@@ -62,6 +62,7 @@ def comparison(render_entry):
     st.dataframe([{"Engine": e["provider"], "OCR seconds" if benchmark else "Request seconds": round(e["elapsed"], 2) if e.get("elapsed") is not None else None,
                    "Characters": len((e.get("result") or {}).get("text") or ""),
                    "Pages": len((e.get("result") or {}).get("pages") or []),
+                   "Cache": ((e.get("result") or {}).get("provider_metadata") or {}).get("cache", {}).get("status", "Unknown"),
                    "Status": "Failed" if e.get("error") else "Partial" if e["result"].get("errors") else "Complete"}
                   for e in entries], hide_index=True)
     st.caption("OCR duration excludes HTTP and queueing; includes initialization and inference. Text length is not accuracy." if benchmark else "Duration includes transport, queueing and model loading. Text length is not accuracy.")

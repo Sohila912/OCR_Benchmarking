@@ -1,26 +1,9 @@
 """Display regressions only: no OCR calls or persistence."""
-from html import unescape
 from types import SimpleNamespace
 from unittest.mock import Mock
 
 import streamlit as st
 from streamlit.testing.v1 import AppTest
-
-from frontend.ground_truth import diff_block
-
-
-def test_diff_html_escapes_source_and_preserves_unicode():
-    text = '# مَرْحَبًا\n**Markdown** <script>alert("x")</script> & <img src=x onerror=alert(1)>\n' * 500
-    for kind in ("delete", "insert"):
-        html = diff_block(text, kind)
-        assert '<script>' not in html and '<img' not in html
-        assert '&lt;script&gt;' in html
-        assert text in unescape(html)
-        assert 'dir="auto"' in html and 'unicode-bidi:plaintext' in html
-        assert 'overflow:auto' in html and 'pre-wrap' in html
-    assert '#fff1f2' in diff_block('missing', 'delete')
-    assert '#ecfdf5' in diff_block('inserted', 'insert')
-
 
 def test_benchmark_comparison_and_history_use_no_syntax_highlighter(monkeypatch):
     monkeypatch.setattr(st, 'code', Mock(side_effect=AssertionError('Syntax highlighter must not be used')))
@@ -40,11 +23,11 @@ st.session_state['gt_history']=[{k:v for k,v in row.items() if k not in ('refere
 benchmarking(SimpleNamespace(api_url='http://unused.invalid',max_upload_bytes=50000000),['fixture'])
 ''', default_timeout=15).run()
     assert not app.exception
-    assert len(app.get('html')) == 5
+    assert len(app.get('html')) == 1  # Benchmark chart only; no colored diff blocks.
     assert any(m.label == 'Match percentage' and m.value == '90.00%' for m in app.metric)
     assert not any(m.label == 'Exact match' for m in app.metric)
     assert 'مَرْحَبًا' in next(t.value for t in app.text_area if t.label=='Reference Markdown (original)')
-    assert any('Substitution' in m.value for m in app.markdown)
+    assert not any('Normalized text changes' in m.value or 'Substitution' in m.value for m in app.markdown)
     next(m for m in app.multiselect if m.label=='Runs to inspect and compare').set_value(['display-test']).run()
     assert not app.exception
     assert any(t.label=='Saved benchmark metadata' and 'display-test' in t.value for t in app.text_area)

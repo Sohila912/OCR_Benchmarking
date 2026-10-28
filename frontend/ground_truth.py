@@ -3,7 +3,6 @@ import csv
 import hashlib
 import io
 import json
-from html import escape
 import requests
 import streamlit as st
 from frontend.design import benchmark_chart
@@ -57,29 +56,14 @@ def exports(rows, prefix):
         st.download_button("Metrics CSV", buffer.getvalue(), prefix + ".csv", "text/csv", key=prefix+"csv")
 
 
-def diff_block(text, kind):
-    """Escaped plain text with fixed colors; no Markdown/code-highlighter imports."""
-    label, background, foreground = {
-        "delete": ("Missing reference text", "#fff1f2", "#9f1239"),
-        "insert": ("Inserted OCR text", "#ecfdf5", "#065f46"),
-    }[kind]
-    return (
-        f'<div role="region" aria-label="{label}" style="background:{background};'
-        f'color:{foreground};border-inline-start:4px solid {foreground};'
-        'border-radius:6px;padding:12px;margin-block:8px;max-height:320px;overflow:auto;">'
-        f'<strong>{label}</strong><pre dir="auto" style="white-space:pre-wrap;'
-        'overflow-wrap:anywhere;unicode-bidi:plaintext;font-family:inherit;'
-        f'margin:8px 0 0;">{escape(text)}</pre></div>'
-    )
-
-
 def results(response, prefix="") :
     rows = response["results"]
     summary = []
     for row in rows:
         m = (row.get("metrics") or {})
         summary.append({"Provider": row["provider"], "Status": row["status"], "CER": m.get("cer"), "WER": m.get("wer"),
-                        "Match percentage": m.get("character_similarity") * 100 if m.get("character_similarity") is not None else None, "OCR seconds": row.get("duration_seconds")})
+                        "Match percentage": m.get("character_similarity") * 100 if m.get("character_similarity") is not None else None, "OCR seconds": row.get("duration_seconds"),
+                        "Cache": row.get("cache_status", "Not applicable")})
     st.subheader("Evaluation results")
     st.dataframe(summary, hide_index=True, column_config={
         "Match percentage": st.column_config.NumberColumn(format="%.2f%%"),
@@ -88,6 +72,8 @@ def results(response, prefix="") :
     })
     benchmark_chart(rows, prefix + "benchmark_result_chart")
     st.caption("Lower CER/WER is better; rates may exceed 1 (100%). OCR duration excludes HTTP and queueing. Initialization and inference are measured separately.")
+    if any(row.get("cache_status") == "hit" for row in rows):
+        st.info("Cached OCR reused; accuracy metrics were recalculated for this reference. OCR timings describe the original extraction.")
     exports([{k:v for k,v in r.items() if k not in ("reference", "output", "diff", "ocr_result")} for r in rows], prefix + "current_benchmark")
     for row in rows:
         with st.expander(row["provider"], expanded=len(rows)==1):
@@ -107,18 +93,7 @@ def results(response, prefix="") :
             left, right = st.columns(2)
             left.text_area("Reference Markdown (original)", row["reference"], height=350, key=row["id"]+"ref")
             right.text_area("OCR extracted output", row["output"], height=350, key=row["id"]+"ocr")
-            st.write("Normalized text changes")
-            st.caption("Delete = missing reference text; insert = extra OCR text; replace = substitution. Line alignment is for inspection; metrics use exact character/word edit distance.")
             diff = row["diff"]
-            if diff["truncated"]:
-                st.info("Diff preview limited to the first 12,000 characters. Metrics cover the complete document.")
-            for change in diff["changes"][:100]:
-                color = {"delete": "🔴 Missing", "insert": "🟢 Inserted", "replace": "🟠 Substitution"}[change["operation"]]
-                st.write(color)
-                if change["reference"]:
-                    st.html(diff_block(change["reference"], "delete"))
-                if change["output"]:
-                    st.html(diff_block(change["output"], "insert"))
             st.download_button("OCR extracted text", row["output"], row["provider"]+".txt", key=row["id"]+"txt")
             # Indented code blocks prevent uploaded Markdown from becoming report HTML.
             quote = lambda text: "\n".join("    " + line for line in text.splitlines())
@@ -163,17 +138,19 @@ def benchmarking(settings, providers):
             punctuation = st.checkbox("Remove punctuation", False)
             st.caption("Arabic characters and diacritics are preserved. Originals are never modified.")
         options = dict(mode=mode, unicode=unicode_mode, whitespace=whitespace, line_breaks=breaks, casefold=case, punctuation=punctuation)
-        st.caption("Metrics and hashes are retained for 90 days by default; uploads and OCR text are not retained by benchmarking. Download comparison text before clearing the session.")
+        force_reprocess = st.checkbox("Force Reprocess", key="benchmark_force_reprocess",
+                                      help="Run OCR again. Leave off to reuse saved OCR and recalculate metrics against the current reference.")
+        st.caption("Benchmark history retains metrics and hashes for 90 days by default. The independent OCR cache retains extracted output on the API disk when enabled; reference Markdown stays in this session.")
         if pdf and pdf.size > settings.max_upload_bytes:
             st.error("PDF exceeds upload limit.")
         if st.button("Run Benchmark", type="primary", disabled=not(pdf and ref and paired and chosen and dataset_name.strip()) or bool(pdf and pdf.size>settings.max_upload_bytes)):
             with st.status("Evaluating document against your reference…", expanded=True) as status:
-                result = api(settings, "POST", "/benchmarks/run", files={"file": (pdf.name, pdf.getvalue(), "application/pdf"), "reference": (ref.name, ref.getvalue(), "text/markdown")}, data={"providers": json.dumps(chosen), "normalization": json.dumps(options), "dataset": dataset_name, "paired": "true"})
+                result = api(settings, "POST", "/benchmarks/run", files={"file": (pdf.name, pdf.getvalue(), "application/pdf"), "reference": (ref.name, ref.getvalue(), "text/markdown")}, data={"providers": json.dumps(chosen), "normalization": json.dumps(options), "dataset": dataset_name, "paired": "true", "force_reprocess": str(force_reprocess).lower()})
                 status.update(label="Evaluation complete" if result else "Evaluation needs attention", state="complete" if result else "error", expanded=False)
             if result:
                 st.session_state["gt_result"] = result
                 store_comparison_results(result, pdf.name, hashlib.sha256(pdf.getvalue()).hexdigest())
-                st.toast("Benchmark ready. Explore the chart and text differences below.", icon="✅")
+                st.toast("Benchmark ready. Explore the chart and extracted output below.", icon="✅")
         if st.session_state.get("gt_result"):
             results(st.session_state["gt_result"])
             if st.button("Clear benchmark text from session"):
@@ -189,8 +166,10 @@ def benchmarking(settings, providers):
             source = st.selectbox("Source", ["Rerun PDF"] + mapping["outputs"])
             engines = st.multiselect("Dataset providers", providers, key="dataset_providers")
             confirmed = st.checkbox("I confirm this existing PDF/output and reference mapping")
+            dataset_force = st.checkbox("Force Reprocess", key="dataset_force_reprocess", disabled=source != "Rerun PDF",
+                                        help="Applies when rerunning a PDF; saved historical Markdown is only rescored.")
             if st.button("Evaluate selected dataset document", disabled=not confirmed or (source=="Rerun PDF" and (not engines or not mapping["pdf"]))):
-                result = api(settings,"POST","/benchmarks/datasets/run",json={**mapping,"providers":engines,"confirmed":True,"normalization":options,"output":None if source=="Rerun PDF" else source})
+                result = api(settings,"POST","/benchmarks/datasets/run",json={**mapping,"providers":engines,"confirmed":True,"normalization":options,"output":None if source=="Rerun PDF" else source,"force_reprocess":dataset_force})
                 if result:
                     st.session_state["dataset_result"] = result
                     store_comparison_results(result, mapping["pdf"] or mapping["reference"])

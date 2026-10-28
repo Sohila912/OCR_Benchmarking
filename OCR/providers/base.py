@@ -44,6 +44,15 @@ class OCRProvider(ABC):
     silently substitute another engine or embed failure messages in OCR text.
     """
 
+    def cache_identity(self) -> dict:
+        """Extra deterministic output configuration for custom adapters.
+
+        Built-in adapters are fingerprinted from settings, source, packages and
+        assets. Extensions should return any additional prompts/model revisions
+        or configuration not represented there. Do not include lifecycle state.
+        """
+        return {}
+
     def unload(self) -> None:
         """Release cached inference resources when switching providers."""
 

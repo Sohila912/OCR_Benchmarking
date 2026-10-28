@@ -2,6 +2,8 @@
 
 import hashlib
 import logging
+import re
+import sqlite3
 import tempfile
 import time
 from pathlib import Path, PurePosixPath, PureWindowsPath
@@ -17,6 +19,7 @@ from OCR.providers.paddle_vl import PaddleVLProvider
 from OCR.providers.qwen_ollama import QwenOllamaProvider
 from OCR.providers.tesseract import TesseractProvider
 from OCR.schemas import OCRResult
+from OCR.result_cache import ResultCache, fingerprint, digest_json, file_digest
 
 PROVIDER_TYPES = {"paddle_vl": PaddleVLProvider, "docling": DoclingProvider, "tesseract": TesseractProvider,
                   "qwen_ollama": QwenOllamaProvider}
@@ -77,6 +80,7 @@ class OCRService:
         # One process, one inference at a time: model memory and CLI settings stay predictable.
         self._lock = RLock()
         self.inference_checks = {}
+        self._loaded_cache_identity = {}
 
     def select(self, provider: str | None = None) -> OCRProvider:
         name = provider if provider is not None else self.settings.provider
@@ -87,7 +91,53 @@ class OCRService:
     def health(self) -> list:
         return [provider.health() for provider in self.providers.values()]
 
-    def extract(self, document: OCRDocument, provider: str | None = None, persist_result: bool = True) -> OCRResult:
+    def extract(self, document: OCRDocument, provider: str | None = None, persist_result: bool = True,
+                force_reprocess: bool = False) -> OCRResult:
+        """Share successful OCR across processing and scoring; references never enter the key.
+
+        Content-addressed PDFs are verified against their original bytes. Synthetic
+        provider-test inputs without a SHA-256 identity use the uncached lifecycle path.
+        persist_result controls legacy exports; cache_enabled controls the shared cache.
+        """
+        selected = self.select(provider)
+        if not self.settings.cache_enabled or not re.fullmatch(r"[0-9a-f]{64}", document.document_id):
+            result = self._extract(document, provider, persist_result)
+            result.provider_metadata["cache"] = {"status": "disabled", "state": "completed"}
+            return result
+        started = time.monotonic()
+        requested_at = time.time()
+        try:
+            if file_digest(document.path) != document.document_id:
+                raise InvalidDocumentError("Document bytes changed after upload; upload the document again.")
+            identity = fingerprint(self.settings, selected)
+            cache = ResultCache(self.settings.output_dir, self.settings.cache_wait_seconds)
+
+            def compute():
+                with self._lock:
+                    # Settings/assets can change while this request waits behind another job.
+                    if fingerprint(self.settings, selected) != identity:
+                        raise ExtractionError("Model/configuration changed while queued; retry the request.")
+                    token = digest_json(identity)
+                    from OCR.providers.common import LocalProvider
+                    if isinstance(selected, LocalProvider) and self._loaded_cache_identity.get(identity["provider"]) != token:
+                        selected.unload()
+                        selected._state("uninitialized")
+                    result = self._extract(document, provider, persist_result=False)
+                    self._loaded_cache_identity[identity["provider"]] = token
+                    if fingerprint(self.settings, selected) != identity:
+                        raise ExtractionError("Model/configuration changed during OCR; retry the request.")
+                    return result
+
+            result = cache.run(document, identity, compute, force=force_reprocess, requested_at=requested_at)
+            result.provider_metadata["cache"]["request_seconds"] = time.monotonic() - started
+            log_event(logger, "ocr_cache", provider=identity["provider"],
+                      status=result.provider_metadata["cache"]["status"], document_id=document.document_id)
+            return result
+        except (OSError, sqlite3.Error) as exc:
+            raise ExtractionError("OCR cache storage is unavailable.",
+                                  public_message="OCR cache storage is unavailable. Check output directory permissions and free disk space, then retry.") from exc
+
+    def _extract(self, document: OCRDocument, provider: str | None = None, persist_result: bool = True) -> OCRResult:
         selected = self.select(provider)
         with self._lock:
             started = time.monotonic()

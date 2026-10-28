@@ -129,23 +129,24 @@ def create_app(settings: Settings | None = None, service: OCRService | None = No
                 log_event(logger, 'upload_cleanup_failed', level=logging.WARNING)
 
     @application.post('/extract', response_model=OCRResult)
-    async def extract(file: UploadFile = File(...), engine: str | None = Form(None)):
+    async def extract(file: UploadFile = File(...), engine: str | None = Form(None),
+                      force_reprocess: bool = Form(False)):
         service.select(engine)
         document = await save(file)
         try:
-            return await run_in_threadpool(service.extract, document, engine)
+            return await run_in_threadpool(service.extract, document, engine, force_reprocess=force_reprocess)
         finally:
             cleanup_upload(document)
 
     @application.post('/extract/compare', response_model=CompareResponse)
-    async def compare(file: UploadFile = File(...)):
+    async def compare(file: UploadFile = File(...), force_reprocess: bool = Form(False)):
         document = await save(file)
         results = []
         log_event(logger, 'comparison_started', providers=len(service.providers))
         try:
             for provider in service.providers:
                 try:
-                    result = await run_in_threadpool(service.extract, document, provider)
+                    result = await run_in_threadpool(service.extract, document, provider, force_reprocess=force_reprocess)
                     results.append(CompareEntry(provider=provider, result=result))
                 except OCRError as exc:
                     log_event(logger, 'comparison_provider_failed', level=logging.WARNING,

@@ -63,7 +63,8 @@ def register(application, service, settings):
                 pass
         return versions
 
-    def execute(document, reference, reference_bytes, providers, options, dataset, origin="upload", output=None):
+    def execute(document, reference, reference_bytes, providers, options, dataset, origin="upload", output=None,
+                force_reprocess=False):
         batch, rows = uuid4().hex, []
         for provider in providers:
             row = {"id": uuid4().hex, "batch_id": batch, "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -74,7 +75,7 @@ def register(application, service, settings):
             row["status"] = "failed"
             started = time.monotonic()
             try:
-                result = service.extract(document, provider, persist_result=False) if output is None else None
+                result = service.extract(document, provider, persist_result=False, force_reprocess=force_reprocess) if output is None else None
                 if result and (result.errors or any(p.errors for p in result.pages or [])):
                     raise ValueError("Partial extraction excluded from scoring.")
                 text = output if output is not None else (result.markdown if result.markdown is not None else result.text)
@@ -82,6 +83,8 @@ def register(application, service, settings):
                     raise ValueError("Provider returned no text.")
                 row.update(status="success", metrics=evaluate(reference, text, options))
                 if result:
+                    cache = result.provider_metadata.get("cache", {})
+                    row.update(cache_status=cache.get("status"), cache_key=cache.get("key"))
                     row.update(model_name=result.model_name, model_version=result.model_version,
                                package_version=result.provider_metadata.get("package_version"),
                                model_digest=result.provider_metadata.get("model_digest"))
@@ -107,7 +110,8 @@ def register(application, service, settings):
     @application.post("/benchmarks/run")
     async def benchmark(file: UploadFile = File(...), reference: UploadFile = File(...),
                         providers: str = Form(...), normalization: str = Form("{}"),
-                        dataset: str = Form("Uploaded documents"), paired: bool = Form(False)):
+                        dataset: str = Form("Uploaded documents"), paired: bool = Form(False),
+                        force_reprocess: bool = Form(False)):
         document = None
         try:
             if not paired:
@@ -125,7 +129,8 @@ def register(application, service, settings):
             text = reference_upload(data, reference.filename or "")
             evaluate(text, "", options)  # Reject normalized-empty ground truth before OCR.
             document = await run_in_threadpool(ingest_pdf, file.file, file.filename, settings, True)
-            return await run_in_threadpool(execute, document, text, data, names, options, dataset.strip())
+            return await run_in_threadpool(execute, document, text, data, names, options, dataset.strip(),
+                                           force_reprocess=force_reprocess)
         except ValueError as exc:
             raise HTTPException(400, str(exc)) from exc
         finally:
@@ -150,6 +155,9 @@ def register(application, service, settings):
             data = path.read_bytes()
             reference = reference_upload(data, refname)
             options = Normalization.model_validate(payload.get("normalization", {}))
+            force_reprocess = payload.get("force_reprocess", False)
+            if not isinstance(force_reprocess, bool):
+                raise ValueError("force_reprocess must be a boolean.")
             evaluate(reference, "", options)
             output_key = payload.get("output")
             if output_key:
@@ -173,7 +181,8 @@ def register(application, service, settings):
             with pdf.open("rb") as stream:
                 document = ingest_pdf(stream, pdf.name, settings, benchmark=True)
             try:
-                return execute(document, reference, data, names, options, dataset, "existing dataset")
+                return execute(document, reference, data, list(dict.fromkeys(names)), options, dataset,
+                               "existing dataset", force_reprocess=force_reprocess)
             finally:
                 document.path.unlink(missing_ok=True)
         except (ValueError, KeyError, OSError, UnicodeError) as exc:

@@ -100,3 +100,24 @@ def test_invalid_inventory_has_actionable_error(monkeypatch):
     app = AppTest.from_file(str(ROOT / "frontend/app.py")).run()
     assert not app.exception
     assert any("invalid provider inventory" in issue.value for issue in app.error)
+
+
+@pytest.mark.parametrize("cache_status,expected", [
+    ("hit", "inference was skipped"), ("miss", "new OCR result saved"),
+    ("reprocessed", "force reprocessed and saved"), ("not_cached", "not cached"),
+    ("disabled", "cache disabled"),
+])
+def test_cache_indicators_preserve_outputs(cache_status, expected):
+    app = AppTest.from_string('''
+import streamlit as st
+from frontend.app import render_entry
+from OCR.schemas import OCRResult
+result = OCRResult(document_id="doc", filename="a.pdf", provider="fixture", text="saved text",
+                   provider_metadata={"cache":{"status":st.session_state["status"]}})
+render_entry({"provider":"fixture", "result":result.model_dump(mode="json"), "elapsed":0.1})
+''')
+    app.session_state["status"] = cache_status
+    app.run()
+    assert not app.exception
+    assert any(expected in element.value for element in [*app.info, *app.caption, *app.warning])
+    assert app.text_area[0].value == "saved text"

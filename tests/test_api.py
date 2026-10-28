@@ -26,7 +26,8 @@ def test_extract_multipart_normalized_and_persisted(settings):
     assert body['source'].startswith('upload:')
     assert body['source_metadata']['sha256'] == body['document_id']
     assert len(list(settings.upload_dir.glob('*.pdf'))) == 1
-    assert len(list(settings.output_dir.glob('*.json'))) == 1
+    assert body['provider_metadata']['cache']['status'] == 'miss'
+    assert len(list((settings.output_dir / 'cache').glob('*.json'))) == 1
 
 
 def test_health_does_not_initialize(settings):

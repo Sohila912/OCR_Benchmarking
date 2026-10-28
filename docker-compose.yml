@@ -25,6 +25,10 @@ services:
       HF_HOME: /home/ocr/.cache/huggingface
       OCR_BENCHMARK_DB: /app/runtime/benchmarks.sqlite3
       OCR_BENCHMARK_RETENTION_DAYS: ${OCR_BENCHMARK_RETENTION_DAYS:-90}
+      OCR_OUTPUT_DIR: /app/runtime/outputs
+      OCR_CACHE_ENABLED: ${OCR_CACHE_ENABLED:-true}
+      OCR_CACHE_WAIT_SECONDS: ${OCR_CACHE_WAIT_SECONDS:-7200}
+      OCR_CACHE_PIPELINE_REVISION: ${OCR_CACHE_PIPELINE_REVISION:-1}
     ports:
       - "127.0.0.1:${OCR_DOCKER_API_PORT:-8000}:8000"
     volumes:

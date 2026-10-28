@@ -45,7 +45,8 @@ class BenchmarkStore:
         # Explicit whitelist prevents accidental persistence of customer text.
         allowed = {k: row.get(k) for k in ("id", "batch_id", "timestamp", "dataset_id", "dataset_name", "document_id",
             "reference_hash", "provider", "model_name", "model_version", "model_digest", "package_version", "metrics", "normalization",
-            "method", "runtime_versions", "duration_seconds", "initialization_seconds", "inference_seconds", "status", "error", "origin")}
+            "method", "runtime_versions", "duration_seconds", "initialization_seconds", "inference_seconds", "status", "error", "origin",
+            "cache_status", "cache_key")}
         payload = json.dumps(allowed, ensure_ascii=False, allow_nan=False)
         with self.connect() as db:
             changed = db.execute("INSERT INTO runs VALUES (?, ?, ?, ?, ?) ON CONFLICT(id) DO UPDATE SET payload=excluded.payload WHERE json_extract(runs.payload, '$.status')='running'",

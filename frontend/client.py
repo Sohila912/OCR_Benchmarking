@@ -22,12 +22,12 @@ def request_error(exc: requests.RequestException) -> str:
     return "Cannot reach the OCR service. Start the API and verify its connection settings."
 
 
-def extract_document(api_url: str, filename: str, payload: bytes, provider: str) -> dict:
+def extract_document(api_url: str, filename: str, payload: bytes, provider: str, force_reprocess: bool = False) -> dict:
     started = time.monotonic()
     try:
         response = requests.post(f"{api_url}/extract",
                                  files={"file": (filename, payload, "application/pdf")},
-                                 data={"engine": provider}, timeout=(5, 3600))
+                                 data={"engine": provider, "force_reprocess": str(force_reprocess).lower()}, timeout=(5, 7200))
         response.raise_for_status()
         result = OCRResult.model_validate(response.json()).model_dump(mode="json")
         return {"provider": provider, "result": result, "elapsed": time.monotonic() - started}

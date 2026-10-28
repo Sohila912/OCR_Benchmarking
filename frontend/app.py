@@ -36,6 +36,15 @@ def render_entry(entry: dict) -> None:
         st.error(entry["error"])
         return
     result = entry["result"]
+    cache = result.get("provider_metadata", {}).get("cache", {})
+    if cache.get("status") == "hit":
+        st.info("Cache hit — reused saved OCR output; inference was skipped. OCR timings describe the original extraction.")
+    elif cache.get("status") in ("miss", "reprocessed"):
+        st.caption("Cache: " + ("force reprocessed and saved" if cache["status"] == "reprocessed" else "new OCR result saved"))
+    elif cache.get("status") == "not_cached":
+        st.warning("This partial result was not cached; the next request will retry OCR.")
+    elif cache.get("status") == "disabled":
+        st.caption("OCR cache disabled for this request.")
     pages = result.get("pages")
     metrics = st.columns(3)
     metrics[0].metric("Pages returned", len(pages) if pages is not None else "Unknown")
@@ -144,6 +153,8 @@ def render_processing(settings, providers, default):
         if not valid_upload:
             st.error("This PDF exceeds the configured API upload limit.")
     with st.expander("Processing options"):
+        force_reprocess = st.checkbox("Force Reprocess", key="processing_force_reprocess",
+                                      help="Run OCR again and replace the cached result for this document and model configuration.")
         st.write(f"PDF raster resolution: {settings.pdf_dpi} DPI · page limit: {settings.max_pages}")
         st.write(f"Tesseract language configuration: {settings.tesseract_lang}")
         st.caption("Settings are applied by the API. Change environment configuration and restart to update them.")
@@ -155,7 +166,7 @@ def render_processing(settings, providers, default):
         if signature == st.session_state.get("ocr_last_submission"):
             st.info("This document/engine selection was already submitted. Existing results are retained.")
             repeat_allowed = st.checkbox("Submit again intentionally", help="A timeout may leave server inference running. Review status before retrying.")
-    duplicate = signature is not None and signature == st.session_state.get("ocr_last_submission") and not repeat_allowed
+    duplicate = signature is not None and signature == st.session_state.get("ocr_last_submission") and not repeat_allowed and not force_reprocess
     workflow(3 if st.session_state.get("ocr_entries") else 1 if valid_upload and selected else 0)
     if st.button("Run extraction", type="primary", disabled=not valid_upload or not selected or duplicate):
         payload = upload.getvalue()
@@ -172,7 +183,7 @@ def render_processing(settings, providers, default):
             bar = st.progress(0, text="Preparing extraction")
             for index, provider in enumerate(order):
                 with st.status(f"{provider}: extracting", expanded=True) as status:
-                    entry = run_with_progress(lambda: extract_document(settings.api_url, upload.name, payload, provider), f"{PROVIDER_NAMES.get(provider, provider)} is extracting text")
+                    entry = run_with_progress(lambda: extract_document(settings.api_url, upload.name, payload, provider, force_reprocess=force_reprocess), f"{PROVIDER_NAMES.get(provider, provider)} is extracting text")
                     result = entry.get("result") or {}
                     status.update(label=f"{provider}: {'needs review' if entry.get('error') or result.get('errors') else 'complete'}",
                                   state="error" if entry.get("error") or result.get("errors") else "complete", expanded=False)

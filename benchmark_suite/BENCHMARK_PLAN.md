@@ -4,7 +4,7 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
-TASK-001 completed at 5da4946. The user explicitly approved TASK-002 on 2026-10-28. TASK-002 is now complete; stop at its checkpoint before TASK-003. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval. No model or dataset downloads in TASK-001.
+TASK-001 completed at 5da4946 and TASK-002 at 0db4fd4. The user approved pushing prior checkpoints and completing TASK-003 on 2026-10-28. Stop at the TASK-003 research checkpoint; hardware blockers prevent model loading. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval. No model or dataset downloads in TASK-001.
 
 At every new session read this plan, PROGRESS.md and BENCHMARK_STATUS.json; check Git branch/status and relevant artifacts; validate the last checkpoint before continuing the first incomplete approved task. Preserve existing files/results and user work. Commit only explicitly selected task files after checks. Never stage credentials, downloaded datasets or model weights. Do not use blanket staging.
 
@@ -42,7 +42,7 @@ General definition of done: stated acceptance criteria and checks pass (or block
 
 - Objective: Verify all nine exact model configurations using official sources and detect laptop resources before any model installation or execution.
 - Dependencies: TASK-002.
-- Files to create/modify: MODEL_REGISTRY.yaml; reports/HARDWARE_PROFILE.md; reports/MODEL_HARDWARE_COMPATIBILITY.md; reports/MODEL_CAPABILITIES.md; scripts/check_hardware.py; tests/test_hardware.py.
+- Files to create/modify: MODEL_REGISTRY.yaml; reports/HARDWARE_PROFILE.md; reports/HARDWARE_PROFILE.json; reports/RESEARCH_METADATA.json; reports/MODEL_HARDWARE_COMPATIBILITY.md; reports/MODEL_CAPABILITIES.md; scripts/check_hardware.py; tests/test_hardware.py; .gitignore (ignore preserved incomplete/repeated observations).
 - Acceptance criteria: Record CPU/cores, total/available RAM, GPUs/VRAM, CUDA/driver, Windows/Python, disk, WSL2 and Torch/Paddle GPU support; cite dated official versions/licenses/languages/capabilities; distinguish documented requirements from estimates; assign COMPATIBLE/LIMITED/INCOMPATIBLE/UNKNOWN with concrete remedies and costs. Present free-local strategy and all nine compatibility assessments. Missing evidence remains UNKNOWN. Successful assessment is mandatory before ANY model setup/execution.
 - Verification commands: `python benchmark_suite/scripts/check_hardware.py --output benchmark_suite/reports; python -m pytest benchmark_suite/tests/test_hardware.py -q`
 - Expected outputs: Hardware evidence, compatibility matrix and verified model registry.

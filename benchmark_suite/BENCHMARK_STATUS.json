@@ -4,11 +4,11 @@
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-003",
+  "current_task": "TASK-004",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
-    "TASK-003": "PENDING",
+    "TASK-003": "COMPLETED",
     "TASK-004": "PENDING",
     "TASK-005": "PENDING",
     "TASK-006": "PENDING",
@@ -29,38 +29,53 @@
     "TASK-021": "PENDING"
   },
   "models": {
-    "surya": "PENDING",
-    "paddle_vl": "PENDING",
-    "marker": "PENDING",
-    "paddle": "PENDING",
-    "tesseract": "PENDING",
-    "docling_easyocr": "PENDING",
-    "docling_tesseract": "PENDING",
-    "granite_docling": "PENDING",
-    "baidu": "PENDING"
+    "surya": "BLOCKED",
+    "paddle_vl": "BLOCKED",
+    "marker": "BLOCKED",
+    "paddle": "BLOCKED",
+    "tesseract": "BLOCKED",
+    "docling_easyocr": "BLOCKED",
+    "docling_tesseract": "BLOCKED",
+    "granite_docling": "BLOCKED",
+    "baidu": "BLOCKED"
   },
-  "model_block_reasons": {},
-  "last_completed_checkpoint": "TASK-002",
-  "checkpoint_git_commit_subject": "feat(benchmark): add atomic progress tracking and architecture",
-  "approval_required_before": "TASK-003",
+  "model_block_reasons": {
+    "surya": "BLOCKED_BY_HARDWARE",
+    "paddle_vl": "BLOCKED_BY_HARDWARE",
+    "marker": "BLOCKED_BY_HARDWARE",
+    "paddle": "BLOCKED_BY_HARDWARE",
+    "tesseract": "BLOCKED_BY_HARDWARE",
+    "docling_easyocr": "BLOCKED_BY_HARDWARE",
+    "docling_tesseract": "BLOCKED_BY_HARDWARE",
+    "granite_docling": "BLOCKED_BY_HARDWARE",
+    "baidu": "UNRESOLVED_IMPLEMENTATION_AND_API_APPROVAL"
+  },
+  "last_completed_checkpoint": "TASK-003",
+  "checkpoint_git_commit_subject": "feat(benchmark): assess laptop hardware and model compatibility",
+  "approval_required_before": "TASK-004",
   "approved_tasks": [
     "TASK-001",
-    "TASK-002"
+    "TASK-002",
+    "TASK-003"
   ],
-  "next_action": "Wait for approval of TASK-003; then validate TASK-002 and perform read-only hardware/official model compatibility research. No model or dataset downloads.",
+  "next_action": "Wait for TASK-004 approval: dataset-source/annotation research only. Local model loading BLOCKED_BY_HARDWARE; Baidu implementation/API approval unresolved.",
   "verification": {
     "status": "COMPLETED",
-    "task": "TASK-002",
-    "tracking_tests_passed": 54,
-    "ruff": "PASSED in existing .venv-ocr",
-    "default_discovery_tests_collected": 261,
-    "application_tests_executed": false,
+    "task": "TASK-003",
+    "suite_tests_passed": 71,
+    "hardware_tests_passed_after_final_code_change": 17,
+    "ruff": "PASSED",
+    "hardware_snapshot": "reports/HARDWARE_PROFILE.json",
+    "available_ram_gib_at_snapshot": 0.61,
+    "local_model_loading_gate": "BLOCKED_BY_HARDWARE",
+    "compatibility_assessment_completed": true,
+    "frameworks_imported": false,
     "model_inference_executed": false,
+    "application_tests_executed": false,
     "dependencies_installed": false,
-    "issues_resolved": [
-      "Terminal-regression test fixture corrected",
-      "System interpreter missing development packages; existing .venv-ocr checks pass"
-    ],
-    "coordinator_policy": "single writer; no multi-file or multi-writer transaction"
+    "paid_api_requests": 0,
+    "metadata_only_research": true,
+    "prior_checkpoints_push": "SUCCEEDED",
+    "task003_push": "Verify remote ref after checkpoint commit; see Git history"
   }
 }

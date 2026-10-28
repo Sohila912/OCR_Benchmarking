@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "captured_at": "2026-10-28T14:45:18+03:00",
+  "timezone": "Africa/Cairo",
+  "collector_python": "3.13.7",
+  "architecture": "AMD64",
+  "frameworks_imported": false,
+  "model_inference_executed": false,
+  "inventory_probe_status": "OK",
+  "cpu": [
+    {
+      "Name": "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz",
+      "NumberOfCores": 4,
+      "NumberOfLogicalProcessors": 8
+    }
+  ],
+  "memory": {
+    "available_bytes": 657477632,
+    "total_bytes": 8311836672
+  },
+  "gpus": [
+    {
+      "Name": "NVIDIA GeForce MX350",
+      "AdapterRAM": 2147483648,
+      "DriverVersion": "32.0.15.8267"
+    },
+    {
+      "Name": "Intel(R) Iris(R) Xe Graphics",
+      "AdapterRAM": 2147479552,
+      "DriverVersion": "32.0.101.7088"
+    }
+  ],
+  "windows": {
+    "caption": "Microsoft Windows 11 Pro",
+    "build": "26200",
+    "version": "10.0.26200"
+  },
+  "workspace_disk": {
+    "total_bytes": 254886801408,
+    "free_bytes": 26607276032
+  },
+  "nvidia_probe_status": "OK",
+  "nvidia_devices": [
+    {
+      "name": "NVIDIA GeForce MX350",
+      "vram_total_mib": 2048.0,
+      "vram_free_mib": 1965.0,
+      "driver_version": "582.67",
+      "compute_capability": "6.1"
+    }
+  ],
+  "driver_cuda_max_version": "13.0",
+  "cuda_toolkit": {
+    "status": "NOT_FOUND"
+  },
+  "wsl_status": {
+    "status": "OK",
+    "returncode": 0,
+    "stdout": "Default Distribution: docker-desktop\r\nDefault Version: 2",
+    "stderr": ""
+  },
+  "wsl_distributions": {
+    "status": "OK",
+    "returncode": 0,
+    "stdout": "NAME              STATE           VERSION\r\n* docker-desktop    Running         2\r\n  Ubuntu            Stopped         2",
+    "stderr": ""
+  },
+  "package_probe_status": "OK",
+  "packages": {
+    "torch": {
+      "version": "2.14.1",
+      "requires_python": ">=3.10",
+      "__version__": "2.14.1+cpu",
+      "cuda": null,
+      "hip": null
+    },
+    "torchvision": {
+      "version": "0.29.1",
+      "requires_python": ">=3.10,!=3.14.1"
+    },
+    "paddlepaddle": {
+      "version": "3.2.2",
+      "requires_python": null
+    },
+    "paddlepaddle-gpu": null,
+    "paddleocr": {
+      "version": "3.6.0",
+      "requires_python": ">=3.8"
+    },
+    "docling": {
+      "version": "2.80.0",
+      "requires_python": "<4.0,>=3.10"
+    },
+    "easyocr": null,
+    "transformers": {
+      "version": "4.57.6",
+      "requires_python": ">=3.9.0"
+    },
+    "surya-ocr": null,
+    "marker-pdf": null
+  },
+  "target_python": {
+    "status": "OK",
+    "returncode": 0,
+    "stdout": "Python 3.13.7",
+    "stderr": ""
+  },
+  "tesseract_version": {
+    "status": "OK",
+    "returncode": 0,
+    "stdout": "tesseract v5.4.0.20240606\r\n leptonica-1.84.1\r\n  libgif 5.2.1 : libjpeg 8d (libjpeg-turbo 3.0.1) : libpng 1.6.43 : libtiff 4.6.0 : zlib 1.3 : libwebp 1.4.0 : libopenjp2 2.5.2\r\n Found AVX512BW\r\n Found AVX512F\r\n Found AVX512VNNI\r\n Found AVX2\r\n Found AVX\r\n Found FMA\r\n Found SSE4.1\r\n Found libarchive 3.7.4 zlib/1.3.1 liblzma/5.6.1 bz2lib/1.0.8 liblz4/1.9.4 libzstd/1.5.6",
+    "stderr": ""
+  },
+  "tesseract_languages": {
+    "status": "OK",
+    "languages": [
+      "eng",
+      "osd"
+    ]
+  },
+  "poppler_version": {
+    "status": "OK",
+    "returncode": 0,
+    "stdout": "",
+    "stderr": "pdftoppm version 26.07.0\r\nCopyright 2005-2026 The Poppler Developers - http://poppler.freedesktop.org\r\nCopyright 1996-2011, 2022 Glyph & Cog, LLC"
+  },
+  "loading_gate": {
+    "status": "BLOCKED_BY_HARDWARE",
+    "reason": "Less than 2 GiB free RAM; block model loading until rechecked.",
+    "floor_basis": "Conservative suite policy; not a vendor minimum."
+  }
+}

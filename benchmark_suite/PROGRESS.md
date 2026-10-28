@@ -4,70 +4,85 @@ Updated: 2026-10-28 (Africa/Cairo).
 
 ## Checkpoint
 
-- Completed: TASK-001 (repository audit) and TASK-002 (architecture and progress tracking).
-- Current / first incomplete task: TASK-003, PENDING. Stop here; this session was approved for TASK-002 only.
-- Last completed checkpoint: TASK-002.
-- Branch: feature/ocr-comprehensive-benchmark.
-- Audited application base: 4215badd51c760f6800ab590938aaf407f659a77.
+- Completed: TASK-001, TASK-002 and TASK-003 (official-source model research and laptop hardware assessment).
+- Current / first incomplete task: TASK-004, PENDING. Stop at this checkpoint before dataset research; no model loading is authorized.
+- Last completed checkpoint: TASK-003.
+- Branch: feature/ocr-comprehensive-benchmark; origin upstream configured.
 - TASK-001 commit: 5da494663bf4383321e73c54d80756c357fe3568.
-- TASK-002 checkpoint subject: `feat(benchmark): add atomic progress tracking and architecture`. Resolve its hash with `git log -1 --format=%H -- benchmark_suite/PROGRESS.md` and confirm the subject. A hash is not embedded in its own commit.
+- TASK-002 commit: 0db4fd4 (full hash available in Git history).
+- Prior checkpoints successfully pushed to origin/feature/ocr-comprehensive-benchmark on user instruction. TASK-003 is to be committed and pushed after final checks.
+- TASK-003 checkpoint subject: `feat(benchmark): assess laptop hardware and model compatibility`. Resolve the final hash using `git log -1 --format=%H -- benchmark_suite/PROGRESS.md`; verify the matching subject and remote ref. Its hash is not embedded in its own commit.
 
-## TASK-002 work completed
+## TASK-003 outputs
 
 Created:
-- benchmark_suite/ARCHITECTURE.md
-- benchmark_suite/README.md
-- benchmark_suite/__init__.py
-- benchmark_suite/tracking.py
-- benchmark_suite/tests/test_tracking.py
-- benchmark_suite/.gitignore
+- benchmark_suite/MODEL_REGISTRY.yaml (JSON syntax, valid YAML 1.2; nine research configurations, no execution authorization)
+- benchmark_suite/reports/HARDWARE_PROFILE.md
+- benchmark_suite/reports/HARDWARE_PROFILE.json
+- benchmark_suite/reports/MODEL_HARDWARE_COMPATIBILITY.md
+- benchmark_suite/reports/MODEL_CAPABILITIES.md
+- benchmark_suite/reports/RESEARCH_METADATA.json (public package/file metadata, revisions, sizes and source hashes; no weights)
+- benchmark_suite/scripts/check_hardware.py
+- benchmark_suite/tests/test_hardware.py
 
 Modified:
-- benchmark_suite/BENCHMARK_PLAN.md (record approval and pytest discovery scope)
+- benchmark_suite/.gitignore (preserve repeated/incomplete local observations without staging them)
+- benchmark_suite/README.md (research status, report links and read-only collector usage)
+- benchmark_suite/BENCHMARK_PLAN.md (approval/checkpoint and actual output files)
 - benchmark_suite/PROGRESS.md
-- benchmark_suite/BENCHMARK_STATUS.json (validated atomic checkpoint)
-- pytest.ini (include suite tests in default discovery)
+- benchmark_suite/BENCHMARK_STATUS.json
 
-The tracker validates complete schema/IDs/types, state transitions, single active task/model, actual approval records, model/task state consistency, completed checkpoints and hardware-assessment prerequisite. It rejects corrupt/duplicate-key/nonfinite JSON and terminal-state regression. Writes use unique same-directory UTF-8 temporary files, flush/fsync, close and os.replace. Failed writes preserve existing JSON; killed-writer temporary files are ignored. One coordinator must serialize writes; this is not a multi-writer transaction.
+Production pipeline, installed packages, existing datasets/predictions/results and root pytest settings were not changed in this task. Task_codex.txt remains a user-owned untracked input.
 
-Architecture documents production component reuse, planned immutable run artifacts, raw/normalized output boundaries, dataset/evaluation/inference separation and single-model preflight. Minimal source-tree package is available; no OCR packages load on import. Suite ignore policy protects downloaded inputs, weights, secrets, environments and generated runs while allowing reviewed manifests/configuration/report sources.
+## Findings and execution blockers
+
+- i7-1165G7, 4 cores/8 threads; Windows 11 Pro 26200, AMD64; total RAM 7.74 GiB, available 0.61 GiB in the retained snapshot; free disk 24.78 GiB.
+- NVIDIA MX350: 2048 MiB VRAM, CC 6.1, driver 582.67; Intel Iris Xe is integrated and its WMI memory value is not an additional dedicated VRAM bank.
+- Driver advertises CUDA 13.0 ceiling; nvcc is not on PATH. Inspected existing .venv-ocr has torch 2.14.1+cpu (cuda=null), paddlepaddle 3.2.2 and no paddlepaddle-gpu. No framework runtime imports/allocations were attempted under memory pressure.
+- WSL2 exists: docker-desktop running, Ubuntu stopped. No distribution or container was started/stopped by this task.
+- Native Tesseract 5.4.0.20240606 and Poppler 26.07.0 exist; eng/osd present, ara absent.
+- All eight local model readiness states are BLOCKED with reason BLOCKED_BY_HARDWARE at this snapshot (conservative suite available-RAM stop); their future model tasks remain PENDING. This is not an inference failure. No generic RAM floor can replace future model-specific preflight.
+- Compatibility matrix marks local CPU paths LIMITED and identifies incompatible GPU routes separately: PaddleOCR-VL requires CC >=7.0, current vLLM guide >=7.5; MX350 CC 6.1 cannot be fixed through driver/WSL updates. No local model was certified runnable at the saved low-memory snapshot.
+- Baidu model readiness BLOCKED pending exact implementation, account/endpoint/quotas/cost confirmation and API authorization; compatibility UNKNOWN. No API calls or credential reads.
+- Surya 0.22.1 / Marker 2.0.0 use Surya 2 inference-server architecture and Transformers >=5.12.1, conflicting with installed 4.57.6. Do not assume legacy adapters/current environment work; do not upgrade production silently.
+- Latest observed package metadata and current installed versions are distinguished; all memory/storage budgets are explicitly estimates. Granite Arabic is experimental. Baidu endpoint capabilities differ. No new scores/latencies or vendor-reported scores were turned into suite results.
 
 ## Successful verification
 
-- TASK-001 checkpoint files, branch/status and recorded commit validated before starting.
-- `python -m pytest benchmark_suite/tests/test_tracking.py -q`: 54 passed.
-- `.venv-ocr\Scripts\python.exe -m pytest benchmark_suite/tests/test_tracking.py -q`: 54 passed.
+- Read TASK-001/002 plan/progress/status; branch, prior commit, artifact presence and user authorization validated.
+- `git push --set-upstream origin feature/ocr-comprehensive-benchmark`: succeeded for prior checkpoints.
+- Real read-only hardware collection produced complete CPU/RAM/Windows/GPU/disk/WSL/native-tool/package metadata; assertions verified exact evidence fields, CPU runtime metadata and language assets.
+- `.venv-ocr\Scripts\python.exe -m pytest benchmark_suite/tests -q`: 71 passed (54 tracking + 17 hardware checks).
+- After replacing a fixed Windows installation directory with the standard ProgramFiles environment directory, reran all 17 hardware tests: passed.
 - `.venv-ocr\Scripts\python.exe -m ruff check benchmark_suite`: passed.
-- `.venv-ocr\Scripts\python.exe -m pytest --collect-only -q`: 261 tests collected, including all 54 suite tests. Collection only; existing application tests were not executed.
-- Recovery tests cover injected fsync/replace failures and a real child-process exit before replacement. Checkpoint preservation, unique temporary paths and orphan handling verified.
-- Git policy tests check 16 representative ignored/allowed paths without creating datasets, credentials or weights.
-- Read-only status validator and isolated import checks passed; production package/model imports are absent.
-- Final status validation, Python 3.10 read-only smoke check, staged scope and whitespace checks are recorded at the commit checkpoint.
+- Registry coverage/evidence/no-execution flags, complete native snapshot, all public metadata requests, Unicode report content and branch/base assertions passed.
+- git diff --check passed. Final atomic checkpoint validation, staged scope and staged whitespace are verified before commit.
+- No application regression tests or inference tests executed; production code unchanged. No model/dataset download, installation, CUDA/driver/WSL change, paid call or alternate environment trial occurred.
 
-## Failed checks and resolution
+## Errors and uncertainty retained
 
-- First test run: 49 passed, 1 failed because a regression assertion expected a transition error while the candidate also erased an approval. Corrected the fixture to isolate terminal-state regression; final 54 pass.
-- System interpreter lacked Ruff and Streamlit, so optional lint and full default test collection initially failed. Existing .venv-ocr has both; rerunning there passed lint and collected all 261 tests. No dependencies were installed. Use that existing environment for repository-wide development checks.
-- No unresolved suite test failures. Collection reported one upstream dependency deprecation warning; no application test execution or model readiness claim is implied.
+- Initial collector prototype contained a stray leading + in its fixed PowerShell command; the native inventory probe returned ERROR and RAM UNKNOWN. Corrected the command and reran successfully. Preserved that incomplete observation under ignored reports/hardware_observations/initial_incomplete/ rather than overwriting it. Reports at the canonical paths are the successful second observation.
+- Some Baidu docs timed out on repeated browser requests; accessible official product/docs establish endpoint-dependent support, but exact account rates/QPS/limits remain UNKNOWN. Do not promise free entitlement or make a paid request.
+- Tesseract live releases API reported newly published 5.5.4; browser release-tag fetch returned 404. Existing 5.4.0 binary remains unchanged; new release distributable not tested.
+- Full selected standard-Paddle/Docling/EasyOCR artifact totals and runtime peaks remain unverified. Registry budgets are estimates; model-specific preflight must resolve them before execution.
+- Existing pinned production libraries are older than researched current releases; compatibility was researched, not upgraded or tested by inference.
+- No unresolved unit-test/lint failures; model/environment readiness limitations remain explicit.
 
-## Decisions and limitations
+## Decisions
 
-- Production OCR, frontend, existing datasets and historical results remain unchanged by TASK-002. User-owned Task_codex.txt remains outside the commit.
-- Verification status now uses the task-state enum: COMPLETED means checks passed (older TASK-001 metadata used PASSED).
-- Checkpoint JSON is atomic; companion Markdown files and Git commits are not a multi-file transaction. After interruption inspect persisted artifacts and reconcile against Git before resuming.
-- State schema records approval but cannot establish human authorization itself. Never add approved tasks without a real user instruction.
-- Hardware safety and model readiness are not certified by the state validator. All nine models remain PENDING and hardware compatibility UNKNOWN until TASK-003.
-- The current suite is source-tree only; setuptools does not include benchmark_suite yet. Windows timezone validation uses existing tzdata/system IANA data.
-- Actual metrics, manifests, runner, model adapters and Windows benchmark menu are planned, not implemented. No benchmark scores/results were generated.
+- Completed hardware research is a prerequisite, not permission to execute. Current memory blockers remain until a new profile and validated per-model budget pass.
+- Free local priority: Tesseract and standard Paddle CPU after voluntary RAM cleanup and proper Arabic assets. Docling/Granite are restricted later CPU candidates. Original task order remains unless user approves reordering.
+- Surya/Marker/Paddle-VL GPU trials need modern hardware. Optional suggested profile: Linux x64, Python 3.12, A10G/L4 24-GiB GPU, 8 vCPUs, 32-GiB RAM, 60-GiB free disk with pinned supported runtime. This is a recommendation, not a vendor minimum; cloud costs and environment approval apply. No provisioning.
+- Quantization, smaller variants, resolution changes, reordered model tasks and alternate environments require disclosure and the appropriate approval; none was applied.
 
 ## Next exact actions (after approval)
 
-1. Read Task_codex.txt, BENCHMARK_PLAN.md, this file and BENCHMARK_STATUS.json. Validate the TASK-002 commit, artifacts, Git branch/status and tracker tests.
-2. Complete TASK-003 only: inspect hardware without loading models or downloading assets; report CPU/cores, total/available RAM, GPUs/VRAM, CUDA/driver, Python/Windows, disk, WSL2 and installed Torch/Paddle GPU support.
-3. Research dated official model sources for exact versions, licenses, supported languages/capabilities, platform/dependency constraints, download/storage and documented versus estimated memory requirements for all nine configurations.
-4. Produce HARDWARE_PROFILE.md, MODEL_HARDWARE_COMPATIBILITY.md, MODEL_CAPABILITIES.md, MODEL_REGISTRY.yaml and read-only detection helper/tests. Mark insufficient evidence UNKNOWN, give precise remedies and free/local strategy; resolve Baidu ambiguity before any setup.
-5. Validate evidence, update persistent records and commit only task-owned changes. Stop at the TASK-003 checkpoint. Do not install/run models or provision paid resources.
+1. Read Task_codex.txt, BENCHMARK_PLAN.md, this file and BENCHMARK_STATUS.json; validate TASK-003 artifacts/commit/remote state and tracker/hardware tests.
+2. Complete TASK-004 only: research English and Arabic public ground-truth datasets from credible primary sources, verify versions/licenses/counts/annotation categories and propose supplementary datasets where coverage is missing.
+3. Review existing curated datasets for provenance, pairing and limitations; never treat existing OCR predictions as ground truth.
+4. Write benchmark_suite/datasets/DATASET_SELECTION.md with all required source/license/size/ground-truth/procedure/limitations/rationale fields and explicit download proposal. No large or restricted download before approval.
+5. Update persistent records, make a task-only Git checkpoint and stop. No model loading while hardware headroom is insufficient.
 
 ## Recommended next Codex prompt
 
-“Read Task_codex.txt, benchmark_suite/BENCHMARK_PLAN.md, benchmark_suite/PROGRESS.md and benchmark_suite/BENCHMARK_STATUS.json. Validate the TASK-002 checkpoint and current Git state. I approve TASK-003 only. Complete the hardware and official-source compatibility research, update progress, commit only task-owned changes, then stop. Do not download or execute models or datasets.”
+“Read Task_codex.txt, benchmark_suite/BENCHMARK_PLAN.md, benchmark_suite/PROGRESS.md and benchmark_suite/BENCHMARK_STATUS.json. Validate the TASK-003 checkpoint and Git state. I approve TASK-004 only. Research and document English/Arabic dataset selection and annotation coverage, update progress and commit the task. Do not download models or datasets or perform inference; retain the hardware blockers.”

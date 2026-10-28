@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "research_date": "2026-10-28",
+  "timezone": "Africa/Cairo",
+  "note": "JSON syntax is valid YAML 1.2. Research candidates do not alter installed versions or authorize execution. Memory/storage planning budgets are estimates, not vendor guarantees; GPU budgets apply only to compatible GPU paths. No CPU/GPU trial was run. See reports for sources, confidence and remedies.",
+  "hardware_profile": "reports/HARDWARE_PROFILE.json",
+  "model_order": [
+    "surya",
+    "paddle_vl",
+    "marker",
+    "paddle",
+    "tesseract",
+    "docling_easyocr",
+    "docling_tesseract",
+    "granite_docling",
+    "baidu"
+  ],
+  "models": {
+    "surya": {
+      "name": "Surya OCR 2",
+      "package": "surya-ocr",
+      "latest_package_version_observed": "0.22.1",
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "Apache-2.0 code; modified OpenRAIL-M weights",
+      "hardware_compatibility": "LIMITED",
+      "gpu_required": false,
+      "cpu_support": "DOCUMENTED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 8,
+      "recommended_host_ram_gib": 16,
+      "estimated_gpu_vram_gib_from": 6,
+      "estimated_additional_storage_gib": 10,
+      "recommended_action": "CPU llama-server may be feasible after freeing RAM; MX350 vLLM route incompatible; native Windows integrated backend untested.",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "SUPPORTED",
+        "layout": "SUPPORTED",
+        "reading_order": "SUPPORTED",
+        "tables": "SUPPORTED",
+        "chart_data": "UNKNOWN",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://github.com/datalab-to/surya/blob/v0.22.1/README.md",
+        "https://huggingface.co/datalab-to/surya-ocr-2",
+        "https://pypi.org/pypi/surya-ocr/json"
+      ],
+      "weight_repository": "datalab-to/surya-ocr-2",
+      "weight_revision": "3b3d4cdf88d6928b0acdc75181b13206ea67c4a3",
+      "weight_files_metadata": [
+        {
+          "file": "model.safetensors",
+          "bytes": 1372368672,
+          "sha256": "5755f82a997dd0b111964fa8b31cc2daef7aeb7a706bbd17d73d6a93ef3f723e"
+        }
+      ],
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+    },
+    "paddle_vl": {
+      "name": "PaddleOCR-VL-1.6-0.9B + PP-DocLayoutV3",
+      "package": "paddleocr",
+      "latest_package_version_observed": "3.7.0",
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "Apache-2.0",
+      "hardware_compatibility": "LIMITED",
+      "gpu_required": false,
+      "cpu_support": "DOCUMENTED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 8,
+      "recommended_host_ram_gib": 16,
+      "estimated_gpu_vram_gib_from": 6,
+      "estimated_additional_storage_gib": 12,
+      "recommended_action": "GPU route incompatible (CC 6.1 < 7.0); CPU exists but needs substantially more free RAM. Existing production package 3.6.0 unchanged.",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "SUPPORTED",
+        "layout": "SUPPORTED",
+        "reading_order": "SUPPORTED",
+        "tables": "SUPPORTED",
+        "chart_data": "CONFIGURATION_DEPENDENT",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://www.paddleocr.ai/main/en/version3.x/pipeline_usage/PaddleOCR-VL.html",
+        "https://huggingface.co/PaddlePaddle/PaddleOCR-VL-1.6",
+        "https://pypi.org/pypi/paddleocr/json",
+        "https://www.paddleocr.ai/main/en/version3.x/algorithm/PaddleOCR-VL/PaddleOCR-VL.html"
+      ],
+      "weight_repository": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "weight_revision": "c5630abae1d940eafe0697512a0325494b02ab42",
+      "weight_files_metadata": [
+        {
+          "file": "model.safetensors",
+          "bytes": 1917255968,
+          "sha256": "85a479d506a11e724e7285d395c551be69f41dbc16b6342d3cacfb189aed71db"
+        }
+      ],
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+    },
+    "marker": {
+      "name": "Marker 2.0.0, Surya 2 backend; no external LLM",
+      "package": "marker-pdf",
+      "latest_package_version_observed": "2.0.0",
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "Apache-2.0 code; dependent weights have separate modified OpenRAIL-M terms",
+      "hardware_compatibility": "LIMITED",
+      "gpu_required": false,
+      "cpu_support": "DOCUMENTED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 10,
+      "recommended_host_ram_gib": 24,
+      "estimated_gpu_vram_gib_from": 8,
+      "estimated_additional_storage_gib": 12,
+      "recommended_action": "CPU server setup and memory headroom required; disable_ocr is not an equivalent OCR benchmark.",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "SUPPORTED",
+        "layout": "SUPPORTED",
+        "reading_order": "SUPPORTED",
+        "tables": "SUPPORTED",
+        "chart_data": "UNKNOWN",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://github.com/datalab-to/marker/blob/v2.0.0/README.md",
+        "https://pypi.org/pypi/marker-pdf/json"
+      ],
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+    },
+    "paddle": {
+      "name": "Standard PaddleOCR; explicit language-specific detector/recognizer",
+      "package": "paddleocr",
+      "latest_package_version_observed": "3.7.0",
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "Apache-2.0",
+      "hardware_compatibility": "LIMITED",
+      "gpu_required": false,
+      "cpu_support": "DOCUMENTED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 2,
+      "recommended_host_ram_gib": 8,
+      "estimated_gpu_vram_gib_from": 0,
+      "estimated_additional_storage_gib": 2,
+      "recommended_action": "Promising CPU route after freeing RAM; explicitly pin English/Arabic weights. Current package 3.6.0 is preserved.",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "SUPPORTED",
+        "layout": "NOT_SUPPORTED",
+        "reading_order": "HEURISTIC_ONLY",
+        "tables": "NOT_SUPPORTED",
+        "chart_data": "NOT_SUPPORTED",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://github.com/PaddlePaddle/PaddleOCR/blob/v3.7.0/paddleocr/_pipelines/ocr.py",
+        "https://www.paddleocr.ai/main/en/version3.x/algorithm/PP-OCRv5/PP-OCRv5_multi_languages.html",
+        "https://www.paddleocr.ai/main/en/version3.x/algorithm/PP-OCRv6/PP-OCRv6.html"
+      ],
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+    },
+    "tesseract": {
+      "name": "Tesseract CLI with eng / ara, fixed OEM and PSM",
+      "package": "native",
+      "latest_package_version_observed": "5.5.4",
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "Apache-2.0",
+      "hardware_compatibility": "LIMITED",
+      "gpu_required": false,
+      "cpu_support": "DOCUMENTED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 0.5,
+      "recommended_host_ram_gib": 4,
+      "estimated_gpu_vram_gib_from": 0,
+      "estimated_additional_storage_gib": 0,
+      "recommended_action": "Installed 5.4.0 supports eng only here; add verified ara assets later and free RAM. Upgrading engine is not necessary for initial baseline.",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "SUPPORTED_WITH_LANGUAGE_DATA",
+        "layout": "HEURISTIC_ONLY",
+        "reading_order": "HEURISTIC_ONLY",
+        "tables": "NOT_SUPPORTED",
+        "chart_data": "NOT_SUPPORTED",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://tesseract-ocr.github.io/tessdoc/Installation.html",
+        "https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest",
+        "https://github.com/tesseract-ocr/tessdata_fast"
+      ],
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+    },
+    "docling_easyocr": {
+      "name": "Docling standard PDF pipeline + EasyOCR 1.7.2",
+      "package": "docling",
+      "latest_package_version_observed": "2.143.1",
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "MIT Docling code; Apache-2.0 EasyOCR; model artifact licenses vary",
+      "hardware_compatibility": "LIMITED",
+      "gpu_required": false,
+      "cpu_support": "DOCUMENTED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 4,
+      "recommended_host_ram_gib": 16,
+      "estimated_gpu_vram_gib_from": 0,
+      "estimated_additional_storage_gib": 4,
+      "recommended_action": "EasyOCR absent; CPU supported but current free RAM insufficient; use explicit en / ar recognizers and low concurrency.",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "SUPPORTED",
+        "layout": "SUPPORTED",
+        "reading_order": "SUPPORTED",
+        "tables": "SUPPORTED",
+        "chart_data": "NOT_SUPPORTED",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://github.com/docling-project/docling/blob/main/docs/getting_started/installation.md",
+        "https://github.com/JaidedAI/EasyOCR/blob/v1.7.2/README.md",
+        "https://github.com/JaidedAI/EasyOCR/blob/v1.7.2/easyocr/config.py",
+        "https://pypi.org/pypi/docling/json",
+        "https://huggingface.co/docling-project/docling-models"
+      ],
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+    },
+    "docling_tesseract": {
+      "name": "Docling standard PDF pipeline + Tesseract CLI",
+      "package": "docling",
+      "latest_package_version_observed": "2.143.1",
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "MIT Docling code; Apache-2.0 Tesseract; model artifact licenses vary",
+      "hardware_compatibility": "LIMITED",
+      "gpu_required": false,
+      "cpu_support": "DOCUMENTED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 3,
+      "recommended_host_ram_gib": 16,
+      "estimated_gpu_vram_gib_from": 0,
+      "estimated_additional_storage_gib": 4,
+      "recommended_action": "Production Docling 2.80.0 exists; free RAM and add ara pack before trial. Current configured layout/table assets must be checked, not assumed.",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "SUPPORTED_WITH_LANGUAGE_DATA",
+        "layout": "SUPPORTED",
+        "reading_order": "SUPPORTED",
+        "tables": "SUPPORTED",
+        "chart_data": "NOT_SUPPORTED",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://github.com/docling-project/docling/blob/main/docs/getting_started/installation.md",
+        "https://huggingface.co/docling-project/docling-models",
+        "https://pypi.org/pypi/docling/json"
+      ],
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+    },
+    "granite_docling": {
+      "name": "ibm-granite/granite-docling-258M via Docling VLM / Transformers",
+      "package": "docling",
+      "latest_package_version_observed": "2.143.1",
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "MIT Docling code; Apache-2.0 Granite weights",
+      "hardware_compatibility": "LIMITED",
+      "gpu_required": false,
+      "cpu_support": "DOCUMENTED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 3,
+      "recommended_host_ram_gib": 12,
+      "estimated_gpu_vram_gib_from": 2,
+      "estimated_additional_storage_gib": 4,
+      "recommended_action": "CPU example documented; ~0.48 GiB weights do not imply total memory fit. Arabic is experimental; current RAM blocks loading.",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "EXPERIMENTAL",
+        "layout": "SUPPORTED",
+        "reading_order": "SUPPORTED",
+        "tables": "SUPPORTED",
+        "chart_data": "UNKNOWN",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://huggingface.co/ibm-granite/granite-docling-258M",
+        "https://www.ibm.com/granite/docs/models/docling"
+      ],
+      "weight_repository": "ibm-granite/granite-docling-258M",
+      "weight_revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+      "weight_files_metadata": [
+        {
+          "file": "model.safetensors",
+          "bytes": 515093104,
+          "sha256": "1cdad234deb1cde18ee6a586f849057f19851daf1fedce2e40aff791dbe46f61"
+        }
+      ],
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+    },
+    "baidu": {
+      "name": "UNRESOLVED: propose Baidu Cloud high-accuracy OCR API; not local PaddleOCR",
+      "package": "external_api",
+      "latest_package_version_observed": null,
+      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "execution_authorized": false,
+      "license_summary": "Proprietary hosted service terms; not local open-source weights",
+      "hardware_compatibility": "UNKNOWN",
+      "gpu_required": false,
+      "cpu_support": "API_CLIENT_ONLY_IF_CONFIRMED",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 0.5,
+      "recommended_host_ram_gib": 4,
+      "estimated_gpu_vram_gib_from": 0,
+      "estimated_additional_storage_gib": 0,
+      "recommended_action": "Confirm product/endpoint and budget; credentials/quotas/service terms unverified. No API requests authorized.",
+      "capabilities": {
+        "english": "ENDPOINT_DEPENDENT",
+        "arabic": "ENDPOINT_DEPENDENT",
+        "layout": "ENDPOINT_DEPENDENT",
+        "reading_order": "UNKNOWN",
+        "tables": "ENDPOINT_DEPENDENT",
+        "chart_data": "ENDPOINT_DEPENDENT",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://cloud.baidu.com/product/ocr/general",
+        "https://cloud.baidu.com/doc/OCR/s/1k3h7y3db",
+        "https://cloud.baidu.com/doc/OCR/s/9k3h7xuv6"
+      ],
+      "current_snapshot_loading": "BLOCKED_PENDING_IMPLEMENTATION_AND_API_APPROVAL"
+    }
+  }
+}

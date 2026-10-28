@@ -2,7 +2,7 @@
 
 This isolated suite will compare nine OCR configurations across English and
 Arabic text, layout, reading order, tables and charts using verified public
-ground truth and auditable measurements. **Foundations only are implemented.**
+ground truth and auditable measurements. **Foundations and read-only hardware/model research are implemented.**
 No new model evaluation, dataset download or accuracy comparison has been run.
 
 Read [PROGRESS.md](PROGRESS.md), [BENCHMARK_STATUS.json](BENCHMARK_STATUS.json)
@@ -55,13 +55,15 @@ automatically. Keep progress Markdown and plan aligned at each checkpoint.
 
 Candidates: Surya, PaddleOCR-VL, Marker, standard PaddleOCR, Tesseract,
 Docling + EasyOCR, Docling + Tesseract, Granite Docling and Baidu OCR.
-Implementations, current official versions, licenses and actual Arabic/English
-capabilities will be verified in TASK-003. Baidu API versus another
+Official versions, licenses, declared Arabic/English capabilities and laptop
+compatibility were researched in TASK-003; actual accuracy remains unmeasured. Baidu API versus another
 implementation must be resolved before its setup. Existing production adapters
 do not establish all nine candidates' capabilities.
 
-- TASK-003: laptop CPU/RAM/GPU/VRAM/CUDA/driver/Python/Windows/disk/WSL2 and
-  model compatibility evidence, exact requirements and free local strategy.
+- TASK-003 (complete): [hardware profile](reports/HARDWARE_PROFILE.md),
+  [compatibility and resource strategy](reports/MODEL_HARDWARE_COMPATIBILITY.md),
+  [capabilities/dependencies](reports/MODEL_CAPABILITIES.md) and
+  [research-only model registry](MODEL_REGISTRY.yaml). Current low RAM blocks model loading.
 - TASK-004/005: select licensed independent English/Arabic reference datasets,
   obtain required download approval, verify provenance/hashes and freeze splits.
 - TASK-006: define/test text, layout, table, chart, reading-order and statistical
@@ -93,8 +95,8 @@ matching/IoU/taxonomy/TEDS/statistics and justified display scales are TASK-006
 deliverables. Existing historical evaluator policies remain unchanged and must
 not be mixed with future scores without checking their definitions.
 
-Dataset sources/licenses and verified model environments remain pending their
-research tasks. Windows menu, setup, single-model runs, smoke/resume/evaluation,
+Dataset sources/licenses remain pending TASK-004. Model environments require
+per-model setup and preflight despite the completed compatibility research. Windows menu, setup, single-model runs, smoke/resume/evaluation,
 report generation and comparison commands will be documented with tested
 examples when implemented in TASK-008/018/019. There is no run_benchmark.bat or
 inference CLI yet. Do not execute the future commands in the implementation plan
@@ -106,3 +108,22 @@ timing/resource measurements, errors and reports; see ARCHITECTURE.md. Downloade
 content and generated runs are ignored by Git. Preserve local outputs and record
 their checksums; do not force-add them. Source notes, reviewed manifests and
 Markdown reports can be versioned without duplicating historical datasets.
+
+## Repeat a read-only hardware observation
+
+From the repository root, use the existing environment to inspect its package
+metadata. No framework/model import or inference occurs:
+
+```powershell
+.venv-ocr\Scripts\python.exe benchmark_suite/scripts/check_hardware.py --output benchmark_suite/reports/hardware_observations/new-check
+.venv-ocr\Scripts\python.exe -m pytest benchmark_suite/tests -q
+```
+
+Choose a new output directory each time; the helper refuses to overwrite an
+existing profile. Store measurements before any eventual model trial. The
+saved TASK-003 profile has 7.74 GiB total RAM, 0.61 GiB available and a 2-GiB
+MX350 (CC 6.1). The 2-GiB available-RAM stop is a conservative suite policy,
+not a model minimum. Passing it still needs the model-specific TASK-007
+preflight. Do not treat CUDA 13.0 in NVIDIA-SMI as installed CUDA-enabled Torch:
+the inspected Torch/Paddle builds are CPU-only. No API/cloud environment was
+used. See the reports for evidence, limits, remedies and cost/approval gates.

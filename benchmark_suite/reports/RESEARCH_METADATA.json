@@ -1,0 +1,1036 @@
+{
+  "surya-ocr": {
+    "url": "https://pypi.org/pypi/surya-ocr/json",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "version": "0.22.1",
+      "requires_python": "<4,>=3.10",
+      "license": "Apache-2.0",
+      "project_urls": {
+        "Repository": "https://github.com/datalab-to/surya"
+      },
+      "requires_dist": [
+        "beautifulsoup4<5,>=4.12.0",
+        "click<9,>=8.1.8",
+        "filelock<4,>=3.16.0",
+        "filetype<2,>=1.2.0",
+        "httpx<1,>=0.27.0",
+        "huggingface-hub<2,>=1.5.0",
+        "openai<3,>=1.55.0",
+        "opencv-python-headless==4.11.0.86",
+        "pillow<11,>=10.2.0",
+        "platformdirs<5,>=4.3.6",
+        "pydantic-settings<3,>=2.1.0",
+        "pydantic<3,>=2.5.3",
+        "pypdfium2<6,>=5.10.1",
+        "python-dotenv<2,>=1.0.0",
+        "requests<3,>=2.28.0",
+        "torch<3,>=2.7.0",
+        "torchvision<1,>=0.20.0",
+        "transformers>=5.12.1"
+      ],
+      "artifacts": [
+        {
+          "filename": "surya_ocr-0.22.1-py3-none-any.whl",
+          "bytes": 191800,
+          "sha256": "f84cdba18b99cd8d010d19db8b89d79cdcd3d0cd4e3bdba52a473023ccd69a2d"
+        },
+        {
+          "filename": "surya_ocr-0.22.1.tar.gz",
+          "bytes": 25998043,
+          "sha256": "792fc63d18cf648ed3608a3d0e3ed06ae627a31b08a8501d601bda4763ba6f9c"
+        }
+      ]
+    }
+  },
+  "marker-pdf": {
+    "url": "https://pypi.org/pypi/marker-pdf/json",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "version": "2.0.0",
+      "requires_python": "<4,>=3.10",
+      "license": "Apache-2.0",
+      "project_urls": {
+        "Repository": "https://github.com/datalab-to/marker"
+      },
+      "requires_dist": [
+        "anthropic<1,>=0.69.0",
+        "click<9,>=8.2.0",
+        "filetype<2,>=1.2.0",
+        "ftfy<7,>=6.1.1",
+        "google-genai<3,>=1.40.0",
+        "markdown2<3,>=2.5.2",
+        "markdownify<2,>=1.1.0",
+        "openai<3,>=2.2.0",
+        "pdftext<0.8.0,>=0.7.0",
+        "pillow<11,>=10.1.0",
+        "psutil<8,>=7.0.0",
+        "pydantic-settings<3,>=2.0.3",
+        "pydantic<3,>=2.4.2",
+        "python-dotenv<2,>=1.0.0",
+        "rapidfuzz<4,>=3.8.1",
+        "regex>=2024.4.28",
+        "scikit-learn<2,>=1.6.1",
+        "surya-ocr<0.23.0,>=0.22.1",
+        "torch<3,>=2.7.0",
+        "tqdm<5,>=4.66.1",
+        "transformers<6,>=5.12.1",
+        "ebooklib<0.19,>=0.18; extra == \"full\"",
+        "mammoth<2,>=1.9.0; extra == \"full\"",
+        "openpyxl<4,>=3.1.5; extra == \"full\"",
+        "python-pptx<2,>=1.0.2; extra == \"full\"",
+        "weasyprint<64,>=63.1; extra == \"full\""
+      ],
+      "artifacts": [
+        {
+          "filename": "marker_pdf-2.0.0-py3-none-any.whl",
+          "bytes": 195742,
+          "sha256": "aa31f6a31990a6b7ac277aaea0df486b9314a9c1cd6fe0c1262dc162ed3f8e72"
+        },
+        {
+          "filename": "marker_pdf-2.0.0.tar.gz",
+          "bytes": 4801201,
+          "sha256": "7f6f0ebd29908f7c7c66f61cc06a9c07a9e3cd612c00732016f6e6b6fc150f7c"
+        }
+      ]
+    }
+  },
+  "paddleocr": {
+    "url": "https://pypi.org/pypi/paddleocr/json",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "version": "3.7.0",
+      "requires_python": ">=3.8",
+      "license": "Apache License 2.0",
+      "project_urls": {
+        "documentation": "https://github.com/PaddlePaddle/PaddleOCR/blob/main/README.md",
+        "homepage": "https://github.com/PaddlePaddle/PaddleOCR",
+        "issues": "https://github.com/PaddlePaddle/PaddleOCR/issues",
+        "repository": "https://github.com/PaddlePaddle/PaddleOCR.git"
+      },
+      "requires_dist": [
+        "paddlex[ocr-core]<3.8.0,>=3.7.0",
+        "PyYAML>=6",
+        "requests",
+        "aiohttp>=3.8.0",
+        "typing-extensions>=4.12",
+        "paddlex[genai-client,ie,ocr,trans]<3.8.0,>=3.7.0; extra == \"all\"",
+        "python-docx>=0.8.11; extra == \"all\"",
+        "python-pptx>=0.6.21; extra == \"all\"",
+        "openpyxl>=3.0.0; extra == \"all\"",
+        "paddlex[genai-client,ocr]<3.8.0,>=3.7.0; extra == \"doc-parser\"",
+        "python-docx>=0.8.11; extra == \"doc2md\"",
+        "python-pptx>=0.6.21; extra == \"doc2md\"",
+        "openpyxl>=3.0.0; extra == \"doc2md\"",
+        "pylatexenc<3,>=2.10; extra == \"doc2md\"",
+        "paddlex[ie]<3.8.0,>=3.7.0; extra == \"ie\"",
+        "paddlex[trans]<3.8.0,>=3.7.0; extra == \"trans\""
+      ],
+      "artifacts": [
+        {
+          "filename": "paddleocr-3.7.0-py3-none-any.whl",
+          "bytes": 146750,
+          "sha256": "c0f0a81ad4112727f30c6fcf986ac0ef6a120d31ee0991a01fae0357ee32d338"
+        },
+        {
+          "filename": "paddleocr-3.7.0.tar.gz",
+          "bytes": 3082862,
+          "sha256": "9b81eb62cf37e590d4873e60262ff56f968ff9de6ce1f565749760ceb1c422e2"
+        }
+      ]
+    }
+  },
+  "docling": {
+    "url": "https://pypi.org/pypi/docling/json",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "version": "2.143.1",
+      "requires_python": "<4.0,>=3.10",
+      "license": null,
+      "project_urls": {
+        "changelog": "https://github.com/docling-project/docling/blob/main/CHANGELOG.md",
+        "homepage": "https://github.com/docling-project/docling",
+        "issues": "https://github.com/docling-project/docling/issues",
+        "repository": "https://github.com/docling-project/docling"
+      },
+      "requires_dist": [
+        "docling-slim[standard]==2.143.1",
+        "docling-slim[format-audio]==2.143.1; extra == \"asr\"",
+        "docling-slim[feat-ocr-easyocr]==2.143.1; extra == \"easyocr\"",
+        "docling-slim[format-html-render]==2.143.1; extra == \"htmlrender\"",
+        "docling-slim[feat-ocr-mac]==2.143.1; extra == \"ocrmac\"",
+        "docling-slim[models-onnxruntime]==2.143.1; extra == \"onnxruntime\"",
+        "docling-slim[feat-ocr-rapidocr-onnx]==2.143.1; extra == \"rapidocr\"",
+        "docling-slim[models-remote]==2.143.1; extra == \"remote-serving\"",
+        "docling-slim[feat-ocr-tesserocr]==2.143.1; extra == \"tesserocr\"",
+        "docling-slim[models-vlm-inline]==2.143.1; extra == \"vlm\"",
+        "docling-slim[format-xml-xbrl]==2.143.1; extra == \"xbrl\""
+      ],
+      "artifacts": [
+        {
+          "filename": "docling-2.143.1-py3-none-any.whl",
+          "bytes": 5241,
+          "sha256": "43b71524373024adaa226c1a45eda92d4891d85c5c848a18e9fe72f6fa67132a"
+        },
+        {
+          "filename": "docling-2.143.1.tar.gz",
+          "bytes": 9178,
+          "sha256": "4d6de8a34fc4adffb2c918c37d51e07faae9c2dfcb7a687c400ec508cbe38f41"
+        }
+      ]
+    }
+  },
+  "easyocr": {
+    "url": "https://pypi.org/pypi/easyocr/json",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "version": "1.7.2",
+      "requires_python": null,
+      "license": "Apache License 2.0",
+      "project_urls": {
+        "Download": "https://github.com/jaidedai/easyocr.git",
+        "Homepage": "https://github.com/jaidedai/easyocr"
+      },
+      "requires_dist": [
+        "torch",
+        "torchvision>=0.5",
+        "opencv-python-headless",
+        "scipy",
+        "numpy",
+        "Pillow",
+        "scikit-image",
+        "python-bidi",
+        "PyYAML",
+        "Shapely",
+        "pyclipper",
+        "ninja"
+      ],
+      "artifacts": [
+        {
+          "filename": "easyocr-1.7.2-py3-none-any.whl",
+          "bytes": 2870178,
+          "sha256": "5be12f9b0e595d443c9c3d10b0542074b50f0ec2d98b141a109cd961fd1c177c"
+        }
+      ]
+    }
+  },
+  "granite": {
+    "url": "https://huggingface.co/api/models/ibm-granite/granite-docling-258M?blobs=true",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "id": "ibm-granite/granite-docling-258M",
+      "sha": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+      "lastModified": "2025-09-23T08:52:16.000Z",
+      "cardData": {
+        "license": "apache-2.0",
+        "datasets": [
+          "ds4sd/SynthCodeNet",
+          "ds4sd/SynthFormulaNet",
+          "ds4sd/SynthChartNet",
+          "HuggingFaceM4/DoclingMatix"
+        ],
+        "tags": [
+          "text-generation",
+          "documents",
+          "code",
+          "formula",
+          "chart",
+          "ocr",
+          "layout",
+          "table",
+          "document-parse",
+          "docling",
+          "granite",
+          "extraction",
+          "math"
+        ],
+        "language": [
+          "en"
+        ],
+        "pipeline_tag": "image-text-to-text",
+        "library_name": "transformers"
+      },
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "c76042c46155b351d6ebec65be41e160988f4742",
+          "size": 1706
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "9ca91f891770e0e507bee3f299c01a9d72ae1775",
+          "size": 21039
+        },
+        {
+          "rfilename": "added_tokens.json",
+          "blobId": "2895b6710d6bb8d5e7cc5d1137d79eff8ad06df2",
+          "size": 35
+        },
+        {
+          "rfilename": "assets/granite_docling_split_page.png",
+          "blobId": "5d5e96677dc13b8699410a83daecc2fb7080a617",
+          "size": 2321944,
+          "lfs": {
+            "sha256": "a1bd51ff1cea9daabc7f00522c7cc4b5905fa5cd3f67c40d0d707ee0686ce94b",
+            "size": 2321944,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "assets/new_arxiv.png",
+          "blobId": "646637ffb3a800fd2eb146519eb12fd37630c279",
+          "size": 523477,
+          "lfs": {
+            "sha256": "15e72aca956d9e796788eaa4b0debb9ae988ca7a9637ae3b6df1e6ce671d73d0",
+            "size": 523477,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "chat_template.jinja",
+          "blobId": "3b66e93d4b31ff6ba4fbea744407c43bad179212",
+          "size": 588
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "6a652f5b56550a9291c6a6bb019ade3744a8c8bb",
+          "size": 1641
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "172b1f940804da1f6d8b8c2a807e0f3163122211",
+          "size": 169
+        },
+        {
+          "rfilename": "granite_docling.png",
+          "blobId": "e01f92aabcd2ff0c12e418e1ed3c28f825e4459a",
+          "size": 2185867,
+          "lfs": {
+            "sha256": "f4d43939df541ab6958e989e7a6761a8db1ccb484dcb0c2749fedbb1357d2bb8",
+            "size": 2185867,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "merges.txt",
+          "blobId": "354558edcdbd64ca7abd407b8be3d5d09d39d781",
+          "size": 916646
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "d27772b891988931a1a43a3bb962c6f91c69b371",
+          "size": 515093104,
+          "lfs": {
+            "sha256": "1cdad234deb1cde18ee6a586f849057f19851daf1fedce2e40aff791dbe46f61",
+            "size": 515093104,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "893236748032d4bf033823d6a4a0d62b78b6bc0e",
+          "size": 486
+        },
+        {
+          "rfilename": "processor_config.json",
+          "blobId": "b3b1deadd0e6e18c2070fdb0c29074892ea58ffe",
+          "size": 68
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "e8e87b5f11beb05b0c8205811fc65d27d895ccc0",
+          "size": 812
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "d3eef61ed03b4b5f9a18bbd7c330a0ef7e5de02e",
+          "size": 7153134
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "1b20bc7d876f053bf0bc1ef0fb25ef24e1ef6a61",
+          "size": 17774
+        },
+        {
+          "rfilename": "vocab.json",
+          "blobId": "07fe068601babcefc22b1f9ce254ed0eede3d7fd",
+          "size": 1612698
+        }
+      ],
+      "safetensors": {
+        "parameters": {
+          "BF16": 257517120
+        },
+        "total": 257517120
+      }
+    }
+  },
+  "paddle_vl": {
+    "url": "https://huggingface.co/api/models/PaddlePaddle/PaddleOCR-VL-1.6?blobs=true",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "id": "PaddlePaddle/PaddleOCR-VL-1.6",
+      "sha": "c5630abae1d940eafe0697512a0325494b02ab42",
+      "lastModified": "2026-08-08T14:32:21.000Z",
+      "cardData": {
+        "license": "apache-2.0",
+        "pipeline_tag": "image-text-to-text",
+        "tags": [
+          "ERNIE4.5",
+          "PaddleOCR",
+          "PaddlePaddle",
+          "image-to-text",
+          "ocr",
+          "document-parse",
+          "layout",
+          "table",
+          "formula",
+          "chart",
+          "seal",
+          "spotting"
+        ],
+        "language": [
+          "en",
+          "zh",
+          "multilingual"
+        ],
+        "library_name": "PaddleOCR"
+      },
+      "siblings": [
+        {
+          "rfilename": ".eval_results/real5_omnidocbench.yaml",
+          "blobId": "57e6759f2c21614b485d2308714b7fe16821120d",
+          "size": 1418
+        },
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "52373fe24473b1aa44333d318f578ae6bf04b49b",
+          "size": 1570
+        },
+        {
+          "rfilename": "LICENSE",
+          "blobId": "0491a00e80b424eb709078b57e35d8b83ffee985",
+          "size": 11376
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "58e9801f72ad5f992f0fc2e397ccf0fb014e5e5f",
+          "size": 21424
+        },
+        {
+          "rfilename": "added_tokens.json",
+          "blobId": "6a2790e1462ecb007f9b92dfb00f594701462889",
+          "size": 25381
+        },
+        {
+          "rfilename": "chat_template.jinja",
+          "blobId": "d8b8c271d7a7245d4937098f53aa372cff3dba70",
+          "size": 1474
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "c54711466ae75457f8e57b909a49dae570bfa5c5",
+          "size": 2059
+        },
+        {
+          "rfilename": "configuration_paddleocr_vl.py",
+          "blobId": "a8fd139287293301b287db6dfdaac21d7ad1a236",
+          "size": 8104
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "ba87d71b9881c1d52f0be4286fb63e381ce3febf",
+          "size": 133
+        },
+        {
+          "rfilename": "image_processing_paddleocr_vl.py",
+          "blobId": "f7e28fd3c1971331581f73d573b9c4a2a4ce7a58",
+          "size": 25032
+        },
+        {
+          "rfilename": "inference.yml",
+          "blobId": "93f88dfb31b6dbc3f529094ccfe26ddec98fa8ad",
+          "size": 43
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "04667d00268d801a65293c1041e0fa4ad2ef573b",
+          "size": 1917255968,
+          "lfs": {
+            "sha256": "85a479d506a11e724e7285d395c551be69f41dbc16b6342d3cacfb189aed71db",
+            "size": 1917255968,
+            "pointerSize": 135
+          }
+        },
+        {
+          "rfilename": "modeling_paddleocr_vl.py",
+          "blobId": "693782514116586458b12cfd911c88d6565f552c",
+          "size": 103889
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "d873cd63d04d9e6243999759fc30f7752dab3222",
+          "size": 641
+        },
+        {
+          "rfilename": "processing_paddleocr_vl.py",
+          "blobId": "73c3faeff201555fc7b52709848e3c669419dbb1",
+          "size": 12253
+        },
+        {
+          "rfilename": "processor_config.json",
+          "blobId": "033053ac4d8b5de2e47884ce85a6b4939cc58e87",
+          "size": 137
+        },
+        {
+          "rfilename": "special_tokens_map.json",
+          "blobId": "dcd70aaa8c9987899d7593995546d9c0cfc6a1f3",
+          "size": 1151
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "e42528d5cae447340ed0a3e403001c88fe9b0f17",
+          "size": 11189060,
+          "lfs": {
+            "sha256": "c8a215a59183d0d0781adc33bacd3ce6162716f7fd568fb30234a74d69803a7d",
+            "size": 11189060,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "tokenizer.model",
+          "blobId": "81e33aa7fdb8ef76fceb1a69f1997021f3056770",
+          "size": 1614363,
+          "lfs": {
+            "sha256": "34ef7db83df785924fb83d7b887b6e822a031c56e15cff40aaf9b982988180df",
+            "size": 1614363,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "cd9eb7da01a3209f4fb9b3561e04be022cd87764",
+          "size": 186947
+        }
+      ],
+      "safetensors": {
+        "parameters": {
+          "BF16": 958588736
+        },
+        "total": 958588736
+      }
+    }
+  },
+  "surya_weights": {
+    "url": "https://huggingface.co/api/models/datalab-to/surya-ocr-2?blobs=true",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "id": "datalab-to/surya-ocr-2",
+      "sha": "3b3d4cdf88d6928b0acdc75181b13206ea67c4a3",
+      "lastModified": "2026-05-27T20:33:29.000Z",
+      "cardData": {
+        "library_name": "transformers",
+        "license": "openrail",
+        "license_link": "LICENSE",
+        "tags": [
+          "ocr",
+          "pdf",
+          "markdown",
+          "layout"
+        ]
+      },
+      "siblings": [
+        {
+          "rfilename": ".eval_results/olmocrbench.yaml",
+          "blobId": "5ef1fb788bbb4e8d02cabd6da11568baacbf7f23",
+          "size": 1737
+        },
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "e6d7475818426ecc612ea7b3e77bb2952786a3c0",
+          "size": 3048
+        },
+        {
+          "rfilename": "LICENSE",
+          "blobId": "114d9aa9c42e0db91e5db467d48a27a2b42e22f3",
+          "size": 14744
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "93e03ae2391ddda61320e5f0a979bd2ba5062f99",
+          "size": 22524
+        },
+        {
+          "rfilename": "assets/corporate.png",
+          "blobId": "3d62dac9ff7bf18a45a69766fe292a2d6b765a2d",
+          "size": 168157,
+          "lfs": {
+            "sha256": "03e5004c5ee8b24c09d81c6b735ff057038d58e3e87d09a5aac68ce1fcd09249",
+            "size": 168157,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/corporate_layout.png",
+          "blobId": "642123c173a98b018eaf02bb3a6033a8fd35be66",
+          "size": 167382,
+          "lfs": {
+            "sha256": "c472d16817b87a322f40b31f3689209d729d56e82418558b0185060dfe3d5a2b",
+            "size": 167382,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/corporate_reading.png",
+          "blobId": "061b975b5e739792660acccab2d95383aae76866",
+          "size": 168207,
+          "lfs": {
+            "sha256": "fa9471e99827a94aa4d6889e05880ff920cca195d8ddd66192e02242fcdedf30",
+            "size": 168207,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/corporate_tablerec.png",
+          "blobId": "050fe3ced3a5a5d92d043fde821ea35084d27c10",
+          "size": 163055,
+          "lfs": {
+            "sha256": "c1861b87e15f50bad581b46e82b9a38f85b74900d1fdb9088fe780698b57a493",
+            "size": 163055,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/corporate_text.png",
+          "blobId": "d321a3520902a4122ee0dd465db07ec075af70dd",
+          "size": 166239,
+          "lfs": {
+            "sha256": "893c5924fe66740b77a73afeb0d41f4139814f6cbaed2850e4743793b380b99c",
+            "size": 166239,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/excerpt.png",
+          "blobId": "81ae8209b5d3fb6356a57c97f52ca4823be41434",
+          "size": 338806,
+          "lfs": {
+            "sha256": "9d1913fc79fb9bea3e632622c9d2064a4c60485fbfaba2e67cfb48c2668ad149",
+            "size": 338806,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/excerpt_layout.png",
+          "blobId": "bfaf6851756ffb192e5b082ddf7e6147c7414184",
+          "size": 345370,
+          "lfs": {
+            "sha256": "924b81dba774c3c66ae09f6874334a3bcdcca75b330179fb1854964f262b15a7",
+            "size": 345370,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/excerpt_text.png",
+          "blobId": "b6b3b00e9bbda84302d68be5d658e2fcfb50e39c",
+          "size": 542562,
+          "lfs": {
+            "sha256": "baddec3a08b69949d737f6ec3322bb70a37cf9acb6681c91ff41a9c2f1f23965",
+            "size": 542562,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/form.png",
+          "blobId": "4ae526128c3608b1d9d90128d240a27a796b8da1",
+          "size": 513328,
+          "lfs": {
+            "sha256": "60fb6bfde4d790cf5c97c11bc8697746e3a49fd6004325d8c25aa3ce1600edc5",
+            "size": 513328,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/form_layout.png",
+          "blobId": "8586a29945341f4dd059846bba0870bbebf4e215",
+          "size": 508013,
+          "lfs": {
+            "sha256": "631c09dc21bd05a1a81d981fd33ad6f5d0830d3e750bfae189a355fe4509dff9",
+            "size": 508013,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/form_reading.png",
+          "blobId": "2d03b40e20b1788236239c22dd3bd6faec8d221d",
+          "size": 518714,
+          "lfs": {
+            "sha256": "e88bac7fb15d375be5d4f115b3558007398952b3bd4cd03ebd84a567be6867a9",
+            "size": 518714,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/form_tablerec.png",
+          "blobId": "18f3b7b6ffccc41b3d7a06b9086df3f63999d9b0",
+          "size": 511462,
+          "lfs": {
+            "sha256": "d799c78d495c19cf6e68e73b48459a16331eb80bc569540e17471f29ab4a7a4f",
+            "size": 511462,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/form_text.png",
+          "blobId": "eb8e772592e9f660b7cae84976968fc616ae2205",
+          "size": 329540,
+          "lfs": {
+            "sha256": "7c40b723392652b65ab18be779bcb9b6396e65f718b9bdea1071e26e543c67b1",
+            "size": 329540,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/handwritten.png",
+          "blobId": "4ef3a3aa60ca617e295ab4b1e63e858955ca3c18",
+          "size": 178490,
+          "lfs": {
+            "sha256": "3c7623a26db006f332d7db8e5c0e21861311352622502698abe8b689c8ab3421",
+            "size": 178490,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/handwritten_layout.png",
+          "blobId": "ad9dc38c6339af823eab1b819f76e2390154f474",
+          "size": 184720,
+          "lfs": {
+            "sha256": "ad0e4ae387b843bda64b51e132b1e5ea8003b5ad49aeddafe9681a0968cd51d7",
+            "size": 184720,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/handwritten_reading.png",
+          "blobId": "705206c2b5dd1aa8db7575777c1b6457eadb5126",
+          "size": 185368,
+          "lfs": {
+            "sha256": "5cc6662224cacbb0a26c7890aedffeffa7d12a4592115737c7104fa661b058ac",
+            "size": 185368,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/handwritten_tablerec.png",
+          "blobId": "8279391eb6161614ad1e4c523275c51dd05c19c7",
+          "size": 171171,
+          "lfs": {
+            "sha256": "5e3f7820dc76b4480afe350fa4b7263b87e15615109cae40b3c591d0b5be5785",
+            "size": 171171,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/handwritten_text.png",
+          "blobId": "33477c8bc7d56ae27b15c2d00af162d4de705e7a",
+          "size": 298492,
+          "lfs": {
+            "sha256": "9686cfab491a74085e70957093bd381b6202a1311269ebd18e210982cd2cf4ab",
+            "size": 298492,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/newspaper.png",
+          "blobId": "7aca945907879bd20571e4c6e58da310e351acdf",
+          "size": 5647219,
+          "lfs": {
+            "sha256": "1a07a43797b78ffa8db5b4d11e7c2668d58d38a94cfa81a6cdd8d50750b62b9e",
+            "size": 5647219,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "assets/newspaper_layout.png",
+          "blobId": "f78dd2bf4a8176a628663b4cabbe80b0e0e1eeea",
+          "size": 5600156,
+          "lfs": {
+            "sha256": "139c8fd411526b85d2ff600a1912874ae5f23f6d77c1ec3d9319b73a64dd2e7e",
+            "size": 5600156,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "assets/newspaper_reading.png",
+          "blobId": "411b756493ec65ec5ed27cda008b4c78a20dd5c0",
+          "size": 5649385,
+          "lfs": {
+            "sha256": "c18c2eb0c39de94267f11bd97091b6542f130dd05a93142a5e5f007b9a435253",
+            "size": 5649385,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "assets/newspaper_text.png",
+          "blobId": "779faed1fa3f61a858d4dec79e06b1c7d4117cec",
+          "size": 1880345,
+          "lfs": {
+            "sha256": "364de91c602c902faf13c33628192efbeb1a28fc1b853265563f7946fddbb271",
+            "size": 1880345,
+            "pointerSize": 132
+          }
+        },
+        {
+          "rfilename": "assets/olmocr_size_chart.png",
+          "blobId": "64e7636584f3ba9b3e7098cb2873ccad8d119094",
+          "size": 82455,
+          "lfs": {
+            "sha256": "34addebba2311e061b04ba04dc6a4231a31d4ef3ca0193d908a291bbf72fb528",
+            "size": 82455,
+            "pointerSize": 130
+          }
+        },
+        {
+          "rfilename": "assets/scanned_tablerec.png",
+          "blobId": "a249f292ee5b098be005a3722785908f8f230dd1",
+          "size": 345455,
+          "lfs": {
+            "sha256": "86091b59d376bb658e331eb9abd3d32fd214b822eafc994685712db968f48147",
+            "size": 345455,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/textbook.png",
+          "blobId": "0555f57f788379f23bbcb2a5ad9cafe3e9d6f3bb",
+          "size": 193115,
+          "lfs": {
+            "sha256": "0070c7f61aae00201f9764bf4a01d6c8ab301718f9f9c62522b9eb24ae0890f7",
+            "size": 193115,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/textbook_layout.png",
+          "blobId": "a3496c70f9276c7e9a44fff4e6031f51f4be7f43",
+          "size": 194919,
+          "lfs": {
+            "sha256": "2711fcd2183f9397306817c083a9377134647ab11521293732031e0e780571da",
+            "size": 194919,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/textbook_reading.png",
+          "blobId": "77fea183706a70b5257a4e8f3190b69452339bf5",
+          "size": 200789,
+          "lfs": {
+            "sha256": "81d14c7a6d77872fc21a2743f03b7ce4124f6301c97aa7e6de425b73396d2259",
+            "size": 200789,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "assets/textbook_text.png",
+          "blobId": "2f63345e292684a9794f11200fbe49196ba0a232",
+          "size": 225651,
+          "lfs": {
+            "sha256": "7950d981fdf94b499d27db1bfad4e62aaf139ba7be44f88bbe1d411729c10d8f",
+            "size": 225651,
+            "pointerSize": 131
+          }
+        },
+        {
+          "rfilename": "chat_template.jinja",
+          "blobId": "2ccb3df40d2a711a4fc27d43df06c9a9791b3f8f",
+          "size": 2872
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "a7172fe8c10cf7a50a8a592e628c9a574f06585b",
+          "size": 2582
+        },
+        {
+          "rfilename": "datalab-logo.png",
+          "blobId": "c32033cb18944d41982300f0fee319867e4ed425",
+          "size": 6169
+        },
+        {
+          "rfilename": "generation_config.json",
+          "blobId": "e34176204f8f228957868ead00c940a270bbc233",
+          "size": 131
+        },
+        {
+          "rfilename": "model.safetensors",
+          "blobId": "f89db169e56d0ae8c725d758a1ac0afaa0d95bb8",
+          "size": 1372368672,
+          "lfs": {
+            "sha256": "5755f82a997dd0b111964fa8b31cc2daef7aeb7a706bbd17d73d6a93ef3f723e",
+            "size": 1372368672,
+            "pointerSize": 135
+          }
+        },
+        {
+          "rfilename": "preprocessor_config.json",
+          "blobId": "be0d97d66db8dcf3e2af39c4eea4fb204b79efa5",
+          "size": 482
+        },
+        {
+          "rfilename": "processor_config.json",
+          "blobId": "331fb318bde7ed7a2626237a262ec7fcd7591b45",
+          "size": 1301
+        },
+        {
+          "rfilename": "tokenizer.json",
+          "blobId": "127411622065794968b859355f463ab99257c031",
+          "size": 1656690
+        },
+        {
+          "rfilename": "tokenizer_config.json",
+          "blobId": "ab044b3b97c36149a2b7bbe3638898cbea460e19",
+          "size": 571
+        },
+        {
+          "rfilename": "video_preprocessor_config.json",
+          "blobId": "390c81a9c3712dd9b3b1b0ec9fd158bcbbc05d85",
+          "size": 615
+        }
+      ],
+      "safetensors": {
+        "parameters": {
+          "BF16": 686154304
+        },
+        "total": 686154304
+      }
+    }
+  },
+  "tesseract": {
+    "url": "https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "tag_name": "5.5.4",
+      "published_at": "2026-10-28T11:19:43Z",
+      "html_url": "https://github.com/tesseract-ocr/tesseract/releases/tag/5.5.4"
+    }
+  },
+  "paddle_ocr_source": {
+    "url": "https://raw.githubusercontent.com/PaddlePaddle/PaddleOCR/v3.7.0/paddleocr/_pipelines/ocr.py",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "sha256": "fc870f7a7f1b33756020d75c63c6dc0dc04981df1ff46627a040336ead9a9b88"
+    }
+  },
+  "easyocr_config": {
+    "url": "https://raw.githubusercontent.com/JaidedAI/EasyOCR/v1.7.2/easyocr/config.py",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "sha256": "9c36d6c674fe32b05bda27192211ff6b63bf22f00b8439d40d33b35e3e2c1f8d"
+    }
+  },
+  "surya_settings": {
+    "url": "https://raw.githubusercontent.com/datalab-to/surya/v0.22.1/surya/settings.py",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "sha256": "d4c2bcf140c7f424a290fcd68a2f3eae745ab2c476a6781a6c4449977c8d88e4"
+    }
+  },
+  "docling_models": {
+    "url": "https://huggingface.co/api/models/docling-project/docling-models?blobs=true",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "id": "docling-project/docling-models",
+      "sha": "2199320848bb9a8a519d22e4b528185a4f9a6f64",
+      "siblings": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "575b058b45230d48a06df9b1944f4bd40949db1d",
+          "size": 1905
+        },
+        {
+          "rfilename": ".gitignore",
+          "blobId": "9430eb3c89847aa8f80af5c96df3c348fca6da63",
+          "size": 5180
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "598f7fa8e3023852ab74e8e851dc0d9b195cbc20",
+          "size": 3428
+        },
+        {
+          "rfilename": "config.json",
+          "blobId": "4dc84c9101238bb955158144660155da99438490",
+          "size": 41
+        },
+        {
+          "rfilename": "model_artifacts/tableformer/accurate/tableformer_accurate.safetensors",
+          "blobId": "fd1dc0d8a2abf0cf9f5a3b4318ba3a20d5bd37df",
+          "size": 212758388,
+          "lfs": {
+            "sha256": "2a7d6c924b3cd12fb99a09280ca9c33a89c5d60b93253617d2e088c1a40374d9",
+            "size": 212758388,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "model_artifacts/tableformer/accurate/tm_config.json",
+          "blobId": "5036aa114b9393f607440cb0f6cc54229b5b30e1",
+          "size": 7060
+        },
+        {
+          "rfilename": "model_artifacts/tableformer/fast/tableformer_fast.safetensors",
+          "blobId": "f6653fe54c4cb33f058203af9ee424debcbcbaf2",
+          "size": 145453276,
+          "lfs": {
+            "sha256": "3119563aab5a7c96fda4d621119b63fd8806272b86c30936d15507616422f718",
+            "size": 145453276,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "model_artifacts/tableformer/fast/tm_config.json",
+          "blobId": "d02c5889d288b8baefd42e9e4da094f0cea07bbe",
+          "size": 7060
+        }
+      ],
+      "cardData": {
+        "license": [
+          "cdla-permissive-2.0",
+          "apache-2.0"
+        ]
+      }
+    }
+  },
+  "tessdata_fast": {
+    "url": "https://api.github.com/repos/tesseract-ocr/tessdata_fast/git/trees/main?recursive=1",
+    "accessed_date": "2026-10-28",
+    "data": {
+      "sha": "87416418657359cb625c412a48b6e1d6d41c29bd",
+      "selected_files": [
+        {
+          "path": "LICENSE",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+          "size": 11358,
+          "url": "https://api.github.com/repos/tesseract-ocr/tessdata_fast/git/blobs/d645695673349e3947e8e5ae42332d0ac3164cd7"
+        },
+        {
+          "path": "ara.traineddata",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c8d129c67821c1592cac46836686b057ecc203dc",
+          "size": 1432056,
+          "url": "https://api.github.com/repos/tesseract-ocr/tessdata_fast/git/blobs/c8d129c67821c1592cac46836686b057ecc203dc"
+        },
+        {
+          "path": "eng.traineddata",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bbef4675053b5b468cdb477053e28b1c698ba08e",
+          "size": 4113088,
+          "url": "https://api.github.com/repos/tesseract-ocr/tessdata_fast/git/blobs/bbef4675053b5b468cdb477053e28b1c698ba08e"
+        }
+      ]
+    }
+  }
+}

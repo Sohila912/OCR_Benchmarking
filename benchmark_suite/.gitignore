@@ -9,6 +9,7 @@
 # Immutable generated runs and reports remain local; never overwrite to publish.
 /results/**
 /reports/visualizations/**
+/reports/hardware_observations/
 /artifacts/
 /downloads/
 /models/

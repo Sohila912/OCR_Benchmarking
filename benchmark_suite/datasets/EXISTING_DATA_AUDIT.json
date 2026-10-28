@@ -1,0 +1,72 @@
+{
+  "audit_date": "2026-10-28",
+  "method": "Read existing PDF metadata via pdfinfo, byte hashes and UTF-8 reference checks only; no rendering, OCR, reference correction or standardized manifest creation. Equal basenames do not prove semantic pairing.",
+  "languages": [
+    {
+      "language": "English",
+      "pdf_files": 32,
+      "reference_files": 32,
+      "basename_pairs": 32,
+      "pdfs_without_reference": [],
+      "references_without_pdf": [],
+      "known_total_pdf_pages": 68,
+      "page_count_unknown_files": [],
+      "total_bytes": 7071578,
+      "empty_references": [],
+      "invalid_utf8_references": [],
+      "references_containing_html_table_tag": 0,
+      "references_containing_markdown_pipe_rows": 15,
+      "provenance_status": "UNVERIFIED",
+      "license_status": "UNVERIFIED",
+      "text_truth_human_verification": "UNVERIFIED",
+      "annotation_status": "Markdown only; formatting markers do not establish valid table topology or geometry"
+    },
+    {
+      "language": "Arabic",
+      "pdf_files": 30,
+      "reference_files": 30,
+      "basename_pairs": 30,
+      "pdfs_without_reference": [],
+      "references_without_pdf": [],
+      "known_total_pdf_pages": 30,
+      "page_count_unknown_files": [],
+      "total_bytes": 2316116,
+      "empty_references": [],
+      "invalid_utf8_references": [],
+      "references_containing_html_table_tag": 0,
+      "references_containing_markdown_pipe_rows": 0,
+      "provenance_status": "UNVERIFIED",
+      "license_status": "UNVERIFIED",
+      "text_truth_human_verification": "UNVERIFIED",
+      "annotation_status": "Markdown only; formatting markers do not establish valid table topology or geometry"
+    },
+    {
+      "language": "Mix",
+      "pdf_files": 10,
+      "reference_files": 10,
+      "basename_pairs": 9,
+      "pdfs_without_reference": [
+        "invoice_5"
+      ],
+      "references_without_pdf": [
+        "Invoice_5"
+      ],
+      "known_total_pdf_pages": 10,
+      "page_count_unknown_files": [],
+      "total_bytes": 1305313,
+      "empty_references": [],
+      "invalid_utf8_references": [],
+      "references_containing_html_table_tag": 0,
+      "references_containing_markdown_pipe_rows": 6,
+      "provenance_status": "UNVERIFIED",
+      "license_status": "UNVERIFIED",
+      "text_truth_human_verification": "UNVERIFIED",
+      "annotation_status": "Markdown only; formatting markers do not establish valid table topology or geometry"
+    }
+  ],
+  "total_bytes": 10693007,
+  "duplicate_pdf_content_groups": [],
+  "source_provenance_files_found": [],
+  "publication_eligibility": "BLOCKED_UNVERIFIED_PROVENANCE_AND_ANNOTATIONS",
+  "dataset_files_modified": false
+}

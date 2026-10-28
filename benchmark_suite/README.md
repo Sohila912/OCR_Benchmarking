@@ -2,7 +2,7 @@
 
 This isolated suite will compare nine OCR configurations across English and
 Arabic text, layout, reading order, tables and charts using verified public
-ground truth and auditable measurements. **Foundations and read-only hardware/model research are implemented.**
+ground truth and auditable measurements. **Foundations, read-only hardware/model research and dataset selection are implemented.**
 No new model evaluation, dataset download or accuracy comparison has been run.
 
 Read [PROGRESS.md](PROGRESS.md), [BENCHMARK_STATUS.json](BENCHMARK_STATUS.json)
@@ -64,8 +64,11 @@ do not establish all nine candidates' capabilities.
   [compatibility and resource strategy](reports/MODEL_HARDWARE_COMPATIBILITY.md),
   [capabilities/dependencies](reports/MODEL_CAPABILITIES.md) and
   [research-only model registry](MODEL_REGISTRY.yaml). Current low RAM blocks model loading.
-- TASK-004/005: select licensed independent English/Arabic reference datasets,
-  obtain required download approval, verify provenance/hashes and freeze splits.
+- TASK-004 (complete): [dataset selection](datasets/DATASET_SELECTION.md) proposes
+  OmniDocBench English pages and Misraj-DocOCR Arabic pages, with source/rights
+  evidence, an existing-data audit and explicit missing-annotation coverage.
+- TASK-005 (pending approval): bounded acquisition, provenance/hash validation
+  and frozen development/evaluation manifests. No datasets have been acquired.
 - TASK-006: define/test text, layout, table, chart, reading-order and statistical
   metrics against the actual annotation types.
 - TASK-007/008: hardware preflight, adapters/runner, cache/recovery, Windows
@@ -95,7 +98,8 @@ matching/IoU/taxonomy/TEDS/statistics and justified display scales are TASK-006
 deliverables. Existing historical evaluator policies remain unchanged and must
 not be mixed with future scores without checking their definitions.
 
-Dataset sources/licenses remain pending TASK-004. Model environments require
+Dataset sources/licenses and proposed acquisition are documented in the selection
+report; actual download approval and payload validation remain pending. Model environments require
 per-model setup and preflight despite the completed compatibility research. Windows menu, setup, single-model runs, smoke/resume/evaluation,
 report generation and comparison commands will be documented with tested
 examples when implemented in TASK-008/018/019. There is no run_benchmark.bat or
@@ -127,3 +131,20 @@ not a model minimum. Passing it still needs the model-specific TASK-007
 preflight. Do not treat CUDA 13.0 in NVIDIA-SMI as installed CUDA-enabled Torch:
 the inspected Torch/Paddle builds are CPU-only. No API/cloud environment was
 used. See the reports for evidence, limits, remedies and cost/approval gates.
+
+## Dataset acquisition gate
+
+The TASK-004 proposal selects pinned OmniDocBench English pages and the
+400-row Misraj Arabic benchmark. OmniDocBench's dataset statement limits use to
+noncommercial research; its evaluator code license does not remove that limit.
+No dataset payloads were downloaded. The conservative primary-pair transfer
+estimate is 2.09 GB decimal; TASK-005 requests explicit approval for a 2.2-GB
+transfer budget and a 6-GiB disk reserve. Supplements are excluded, particularly
+KITAB subsets with unresolved data licenses and the oversized full DocLayNet
+archive. See datasets/DATASET_SELECTION.md before granting acquisition approval.
+
+The existing curated data remains unchanged and unverified for publication.
+Its audit found a case mismatch in the mixed-language invoice_5 / Invoice_5
+pair; resolve it with an explicit future manifest mapping rather than renaming
+source files. Raw data stays ignored; only reviewed source/selection/audit
+metadata files are allowed in Git.

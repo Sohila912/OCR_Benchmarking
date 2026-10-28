@@ -4,7 +4,7 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
-TASK-001 completed at 5da4946 and TASK-002 at 0db4fd4. The user approved pushing prior checkpoints and completing TASK-003 on 2026-10-28. Stop at the TASK-003 research checkpoint; hardware blockers prevent model loading. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval. No model or dataset downloads in TASK-001.
+TASK-001 through TASK-003 are complete (5da4946, 0db4fd4, f60742f). The user approved pushing and completing TASK-004 on 2026-10-28. Stop at the TASK-004 dataset-selection checkpoint. TASK-005 needs explicit bounded download approval; hardware blockers still prevent model loading. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval. No model or dataset downloads in TASK-001.
 
 At every new session read this plan, PROGRESS.md and BENCHMARK_STATUS.json; check Git branch/status and relevant artifacts; validate the last checkpoint before continuing the first incomplete approved task. Preserve existing files/results and user work. Commit only explicitly selected task files after checks. Never stage credentials, downloaded datasets or model weights. Do not use blanket staging.
 
@@ -53,7 +53,7 @@ General definition of done: stated acceptance criteria and checks pass (or block
 
 - Objective: Select English and Arabic public ground-truth datasets and supplements for missing annotations.
 - Dependencies: TASK-002.
-- Files to create/modify: datasets/DATASET_SELECTION.md.
+- Files to create/modify: datasets/DATASET_SELECTION.md; datasets/SOURCE_RESEARCH.json; datasets/EXISTING_DATA_AUDIT.json; .gitignore (allow reviewed research metadata only); README.md (selection and acquisition gate).
 - Acceptance criteria: Cite source/version/license, size/counts, languages, exact ground truth, categories, procedure and limitations; review existing datasets provenance; do not download large/restricted data; explicitly record download approval needed.
 - Verification commands: `Get-Content benchmark_suite/datasets/DATASET_SELECTION.md`
 - Expected outputs: Reviewable dataset selection and download proposal.

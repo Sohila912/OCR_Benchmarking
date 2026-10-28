@@ -2,6 +2,8 @@
 /datasets/*
 !/datasets/manifest/
 !/datasets/DATASET_SELECTION.md
+!/datasets/SOURCE_RESEARCH.json
+!/datasets/EXISTING_DATA_AUDIT.json
 !/datasets/README.md
 !/datasets/LICENSE*
 /datasets/manifest/*.tmp

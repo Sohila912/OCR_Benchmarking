@@ -1,0 +1,790 @@
+{
+  "omnidocbench": {
+    "url": "https://huggingface.co/api/datasets/opendatalab/OmniDocBench?blobs=true",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "f53af8af1de43e1efd277d256c7612c3385a3c1a66512c1c4d80ed837906acb4",
+    "data": {
+      "id": "opendatalab/OmniDocBench",
+      "sha": "aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec",
+      "lastModified": "2026-06-26T10:19:31.000Z",
+      "gated": false,
+      "private": false,
+      "cardData": null,
+      "file_inventory_summary": {
+        "file_count": 1662,
+        "total_file_bytes": 1550688430,
+        "page_image_files_under_images": 1651,
+        "parquet_bytes": 0
+      },
+      "selected_files": [
+        {
+          "rfilename": "OmniDocBench.json",
+          "blobId": "d62a792bb50d991b711abf5eee0bec709db8047c",
+          "size": 42208096,
+          "lfs": {
+            "sha256": "a45cd84b04ad8b793e775089640e6b681209abea33ead54c1828ddca35fae496",
+            "size": 42208096,
+            "pointerSize": 133
+          }
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "02888bf428963a88483bee27410e95d057f28c21",
+          "size": 13441
+        },
+        {
+          "rfilename": "README_ZH.md",
+          "blobId": "d3bdca2910d4812ebfafd06d43c137544c8b0948",
+          "size": 12501
+        }
+      ],
+      "illustration_image_files": [
+        "data_diversity.jpg",
+        "data_diversity.png",
+        "show_pdf_types_1.jpg",
+        "show_pdf_types_1.png",
+        "show_pdf_types_2.jpg",
+        "show_pdf_types_2.png"
+      ]
+    }
+  },
+  "misraj": {
+    "url": "https://huggingface.co/api/datasets/Misraj/Misraj-DocOCR?blobs=true",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "f7780b2cec831632229c70f24e7b5fc6ec5c9467cd3882052c0160d81de123e2",
+    "data": {
+      "id": "Misraj/Misraj-DocOCR",
+      "sha": "7177bf70f77ce259890d6af0bef53f18faf26ec9",
+      "lastModified": "2025-10-12T13:04:44.000Z",
+      "gated": false,
+      "private": false,
+      "cardData": {
+        "tags": [
+          "ocr",
+          "arabic",
+          "document-understanding",
+          "structure-preservation",
+          "computer-vision"
+        ],
+        "pretty_name": "Misraj-DocOCR",
+        "license": "apache-2.0",
+        "configs": [
+          {
+            "config_name": "default",
+            "data_files": [
+              {
+                "split": "train",
+                "path": "data/train-*"
+              }
+            ]
+          }
+        ],
+        "dataset_info": {
+          "features": [
+            {
+              "name": "uuid",
+              "dtype": "string"
+            },
+            {
+              "name": "markdown",
+              "dtype": "string"
+            },
+            {
+              "name": "image",
+              "dtype": "image"
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 541115359,
+              "num_examples": 400
+            }
+          ],
+          "download_size": 537036141,
+          "dataset_size": 541115359
+        }
+      },
+      "file_inventory_summary": {
+        "file_count": 4,
+        "total_file_bytes": 537043557,
+        "page_image_files_under_images": 0,
+        "parquet_bytes": 537036141
+      },
+      "selected_files": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "1ef325f1b111266a6b26e0196871bd78baa8c2f3",
+          "size": 2461
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "deb094a7858ae5a75afdbfff873ce639fe5193e6",
+          "size": 4955
+        },
+        {
+          "rfilename": "data/train-00000-of-00002.parquet",
+          "blobId": "0aa962f7dc3ee73b0c0709030fdb36551ba59b1b",
+          "size": 247992106,
+          "lfs": {
+            "sha256": "8afa47430982ec5b827290aca2e78fb9c57edf080f173561c02c2b462e116ffe",
+            "size": 247992106,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "data/train-00001-of-00002.parquet",
+          "blobId": "8c54b8a1f851946027d5b53ee8b9a03849ca1856",
+          "size": 289044035,
+          "lfs": {
+            "sha256": "c9fac8883b9729e4d61ca4bcff1bfd023e5065110a8a780917e14c6491f99a6c",
+            "size": 289044035,
+            "pointerSize": 134
+          }
+        }
+      ]
+    }
+  },
+  "kitab_collection": {
+    "url": "https://huggingface.co/api/collections/ahmedheakl/kitab-bench-677dd5d88d5db344d5595b78",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "2443fba42ebb08bb95c5293eea488870b8fe19671bbce423773368a97ad84bf9",
+    "data": {
+      "items": [
+        {
+          "id": "ahmedheakl/arocrbench_synthesizear",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_patsocr",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_historyar",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_historicalbooks",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_khattparagraph",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_adab",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_muharaf",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_onlinekhatt",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_khatt",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_isippt",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_arabicocr",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_hindawi",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_evarest",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_mtvqa",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_patdvqa",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_chartsvqa",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_diagramsvqa",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_charts",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_diagrams",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_ourslines",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_doclaynet",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_bcelayout",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "ahmedheakl/arocrbench_tables",
+          "itemId": null,
+          "type": "dataset"
+        },
+        {
+          "id": "2502.14949",
+          "itemId": null,
+          "type": "paper"
+        }
+      ]
+    }
+  },
+  "kitab_readme": {
+    "url": "https://raw.githubusercontent.com/mbzuai-oryx/KITAB-Bench/main/README.md",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "bd25866060325932023d84fc4772e063e75e12d3f4728f2c140434872c20a32d",
+    "data": {
+      "metadata_bytes": 11840,
+      "source_sha256": "bd25866060325932023d84fc4772e063e75e12d3f4728f2c140434872c20a32d"
+    }
+  },
+  "omnidocbench_readme": {
+    "url": "https://raw.githubusercontent.com/opendatalab/OmniDocBench/main/README.md",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "a799f3dabee0d8e2be9f990fc325c3fefadb8d7f8d0cf56148406547d495a3ad",
+    "data": {
+      "metadata_bytes": 96525,
+      "source_sha256": "a799f3dabee0d8e2be9f990fc325c3fefadb8d7f8d0cf56148406547d495a3ad"
+    }
+  },
+  "tables": {
+    "url": "https://huggingface.co/api/datasets/ahmedheakl/arocrbench_tables?blobs=true",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "1496e82b47459764adf557c4c7a955eb78569a956500006f1743842be0882a0c",
+    "data": {
+      "id": "ahmedheakl/arocrbench_tables",
+      "sha": "1fc7dbf1414f82f04c091087af31d30446bd1867",
+      "lastModified": "2025-02-24T12:47:39.000Z",
+      "gated": false,
+      "cardData": {
+        "dataset_info": {
+          "features": [
+            {
+              "name": "metadata",
+              "dtype": "string"
+            },
+            {
+              "name": "topic",
+              "dtype": "string"
+            },
+            {
+              "name": "data",
+              "dtype": "string"
+            },
+            {
+              "name": "code",
+              "dtype": "string"
+            },
+            {
+              "name": "image",
+              "dtype": "image"
+            },
+            {
+              "name": "uid",
+              "dtype": "string"
+            },
+            {
+              "name": "category",
+              "dtype": "string"
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 31071336.623376623,
+              "num_examples": 456
+            }
+          ],
+          "download_size": 29014518,
+          "dataset_size": 31071336.623376623
+        },
+        "configs": [
+          {
+            "config_name": "default",
+            "data_files": [
+              {
+                "split": "train",
+                "path": "data/train-*"
+              }
+            ]
+          }
+        ]
+      },
+      "file_inventory_summary": {
+        "file_count": 3,
+        "total_file_bytes": 29017612,
+        "page_image_files_under_images": 0,
+        "parquet_bytes": 29014518
+      },
+      "selected_files": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "1ef325f1b111266a6b26e0196871bd78baa8c2f3",
+          "size": 2461
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "aceba8efc80c3353cf4cb50abbd2cab46198362a",
+          "size": 633
+        },
+        {
+          "rfilename": "data/train-00000-of-00001.parquet",
+          "blobId": "ac47551daa1fc011d932dee9c86ed17b15651c9d",
+          "size": 29014518,
+          "lfs": {
+            "sha256": "26ed87ce6076fbf57f0b45b7b7b1fc62c3c54327a833612d7c27accfd73dadac",
+            "size": 29014518,
+            "pointerSize": 133
+          }
+        }
+      ]
+    }
+  },
+  "charts": {
+    "url": "https://huggingface.co/api/datasets/ahmedheakl/arocrbench_charts?blobs=true",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "aa261d4f93b7787032257a4d7379e60a764de43ef13ac003d7226c899c162a54",
+    "data": {
+      "id": "ahmedheakl/arocrbench_charts",
+      "sha": "6b71105fd5bc6e4b1ff0545c3a5051fdd1a98b61",
+      "lastModified": "2025-02-24T12:07:55.000Z",
+      "gated": false,
+      "cardData": {
+        "dataset_info": {
+          "features": [
+            {
+              "name": "metadata",
+              "dtype": "string"
+            },
+            {
+              "name": "topic",
+              "dtype": "string"
+            },
+            {
+              "name": "data",
+              "dtype": "string"
+            },
+            {
+              "name": "code",
+              "dtype": "string"
+            },
+            {
+              "name": "image",
+              "dtype": "image"
+            },
+            {
+              "name": "uid",
+              "dtype": "string"
+            },
+            {
+              "name": "category",
+              "dtype": "string"
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 35799609,
+              "num_examples": 576
+            }
+          ],
+          "download_size": 33498603,
+          "dataset_size": 35799609
+        },
+        "configs": [
+          {
+            "config_name": "default",
+            "data_files": [
+              {
+                "split": "train",
+                "path": "data/train-*"
+              }
+            ]
+          }
+        ]
+      },
+      "file_inventory_summary": {
+        "file_count": 3,
+        "total_file_bytes": 33501680,
+        "page_image_files_under_images": 0,
+        "parquet_bytes": 33498603
+      },
+      "selected_files": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "1ef325f1b111266a6b26e0196871bd78baa8c2f3",
+          "size": 2461
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "0c20404189dc539df6bf269f1679bc9405e85d42",
+          "size": 616
+        },
+        {
+          "rfilename": "data/train-00000-of-00001.parquet",
+          "blobId": "c476f4654a57a79d8e94f9ecc258013b15416bdf",
+          "size": 33498603,
+          "lfs": {
+            "sha256": "c8700edcdbeee980ef8f3acec7010e6c2aa76f9060d3ce8219e06c92d96e3d2f",
+            "size": 33498603,
+            "pointerSize": 133
+          }
+        }
+      ]
+    }
+  },
+  "bcelayout": {
+    "url": "https://huggingface.co/api/datasets/ahmedheakl/arocrbench_bcelayout?blobs=true",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "1832542952c933c67b603bd58940da6891e70b707acb50b1907447bcd53f21a3",
+    "data": {
+      "id": "ahmedheakl/arocrbench_bcelayout",
+      "sha": "a83c89723a300955aad352ff486661d34a3e0c6a",
+      "lastModified": "2025-02-24T12:48:18.000Z",
+      "gated": false,
+      "cardData": {
+        "dataset_info": {
+          "features": [
+            {
+              "name": "width",
+              "dtype": "int64"
+            },
+            {
+              "name": "height",
+              "dtype": "int64"
+            },
+            {
+              "name": "total_regions",
+              "dtype": "int64"
+            },
+            {
+              "name": "region_types",
+              "dtype": "string"
+            },
+            {
+              "name": "text_types",
+              "dtype": "string"
+            },
+            {
+              "name": "normalized_bounding_boxes",
+              "dtype": "string"
+            },
+            {
+              "name": "category",
+              "dtype": "string"
+            },
+            {
+              "name": "image",
+              "dtype": "image"
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 734884430.593,
+              "num_examples": 1701
+            }
+          ],
+          "download_size": 682479522,
+          "dataset_size": 734884430.593
+        },
+        "configs": [
+          {
+            "config_name": "default",
+            "data_files": [
+              {
+                "split": "train",
+                "path": "data/train-*"
+              }
+            ]
+          }
+        ]
+      },
+      "file_inventory_summary": {
+        "file_count": 4,
+        "total_file_bytes": 682482680,
+        "page_image_files_under_images": 0,
+        "parquet_bytes": 682479522
+      },
+      "selected_files": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "1ef325f1b111266a6b26e0196871bd78baa8c2f3",
+          "size": 2461
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "0b798c494adcf3b222e09b3f57c8e7a7b6202674",
+          "size": 697
+        },
+        {
+          "rfilename": "data/train-00000-of-00002.parquet",
+          "blobId": "8dc2f835ebaaa7518179cbf27c884f81724f1f55",
+          "size": 332943929,
+          "lfs": {
+            "sha256": "e1a3412ab5a2299df90a029331f7bca50ddf4a1c7f832010f30c50821bb7ce2e",
+            "size": 332943929,
+            "pointerSize": 134
+          }
+        },
+        {
+          "rfilename": "data/train-00001-of-00002.parquet",
+          "blobId": "a2c09a6b6aa24a919b3254bd585b265226f2660a",
+          "size": 349535593,
+          "lfs": {
+            "sha256": "94b55458b5425f3e16be943308dec14c08cb0fd64383867be6e81657fc30a6b3",
+            "size": 349535593,
+            "pointerSize": 134
+          }
+        }
+      ]
+    }
+  },
+  "doclaynet": {
+    "url": "https://huggingface.co/api/datasets/ahmedheakl/arocrbench_doclaynet?blobs=true",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "0987eba43dc28783f44bcb9214bf1e1fb2c888f31d299eadd7f6652d2bb02e38",
+    "data": {
+      "id": "ahmedheakl/arocrbench_doclaynet",
+      "sha": "92853b44e9259cbdbbbb3cb84ae9ced036d58c3f",
+      "lastModified": "2025-02-24T12:08:22.000Z",
+      "gated": false,
+      "cardData": {
+        "dataset_info": {
+          "features": [
+            {
+              "name": "id",
+              "dtype": "string"
+            },
+            {
+              "name": "image",
+              "dtype": "image"
+            },
+            {
+              "name": "texts",
+              "sequence": "string"
+            },
+            {
+              "name": "bboxes_block",
+              "sequence": {
+                "sequence": "float64"
+              }
+            },
+            {
+              "name": "bboxes_line",
+              "sequence": {
+                "sequence": "float64"
+              }
+            },
+            {
+              "name": "categories",
+              "sequence": "int64"
+            },
+            {
+              "name": "page_hash",
+              "dtype": "string"
+            },
+            {
+              "name": "original_filename",
+              "dtype": "string"
+            },
+            {
+              "name": "page_no",
+              "dtype": "int64"
+            },
+            {
+              "name": "num_pages",
+              "dtype": "int64"
+            },
+            {
+              "name": "image_width",
+              "dtype": "int64"
+            },
+            {
+              "name": "image_height",
+              "dtype": "int64"
+            },
+            {
+              "name": "collection",
+              "dtype": "string"
+            },
+            {
+              "name": "doc_category",
+              "dtype": "string"
+            }
+          ],
+          "splits": [
+            {
+              "name": "train",
+              "num_bytes": 166529577,
+              "num_examples": 400
+            }
+          ],
+          "download_size": 162656888,
+          "dataset_size": 166529577
+        },
+        "configs": [
+          {
+            "config_name": "default",
+            "data_files": [
+              {
+                "split": "train",
+                "path": "data/train-*"
+              }
+            ]
+          }
+        ]
+      },
+      "file_inventory_summary": {
+        "file_count": 3,
+        "total_file_bytes": 162660307,
+        "page_image_files_under_images": 0,
+        "parquet_bytes": 162656888
+      },
+      "selected_files": [
+        {
+          "rfilename": ".gitattributes",
+          "blobId": "1ef325f1b111266a6b26e0196871bd78baa8c2f3",
+          "size": 2461
+        },
+        {
+          "rfilename": "README.md",
+          "blobId": "f4fd65e8b6b04f00be99da0f647746917d4b6c4f",
+          "size": 958
+        },
+        {
+          "rfilename": "data/train-00000-of-00001.parquet",
+          "blobId": "d7519f6aba6bb3e73f3b4d941bef476c88fd61cd",
+          "size": 162656888,
+          "lfs": {
+            "sha256": "83547514b34163e1b7082e48bbddaad4e2fc3e30d6cd9e7d2e496b105d6b8fc4",
+            "size": 162656888,
+            "pointerSize": 134
+          }
+        }
+      ]
+    }
+  },
+  "policy": {
+    "dataset_payload_downloaded": false,
+    "dataset_download_date": null,
+    "downloaded_payload_sha256": null,
+    "metadata_only": true,
+    "response_hash_basis": "SHA-256 of the metadata HTTP response bytes, NOT dataset payload verification. Remote LFS sha256 values are advertised digests; verify downloaded bytes in TASK-005."
+  },
+  "doclaynet_official": {
+    "url": "https://api.github.com/repos/DS4SD/DocLayNet/commits/main",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "0e849e54a846c6fb49e42f812c060dc8fc436a3598075ef3c7244b72360d1fad",
+    "data": {
+      "sha": "66947398f04d050fed84e89e5509828f2ee17ecf",
+      "html_url": "https://github.com/DS4SD/DocLayNet/commit/66947398f04d050fed84e89e5509828f2ee17ecf"
+    }
+  },
+  "plotqa_official": {
+    "url": "https://api.github.com/repos/NiteshMethani/PlotQA/commits/master",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "745bb67b85399aa4f41fe116315057a3db1f24b36a14e4d895f6c62f7656a08c",
+    "data": {
+      "sha": "e0f5c34acbe92753f70798aafda99184e3e0cd8c",
+      "html_url": "https://github.com/NiteshMethani/PlotQA/commit/e0f5c34acbe92753f70798aafda99184e3e0cd8c"
+    }
+  },
+  "omnidocbench_code_revision": {
+    "url": "https://api.github.com/repos/opendatalab/OmniDocBench/commits/main",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "2455d6fd7c799a68ac1d5513b07c1359cc7ad84f9c40b1278f30bc30c6bf9a49",
+    "data": {
+      "sha": "f133a71e9e91c3621c7ce8994200a7b394a06eb3",
+      "html_url": "https://github.com/opendatalab/OmniDocBench/commit/f133a71e9e91c3621c7ce8994200a7b394a06eb3"
+    }
+  },
+  "kitab_code_revision": {
+    "url": "https://api.github.com/repos/mbzuai-oryx/KITAB-Bench/commits/main",
+    "accessed_date": "2026-10-28",
+    "response_sha256": "69b77f056a964f41e0dc740f83b720e5fcf814aa9fc3f0e17f6db044a4ec128b",
+    "data": {
+      "sha": "06183ebe3c675d93c7974b2fcf12082888a98961",
+      "html_url": "https://github.com/mbzuai-oryx/KITAB-Bench/commit/06183ebe3c675d93c7974b2fcf12082888a98961"
+    }
+  },
+  "supplementary_documentation": [
+    {
+      "name": "DocLayNet",
+      "source_url": "https://github.com/DS4SD/DocLayNet",
+      "version_ref": "66947398f04d050fed84e89e5509828f2ee17ecf",
+      "license_url": "https://github.com/DS4SD/DocLayNet/blob/main/LICENSE",
+      "dataset_license": "CDLA-Permissive-1.0",
+      "published_pages": 80863,
+      "core_archive_size": "28 GiB (publisher)",
+      "extra_archive_size": "7.5 GiB (publisher)",
+      "download_date": null,
+      "downloaded_sha256": null
+    },
+    {
+      "name": "PlotQA",
+      "source_url": "https://github.com/NiteshMethani/PlotQA",
+      "version_ref": "e0f5c34acbe92753f70798aafda99184e3e0cd8c",
+      "dataset_license": "CC-BY-4.0; code MIT",
+      "published_plot_images": 224377,
+      "download_bytes": null,
+      "download_date": null,
+      "downloaded_sha256": null
+    },
+    {
+      "name": "Humans in the Loop Arabic documents OCR",
+      "source_url": "https://humansintheloop.org/resources/datasets/arabic-documents-ocr-dataset/",
+      "version_ref": "UNVERSIONED_PUBLISHER_WEBPAGE",
+      "dataset_license": "CC0-1.0 (publisher declaration)",
+      "published_images": 10000,
+      "download_bytes": null,
+      "download_date": null,
+      "downloaded_sha256": null
+    }
+  ]
+}

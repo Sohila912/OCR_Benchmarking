@@ -59,7 +59,7 @@
     "TASK-003",
     "TASK-004"
   ],
-  "next_action": "Await explicit TASK-005 primary-pair acquisition approval: pinned OmniDocBench English + Misraj Arabic, noncommercial research, <=2.2 GB transfer and >=6 GiB free disk. No supplements or inference; preserve hardware blockers.",
+  "next_action": "User requests Google Drive storage instead of a full laptop dataset copy. Await Drive installation/connection and verify upload/streaming capability; keep TASK-005 pending. Existing hosted sources are an unselected alternative. No local bulk download or inference.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-004",
@@ -82,6 +82,17 @@
     "runtime_code_changed": false,
     "prior_code_validation": "TASK-003: 71 suite tests and Ruff passed",
     "prior_checkpoints_push": "UP_TO_DATE",
-    "checkpoint_push_verification": "Resolve this checkpoint commit subject against origin after final push"
+    "checkpoint_push_verification": "Resolve this checkpoint commit subject against origin after final push",
+    "storage_request": {
+      "date": "2026-10-28",
+      "preferred_destination": "Google Drive",
+      "full_local_dataset_copy_allowed": false,
+      "drive_transfer_requested": true,
+      "connection_confirmed": false,
+      "upload_capability_verified": false,
+      "datasets_uploaded": false,
+      "alternative_not_selected": "Use original hosted sources with bounded per-page temporary caching",
+      "old_local_download_proposal": "Superseded pending remote storage design"
+    }
   }
 }

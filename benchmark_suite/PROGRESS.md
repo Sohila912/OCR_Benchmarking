@@ -9,7 +9,13 @@ Updated: 2026-10-28 (Africa/Cairo).
 - Last completed checkpoint: TASK-004.
 - Branch: feature/ocr-comprehensive-benchmark, tracking origin.
 - Previous checkpoints: 5da4946, 0db4fd4, f60742f. Initial push check for this session: everything up-to-date.
-- TASK-004 checkpoint subject: `docs(benchmark): select English and Arabic evaluation datasets`. Resolve its hash using `git log -1 --format=%H -- benchmark_suite/PROGRESS.md` and verify the matching origin branch after final push. The task hash is not embedded in its own commit.
+- TASK-004 checkpoint subject: `docs(benchmark): select English and Arabic evaluation datasets`. Resolve its hash using `git log -1 --format=%H --grep="docs(benchmark): select English and Arabic evaluation datasets"` and verify the matching origin branch. Storage-preference notes may be committed later without changing the completed task checkpoint. The task hash is not embedded in its own commit.
+
+## Storage preference update (2026-10-28)
+
+User requested storing the two selected datasets in Google Drive and using remote links instead of consuming laptop disk. Do not execute the earlier full-local-copy proposal. This changes storage design, not model hardware eligibility. Google Drive was discovered but is not installed/connected in the latest confirmed state; upload support and direct cloud transfer are not verified. No upload/download occurred. Await account connection, inspect available binary/resumable upload capabilities and use private storage; do not expose dataset contents publicly. No paid cloud worker or alternate inference environment is authorized by a storage request alone.
+
+The original Hugging Face datasets are already hosted. Direct streamed/per-file access with a bounded temporary cache is a feasible design alternative to assess, but the user has not selected it. Remote links do not eliminate network reads or temporary RAM/disk needs and do not fix low inference RAM. Preserve pinned revisions, independent reference checksums and immutable manifests under either storage design. TASK-005 remains PENDING until the actual storage path is usable.
 
 ## TASK-004 files
 

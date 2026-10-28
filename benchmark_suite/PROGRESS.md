@@ -9,7 +9,7 @@ Updated: 2026-10-28 (Africa/Cairo).
 - Last completed checkpoint: TASK-005.
 - Branch: feature/ocr-comprehensive-benchmark, tracking origin.
 - Previous checkpoints: 5da4946, 0db4fd4, f60742f, d9c8a15. Storage-preference note d53cb9f is superseded by the latest explicit user instruction to download locally and continue.
-- TASK-005 commit subject: `feat(benchmark): acquire and freeze primary evaluation datasets`. Resolve with `git log -1 --format=%H --grep="feat(benchmark): acquire and freeze primary evaluation datasets"` and verify the remote ref after final push. A commit hash is not embedded in its own commit.
+- TASK-005 implementation commit: 70125ea. Final checkpoint subject: `fix(benchmark): preserve frozen manifest checksums on Windows`. Resolve with `git log -1 --format=%H --grep="fix(benchmark): preserve frozen manifest checksums on Windows"` and verify the remote ref after final push. A commit hash is not embedded in its own commit.
 
 ## TASK-005 files created
 
@@ -26,6 +26,8 @@ Updated: 2026-10-28 (Africa/Cairo).
 - benchmark_suite/datasets/manifest/ACQUISITION_PROVENANCE.json
 - benchmark_suite/datasets/manifest/LEGACY_ALIASES.json
 - benchmark_suite/reports/DATASET_VALIDATION.md
+
+Also created benchmark_suite/.gitattributes to preserve LF bytes for frozen JSON/JSONL on Windows checkout.
 
 Modified: BENCHMARK_PLAN.md, BENCHMARK_STATUS.json, PROGRESS.md, suite README.md and datasets/DATASET_SELECTION.md. Downloaded source files, extracted images/transcriptions/references, catalog/allowlist/journal/logs are under ignored suite datasets/raw, datasets/english and datasets/arabic. They must not be committed. The manifest JSONL is metadata and hashes, not ground-truth text/image payloads.
 
@@ -67,7 +69,8 @@ Passed:
 - `prepare_datasets.py --verify-downloads`: independently rehashed all 760 originals after canonicalization; no network or decoding.
 - Recovery/integrity tests cover partial ranges, ignored ranges, bad checksums, hard budget, interrupted publication, Windows sharing locks, long Unicode paths, path escape, canonical storage normalization, immutable outputs, deterministic groups and payload tampering.
 - No application/inference tests executed because production code and model integrations were unchanged. No OCR scores or model reports generated.
-- Final manifest idempotence, source-payload ignore policy, exact stage scope, status validation and whitespace are checked before the task commit.
+- Manifest idempotence, source-payload ignore policy, exact stage scope, status validation and whitespace passed.
+- A real `git -c core.autocrlf=true checkout-index` into ignored local scratch storage preserved every frozen manifest/schema/alias checksum after adding manifest-specific text eol=lf rules. This closes a fresh-Windows-checkout reproducibility risk. No runtime source changed after the 90 passing tests.
 
 ## Interruptions and resolution
 

@@ -51,7 +51,7 @@
     "baidu": "UNRESOLVED_IMPLEMENTATION_AND_API_APPROVAL"
   },
   "last_completed_checkpoint": "TASK-005",
-  "checkpoint_git_commit_subject": "feat(benchmark): acquire and freeze primary evaluation datasets",
+  "checkpoint_git_commit_subject": "fix(benchmark): preserve frozen manifest checksums on Windows",
   "approval_required_before": "TASK-006",
   "approved_tasks": [
     "TASK-001",
@@ -89,6 +89,7 @@
     "model_inference_executed": false,
     "dependencies_installed": false,
     "ram_preflight": "Initial refusal; user freed RAM and requested retry; preparation completed without lowering floor",
-    "checkpoint_push_verification": "Resolve commit subject against origin after final push"
+    "checkpoint_push_verification": "Resolve commit subject against origin after final push",
+    "windows_checkout_hash_validation": "PASSED: git -c core.autocrlf=true checkout-index preserves all frozen artifact digests with suite .gitattributes"
   }
 }

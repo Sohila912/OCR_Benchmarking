@@ -4,7 +4,7 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
-Only TASK-001 is authorized for this session. STOP at its checkpoint and request approval for TASK-002. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval. No model or dataset downloads in TASK-001.
+TASK-001 completed at 5da4946. The user explicitly approved TASK-002 on 2026-10-28. TASK-002 is now complete; stop at its checkpoint before TASK-003. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval. No model or dataset downloads in TASK-001.
 
 At every new session read this plan, PROGRESS.md and BENCHMARK_STATUS.json; check Git branch/status and relevant artifacts; validate the last checkpoint before continuing the first incomplete approved task. Preserve existing files/results and user work. Commit only explicitly selected task files after checks. Never stage credentials, downloaded datasets or model weights. Do not use blanket staging.
 
@@ -31,7 +31,7 @@ General definition of done: stated acceptance criteria and checks pass (or block
 
 - Objective: Define benchmark boundaries and implement validated, atomic checkpoint persistence.
 - Dependencies: TASK-001 and explicit user approval.
-- Files to create/modify: README.md; ARCHITECTURE.md; __init__.py; tracking.py; tests/test_tracking.py; .gitignore.
+- Files to create/modify: README.md; ARCHITECTURE.md; __init__.py; tracking.py; tests/test_tracking.py; .gitignore; repository-root pytest.ini (include suite tests in default discovery).
 - Acceptance criteria: Architecture reuses existing contracts; state transitions and schema are validated; same-directory temporary write plus os.replace protects status; interruption and invalid-state tests pass; ignore rules exclude datasets, weights, environments, secrets and run artifacts.
 - Verification commands: `python -m pytest benchmark_suite/tests/test_tracking.py -q`
 - Expected outputs: Architecture, state writer, tests and safe artifact policy.

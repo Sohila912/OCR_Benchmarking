@@ -1,0 +1,43 @@
+# Downloaded inputs. Keep reviewed manifests, source notes and licenses in Git.
+/datasets/*
+!/datasets/manifest/
+!/datasets/DATASET_SELECTION.md
+!/datasets/README.md
+!/datasets/LICENSE*
+/datasets/manifest/*.tmp
+
+# Immutable generated runs and reports remain local; never overwrite to publish.
+/results/**
+/reports/visualizations/**
+/artifacts/
+/downloads/
+/models/
+/weights/
+/environments/
+/logs/
+/cache/
+*.sqlite3
+*.sqlite3-*
+*.tmp
+*.lock
+*.bin
+*.ckpt
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.onnx
+*.pdparams
+*.pdiparams
+
+# Local secrets and environments; only reviewed examples are versioned.
+.env
+.env.*
+!.env.example
+secrets.*
+credentials*.json
+service-account*.json
+.venv*/
+venv/
+__pycache__/
+.pytest_cache/

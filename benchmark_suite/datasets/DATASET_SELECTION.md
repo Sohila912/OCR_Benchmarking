@@ -1,5 +1,7 @@
 # Dataset selection and acquisition proposal
 
+> TASK-005 update: the user subsequently approved local acquisition, reversing the Drive preference. The pinned sources are now downloaded and validated: 755 English + 400 Arabic images, with 20 development and 1,135 evaluation records. See manifest/PROVENANCE.json and ../reports/DATASET_VALIDATION.md for actual dates, checksums, sizes and warnings. The TASK-004 no-download statements below describe the earlier research checkpoint, not the current acquisition state. Source-policy metadata in SOURCE_RESEARCH.json remains the historical research snapshot.
+
 TASK-004 research checkpoint, 2026-10-28 (Africa/Cairo). **No dataset payloads were downloaded.** Browsing publisher documentation, fetching repository/file metadata and inspecting existing local files are the only acquisition-related actions in this task. No OCR or model inference occurred.
 
 ## Decision and scope

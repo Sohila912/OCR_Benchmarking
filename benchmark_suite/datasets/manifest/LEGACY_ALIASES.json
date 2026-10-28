@@ -1,0 +1,12 @@
+{
+  "included_in_official_cohort": false,
+  "reason": "Legacy data source/rights/ground truth unverified",
+  "explicit_pairings": [
+    {
+      "dataset": "Mix",
+      "pdf": "benchmarks/datasets/Mix/Dataset/invoice_5.pdf",
+      "reference": "benchmarks/datasets/Mix/Markdown_Reference/Invoice_5.md"
+    }
+  ],
+  "policy": "Exact-case paths are explicit. Never globally casefold IDs or rename originals."
+}

@@ -1,0 +1,154 @@
+{
+  "additionalProperties": false,
+  "description": "One real source page and an independent preserved reference.",
+  "properties": {
+    "document_id": {
+      "minLength": 1,
+      "title": "Document Id",
+      "type": "string"
+    },
+    "dataset_name": {
+      "minLength": 1,
+      "title": "Dataset Name",
+      "type": "string"
+    },
+    "dataset_version": {
+      "pattern": "^[0-9a-f]{40}$",
+      "title": "Dataset Version",
+      "type": "string"
+    },
+    "source_path": {
+      "minLength": 1,
+      "title": "Source Path",
+      "type": "string"
+    },
+    "file_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "File Hash",
+      "type": "string"
+    },
+    "language": {
+      "pattern": "^(en|ar)$",
+      "title": "Language",
+      "type": "string"
+    },
+    "document_category": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Document Category"
+    },
+    "page_count": {
+      "maximum": 1,
+      "minimum": 1,
+      "title": "Page Count",
+      "type": "integer"
+    },
+    "width": {
+      "exclusiveMinimum": 0,
+      "title": "Width",
+      "type": "integer"
+    },
+    "height": {
+      "exclusiveMinimum": 0,
+      "title": "Height",
+      "type": "integer"
+    },
+    "ground_truth_reference": {
+      "minLength": 1,
+      "title": "Ground Truth Reference",
+      "type": "string"
+    },
+    "reference_hash": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Reference Hash",
+      "type": "string"
+    },
+    "upstream_split": {
+      "title": "Upstream Split",
+      "type": "string"
+    },
+    "source_document_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Source Document Id"
+    },
+    "source_grouping_status": {
+      "title": "Source Grouping Status",
+      "type": "string"
+    },
+    "annotation_types": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Annotation Types",
+      "type": "array"
+    },
+    "evaluation_capabilities": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Evaluation Capabilities",
+      "type": "array"
+    },
+    "reference_warnings": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reference Warnings",
+      "type": "array"
+    },
+    "split": {
+      "pattern": "^(development|evaluation)$",
+      "title": "Split",
+      "type": "string"
+    },
+    "split_group_id": {
+      "title": "Split Group Id",
+      "type": "string"
+    },
+    "source_metadata": {
+      "additionalProperties": true,
+      "title": "Source Metadata",
+      "type": "object"
+    }
+  },
+  "required": [
+    "document_id",
+    "dataset_name",
+    "dataset_version",
+    "source_path",
+    "file_hash",
+    "language",
+    "document_category",
+    "page_count",
+    "width",
+    "height",
+    "ground_truth_reference",
+    "reference_hash",
+    "upstream_split",
+    "source_document_id",
+    "source_grouping_status",
+    "annotation_types",
+    "evaluation_capabilities",
+    "reference_warnings",
+    "split",
+    "split_group_id",
+    "source_metadata"
+  ],
+  "title": "ManifestRecord",
+  "type": "object"
+}

@@ -2,8 +2,8 @@
 
 This isolated suite will compare nine OCR configurations across English and
 Arabic text, layout, reading order, tables and charts using verified public
-ground truth and auditable measurements. **Foundations, read-only hardware/model research and dataset selection are implemented.**
-No new model evaluation, dataset download or accuracy comparison has been run.
+ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection and local preparation are implemented.**
+The two approved primary datasets are downloaded and validated. No model evaluation or accuracy comparison has been run.
 
 Read [PROGRESS.md](PROGRESS.md), [BENCHMARK_STATUS.json](BENCHMARK_STATUS.json)
 and [BENCHMARK_PLAN.md](BENCHMARK_PLAN.md) before resuming work. The
@@ -67,8 +67,10 @@ do not establish all nine candidates' capabilities.
 - TASK-004 (complete): [dataset selection](datasets/DATASET_SELECTION.md) proposes
   OmniDocBench English pages and Misraj-DocOCR Arabic pages, with source/rights
   evidence, an existing-data audit and explicit missing-annotation coverage.
-- TASK-005 (pending approval): bounded acquisition, provenance/hash validation
-  and frozen development/evaluation manifests. No datasets have been acquired.
+- TASK-005 (complete): [local data and reproduction](datasets/README.md),
+  [frozen manifest provenance](datasets/manifest/PROVENANCE.json) and
+  [validation report](reports/DATASET_VALIDATION.md). Evaluation contains
+  745 English + 390 Arabic images; development contains 10 per language.
 - TASK-006: define/test text, layout, table, chart, reading-order and statistical
   metrics against the actual annotation types.
 - TASK-007/008: hardware preflight, adapters/runner, cache/recovery, Windows
@@ -99,7 +101,7 @@ deliverables. Existing historical evaluator policies remain unchanged and must
 not be mixed with future scores without checking their definitions.
 
 Dataset sources/licenses and proposed acquisition are documented in the selection
-report; actual download approval and payload validation remain pending. Model environments require
+report; the approved primary payloads and frozen manifests are now validated. Model environments require
 per-model setup and preflight despite the completed compatibility research. Windows menu, setup, single-model runs, smoke/resume/evaluation,
 report generation and comparison commands will be documented with tested
 examples when implemented in TASK-008/018/019. There is no run_benchmark.bat or
@@ -132,19 +134,23 @@ preflight. Do not treat CUDA 13.0 in NVIDIA-SMI as installed CUDA-enabled Torch:
 the inspected Torch/Paddle builds are CPU-only. No API/cloud environment was
 used. See the reports for evidence, limits, remedies and cost/approval gates.
 
-## Dataset acquisition gate
+## Dataset acquisition checkpoint
 
-The TASK-004 proposal selects pinned OmniDocBench English pages and the
-400-row Misraj Arabic benchmark. OmniDocBench's dataset statement limits use to
-noncommercial research; its evaluator code license does not remove that limit.
-No dataset payloads were downloaded. The conservative primary-pair transfer
-estimate is 2.09 GB decimal; TASK-005 requests explicit approval for a 2.2-GB
-transfer budget and a 6-GiB disk reserve. Supplements are excluded, particularly
-KITAB subsets with unresolved data licenses and the oversized full DocLayNet
-archive. See datasets/DATASET_SELECTION.md before granting acquisition approval.
+The user approved local acquisition, superseding the Drive preference. The
+pinned English OmniDocBench subset and all 400 Arabic Misraj pages are stored
+under ignored datasets/raw, datasets/english and datasets/arabic paths. Transfer
+was about 1.40 GB decimal, below 2.2 GB, with about 2.03 GB local data/metadata
+including preserved original shards and extracted images. Supplements and models
+were not downloaded. Original license restrictions and source notices remain.
 
-The existing curated data remains unchanged and unverified for publication.
-Its audit found a case mismatch in the mixed-language invoice_5 / Invoice_5
-pair; resolve it with an explicit future manifest mapping rather than renaming
-source files. Raw data stays ignored; only reviewed source/selection/audit
-metadata files are allowed in Git.
+See [datasets/README.md](datasets/README.md) for explicit download, build and
+offline verification commands. The manifests contain 1,155 source/reference pairs:
+20 development and 1,135 evaluation images. Per-page metric eligibility and source
+warnings are preserved. Source document/book grouping remains unknown; do not
+claim source-document-independent splits or confidence intervals.
+
+The historical curated data remains unchanged and unverified for publication.
+Its Mix invoice_5 / Invoice_5 case alias is recorded explicitly without renaming
+source files. Only reviewed manifests/provenance are versioned; payloads and
+transcriptions stay local and ignored. Low RAM can still block preprocessing;
+passing preparation checks does not authorize model inference.

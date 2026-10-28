@@ -1,0 +1,6 @@
+# Installed versions used for TASK-005 acquisition/manifest preparation.
+# This is an isolated dataset-tool set, not a model environment or full lock.
+pyarrow==25.0.1
+Pillow==12.3.0
+pydantic==2.13.5
+psutil==7.2.2

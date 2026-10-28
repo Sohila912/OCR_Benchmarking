@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "status": "DOWNLOADS_VERIFIED",
+  "frozen_manifest_status": "SEPARATE_PREPARATION_REQUIRED",
+  "pins": {
+    "omnidocbench": [
+      "opendatalab/OmniDocBench",
+      "aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec"
+    ],
+    "misraj": [
+      "Misraj/Misraj-DocOCR",
+      "7177bf70f77ce259890d6af0bef53f18faf26ec9"
+    ]
+  },
+  "source_file_count": 760,
+  "verified_source_bytes": 1397890070,
+  "charged_transfer_bytes": 1398615726,
+  "budget_bytes": 2200000000,
+  "download_started_at": "2026-10-28T12:30:29.067037+00:00",
+  "download_completed_at": "2026-10-28T13:08:09.239720+00:00",
+  "complete_local_inventory": "datasets/raw/acquisition.json",
+  "complete_local_inventory_sha256": "7c8338d4982f91354d05539bfc8ace39a759f69b2000924ea9fac6754c9e7ca8",
+  "allowlist_sha256": "a8d4d8ab561f2c3c8c4682737e8758473b5f502190524563832c25e5692e7674",
+  "source_language_counts": {
+    "english": 755,
+    "simplified_chinese": 765,
+    "traditional_chinese": 13,
+    "en_ch_mixed": 116,
+    "other": 2
+  },
+  "selected_english_images": 755,
+  "selected_arabic_shards": 2,
+  "source_archives_and_annotations": [
+    {
+      "dataset": "opendatalab/OmniDocBench",
+      "revision": "aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec",
+      "filename": "OmniDocBench.json",
+      "bytes": 42208096,
+      "sha256": "a45cd84b04ad8b793e775089640e6b681209abea33ead54c1828ddca35fae496",
+      "advertised_sha256": "a45cd84b04ad8b793e775089640e6b681209abea33ead54c1828ddca35fae496",
+      "source_url": "https://huggingface.co/datasets/opendatalab/OmniDocBench/resolve/aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec/OmniDocBench.json",
+      "downloaded_at": "2026-10-28T12:30:29.067037+00:00",
+      "verified": true,
+      "storage_path": "objects/e19c0f47228bc463bd630a12ff3a7e0c27730fbb1ed32445d734a5562b431480.json",
+      "legacy_copy_preserved": "opendatalab/OmniDocBench/aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec/OmniDocBench.json"
+    },
+    {
+      "dataset": "opendatalab/OmniDocBench",
+      "revision": "aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec",
+      "filename": "README.md",
+      "bytes": 13441,
+      "sha256": "9ac999a6615ae74009c997c4ddc8a72c52423c2b0384235b4126bdc213576e81",
+      "advertised_sha256": null,
+      "source_url": "https://huggingface.co/datasets/opendatalab/OmniDocBench/resolve/aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec/README.md",
+      "downloaded_at": "2026-10-28T12:30:29.483037+00:00",
+      "verified": true,
+      "storage_path": "objects/651073fe3b3f036a01ae4b98862a61db2edeae4dfc14ac14785438f1626727d4.md",
+      "legacy_copy_preserved": "opendatalab/OmniDocBench/aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec/README.md"
+    },
+    {
+      "dataset": "Misraj/Misraj-DocOCR",
+      "revision": "7177bf70f77ce259890d6af0bef53f18faf26ec9",
+      "filename": "README.md",
+      "bytes": 4955,
+      "sha256": "c0c1bbd997475e0f3ce1b1ead9f4b4f2f0b01454310f825c111f21b8efa680b9",
+      "advertised_sha256": null,
+      "source_url": "https://huggingface.co/datasets/Misraj/Misraj-DocOCR/resolve/7177bf70f77ce259890d6af0bef53f18faf26ec9/README.md",
+      "downloaded_at": "2026-10-28T12:30:30.131822+00:00",
+      "verified": true,
+      "storage_path": "objects/d7f2e25fab7139f8a5817db45fc681c6ba907b11f365d5e1de4e1fdcd92b10f3.md",
+      "legacy_copy_preserved": "Misraj/Misraj-DocOCR/7177bf70f77ce259890d6af0bef53f18faf26ec9/README.md"
+    },
+    {
+      "dataset": "Misraj/Misraj-DocOCR",
+      "revision": "7177bf70f77ce259890d6af0bef53f18faf26ec9",
+      "filename": "data/train-00000-of-00002.parquet",
+      "bytes": 247992106,
+      "sha256": "8afa47430982ec5b827290aca2e78fb9c57edf080f173561c02c2b462e116ffe",
+      "advertised_sha256": "8afa47430982ec5b827290aca2e78fb9c57edf080f173561c02c2b462e116ffe",
+      "storage_path": "objects/9d65006bc16a1d0c086eec643f7fe3e612e5b8c8efdb79b3e2c7e57cf7995b7f.parquet",
+      "source_url": "https://huggingface.co/datasets/Misraj/Misraj-DocOCR/resolve/7177bf70f77ce259890d6af0bef53f18faf26ec9/data/train-00000-of-00002.parquet",
+      "downloaded_at": "2026-10-28T13:06:37.643697+00:00",
+      "verified": true
+    },
+    {
+      "dataset": "Misraj/Misraj-DocOCR",
+      "revision": "7177bf70f77ce259890d6af0bef53f18faf26ec9",
+      "filename": "data/train-00001-of-00002.parquet",
+      "bytes": 289044035,
+      "sha256": "c9fac8883b9729e4d61ca4bcff1bfd023e5065110a8a780917e14c6491f99a6c",
+      "advertised_sha256": "c9fac8883b9729e4d61ca4bcff1bfd023e5065110a8a780917e14c6491f99a6c",
+      "storage_path": "objects/9e149c585ce872d54403492a3c929cdfc9a3b0a4b206ee9ecfba2e8807416591.parquet",
+      "source_url": "https://huggingface.co/datasets/Misraj/Misraj-DocOCR/resolve/7177bf70f77ce259890d6af0bef53f18faf26ec9/data/train-00001-of-00002.parquet",
+      "downloaded_at": "2026-10-28T13:08:09.239720+00:00",
+      "verified": true
+    }
+  ],
+  "model_inference_executed": false
+}

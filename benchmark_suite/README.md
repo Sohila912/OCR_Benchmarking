@@ -2,7 +2,7 @@
 
 This isolated suite will compare nine OCR configurations across English and
 Arabic text, layout, reading order, tables and charts using verified public
-ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection, local preparation, metrics and the shared adapter/runner are implemented.**
+ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection, local preparation, metrics, the shared adapter/runner and Windows menu/CLI are implemented.**
 The two approved primary datasets are downloaded and validated. No model evaluation or accuracy comparison has been run.
 
 Read [PROGRESS.md](PROGRESS.md), [BENCHMARK_STATUS.json](BENCHMARK_STATUS.json)
@@ -51,6 +51,139 @@ outputs, and explicitly recover rather than overwriting with defaults. An
 interrupted writer may leave an ignored temporary file; it is never loaded
 automatically. Keep progress Markdown and plan aligned at each checkpoint.
 
+## Windows launcher and equivalent CLI
+
+From the repository root, open the menu (or double-click the batch file):
+
+```powershell
+.\benchmark_suite\scripts\run_benchmark.bat
+```
+
+It provides the exact 13 options requested in Task_codex.txt. Without arguments,
+`python -m benchmark_suite.cli` opens the same menu. With arguments the batch
+launcher forwards to the same CLI and returns its exit code. Paths containing
+spaces and ampersands are tested. No packages or model assets are installed.
+
+The launcher uses `OCR_BENCHMARK_PYTHON` when explicitly set, otherwise existing
+`.venv-ocr`, then `benchmark_suite/environments/shared`, then `py -3` or Python
+on PATH. It checks Python 3.10+. Help works without third-party packages; commands
+that need the runner validate the direct tested requirements-runner.txt pins.
+The current existing .venv-ocr passes these shared checks. Passing them does not
+certify that an OCR model can run.
+
+```powershell
+.venv-ocr\Scripts\python.exe -m benchmark_suite.cli --help
+.venv-ocr\Scripts\python.exe -m benchmark_suite.cli check-environment --json
+.venv-ocr\Scripts\python.exe -m benchmark_suite.cli models
+.venv-ocr\Scripts\python.exe -m benchmark_suite.cli progress
+.venv-ocr\Scripts\python.exe -m benchmark_suite.cli validate-datasets --json
+```
+
+Environment checks inspect metadata/native tools without importing torch/paddle
+or loading models. The RAM loading gate is separate from successful inventory.
+Dataset validation rehashes all 1,155 frozen source/reference pairs without
+network access, decoding models, or changing the data.
+
+| Menu | CLI command | Behavior |
+|---|---|---|
+| 1 | `check-environment [--model MODEL]` | Python/dependency/live-resource inventory; optional selected-model readiness |
+| 2 | `models` | All nine candidates with pending implementation, saved state and approval/blockers |
+| 3 | `progress` | Validated saved task progress; no approval changes |
+| 4 | `setup --model MODEL` | Audit the approved model's existing isolated setup; no installation |
+| 5 | `validate-datasets` | Offline frozen dataset validation |
+| 6 | `smoke --model MODEL --language en/ar/both` | One approved model on frozen development images |
+| 7 | `run --model MODEL --language en/ar/both --mode quick/full` | One approved model and one selected split |
+| 8 | `resume --model MODEL --run-dir PATH` | Original split/language/precision/settings; unfinished run only |
+| 9 | `evaluate --model MODEL --run-dir PATH` | Fresh evaluation of saved predictions; no inference |
+| 10 | `report --model MODEL --run-dir PATH` | Regenerate evaluation and individual report; no inference |
+| 11 | `compare` | Explicit PENDING TASK-018, exit 4 |
+| 12 | `final-report` | Explicit PENDING TASK-019, exit 4 |
+| 13 | Exit | No additional action/model |
+
+Every action accepts `--json` **after the command**, except the interactive menu.
+Relative artifact paths use the caller's working directory; absolute paths are
+also accepted. Explicit saved run paths are required: the CLI never silently
+chooses the latest run. There is no `--all`, `--yes` or public fixture bypass.
+Repeated `--model` is rejected. Menu cancellation returns without a model call.
+
+### Model approval, setup and isolated environments
+
+All nine real implementations/environments are currently **PENDING** in
+configs/models.json; existing hardware/ambiguity blockers remain. Selecting a
+menu item is not model approval. `setup`, `smoke`, `run` and `resume` refuse until
+the selected model's task is independently approved/current/IN_PROGRESS, its
+implementation and pinned environment exist, and live preflight passes. A completed
+shared framework or a previous model's approval never authorizes the next model.
+
+At this checkpoint `setup` is an existing-setup/readiness audit. There are no
+registered installation actions. Actual package/asset setup belongs to the
+separately approved TASK-009 through TASK-017, after hardware/version/license
+review. No pip/driver/CUDA/WSL installation is hidden in the launcher or CLI.
+
+Those tasks must register reviewed spec/config/factory paths, exact requirements
+and an interpreter under `benchmark_suite/environments/<model>/`. The CLI requires
+that environment's sys.prefix; it will print the required interpreter and refuse
+an automatic environment switch. Dependencies that conflict with the main
+application belong in these isolated environments. For the launcher, explicitly
+set `$env:OCR_BENCHMARK_PYTHON` to the already approved, existing model interpreter,
+or invoke that interpreter directly. Do not add credentials to the catalog or
+config; any future API credential handling requires its model-specific review.
+
+The following commands describe future approved execution and currently return
+BLOCKED because the model task/implementation/environment is not ready:
+
+```powershell
+python -m benchmark_suite.cli setup --model surya
+python -m benchmark_suite.cli smoke --model surya --language both
+python -m benchmark_suite.cli run --model surya --language en --mode quick
+python -m benchmark_suite.cli run --model surya --language both --mode full
+python -m benchmark_suite.cli resume --model surya --run-dir "benchmark_suite/results/surya/<run-id>"
+```
+
+Quick uses only the frozen development split (10 English + 10 Arabic images before
+language filtering). Full uses evaluation (745 English + 390 Arabic). Language
+is en, ar or both; quick is the default. Resume does not accept language/mode
+changes. Version/config/source/hash changes invalidate reuse or prevent resume;
+completed runs are immutable. No subsequent model starts automatically.
+
+After an actual completed run exists, offline evaluation/report commands work
+without an active model, its weights, initialization or the prediction cache:
+
+```powershell
+python -m benchmark_suite.cli evaluate --model surya --run-dir "benchmark_suite/results/surya/<run-id>"
+python -m benchmark_suite.cli report --model surya --run-dir "benchmark_suite/results/surya/<run-id>"
+```
+
+They verify completed bundles/frozen references and write a new sibling evaluation
+with metrics/CSV/report files. If post-run evaluation fails, the CLI reports the
+saved run path; retry evaluation without inference. Cached timing is provenance,
+not a new speed measurement. Inspect coverage and the scope/TEDS/uncertainty
+limitations in [RUNNER.md](reports/RUNNER.md) and [METRICS.md](reports/METRICS.md).
+
+### Logs and troubleshooting
+
+Recognized command invocations automatically create unique ignored JSON logs
+under benchmark_suite/logs/cli; the response includes log_file. Help, argument
+syntax rejection and closing the menu do not create action logs. Logs and model
+runs remain local. The CLI never edits the coordinator approvals/status itself.
+
+| Exit | Meaning |
+|---|---|
+| 0 | Command completed; shared inventory success does not approve inference |
+| 1 | Missing/different dependencies, invalid/corrupt artifacts, failed documents, or another execution/evaluation/logging error |
+| 2 | Invalid arguments (including all/repeated models) |
+| 3 | Model approval, implementation/environment readiness or hardware preflight blocked |
+| 4 | Comparison/final-report task is pending |
+| 130 | Interrupted command; persisted work can be inspected/resumed |
+
+If Python is not found, select an existing compatible interpreter through
+OCR_BENCHMARK_PYTHON. If dependency pins differ, inspect requirements-runner.txt
+and use a reviewed isolated environment; the CLI does not repair the main app.
+If a model is blocked, read the named task/blocker and hardware report; do not
+bypass the gate. Corrupt outputs are preserved for inspection. An incomplete run
+can resume; a completed run can only be evaluated or retried as a new run with
+successful prediction reuse.
+
 ## Planned evaluations and prerequisites
 
 Candidates: Surya, PaddleOCR-VL, Marker, standard PaddleOCR, Tesseract,
@@ -80,7 +213,9 @@ do not establish all nine candidates' capabilities.
   adapter lifecycle, single-model approval/preflight gates, immutable raw/normalized
   bundles, cache/timings, scoped metrics and independent offline evaluation.
   No real model factories are registered.
-- TASK-008 (pending): Windows launcher/menu and equivalent Python CLI.
+- TASK-008 (complete): [13-option launcher](scripts/run_benchmark.bat), matching
+  [Python CLI](cli.py), pending model catalog and [verification](reports/CLI_VALIDATION.md).
+  Real setup/execution still needs each separately approved model task.
 - TASK-009 through TASK-017: one approved model evaluation at a time, each
   ending with its own artifacts, quantitative report and stop.
 - TASK-018 through TASK-021: stored-result comparisons, visualizations,
@@ -109,10 +244,9 @@ not be mixed with future scores without checking their definitions.
 Dataset sources/licenses and proposed acquisition are documented in the selection
 report; the approved primary payloads and frozen manifests are now validated. Model environments require
 per-model setup and preflight despite the completed compatibility research. Windows menu, setup, single-model runs, smoke/resume/evaluation,
-report generation and comparison commands will be documented with tested
-examples when implemented in TASK-008/018/019. There is no run_benchmark.bat or
-inference CLI yet. Do not execute the future commands in the implementation plan
-until their owning task and hardware prerequisites are complete.
+report generation are exposed by the launcher/CLI below. Comparison/final-report
+commands explicitly remain pending TASK-018/019. Real model factories and isolated
+environments are not yet registered. Do not bypass model approval or hardware gates.
 
 The shared runner keeps results in unique model run directories with source/config/data
 hashes, raw and normalized predictions, per-document/page/category metrics,

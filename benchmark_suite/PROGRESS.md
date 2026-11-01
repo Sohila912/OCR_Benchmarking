@@ -4,9 +4,9 @@ Updated: 2026-11-01 (Africa/Cairo).
 
 ## Checkpoint
 
-- Completed: TASK-001 repository audit; TASK-002 architecture/tracking; TASK-003 hardware/model research; TASK-004 dataset selection; TASK-005 local acquisition and standardization; TASK-006 evaluation metrics; TASK-007 shared adapter/runner.
-- Current / first incomplete task: TASK-008, PENDING. Stop at the TASK-007 checkpoint before launcher/CLI integration.
-- Last completed checkpoint: TASK-007.
+- Completed: TASK-001 repository audit; TASK-002 architecture/tracking; TASK-003 hardware/model research; TASK-004 dataset selection; TASK-005 local acquisition and standardization; TASK-006 evaluation metrics; TASK-007 shared adapter/runner; TASK-008 Windows launcher/CLI.
+- Current / first incomplete task: TASK-009 (Surya), PENDING. Stop at TASK-008; wait for explicit Surya-specific approval before its task.
+- Last completed checkpoint: TASK-008.
 - Branch: feature/ocr-comprehensive-benchmark, tracking origin.
 - Previous checkpoints: 5da4946, 0db4fd4, f60742f, d9c8a15. Storage-preference note d53cb9f is superseded by the latest explicit user instruction to download locally and continue.
 - TASK-005 implementation commit: 70125ea. Final checkpoint subject: `fix(benchmark): preserve frozen manifest checksums on Windows`. Resolve with `git log -1 --format=%H --grep="fix(benchmark): preserve frozen manifest checksums on Windows"` and verify the remote ref after final push. A commit hash is not embedded in its own commit.
@@ -199,26 +199,78 @@ Final commit subject: `feat(benchmark): add gated single-model runner and recove
 Resolve the hash using Git log and compare with origin after push. No hash is
 embedded in its own commit.
 
+## TASK-008 completed checkpoint
+
+The user approved TASK-008 on 2026-11-01. The earlier instruction to wait for
+separate approval for each model remains in force. TASK-007 commit 0ae51d7 was
+verified against origin before work. Implemented shared Windows menu/CLI only;
+no model factory, isolated model environment, installation action, weight download
+or inference was added or executed. No cloud/API calls or dependency installations.
+
+Created cli.py, scripts/run_benchmark.bat, configs/models.json, tests/test_cli.py
+and reports/CLI_VALIDATION.md. Updated README.md with the complete command/menu
+mapping, environment selection, current pending setup behavior, single-model
+approval requirements, quick/full/resume/offline semantics, logs and exit codes.
+Also updated plan/status/architecture/this progress and .gitattributes for batch
+CRLF checkout. preflight.authorize_model is now shared by CLI and runner. The
+runner's existing approval test now uses a fixed temporary pre-model checkpoint,
+so later real approvals cannot accidentally authorize a negative test.
+
+The exact 13-option menu forwards to the same CLI functions. It selects only one
+model and en/ar/both, quick/full, explicit resume/evaluation run paths. No all-model,
+repeated-model, --yes or public fixture bypass exists. Help works without site
+packages; required commands validate tested direct dependency pins. The launcher
+selects an explicitly specified existing interpreter or detects existing shared
+Python; it never installs packages. Registered model environments must be isolated
+under environments/<model>, explicitly selected and pinned. Null model registrations
+remain PENDING until their independently approved tasks implement them. Setup is
+an audit of an approved existing setup, not an installation path at this checkpoint.
+
+Actual checks: Windows launcher --help and default menu/exit work. Real cmd.exe
+fixture paths with spaces and ampersands preserve arguments and exit codes 0/7.
+check-environment metadata/native probes pass shared dependencies but show only
+827,138,048 bytes (~0.77 GiB) free of 8,311,836,672 physical bytes, below the 2-GiB
+loading policy floor; MX350 still has 2,048 MiB VRAM/CC 6.1 and Torch/Paddle GPU
+support is unavailable in the inspected interpreter. Snapshot values are not a
+promise of later availability. Hardware blockers were not cleared or relaxed.
+validate-datasets rehashed all 1,155 original frozen source/reference pairs with
+no network/inference. No data, references, historical results or production
+pipeline source changed. Logs are local/ignored under logs/cli.
+
+Verification: 43 CLI tests / 198 full suite tests pass; Ruff and whitespace pass.
+Tests cover blocked setup/smoke/run for all nine candidates without factory imports,
+exact menu/selection/cancel behavior, dependency failures/help without site packages,
+single-model/language/split dispatch through fake shared boundaries, original config
+on resume, completed-run immutability, offline report routing without active model,
+path ownership, pinned environment checks, pending comparison commands, nonzero
+failed-document exit codes and saved-run reporting after evaluation failure.
+No fixture output was treated as real benchmark evidence.
+
+Final commit subject: `feat(benchmark): add Windows menu and single-model CLI`.
+Resolve it with Git log and compare origin after push. User-owned Task_codex.txt
+remains untracked; generated logs/data/cache/results are excluded from Git.
+
 ## Remaining tasks and exact next actions
 
-TASK-008 is PENDING: implement the Windows menu/CLI using the shared functions,
-with read-only environment/dataset/status checks and exactly one explicitly approved
-model at a time. Existing real-model factories do not yet exist; do not create or
-execute them in TASK-008. Keep model choices as explicit unavailable/pending states
-until their own approved task. Preserve immutable artifacts, offline reevaluation,
-cache provenance and hardware/approval gates. Test CLI/menu behavior with fixtures,
-then update progress, commit/push and stop.
+TASK-009 (Surya) is PENDING and has no approval. STOP here and wait for the user's
+explicit approval for Surya only. If approved, reread Task_codex.txt, plan/status/
+progress and hardware/model/CLI reports. Recheck official source/version/license
+and hardware first. The known low RAM and MX350 limitations must block unsafe
+installation/loading. If still incompatible, record BLOCKED_BY_HARDWARE with a
+clear remedy instead of repeatedly attempting installation or inventing scores.
+Any alternative environment, paid resources or restricted/large model downloads
+need the specified user approval. An approval for Surya never authorizes any
+other model. Finish its individual result/blocker checkpoint and stop again.
 
-Every model TASK-009 through TASK-017 requires its own separate explicit approval,
-model-specific source/version/license/setup review, successful live hardware
-preflight and a stop after its individual results or blocker report. An approval
-for Surya never authorizes PaddleOCR-VL, Marker or any subsequent model.
+TASK-010 through TASK-017 retain their independent model approvals. Comparisons
+and final visualization remain TASK-018/019, then audit/documentation TASK-020/021.
+The initial shared framework is complete; no real OCR model has been benchmarked.
 
 ## Recommended next Codex prompt
 
 “Read Task_codex.txt and benchmark_suite/BENCHMARK_PLAN.md, PROGRESS.md,
-BENCHMARK_STATUS.json and reports/RUNNER.md. Validate the TASK-007 checkpoint.
-I approve TASK-008 only: implement and test the Windows launcher/menu and CLI,
-retain all shared approval/hardware/artifact gates, update progress, commit/push
-and stop. Do not download, install or execute OCR models; wait for separate
-approval for each model.”
+BENCHMARK_STATUS.json, reports/CLI_VALIDATION.md and hardware/model compatibility
+reports. Validate TASK-008. I approve TASK-009 (Surya) only. Recheck official version,
+license and hardware before any install/download/loading; if blocked, document it
+and stop. Preserve per-model approval gates, frozen data and existing results.
+Do not start another model without asking for my approval.”

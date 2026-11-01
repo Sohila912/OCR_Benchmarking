@@ -1,3 +1,4 @@
 # Frozen artifact checksums must survive Windows core.autocrlf=true checkouts.
 datasets/manifest/*.json text eol=lf
 datasets/manifest/*.jsonl text eol=lf
+scripts/*.bat text eol=crlf

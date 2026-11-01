@@ -4,7 +4,7 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
-TASK-001 through TASK-007 are complete. TASK-005 local acquisition superseded the Drive preference. On 2026-11-01 the user approved shared-runner continuation and explicitly reaffirmed separate approval for each model. Stop at TASK-007 before TASK-008 launcher/CLI integration. Hardware blockers remain; no OCR model has been installed or executed. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval.
+TASK-001 through TASK-008 are complete. TASK-005 local acquisition superseded the Drive preference. On 2026-11-01 the user approved shared-runner continuation and explicitly reaffirmed separate approval for each model. TASK-008 launcher/CLI is complete. Stop before TASK-009; each model still requires its own explicit approval. Hardware blockers remain; no OCR model has been installed or executed. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval.
 
 At every new session read this plan, PROGRESS.md and BENCHMARK_STATUS.json; check Git branch/status and relevant artifacts; validate the last checkpoint before continuing the first incomplete approved task. Preserve existing files/results and user work. Commit only explicitly selected task files after checks. Never stage credentials, downloaded datasets or model weights. Do not use blanket staging.
 
@@ -113,6 +113,16 @@ these gates and require a separate explicit approval for every model.
 - Next task: TASK-008.
 
 ## TASK-008: Windows execution tools and README
+
+Completed 2026-11-01. Exact 13-option .bat/menu and equivalent lazy CLI,
+models.json pending registrations, README usage and reports/CLI_VALIDATION.md.
+Added shared preflight.authorize_model to avoid a separate CLI approval policy,
+CRLF batch checkout rules and a stable temporary pre-model approval test fixture.
+43 CLI tests / 198 suite tests, Ruff and frozen dataset validation pass. Actual
+cmd.exe tests cover spaces/ampersands and exit-code propagation. Setup currently
+checks approved existing environments; installation/real factories remain the
+individual model tasks. Every model is still blocked/pending and unapproved.
+Comparison/final-report commands explicitly return PENDING TASK-018/019.
 
 - Objective: Provide the 13-option Windows launcher and matching Python CLI without implicit provisioning.
 - Dependencies: TASK-003, TASK-005, TASK-006, TASK-007.

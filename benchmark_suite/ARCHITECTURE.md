@@ -1,8 +1,9 @@
 # Benchmark architecture
 
-Updated through TASK-007, 2026-11-01 (Africa/Cairo). Tracker, datasets, metrics
-and the shared adapter/runner contracts are implemented. Real model integration,
-CLI and comparisons remain later tasks. See reports/RUNNER.md for actual run layout
+Updated through TASK-008, 2026-11-01 (Africa/Cairo). Tracker, datasets, metrics
+and the shared adapter/runner contracts are implemented. Real model integration and
+comparisons remain later tasks. The Windows launcher/CLI is implemented; real
+model factories and environments remain pending individual approvals. See reports/RUNNER.md for actual run layout
 and recovery semantics; the original planned layout below is retained for context.
 
 ## Boundaries and reuse

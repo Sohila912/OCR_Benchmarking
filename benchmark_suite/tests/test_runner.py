@@ -238,6 +238,15 @@ def test_unsafe_ram_blocks_before_factory_and_unknown_gpu_build(tmp_path):
 def test_each_real_model_requires_its_own_approval(tmp_path):
     root, manifest, _ = fixture_root(tmp_path, 1)
     shutil.copyfile(SUITE/"BENCHMARK_STATUS.json", root/"BENCHMARK_STATUS.json")
+    # Keep the temporary pre-model checkpoint independent of later real approvals.
+    path = root/"BENCHMARK_STATUS.json"
+    state = json.loads(path.read_bytes())
+    state["tasks"] = {task: "COMPLETED" if int(task[5:]) <= 8 else "PENDING" for task in state["tasks"]}
+    state["approved_tasks"] = list(state["tasks"])[:8]
+    state.update(current_task="TASK-009", last_completed_checkpoint="TASK-008", approval_required_before="TASK-009")
+    state["models"] = {model: "BLOCKED" for model in state["models"]}
+    state["model_block_reasons"] = {model: "FIXTURE_REQUIRES_MODEL_APPROVAL" for model in state["models"]}
+    path.write_text(json.dumps(state), encoding="utf-8")
     for model in ("surya", "paddle_vl", "marker", "paddle", "tesseract", "docling_easyocr", "docling_tesseract", "granite_docling", "baidu"):
         selected = spec().model_copy(update={"model_id": model})
         with pytest.raises(preflight.PreflightBlocked):

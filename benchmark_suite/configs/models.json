@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "note": "All model implementations/environments are pending their separately approved model tasks. Null entries never authorize execution. Factory paths are resolved only after shared preflight. No install actions are registered.",
+  "models": {
+    "surya": {
+      "name": "Surya OCR",
+      "task": "TASK-009",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    },
+    "paddle_vl": {
+      "name": "PaddleOCR-VL",
+      "task": "TASK-010",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    },
+    "marker": {
+      "name": "Marker",
+      "task": "TASK-011",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    },
+    "paddle": {
+      "name": "PaddleOCR",
+      "task": "TASK-012",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    },
+    "tesseract": {
+      "name": "Tesseract OCR",
+      "task": "TASK-013",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    },
+    "docling_easyocr": {
+      "name": "Docling + EasyOCR",
+      "task": "TASK-014",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    },
+    "docling_tesseract": {
+      "name": "Docling + Tesseract",
+      "task": "TASK-015",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    },
+    "granite_docling": {
+      "name": "Granite Docling",
+      "task": "TASK-016",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    },
+    "baidu": {
+      "name": "Baidu OCR",
+      "task": "TASK-017",
+      "spec": null,
+      "config": null,
+      "factory": null,
+      "python": null,
+      "requirements": null
+    }
+  }
+}

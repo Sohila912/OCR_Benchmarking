@@ -27,16 +27,21 @@ def authorize(spec, config, status_path):
         if spec.model_id != "fixture":
             raise PreflightBlocked(["Fixture mode is restricted to the synthetic fixture adapter"])
         return
-    if spec.model_id not in MODEL_IDS:
+    authorize_model(spec.model_id, status_path)
+
+
+def authorize_model(model_id, status_path):
+    """Shared CLI/runner gate; it neither imports a factory nor grants approval."""
+    if model_id not in MODEL_IDS:
         raise PreflightBlocked(["Unregistered model; no execution approval"])
     status = load_status(status_path)
-    task = f"TASK-{MODEL_IDS.index(spec.model_id)+9:03}"
+    task = f"TASK-{MODEL_IDS.index(model_id)+9:03}"
     if any(status["tasks"][f"TASK-{i:03}"] != "COMPLETED" for i in (3, 5, 6, 7, 8)):
         raise PreflightBlocked(["Shared prerequisites TASK-003/005/006/007/008 are incomplete"])
     if task not in status["approved_tasks"] or status["tasks"][task] != "IN_PROGRESS" or status["current_task"] != task:
-        raise PreflightBlocked([f"Explicit approval and active checkpoint required for {task} / {spec.model_id}"])
-    if status["models"][spec.model_id] != "IN_PROGRESS":
-        raise PreflightBlocked([status["model_block_reasons"].get(spec.model_id, "Model is not authorized for execution")])
+        raise PreflightBlocked([f"Explicit approval and active checkpoint required for {task} / {model_id}"])
+    if status["models"][model_id] != "IN_PROGRESS":
+        raise PreflightBlocked([status["model_block_reasons"].get(model_id, "Model is not authorized for execution")])
 
 
 def snapshot(root):

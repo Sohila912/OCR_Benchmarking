@@ -2,7 +2,7 @@
 
 This isolated suite will compare nine OCR configurations across English and
 Arabic text, layout, reading order, tables and charts using verified public
-ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection and local preparation are implemented.**
+ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection, local preparation and metric calculators are implemented.**
 The two approved primary datasets are downloaded and validated. No model evaluation or accuracy comparison has been run.
 
 Read [PROGRESS.md](PROGRESS.md), [BENCHMARK_STATUS.json](BENCHMARK_STATUS.json)
@@ -71,8 +71,11 @@ do not establish all nine candidates' capabilities.
   [frozen manifest provenance](datasets/manifest/PROVENANCE.json) and
   [validation report](reports/DATASET_VALIDATION.md). Evaluation contains
   745 English + 390 Arabic images; development contains 10 per language.
-- TASK-006: define/test text, layout, table, chart, reading-order and statistical
-  metrics against the actual annotation types.
+- TASK-006 (complete): [metric formulas and scope](reports/METRICS.md), versioned
+  configs/evaluation.json, isolated metrics/ calculators and a reference-only
+  [readiness audit](reports/METRIC_REFERENCE_AUDIT.json). 122 suite tests pass.
+  English text requires independent region matching; Arabic numeric chart/order
+  truth is unavailable. Calculators are implemented; model scores remain unmeasured.
 - TASK-007/008: hardware preflight, adapters/runner, cache/recovery, Windows
   launcher and equivalent Python CLI.
 - TASK-009 through TASK-017: one approved model evaluation at a time, each

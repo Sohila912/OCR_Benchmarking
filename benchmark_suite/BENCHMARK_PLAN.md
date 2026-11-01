@@ -73,6 +73,15 @@ General definition of done: stated acceptance criteria and checks pass (or block
 
 ## TASK-006: Evaluation metrics implementation
 
+Completed 2026-11-01. See reports/METRICS.md for formulas, scope, TEDS variant,
+resource limits and reference exclusions; reports/METRIC_REFERENCE_AUDIT.json for
+reference-only counts. Added metrics/references.py, requirements-metrics.txt and
+scripts/audit_metric_references.py beyond the initial file list. Verification:
+32 metric tests / 122 suite tests, Ruff and offline frozen-data validation pass.
+No OCR inference. TASK-007 must enforce manifest/capability gates, independent
+English region matching, excluded geometry scope, declared content formats and
+coverage before using the pure calculators.
+
 - Objective: Implement independently testable metrics only for available trusted annotations.
 - Dependencies: TASK-002; TASK-004 annotation specification.
 - Files to create/modify: metrics/__init__.py; metrics/text.py; metrics/layout.py; metrics/reading_order.py; metrics/tables.py; metrics/charts.py; metrics/statistics.py; configs/evaluation.json; tests/test_metrics.py.

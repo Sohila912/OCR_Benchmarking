@@ -1,0 +1,3 @@
+# Tested direct dependencies already present in .venv-ocr; no OCR/model imports.
+rapidfuzz==3.14.6
+markdown-it-py==4.2.0

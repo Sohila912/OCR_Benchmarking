@@ -1,12 +1,12 @@
 # Benchmark progress
 
-Updated: 2026-10-28 (Africa/Cairo).
+Updated: 2026-11-01 (Africa/Cairo).
 
 ## Checkpoint
 
-- Completed: TASK-001 repository audit; TASK-002 architecture/tracking; TASK-003 hardware/model research; TASK-004 dataset selection; TASK-005 local acquisition and standardization.
-- Current / first incomplete task: TASK-006, PENDING. Stop at the TASK-005 checkpoint before beginning metrics implementation.
-- Last completed checkpoint: TASK-005.
+- Completed: TASK-001 repository audit; TASK-002 architecture/tracking; TASK-003 hardware/model research; TASK-004 dataset selection; TASK-005 local acquisition and standardization; TASK-006 evaluation metrics.
+- Current / first incomplete task: TASK-007, PENDING. Stop at the TASK-006 checkpoint before adapter/runner implementation.
+- Last completed checkpoint: TASK-006.
 - Branch: feature/ocr-comprehensive-benchmark, tracking origin.
 - Previous checkpoints: 5da4946, 0db4fd4, f60742f, d9c8a15. Storage-preference note d53cb9f is superseded by the latest explicit user instruction to download locally and continue.
 - TASK-005 implementation commit: 70125ea. Final checkpoint subject: `fix(benchmark): preserve frozen manifest checksums on Windows`. Resolve with `git log -1 --format=%H --grep="fix(benchmark): preserve frozen manifest checksums on Windows"` and verify the remote ref after final push. A commit hash is not embedded in its own commit.
@@ -80,17 +80,73 @@ Passed:
 - A decoding preflight refused insufficient RAM. The user explicitly freed RAM/requested retry; the preparation floor was retained and the next run completed. No user processes were stopped and no model hardware guard was relaxed.
 - No unresolved unit-test/lint failures or missing dataset payloads. Source-reference warnings/coverage limitations remain explicit; no source bytes were altered to conceal them.
 
+## TASK-006 completed checkpoint
+
+User explicitly approved continuation on 2026-11-01. Implemented only TASK-006;
+no models/dependencies were installed, no inference, dataset downloads or OCR API calls performed.
+TASK-005 remote commit 254f06ee1f753d8de4783142538a20f5b5647cf6 was verified;
+all 1,155 frozen image/reference pairs passed offline validation before work.
+
+Created metrics/__init__.py, text.py, layout.py, reading_order.py, tables.py,
+charts.py, statistics.py and references.py; configs/evaluation.json;
+requirements-metrics.txt; tests/test_metrics.py; scripts/audit_metric_references.py;
+reports/METRICS.md and reports/METRIC_REFERENCE_AUDIT.json. Modified this file,
+BENCHMARK_PLAN.md, BENCHMARK_STATUS.json and suite README.md. Production and
+historical evaluator code, frozen manifests, images and references are unchanged.
+
+Implemented explicit raw/normalized code-point CER, whitespace-token WER, clipped
+error-complement accuracies, NED, exact and bag-unit PR/F1; configurable Arabic
+Unicode/marks/alef/hamza/tatweel/whitespace policies; class/page-aware box IoU,
+confidence-greedy detection and all-points mAP; independent-ID order/tau/inversions
+with missing-pair coverage; genuine bounded ordered-tree TEDS variant plus
+span-aware cell/merge/header/text/row/column diagnostics; independently gated chart
+detection/type/text/numeric/component calculators; micro/macro distributions and
+seeded cluster bootstrap. See METRICS.md for precise formulas and null behavior.
+
+English explicit text truth is regional, so full-page CER against a partial
+transcript is prohibited. Raw Markdown serialization and converted content must
+remain separate; literal math notation is representation-sensitive. CommonMark
+conversion must only run on declared Markdown, not arbitrary plain text. Dataset
+layout masks/unknown labels require explicit scoped routing in TASK-007. Chart
+numeric/type truth and Arabic reading order remain NOT_EVALUATED. No source-book
+independence is claimed: primary intervals must be explicitly page bootstrap.
+
+TEDS is the named ordered-tree-teds-root-th-v1 variant, not official PubTabNet
+numeric parity. Default 150 nodes / 200,000 states; limits return NOT_EVALUATED.
+Reference-only audit: 243 English and 73 Arabic HTML fragments across both splits;
+257 ready before state limits, 47 over node limit, three stricter grid/parser
+invalid, nine blocked by the existing manifest table gate. IDs/reasons recorded
+separately without mutating the frozen cohort. All 753 layout-eligible and 740
+order-eligible English pages convert successfully. 11,373 explicit English text
+regions are retained. Readiness is not a model result or guarantee of state budget.
+
+Verification: 32 metric tests including an independent exhaustive tiny-tree edit
+oracle; 122 total suite tests pass. Ruff passes; frozen-data validation passes;
+reference audit reproduced deterministically. Empty-reference hallucinations
+contribute to micro errors even though their individual CER/WER is undefined.
+No unresolved test failures. Production integration tests are unchanged/unrun.
+
+Final task commit subject: `feat(benchmark): implement annotation-aware evaluation metrics`.
+Resolve it using Git log; verify the origin branch after push. No hash is embedded
+in its own commit. Downloaded data and transcriptions remain local/ignored.
+Task_codex.txt remains user-owned and untracked.
+
 ## Remaining tasks and exact next actions
 
-All local model states stay BLOCKED with reason BLOCKED_BY_HARDWARE; Baidu stays BLOCKED pending implementation/API approval. Successful dataset preparation does not certify model memory/GPU compatibility or authorize inference.
-
-After approving TASK-006:
-1. Read Task_codex.txt, BENCHMARK_PLAN.md, this file and BENCHMARK_STATUS.json; validate the TASK-005 Git/remote checkpoint, provenance and frozen source/reference hashes.
-2. Implement TASK-006 only: metric calculators with fixed, versioned text-content assembly, raw/normalized Arabic transformations, CER/WER/accuracy/NED/exact match and clear matching units/empty-reference behavior.
-3. Add real structural metrics only when manifest capabilities and independent annotations permit them: layout IoU/matching/mAP, order inversions/tau, genuine TEDS/cell metrics and separately chart metrics on future valid references. No numeric chart scores exist for this primary cohort.
-4. Preserve source inputs, historical policies and cached predictions; do not change frozen pages after model outputs. Treat warnings/missing labels explicitly. Statistical aggregation must disclose unknown document grouping and coverage, not silently assume independent books.
-5. Run meaningful hand-checked unit/edge-case tests, document formulas/configurations, update progress and commit/push the task. Stop at the TASK-006 checkpoint; no model or extra dataset download or inference.
+TASK-007 is PENDING and requires a new approval. Build the common adapter/runner,
+not model implementations. Read the task, plan, status, this progress and
+reports/METRICS.md; check Git and frozen provenance. Integrate metric eligibility,
+reference scope and independent region/table matching; preserve raw outputs and
+content formats; record complete configurations/versions/coverage/failures;
+implement hardware preflight, immutable result runs, timing/cache/recovery and
+recomputation without inference. Preserve all existing hardware blockers. Stop
+at TASK-007 checkpoint. TASK-008 is the Windows launcher/CLI; individual approved
+model evaluations remain TASK-009 through TASK-017.
 
 ## Recommended next Codex prompt
 
-“Read Task_codex.txt and benchmark_suite/BENCHMARK_PLAN.md, PROGRESS.md and BENCHMARK_STATUS.json. Validate the TASK-005 checkpoint and frozen dataset provenance. I approve TASK-006 only. Implement and test the annotation-supported metrics and explicit Arabic/text policies, preserve raw references and historical behavior, update progress and commit/push, then stop. Do not download or execute models.”
+“Read Task_codex.txt and benchmark_suite/BENCHMARK_PLAN.md, PROGRESS.md,
+BENCHMARK_STATUS.json and reports/METRICS.md. Validate the TASK-006 checkpoint.
+I approve TASK-007 only: implement the common adapter/runner and required scope,
+preflight, artifacts and recovery tests; update progress, commit/push and stop.
+Do not download, install or execute OCR models.”

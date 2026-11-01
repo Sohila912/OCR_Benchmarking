@@ -1,0 +1,36 @@
+{
+  "evaluator_version": "benchmark-metrics-v1",
+  "text": {
+    "word_units": "Unicode whitespace-delimited, case-sensitive tokens",
+    "character_units": "Unicode code points",
+    "raw_scores": true,
+    "normalized_scores": true,
+    "normalization": {"unicode": "NFC", "whitespace": true, "diacritics": false, "alef": false, "hamza": false, "tatweel": false},
+    "empty_reference_error_rate": null,
+    "english_scope": "independently matched explicit text regions; no whole-page CER against partial truth",
+    "arabic_scope": "publisher Markdown serialization raw; CommonMark visible content separately",
+    "markdown_policy": "CommonMark; no URLs/image alt; retain code/math syntax; HTML visible text in source order"
+  },
+  "layout": {
+    "box_policy": "axis-aligned envelopes in source pixels; not polygon IoU",
+    "iou_threshold": 0.5,
+    "map_thresholds": [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95],
+    "ap_method": "all-points precision envelope, not COCO 101-point AP",
+    "matching": "confidence descending, stable input-order ties, same class/page, one-to-one",
+    "omnidocbench_labels": {
+      "title": "heading", "text_block": "paragraph", "table": "table", "figure": "figure",
+      "figure_caption": "caption", "table_caption": "caption", "equation_caption": "caption",
+      "code_txt_caption": "caption", "header": "header", "footer": "footer",
+      "page_number": "page_number", "page_footnote": "footnote", "table_footnote": "footnote",
+      "figure_footnote": "footnote", "reference": "reference", "list_group": "list",
+      "code_txt": "code", "equation_isolated": "equation", "equation_semantic": "equation",
+      "equation_explanation": "equation_explanation"
+    },
+    "excluded_source_labels": ["text_mask", "abandon", "chart_mask", "unknown_mask", "table_mask", "need_mask", "algorithm_mask"],
+    "excluded_source_policy": "No implicit background negatives within excluded/unlabeled regions; runner must restrict evaluable scope"
+  },
+  "reading_order": {"matching": "independent block-to-reference IDs", "missing_pair_policy": "incorrect for all-reference-pair accuracy; excluded from tau with pair coverage"},
+  "tables": {"method": "ordered-tree-teds-root-th-v1", "max_nodes": 150, "max_states": 200000, "cell_matching": "exact logical row,column,rowspan,colspan", "plain_text": "NOT_SUPPORTED for structure"},
+  "charts": {"primary_numeric_type_truth": "NOT_EVALUATED", "numeric_absolute_tolerance": 0.0, "numeric_relative_tolerance": 0.01},
+  "statistics": {"seed": 1729, "bootstrap_samples": 2000, "primary_resampling_unit": "page", "source_document_independence": "UNKNOWN", "missing_metrics": "null with coverage; never zero"}
+}

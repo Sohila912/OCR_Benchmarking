@@ -1,0 +1,4 @@
+# Direct tested shared-runner dependencies; not a model environment or full lock.
+-r requirements-metrics.txt
+pydantic==2.13.5
+psutil==7.2.2

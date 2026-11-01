@@ -4,7 +4,7 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
-TASK-001 through TASK-004 are complete. On 2026-10-28 the user approved local acquisition and continuation for TASK-005, superseding Drive storage. TASK-005 is complete: stop at its checkpoint before TASK-006. Hardware blockers still prevent model loading. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval. No model or dataset downloads in TASK-001.
+TASK-001 through TASK-007 are complete. TASK-005 local acquisition superseded the Drive preference. On 2026-11-01 the user approved shared-runner continuation and explicitly reaffirmed separate approval for each model. Stop at TASK-007 before TASK-008 launcher/CLI integration. Hardware blockers remain; no OCR model has been installed or executed. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval.
 
 At every new session read this plan, PROGRESS.md and BENCHMARK_STATUS.json; check Git branch/status and relevant artifacts; validate the last checkpoint before continuing the first incomplete approved task. Preserve existing files/results and user work. Commit only explicitly selected task files after checks. Never stage credentials, downloaded datasets or model weights. Do not use blanket staging.
 
@@ -92,6 +92,16 @@ coverage before using the pure calculators.
 - Next task: TASK-007.
 
 ## TASK-007: Common model adapter and runner
+
+Completed 2026-11-01. Added the listed shared contracts plus adapters/__init__.py,
+runners/__init__.py, runners/evaluate.py, runners/report.py,
+requirements-runner.txt and reports/RUNNER.md. Extended evaluation.json with fixed
+routing thresholds. 33 synthetic runner tests / 155 suite tests and Ruff pass;
+one fixture worker was actually terminated after cache publication and resumed
+without repeating saved inference. No real model execution or registration.
+See reports/RUNNER.md for raw boundaries, exact artifacts, resource sampling,
+reference scope, timing limitations and approval gates. TASK-008 must preserve
+these gates and require a separate explicit approval for every model.
 
 - Objective: Add a benchmark compatibility layer, immutable runs, preflight and recovery around reusable production contracts.
 - Dependencies: TASK-003, TASK-005, TASK-006.

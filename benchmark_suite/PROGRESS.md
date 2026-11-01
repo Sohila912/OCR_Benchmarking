@@ -4,9 +4,9 @@ Updated: 2026-11-01 (Africa/Cairo).
 
 ## Checkpoint
 
-- Completed: TASK-001 repository audit; TASK-002 architecture/tracking; TASK-003 hardware/model research; TASK-004 dataset selection; TASK-005 local acquisition and standardization; TASK-006 evaluation metrics.
-- Current / first incomplete task: TASK-007, PENDING. Stop at the TASK-006 checkpoint before adapter/runner implementation.
-- Last completed checkpoint: TASK-006.
+- Completed: TASK-001 repository audit; TASK-002 architecture/tracking; TASK-003 hardware/model research; TASK-004 dataset selection; TASK-005 local acquisition and standardization; TASK-006 evaluation metrics; TASK-007 shared adapter/runner.
+- Current / first incomplete task: TASK-008, PENDING. Stop at the TASK-007 checkpoint before launcher/CLI integration.
+- Last completed checkpoint: TASK-007.
 - Branch: feature/ocr-comprehensive-benchmark, tracking origin.
 - Previous checkpoints: 5da4946, 0db4fd4, f60742f, d9c8a15. Storage-preference note d53cb9f is superseded by the latest explicit user instruction to download locally and continue.
 - TASK-005 implementation commit: 70125ea. Final checkpoint subject: `fix(benchmark): preserve frozen manifest checksums on Windows`. Resolve with `git log -1 --format=%H --grep="fix(benchmark): preserve frozen manifest checksums on Windows"` and verify the remote ref after final push. A commit hash is not embedded in its own commit.
@@ -50,7 +50,7 @@ Production files, existing curated datasets/references, historical outputs/resul
 
 Two English pages contain out-of-bounds source polygons; one English and two Arabic pages contain malformed table markup. Original annotations/references were preserved unchanged and affected metric eligibility restricted, not silently repaired or dropped. Every page remains in the image cohort for other available capabilities. Full source IDs/warnings are in reports/DATASET_VALIDATION.md and manifest JSONL.
 
-All source/image identities and dimensions passed. Four English/Arabic image/reference examples were visually spot-checked (English scanned chart/text and scientific table; Arabic mixed-language tables and diacritized poetry/prose). Visible pairings/selected values correspond, but this is not a complete character-level human audit. Source scope, watermark/ghost text, mathematical notation and Arabic tatweel/diacritic conventions need explicit TASK-006 policies. No OCR-generated ground truth or missing annotation was invented.
+All source/image identities and dimensions passed. Four English/Arabic image/reference examples were visually spot-checked (English scanned chart/text and scientific table; Arabic mixed-language tables and diacritized poetry/prose). Visible pairings/selected values correspond, but this is not a complete character-level human audit. Source scope, watermark/ghost text, mathematical notation and Arabic tatweel/diacritic conventions are covered by the explicit TASK-006 metric policies. No OCR-generated ground truth or missing annotation was invented.
 
 Full source checksums, download dates, notices and URLs are recorded locally in raw/acquisition.json; main archives/annotation and manifest hashes are versioned in provenance. ACQUISITION_PROVENANCE.json is the earlier download-only marker; final frozen PROVENANCE.json is authoritative for preparation completion. No signed CDN URLs or credentials are saved.
 
@@ -131,22 +131,94 @@ Resolve it using Git log; verify the origin branch after push. No hash is embedd
 in its own commit. Downloaded data and transcriptions remain local/ignored.
 Task_codex.txt remains user-owned and untracked.
 
+## TASK-007 completed checkpoint
+
+User approved continuation on 2026-11-01 and explicitly required separate approval
+for each model. Implemented the shared runner only. No real OCR factory was
+registered, no model installed/downloaded/executed, no package installation or
+paid/cloud/API execution. All existing model hardware/ambiguity blockers remain.
+TASK-006 checkpoint a5a0eaf is the base; final remote verification is recorded by
+Git. The user-owned untracked Task_codex.txt remains outside the commit.
+
+Created:
+- adapters/__init__.py, adapters/base.py and adapters/existing.py.
+- runners/__init__.py, schemas.py, preflight.py, cache.py, run.py, evaluate.py,
+  report.py.
+- requirements-runner.txt, tests/test_runner.py and reports/RUNNER.md.
+
+Modified configs/evaluation.json with explicit routing thresholds; updated suite
+README, plan, architecture, this progress and validated status. Production source,
+historical evaluators/results, frozen data/manifests/references are unchanged.
+
+The benchmark envelope reuses production OCRResult, preserving raw bytes plus
+optional typed tables/charts and explicit format/coordinates. The lazy existing
+provider bridge captures provider OCRResult as its declared raw boundary, not
+vendor internals. No built-in real model factory exists yet.
+
+One candidate per invocation; every real model requires its corresponding task
+explicitly approved/current/IN_PROGRESS and all shared prerequisites complete.
+Preflight precedes factory construction and checks declared compatibility,
+RAM/VRAM/compute capability, disk reserve, installed dependency versions, static
+GPU build evidence and assets/source hashes. Model-specific binary/runtime
+compatibility evidence remains required. Only synthetic fixture IDs can use test
+probes. The runner does not grant approvals or update model states automatically.
+
+Immutable unique runs, per-document raw/normalized checksummed bundles, atomic
+progress, successful-only cache and kernel coordinator lock support resumption.
+A real fixture process was terminated after cache publication; its next run
+reused that saved output and completed the remaining documents without repeating
+it. In-flight work without durable output can repeat. Completed runs are immutable;
+failed pages can be retried in a new run while successes are reused. Corrupt or
+changed artifacts/configs block. Errors and cleanup diagnostics are preserved.
+
+Timing distinguishes initialization, prepare/predict/normalize and cold/warm
+attempts, sampled own-process/descendant RSS and optional sampled GPU context
+memory. WDDM N/A remains null. Cache hits retain original provenance but have null
+fresh timing/resource exports. Hardware, device, precision, batch, DPI and resize
+settings are retained; session wall time and missing session ends are disclosed.
+
+Offline reevaluation works without an adapter/model/cache and creates a new sibling
+evaluation with policy/code/data/run identity. Exports include full per-page/doc
+metrics, language/category text aggregates, explicit page-bootstrap intervals,
+structured metric CSVs, performance, failures, errors, predictions and a basic
+individual report. Scope/coverage remain explicit: English uses independent region
+geometry allocation, source masks are honored, confidence-less AP is withheld,
+Arabic multiple-table pairing without truth alignment is unscored, and unavailable
+chart/order annotations remain NOT_EVALUATED. No fixture score is a real model result.
+
+Verification: 33 runner tests / 155 suite tests pass; Ruff and whitespace checks
+pass. Tests cover approval gates for all nine candidates, real fixture process
+termination/OS-lock recovery, repeated/cached/offline execution, raw preservation,
+meaningful identity invalidation, failed initialization/pages/cleanup,
+source/reference/cache/output tampering, input mutation during predict,
+RAM/disk/package/asset/CUDA-build gates, coordinates/label masks, plain-vs-Markdown
+routing, word-to-region allocation and Arabic table ambiguity. No production
+pipeline source was changed. Read reports/RUNNER.md for exact contracts/limitations.
+
+Final commit subject: `feat(benchmark): add gated single-model runner and recovery`.
+Resolve the hash using Git log and compare with origin after push. No hash is
+embedded in its own commit.
+
 ## Remaining tasks and exact next actions
 
-TASK-007 is PENDING and requires a new approval. Build the common adapter/runner,
-not model implementations. Read the task, plan, status, this progress and
-reports/METRICS.md; check Git and frozen provenance. Integrate metric eligibility,
-reference scope and independent region/table matching; preserve raw outputs and
-content formats; record complete configurations/versions/coverage/failures;
-implement hardware preflight, immutable result runs, timing/cache/recovery and
-recomputation without inference. Preserve all existing hardware blockers. Stop
-at TASK-007 checkpoint. TASK-008 is the Windows launcher/CLI; individual approved
-model evaluations remain TASK-009 through TASK-017.
+TASK-008 is PENDING: implement the Windows menu/CLI using the shared functions,
+with read-only environment/dataset/status checks and exactly one explicitly approved
+model at a time. Existing real-model factories do not yet exist; do not create or
+execute them in TASK-008. Keep model choices as explicit unavailable/pending states
+until their own approved task. Preserve immutable artifacts, offline reevaluation,
+cache provenance and hardware/approval gates. Test CLI/menu behavior with fixtures,
+then update progress, commit/push and stop.
+
+Every model TASK-009 through TASK-017 requires its own separate explicit approval,
+model-specific source/version/license/setup review, successful live hardware
+preflight and a stop after its individual results or blocker report. An approval
+for Surya never authorizes PaddleOCR-VL, Marker or any subsequent model.
 
 ## Recommended next Codex prompt
 
 “Read Task_codex.txt and benchmark_suite/BENCHMARK_PLAN.md, PROGRESS.md,
-BENCHMARK_STATUS.json and reports/METRICS.md. Validate the TASK-006 checkpoint.
-I approve TASK-007 only: implement the common adapter/runner and required scope,
-preflight, artifacts and recovery tests; update progress, commit/push and stop.
-Do not download, install or execute OCR models.”
+BENCHMARK_STATUS.json and reports/RUNNER.md. Validate the TASK-007 checkpoint.
+I approve TASK-008 only: implement and test the Windows launcher/menu and CLI,
+retain all shared approval/hardware/artifact gates, update progress, commit/push
+and stop. Do not download, install or execute OCR models; wait for separate
+approval for each model.”

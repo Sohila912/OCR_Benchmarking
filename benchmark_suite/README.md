@@ -2,7 +2,7 @@
 
 This isolated suite will compare nine OCR configurations across English and
 Arabic text, layout, reading order, tables and charts using verified public
-ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection, local preparation and metric calculators are implemented.**
+ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection, local preparation, metrics and the shared adapter/runner are implemented.**
 The two approved primary datasets are downloaded and validated. No model evaluation or accuracy comparison has been run.
 
 Read [PROGRESS.md](PROGRESS.md), [BENCHMARK_STATUS.json](BENCHMARK_STATUS.json)
@@ -76,8 +76,11 @@ do not establish all nine candidates' capabilities.
   [readiness audit](reports/METRIC_REFERENCE_AUDIT.json). 122 suite tests pass.
   English text requires independent region matching; Arabic numeric chart/order
   truth is unavailable. Calculators are implemented; model scores remain unmeasured.
-- TASK-007/008: hardware preflight, adapters/runner, cache/recovery, Windows
-  launcher and equivalent Python CLI.
+- TASK-007 (complete): [shared runner and recovery](reports/RUNNER.md), explicit
+  adapter lifecycle, single-model approval/preflight gates, immutable raw/normalized
+  bundles, cache/timings, scoped metrics and independent offline evaluation.
+  No real model factories are registered.
+- TASK-008 (pending): Windows launcher/menu and equivalent Python CLI.
 - TASK-009 through TASK-017: one approved model evaluation at a time, each
   ending with its own artifacts, quantitative report and stop.
 - TASK-018 through TASK-021: stored-result comparisons, visualizations,
@@ -88,7 +91,7 @@ provision assets. No new installs, CUDA/driver/WSL changes, paid services or lar
 downloads are part of the current checkpoint. Hardware-blocked models stay in
 the plan as BLOCKED with reason BLOCKED_BY_HARDWARE.
 
-## Methodology to implement
+## Measurement methodology
 
 Use identical frozen documents, explicit versions/configuration and raw outputs.
 Only independent trusted references support scores. Evaluate English/Arabic and
@@ -99,8 +102,8 @@ and qualify throughput/resource comparisons across different hardware.
 
 Metric formulas, empty-input policies, accuracy definitions, raw versus
 normalized Arabic scores (Unicode, whitespace, diacritics, alef, hamza, tatweel),
-matching/IoU/taxonomy/TEDS/statistics and justified display scales are TASK-006
-deliverables. Existing historical evaluator policies remain unchanged and must
+matching/IoU/taxonomy/TEDS/statistics are documented in
+[METRICS.md](reports/METRICS.md), with shared routing in [RUNNER.md](reports/RUNNER.md). Existing historical evaluator policies remain unchanged and must
 not be mixed with future scores without checking their definitions.
 
 Dataset sources/licenses and proposed acquisition are documented in the selection
@@ -111,7 +114,7 @@ examples when implemented in TASK-008/018/019. There is no run_benchmark.bat or
 inference CLI yet. Do not execute the future commands in the implementation plan
 until their owning task and hardware prerequisites are complete.
 
-Results will be kept in unique model run directories with source/config/data
+The shared runner keeps results in unique model run directories with source/config/data
 hashes, raw and normalized predictions, per-document/page/category metrics,
 timing/resource measurements, errors and reports; see ARCHITECTURE.md. Downloaded
 content and generated runs are ignored by Git. Preserve local outputs and record
@@ -132,8 +135,8 @@ Choose a new output directory each time; the helper refuses to overwrite an
 existing profile. Store measurements before any eventual model trial. The
 saved TASK-003 profile has 7.74 GiB total RAM, 0.61 GiB available and a 2-GiB
 MX350 (CC 6.1). The 2-GiB available-RAM stop is a conservative suite policy,
-not a model minimum. Passing it still needs the model-specific TASK-007
-preflight. Do not treat CUDA 13.0 in NVIDIA-SMI as installed CUDA-enabled Torch:
+not a model minimum. Passing it still needs the implemented model-specific
+runner preflight, with a separately approved model task. Do not treat CUDA 13.0 in NVIDIA-SMI as installed CUDA-enabled Torch:
 the inspected Torch/Paddle builds are CPU-only. No API/cloud environment was
 used. See the reports for evidence, limits, remedies and cost/approval gates.
 

@@ -1,7 +1,9 @@
 # Benchmark architecture
 
-TASK-002 checkpoint, 2026-10-28 (Africa/Cairo). The tracker is implemented;
-inference, metrics, datasets and reports below describe the planned contracts.
+Updated through TASK-007, 2026-11-01 (Africa/Cairo). Tracker, datasets, metrics
+and the shared adapter/runner contracts are implemented. Real model integration,
+CLI and comparisons remain later tasks. See reports/RUNNER.md for actual run layout
+and recovery semantics; the original planned layout below is retained for context.
 
 ## Boundaries and reuse
 
@@ -53,10 +55,11 @@ Qwen/Ollama is outside the requested nine. Baidu remains unresolved.
 8. Generate an individual report, update progress and create the task checkpoint.
    Stop before advancing to another model.
 
-Hardware preflight and immutable run/cache behavior are TASK-007 work. The
-TASK-002 tracker alone does not certify resources or implement inference safety.
+Hardware preflight and immutable run/cache behavior are implemented in TASK-007.
+The runner independently enforces approval/resource gates; the tracker alone
+does not certify resources. Factories remain absent until approved model tasks.
 
-## Immutable run layout (planned)
+## Original target run layout (model-task exports)
 
 ```text
 results/<model>/<UTC timestamp>-<random ID>/

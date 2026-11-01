@@ -30,6 +30,7 @@
     "excluded_source_policy": "No implicit background negatives within excluded/unlabeled regions; runner must restrict evaluable scope"
   },
   "reading_order": {"matching": "independent block-to-reference IDs", "missing_pair_policy": "incorrect for all-reference-pair accuracy; excluded from tau with pair coverage"},
+  "routing": {"text_prediction_area_overlap": 0.5, "excluded_mask_prediction_area_overlap": 0.5, "table_pair_iou": 0.5, "arabic_table_pairing": "single-table-page only; no text-similarity matching"},
   "tables": {"method": "ordered-tree-teds-root-th-v1", "max_nodes": 150, "max_states": 200000, "cell_matching": "exact logical row,column,rowspan,colspan", "plain_text": "NOT_SUPPORTED for structure"},
   "charts": {"primary_numeric_type_truth": "NOT_EVALUATED", "numeric_absolute_tolerance": 0.0, "numeric_relative_tolerance": 0.01},
   "statistics": {"seed": 1729, "bootstrap_samples": 2000, "primary_resampling_unit": "page", "source_document_independence": "UNKNOWN", "missing_metrics": "null with coverage; never zero"}

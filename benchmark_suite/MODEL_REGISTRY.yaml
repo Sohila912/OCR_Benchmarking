@@ -55,7 +55,17 @@
           "sha256": "5755f82a997dd0b111964fa8b31cc2daef7aeb7a706bbd17d73d6a93ef3f723e"
         }
       ],
-      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE",
+      "task009_recheck": {
+        "date": "2026-11-01",
+        "latest_package_observed": "0.23.0",
+        "retained_candidate_version": "0.22.1",
+        "source_commit": "3a70081f6a60013dab818c82ab99451aa290f389",
+        "status": "BLOCKED_BY_HARDWARE",
+        "report": "reports/SURYA_BLOCKED.md",
+        "evidence": "reports/SURYA_BLOCKED.json",
+        "execution_started": false
+      }
     },
     "paddle_vl": {
       "name": "PaddleOCR-VL-1.6-0.9B + PP-DocLayoutV3",

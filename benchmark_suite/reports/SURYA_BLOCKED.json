@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "kind": "model_preflight_blocker",
+  "task": "TASK-009",
+  "model": "surya",
+  "assessment_date": "2026-11-01",
+  "timezone": "Africa/Cairo",
+  "status": "BLOCKED",
+  "reason": "BLOCKED_BY_HARDWARE",
+  "evaluation_status": "NOT_EVALUATED",
+  "model_task_approved": true,
+  "execution_started": false,
+  "selected_candidate": {
+    "package": "surya-ocr",
+    "version": "0.22.1",
+    "source_commit": "3a70081f6a60013dab818c82ab99451aa290f389",
+    "model_repository": "datalab-to/surya-ocr-2",
+    "model_revision": "3b3d4cdf88d6928b0acdc75181b13206ea67c4a3",
+    "model_safetensors_bytes": 1372368672,
+    "model_safetensors_sha256": "5755f82a997dd0b111964fa8b31cc2daef7aeb7a706bbd17d73d6a93ef3f723e",
+    "candidate_installed": false
+  },
+  "version_drift": {
+    "latest_package_observed": "0.23.0",
+    "latest_documented_family": "Surya 2.5",
+    "selected_candidate_changed": false,
+    "action": "Retain existing Surya 2 / 0.22.1 research candidate; resolve any version/variant change before future execution"
+  },
+  "observed_hardware": {
+    "captured_at": "2026-11-01T14:34:47+02:00",
+    "cpu": [
+      {
+        "Name": "11th Gen Intel(R) Core(TM) i7-1165G7 @ 2.80GHz",
+        "NumberOfCores": 4,
+        "NumberOfLogicalProcessors": 8
+      }
+    ],
+    "memory": {
+      "available_bytes": 737169408,
+      "total_bytes": 8311836672
+    },
+    "nvidia_devices": [
+      {
+        "name": "NVIDIA GeForce MX350",
+        "vram_total_mib": 2048.0,
+        "vram_free_mib": 1965.0,
+        "driver_version": "582.67",
+        "compute_capability": "6.1"
+      }
+    ],
+    "workspace_disk": {
+      "total_bytes": 254886801408,
+      "free_bytes": 36860174336
+    },
+    "loading_gate": {
+      "status": "BLOCKED_BY_HARDWARE",
+      "reason": "Less than 2 GiB free RAM; block model loading until rechecked.",
+      "floor_basis": "Conservative suite policy; not a vendor minimum."
+    }
+  },
+  "blockers": [
+    {
+      "code": "INSUFFICIENT_AVAILABLE_RAM",
+      "available_bytes": 737169408,
+      "generic_policy_floor_bytes": 2147483648,
+      "surya_process_planning_budget_bytes": 8589934592,
+      "planning_budget_basis": "Conservative unmeasured engineering estimate; not a vendor minimum or proven required peak"
+    },
+    {
+      "code": "GPU_BACKEND_ARCHITECTURE_INCOMPATIBLE",
+      "observed_compute_capability": 6.1,
+      "current_vllm_min_compute_capability": 7.5,
+      "dedicated_vram_bytes": 2147483648,
+      "note": "Windows native vLLM unsupported; WSL or newer drivers cannot change GPU architecture/VRAM"
+    }
+  ],
+  "setup_blockers": {
+    "llama_server_on_path": false,
+    "surya_installed": false,
+    "torch_build": "2.14.1+cpu",
+    "torch_cuda": null,
+    "existing_dependency_conflicts": {
+      "transformers": {
+        "installed": "4.57.6",
+        "required": ">=5.12.1"
+      },
+      "pillow": {
+        "installed": "12.3.0",
+        "required": ">=10.2.0,<11"
+      },
+      "huggingface-hub": {
+        "installed": "0.36.2",
+        "required": ">=1.5.0,<2"
+      }
+    },
+    "isolated_environment_created": false,
+    "other_missing_dependencies_not_fully_resolved": true
+  },
+  "license_summary": {
+    "code": "Apache-2.0",
+    "weights": "Modified AI Pubs OpenRAIL-M; research/personal eligibility described by pinned publisher card; full terms must be reviewed before any future download/use"
+  },
+  "supported_capabilities_from_pinned_docs": [
+    "Arabic text",
+    "English text",
+    "layout",
+    "reading order",
+    "tables"
+  ],
+  "chart_numeric_capability": "NOT_VERIFIED; primary independent numeric chart truth unavailable",
+  "sources": {
+    "pinned_source": "https://github.com/datalab-to/surya/tree/3a70081f6a60013dab818c82ab99451aa290f389",
+    "pinned_readme": "https://github.com/datalab-to/surya/blob/v0.22.1/README.md",
+    "pinned_dependencies": "https://pypi.org/pypi/surya-ocr/0.22.1/json",
+    "latest_metadata": "https://pypi.org/pypi/surya-ocr/json",
+    "current_readme": "https://github.com/datalab-to/surya/blob/master/README.md",
+    "model_metadata": "https://huggingface.co/api/models/datalab-to/surya-ocr-2/revision/3b3d4cdf88d6928b0acdc75181b13206ea67c4a3?blobs=true",
+    "vllm_requirements": "https://docs.vllm.ai/en/stable/getting_started/installation/gpu/"
+  },
+  "evidence_sha256": {
+    "reports/hardware_observations/surya-task009-20261101/HARDWARE_PROFILE.json": "f5098205417bca1663bc55e81de549a5f7cb5e8145ab995f01120bda3684e3bc",
+    "reports/hardware_observations/surya-task009-20261101/OFFICIAL_METADATA.json": "36d5ae37ec96bdbf4ea237c8a0e960e6fb63cf53e0e1c7c02f3e088e4d18ed6e",
+    "reports/hardware_observations/surya-task009-20261101/pinned_settings.txt": "d4c2bcf140c7f424a290fcd68a2f3eae745ab2c476a6781a6c4449977c8d88e4",
+    "reports/hardware_observations/surya-task009-20261101/pinned_model_card.txt": "7b43065e8610d9d80c8f4ae222a775b4e945ba93b10c57cb2dd165f36dc0b775"
+  },
+  "frozen_artifacts_sha256": {
+    "PROVENANCE.json": "cec9d541874b523027879ad583211c9662fe416019a3a910c8700af251f83709",
+    "development.jsonl": "73b99a2cd23b9dbdfbd9b8ce73d67c4d7d4084980d4c876ecd9ec914e6458564",
+    "evaluation.jsonl": "eae4642e19f7c9f2f159723954f6974fc2296d1e92dcc64225ccf7b145a877a7"
+  },
+  "outcome": {
+    "model_weights_downloaded": false,
+    "dependencies_installed": false,
+    "frameworks_imported": false,
+    "model_initialized": false,
+    "inference_executed": false,
+    "documents_processed": 0,
+    "failed_inference_documents": 0,
+    "accuracy_scores": null,
+    "latency_measurements": null,
+    "peak_model_memory": null,
+    "selected_run_created": false,
+    "next_model_started": false
+  },
+  "next_action": "STOP. Resolve Surya hardware/environment/variant plan with user before retry; TASK-010 has no approval."
+}

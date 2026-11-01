@@ -5,7 +5,7 @@ Updated: 2026-11-01 (Africa/Cairo).
 ## Checkpoint
 
 - Completed: TASK-001 repository audit; TASK-002 architecture/tracking; TASK-003 hardware/model research; TASK-004 dataset selection; TASK-005 local acquisition and standardization; TASK-006 evaluation metrics; TASK-007 shared adapter/runner; TASK-008 Windows launcher/CLI.
-- Current / first incomplete task: TASK-009 (Surya), PENDING. Stop at TASK-008; wait for explicit Surya-specific approval before its task.
+- Current / first incomplete task: TASK-009 (Surya), BLOCKED_BY_HARDWARE after approved preflight. STOP; no next model approval.
 - Last completed checkpoint: TASK-008.
 - Branch: feature/ocr-comprehensive-benchmark, tracking origin.
 - Previous checkpoints: 5da4946, 0db4fd4, f60742f, d9c8a15. Storage-preference note d53cb9f is superseded by the latest explicit user instruction to download locally and continue.
@@ -250,27 +250,81 @@ Final commit subject: `feat(benchmark): add Windows menu and single-model CLI`.
 Resolve it with Git log and compare origin after push. User-owned Task_codex.txt
 remains untracked; generated logs/data/cache/results are excluded from Git.
 
+## TASK-009 Surya blocked checkpoint
+
+User explicitly approved Surya only on 2026-11-01. TASK-008 remote commit f0fca6c
+was verified before work. TASK-009 is BLOCKED with reason BLOCKED_BY_HARDWARE;
+last completed task remains TASK-008. This is not a completed benchmark or an
+inference failure. All other model approvals remain absent.
+
+Created reports/SURYA_BLOCKED.md and reports/SURYA_BLOCKED.json. Updated the
+Surya-only recheck metadata in MODEL_REGISTRY.yaml, plan, README, this progress
+and status. All executable factory/environment catalog fields remain null; no
+placeholder adapter or runnable config was created. Production code, datasets,
+reference/manifests, historical results and dependencies remain unchanged.
+
+An exclusive fresh collector profile under ignored
+reports/hardware_observations/surya-task009-20261101 records:
+- i7-1165G7, 4 cores/8 threads, Windows 11 Pro 26200, Python 3.13.7.
+- 7.74 GiB physical / 0.69 GiB available RAM (737,169,408 bytes); below 2-GiB
+  conservative loading floor. The retained 8+ GiB process planning budget is an
+  estimate, not a vendor minimum; closing apps to reach the generic floor does
+  not certify this Surya configuration.
+- MX350, 2 GiB VRAM, CC 6.1; current official vLLM requires >=7.5 and Linux.
+  Driver/WSL changes cannot upgrade GPU architecture. Torch metadata is CPU-only.
+- 34.33 GiB free disk; llama-server absent from PATH; Surya not installed.
+  Both WSL distributions were stopped and were not started by this task.
+
+Metadata-only official checks retain surya-ocr 0.22.1 / Surya 2, source commit
+3a70081f6a60013dab818c82ab99451aa290f389 and model revision
+3b3d4cdf88d6928b0acdc75181b13206ea67c4a3. The 1,372,368,672-byte safetensors metadata
+checksum matches the earlier research. No weight download occurred. PyPI now
+reports 0.23.0 and current upstream docs describe Surya 2.5; this variant was not
+silently adopted. Code Apache-2.0 and modified weight OpenRAIL-M terms remain
+separate; full weight terms must be reviewed before future download/use.
+
+Pinned dependency conflicts include Transformers >=5.12.1 vs installed 4.57.6,
+Pillow <11 vs 12.3.0, huggingface-hub >=1.5 vs 0.36.2. No main-environment changes
+were made. A compatible isolated environment and verified backend/CPU asset set
+remain unresolved, alongside the hardware blocker. Native Windows CPU integration
+is not tested. Quantization, different model/version or another environment needs
+a reviewed explicit plan/approval; no paid/free cloud host was provisioned.
+
+Unique ignored local evidence at results/surya/preflight/20261101T123759Z-9f2b62ae
+contains preflight.json, environment.json, source_metadata.json, metrics.json with
+null/NOT_EVALUATED scores and MODEL_REPORT.md. This is not a prediction run and
+has no completion/selected-run marker. Zero documents were processed; no failed
+inference documents, invented latency/accuracy/peak model memory or fake outputs.
+Versioned blocker evidence records source URLs and local evidence/data SHA256s.
+
+Verification: existing 198 suite tests and Ruff pass, plus validated status,
+whitespace and report/evidence consistency. No new algorithm/adapter was added,
+so no model-inference tests were attempted. No unresolved check failures; the
+hardware/environment/version decisions are the explicit remaining blockers.
+
+Final blocker commit subject: `docs(benchmark): record Surya hardware-blocked preflight`.
+Resolve via Git and verify origin after push. Raw observations/results remain
+local/ignored; Task_codex.txt remains user-owned and untracked.
+
 ## Remaining tasks and exact next actions
 
-TASK-009 (Surya) is PENDING and has no approval. STOP here and wait for the user's
-explicit approval for Surya only. If approved, reread Task_codex.txt, plan/status/
-progress and hardware/model/CLI reports. Recheck official source/version/license
-and hardware first. The known low RAM and MX350 limitations must block unsafe
-installation/loading. If still incompatible, record BLOCKED_BY_HARDWARE with a
-clear remedy instead of repeatedly attempting installation or inventing scores.
-Any alternative environment, paid resources or restricted/large model downloads
-need the specified user approval. An approval for Surya never authorizes any
-other model. Finish its individual result/blocker checkpoint and stop again.
+STOP at the Surya blocker checkpoint. Surya TASK-009 approval is already recorded;
+do not ask for the same approval again merely to inspect/recheck it. Loading still
+requires sufficient measured resources plus an agreed compatible pinned setup.
+Revisit on a more capable available machine or propose a separately reviewed
+CPU/quantized configuration without claiming it fits this laptop. Existing RAM
+upgradeability is unknown. Paid/cloud resources and environment/variant changes
+require their own specified approval. Do not close the user's apps automatically.
 
-TASK-010 through TASK-017 retain their independent model approvals. Comparisons
-and final visualization remain TASK-018/019, then audit/documentation TASK-020/021.
-The initial shared framework is complete; no real OCR model has been benchmarked.
+Do not advance to TASK-010 (PaddleOCR-VL), or reorder to Tesseract/another model,
+without that model's explicit user approval. Other tasks remain pending. Models
+blocked by hardware stay in the plan for later evaluation; no zero-filled ranks.
 
-## Recommended next Codex prompt
+## Recommended resume prompt
 
-“Read Task_codex.txt and benchmark_suite/BENCHMARK_PLAN.md, PROGRESS.md,
-BENCHMARK_STATUS.json, reports/CLI_VALIDATION.md and hardware/model compatibility
-reports. Validate TASK-008. I approve TASK-009 (Surya) only. Recheck official version,
-license and hardware before any install/download/loading; if blocked, document it
-and stop. Preserve per-model approval gates, frozen data and existing results.
-Do not start another model without asking for my approval.”
+“Read Task_codex.txt, benchmark_suite/BENCHMARK_PLAN.md, PROGRESS.md,
+BENCHMARK_STATUS.json and reports/SURYA_BLOCKED.md/json. TASK-009 Surya is already
+approved but hardware-blocked. Inspect the saved checkpoint and recheck resources
+before proposing any loading; preserve the retained 0.22.1 / Surya 2 candidate
+unless I explicitly approve a different version/variant/environment. If still
+blocked, stop. Do not start another model without my separate approval.”

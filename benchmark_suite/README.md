@@ -216,6 +216,9 @@ do not establish all nine candidates' capabilities.
 - TASK-008 (complete): [13-option launcher](scripts/run_benchmark.bat), matching
   [Python CLI](cli.py), pending model catalog and [verification](reports/CLI_VALIDATION.md).
   Real setup/execution still needs each separately approved model task.
+- TASK-009 (Surya): [hardware-blocked assessment](reports/SURYA_BLOCKED.md),
+  approved on 2026-11-01 but no installation/download/inference. Candidate remains
+  Surya 2 / 0.22.1; latest 0.23.0 drift is recorded. All scores remain unmeasured.
 - TASK-009 through TASK-017: one approved model evaluation at a time, each
   ending with its own artifacts, quantitative report and stop.
 - TASK-018 through TASK-021: stored-result comparisons, visualizations,

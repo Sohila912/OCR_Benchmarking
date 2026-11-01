@@ -4,7 +4,7 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
-TASK-001 through TASK-008 are complete. TASK-005 local acquisition superseded the Drive preference. On 2026-11-01 the user approved shared-runner continuation and explicitly reaffirmed separate approval for each model. TASK-008 launcher/CLI is complete. Stop before TASK-009; each model still requires its own explicit approval. Hardware blockers remain; no OCR model has been installed or executed. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval.
+TASK-001 through TASK-008 are complete. TASK-005 local acquisition superseded the Drive preference. On 2026-11-01 the user approved shared-runner continuation and explicitly reaffirmed separate approval for each model. TASK-008 launcher/CLI is complete. TASK-009 (Surya) was explicitly approved and is now BLOCKED_BY_HARDWARE after preflight; stop before any install/loading or next model. TASK-010 and subsequent models still require their own explicit approval. Hardware blockers remain; no OCR model has been installed or executed. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval.
 
 At every new session read this plan, PROGRESS.md and BENCHMARK_STATUS.json; check Git branch/status and relevant artifacts; validate the last checkpoint before continuing the first incomplete approved task. Preserve existing files/results and user work. Commit only explicitly selected task files after checks. Never stage credentials, downloaded datasets or model weights. Do not use blanket staging.
 
@@ -134,6 +134,15 @@ Comparison/final-report commands explicitly return PENDING TASK-018/019.
 - Next task: TASK-009.
 
 ## TASK-009: Surya OCR
+
+2026-11-01 checkpoint: **BLOCKED**, reason BLOCKED_BY_HARDWARE; not a completed
+model evaluation. Explicit Surya-only approval recorded. Fresh 0.69-GiB free RAM
+fails the policy floor; MX350 CC 6.1 misses current vLLM >=7.5. Retained 0.22.1 /
+Surya 2 candidate; latest 0.23.0 / Surya 2.5 drift recorded without substitution.
+See reports/SURYA_BLOCKED.md and SURYA_BLOCKED.json plus unique ignored
+results/surya/preflight evidence. No adapter, environment or selected_run pointer
+created; no weights/packages/inference. Existing 198 suite tests and Ruff pass.
+Resolve hardware/backend/variant plan before retry. Stop; TASK-010 is unapproved.
 
 - Objective: Set up and quantitatively evaluate exactly this selected model, then STOP.
 - Dependencies: TASK-003 successful hardware assessment; TASK-005 through TASK-008; explicit approval before advancing from a preceding model.

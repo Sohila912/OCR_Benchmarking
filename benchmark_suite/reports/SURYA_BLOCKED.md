@@ -1,5 +1,14 @@
 # Surya TASK-009 — blocked before installation
 
+Rechecked 2026-11-02 after the RAM upgrade: 11.74 GiB physical RAM, **0.95 GiB
+available**, still below the 2-GiB generic loading floor. D: is now accessible as
+NTFS with about 930.53 GiB free. The MX350 remains 2-GiB VRAM / CC 6.1; the
+previous backend/setup blockers remain unresolved. New read-only collector
+evidence: `hardware_observations/surya-task009-20261102/HARDWARE_PROFILE.json`.
+All 1,155 frozen image/reference pairs passed offline validation again. No model
+installation, weight download or inference occurred. The original assessment
+below is historical; TASK-009 remains blocked and no next model was started.
+
 Assessed 2026-11-01 (Africa/Cairo), after explicit approval for Surya only.
 **Task/model state: BLOCKED; reason: BLOCKED_BY_HARDWARE. Evaluation: NOT_EVALUATED.**
 This is a preflight outcome, not a failed inference or a completed benchmark.

@@ -1,6 +1,30 @@
 # Benchmark progress
 
-Updated: 2026-11-01 (Africa/Cairo).
+Updated: 2026-11-02 (Africa/Cairo).
+
+## TASK-009 resource recheck after RAM upgrade — 2026-11-02
+
+User requested removal of storage-inspection files and continuation of the approved
+task. The cleanup command was rejected by automatic approval review with only
+`blocked by policy`; the three files in logs/storage-inspection remain present.
+No partition operations were attempted.
+
+New exclusive collector evidence is preserved under
+reports/hardware_observations/surya-task009-20261102/HARDWARE_PROFILE.json and .md.
+Windows reports 12,606,803,968 bytes physical RAM (11.74 GiB), but only
+1,023,102,976 bytes available (0.95 GiB), below the unchanged 2-GiB generic loading
+floor. MX350 remains 2-GiB VRAM / compute capability 6.1. The previously documented
+GPU-backend and unresolved CPU setup blockers have not been resolved by the upgrade.
+D: is now NTFS, 999,284,535,296 bytes total / 999,146,557,440 bytes free at observation.
+The repository and datasets remain on C:; nothing was moved.
+
+Offline validation passed for all 1,155 frozen image/reference pairs. No package
+installation, model download, inference or next-model execution occurred.
+TASK-009 remains BLOCKED_BY_HARDWARE; last completed task remains TASK-008.
+Next action: free RAM and recheck, then agree a compatible Surya CPU/backend plan
+before loading. The generic floor alone does not certify Surya compatibility.
+Other models still require separate approval. Historical observations below
+describe the earlier 8-GB configuration and are retained as history.
 
 ## Checkpoint
 

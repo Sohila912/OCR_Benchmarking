@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-01",
+  "updated_date": "2026-11-02",
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
@@ -64,7 +64,7 @@
     "TASK-008",
     "TASK-009"
   ],
-  "next_action": "STOP: TASK-009 Surya approved but BLOCKED_BY_HARDWARE (0.69 GiB free RAM, MX350 CC 6.1 incompatible with current vLLM). No install/download/inference. See reports/SURYA_BLOCKED.md/json. Resolve hardware/variant/environment before retry; TASK-010 and all other models require separate approval.",
+  "next_action": "TASK-009 remains BLOCKED_BY_HARDWARE after RAM upgrade: 11.74 GiB physical / 0.95 GiB available, below 2-GiB floor. D: is accessible. Free RAM and recheck; resolve compatible Surya backend/setup before loading. No next-model approval.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -90,6 +90,23 @@
     "tests": "PASSED: 198 benchmark suite tests",
     "checkpoint_push_verification": "Resolve blocker commit subject and verify origin after push",
     "suite_tests_passed": 198,
-    "ruff": "PASSED"
+    "ruff": "PASSED",
+    "resource_recheck": {
+      "date": "2026-11-02",
+      "profile": "reports/hardware_observations/surya-task009-20261102/HARDWARE_PROFILE.json",
+      "memory": {
+        "available_bytes": 1023102976,
+        "total_bytes": 12606803968
+      },
+      "loading_gate": {
+        "status": "BLOCKED_BY_HARDWARE",
+        "reason": "Less than 2 GiB free RAM; block model loading until rechecked.",
+        "floor_basis": "Conservative suite policy; not a vendor minimum."
+      },
+      "dataset_validation": "PASSED: 1155 frozen image/reference pairs",
+      "storage_inspection_cleanup": "NOT_COMPLETED: automatic approval review rejected cleanup command; blocked by policy",
+      "model_inference_executed": false,
+      "next_model_started": false
+    }
   }
 }

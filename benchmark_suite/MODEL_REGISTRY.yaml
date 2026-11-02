@@ -107,7 +107,15 @@
           "sha256": "85a479d506a11e724e7285d395c551be69f41dbc16b6342d3cacfb189aed71db"
         }
       ],
-      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE",
+      "task010_assessment": {
+        "task_approved": true,
+        "status": "BLOCKED",
+        "reason": "BLOCKED_BY_HARDWARE",
+        "date": "2026-11-02",
+        "evidence": "reports/PADDLE_VL_BLOCKED.json",
+        "execution_started": false
+      }
     },
     "marker": {
       "name": "Marker 2.0.0, Surya 2 backend; no external LLM",

@@ -2,6 +2,21 @@
 
 Updated: 2026-11-02 (Africa/Cairo).
 
+## TASK-010 PaddleOCR-VL hardware checkpoint
+
+The user explicitly approved the next model. Fresh resources: 11.74 GiB usable,
+3.14 GiB available, MX350 2 GiB VRAM / CC 6.1. Generic RAM floor passes;
+the estimated 8-GiB CPU planning budget does not. Official GPU minimum is
+CC 7.0. Verified paddleocr 3.7.0 and retained model revision through publisher
+metadata only. See reports/PADDLE_VL_BLOCKED.md and fresh observations under
+reports/hardware_observations/paddle-vl-task010-20261102/.
+
+TASK-010 remains BLOCKED / BLOCKED_BY_HARDWARE, not completed. No installation,
+weight download, framework import or inference occurred; no documents or scores.
+Existing production environment and frozen data are unchanged. Next task is
+TASK-011 Marker, requiring separate approval; last completed task is TASK-008.
+This supersedes earlier next-action/approval statements in the history below.
+
 ## TASK-009 CPU setup preparation after another resource check
 
 Prepared reports/SURYA_CPU_PLAN.md for review: retain Surya 2 / 0.22.1, propose
@@ -368,3 +383,16 @@ approved but hardware-blocked. Inspect the saved checkpoint and recheck resource
 before proposing any loading; preserve the retained 0.22.1 / Surya 2 candidate
 unless I explicitly approve a different version/variant/environment. If still
 blocked, stop. Do not start another model without my separate approval.”
+
+## Final requested Surya retry — 2026-11-02
+
+Fresh profile reports 12,606,803,968 bytes usable RAM and 3,392,053,248 bytes
+available (3.16 GiB): the generic 2-GiB loading gate now passes. This does not
+certify Surya memory fit. The explicit Surya smoke command exited 1 before
+inference because the checkpoint is BLOCKED and the adapter and pinned isolated
+environment remain unimplemented. The CPU llama.cpp plan remains a proposal.
+No installation, download, model initialization, inference or next-model work
+occurred. TASK-009 remains blocked; historical blocker reports are retained as
+dated observations. Evidence: reports/hardware_observations/
+surya-task009-20261102-final-retry/{HARDWARE_PROFILE.json,RETRY_RESULT.json};
+CLI log logs/cli/20261102T112754Z-659d907d.json.

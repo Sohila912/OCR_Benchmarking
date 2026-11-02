@@ -4,7 +4,7 @@
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-009",
+  "current_task": "TASK-010",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
@@ -15,7 +15,7 @@
     "TASK-007": "COMPLETED",
     "TASK-008": "COMPLETED",
     "TASK-009": "BLOCKED",
-    "TASK-010": "PENDING",
+    "TASK-010": "BLOCKED",
     "TASK-011": "PENDING",
     "TASK-012": "PENDING",
     "TASK-013": "PENDING",
@@ -52,7 +52,7 @@
   },
   "last_completed_checkpoint": "TASK-008",
   "checkpoint_git_commit_subject": "docs(benchmark): record Surya hardware-blocked preflight",
-  "approval_required_before": "TASK-010",
+  "approval_required_before": "TASK-011",
   "approved_tasks": [
     "TASK-001",
     "TASK-002",
@@ -62,9 +62,10 @@
     "TASK-006",
     "TASK-007",
     "TASK-008",
-    "TASK-009"
+    "TASK-009",
+    "TASK-010"
   ],
-  "next_action": "Review reports/SURYA_CPU_PLAN.md; free RAM and recheck (1.04 GiB available). Approve CPU llama.cpp environment, resolve pinned binary/GGUF/projector and dependency/download budget before setup. TASK-009 remains blocked; no next-model approval.",
+  "next_action": "TASK-010 PaddleOCR-VL approved, assessed and hardware-blocked. See reports/PADDLE_VL_BLOCKED.md. Recheck CPU headroom against the estimated 8 GiB budget before setup. TASK-011 Marker requires separate approval.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -125,6 +126,51 @@
       "environment_installed": false,
       "project_moved": false,
       "next_model_started": false
+    },
+    "final_retry": {
+      "model": "surya",
+      "task": "TASK-009",
+      "captured_at": "2026-11-02T13:27:44+02:00",
+      "request": "Final retry requested by user",
+      "hardware_profile": "reports/hardware_observations/surya-task009-20261102-final-retry/HARDWARE_PROFILE.json",
+      "memory": {
+        "available_bytes": 3392053248,
+        "total_bytes": 12606803968
+      },
+      "generic_loading_gate": {
+        "status": "REQUIRES_MODEL_PREFLIGHT",
+        "reason": "A generic floor does not establish any model's compatibility."
+      },
+      "command": ".venv-ocr/Scripts/python.exe -m benchmark_suite.cli smoke --model surya --language both --json",
+      "command_exit_code": 1,
+      "command_log": "logs/cli/20261102T112754Z-659d907d.json",
+      "outcome": "BLOCKED_BEFORE_INFERENCE",
+      "remaining_blockers": [
+        "Saved TASK-009 checkpoint remains BLOCKED",
+        "Surya adapter/setup is not implemented",
+        "Isolated pinned model environment is not registered",
+        "Proposed CPU llama.cpp environment and assets remain unresolved"
+      ],
+      "model_inference_executed": false,
+      "documents_processed": 0,
+      "dependencies_installed": false,
+      "model_weights_downloaded": false,
+      "next_model_started": false,
+      "interpretation": "RAM now exceeds the generic 2 GiB floor. This does not establish model-specific memory fit or backend readiness. This retry stopped at CLI readiness validation, not model initialization."
+    },
+    "paddle_vl_task010": {
+      "status": "BLOCKED",
+      "reason": "BLOCKED_BY_HARDWARE",
+      "report": "reports/PADDLE_VL_BLOCKED.md",
+      "profile": "reports/hardware_observations/paddle-vl-task010-20261102/HARDWARE_PROFILE.json",
+      "available_ram_bytes": 3373334528,
+      "estimated_cpu_budget_bytes": 8589934592,
+      "gpu_compute_capability": 6.1,
+      "documented_gpu_min_compute_capability": 7.0,
+      "inference_executed": false,
+      "documents_processed": 0,
+      "evaluation_status": "NOT_EVALUATED",
+      "model_task_approved": true
     }
   }
 }

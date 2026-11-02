@@ -1,5 +1,11 @@
 # OCR benchmarking suite
 
+Latest checkpoint (2026-11-02): TASK-010 PaddleOCR-VL was explicitly approved
+and is hardware-blocked after a fresh assessment. See
+[PaddleOCR-VL assessment](reports/PADDLE_VL_BLOCKED.md). No inference occurred;
+TASK-011 Marker requires separate approval. Earlier checkpoint notes below
+remain historical.
+
 This isolated suite will compare nine OCR configurations across English and
 Arabic text, layout, reading order, tables and charts using verified public
 ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection, local preparation, metrics, the shared adapter/runner and Windows menu/CLI are implemented.**

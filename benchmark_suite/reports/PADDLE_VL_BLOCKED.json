@@ -1,0 +1,25 @@
+{
+  "status": "BLOCKED",
+  "reason": "BLOCKED_BY_HARDWARE",
+  "report": "reports/PADDLE_VL_BLOCKED.md",
+  "profile": "reports/hardware_observations/paddle-vl-task010-20261102/HARDWARE_PROFILE.json",
+  "available_ram_bytes": 3373334528,
+  "estimated_cpu_budget_bytes": 8589934592,
+  "gpu_compute_capability": 6.1,
+  "documented_gpu_min_compute_capability": 7.0,
+  "inference_executed": false,
+  "documents_processed": 0,
+  "evaluation_status": "NOT_EVALUATED",
+  "model_task_approved": true,
+  "task": "TASK-010",
+  "model": "paddle_vl",
+  "date": "2026-11-02",
+  "planning_budget_basis": "Unmeasured engineering estimate, not publisher minimum",
+  "accuracy": null,
+  "latency": null,
+  "peak_model_memory": null,
+  "evidence_sha256": {
+    "reports\\hardware_observations\\paddle-vl-task010-20261102\\HARDWARE_PROFILE.json": "b8d777b7a5ebbe56a47710874cd603cb2c605e79afa18a6eb9fa6885010d8527",
+    "reports\\hardware_observations\\paddle-vl-task010-20261102\\OFFICIAL_METADATA.json": "124922a520b1b06137f7b3ad1d023d145ef9820aa1fb0c21612f193248f938cb"
+  }
+}

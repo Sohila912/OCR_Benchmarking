@@ -4,6 +4,12 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
+Latest checkpoint (2026-11-02): the user explicitly approved TASK-010,
+PaddleOCR-VL, after the final Surya retry. TASK-010 is BLOCKED_BY_HARDWARE;
+see reports/PADDLE_VL_BLOCKED.md. No installation or inference occurred.
+TASK-011 Marker now requires separate approval. Earlier approval-gate statements
+below describe the preceding checkpoint and are superseded by this update.
+
 TASK-001 through TASK-008 are complete. TASK-005 local acquisition superseded the Drive preference. On 2026-11-01 the user approved shared-runner continuation and explicitly reaffirmed separate approval for each model. TASK-008 launcher/CLI is complete. TASK-009 (Surya) was explicitly approved and is now BLOCKED_BY_HARDWARE after preflight; stop before any install/loading or next model. TASK-010 and subsequent models still require their own explicit approval. Hardware blockers remain; no OCR model has been installed or executed. Complete one task at a time. Every model task stops separately; never advance to another model without explicit approval.
 
 At every new session read this plan, PROGRESS.md and BENCHMARK_STATUS.json; check Git branch/status and relevant artifacts; validate the last checkpoint before continuing the first incomplete approved task. Preserve existing files/results and user work. Commit only explicitly selected task files after checks. Never stage credentials, downloaded datasets or model weights. Do not use blanket staging.
@@ -154,6 +160,10 @@ Resolve hardware/backend/variant plan before retry. Stop; TASK-010 is unapproved
 - Next task: TASK-010 (requires user approval).
 
 ## TASK-010: PaddleOCR-VL
+
+Approved 2026-11-02. Preflight is BLOCKED_BY_HARDWARE: 3.14 GiB available
+versus the retained estimated 8-GiB CPU budget, and GPU CC 6.1 below the
+documented CC 7.0 requirement. See reports/PADDLE_VL_BLOCKED.md.
 
 - Objective: Set up and quantitatively evaluate exactly this selected model, then STOP.
 - Dependencies: TASK-003 successful hardware assessment; TASK-005 through TASK-008; explicit approval before advancing from a preceding model.

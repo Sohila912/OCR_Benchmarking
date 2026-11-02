@@ -64,7 +64,7 @@
     "TASK-008",
     "TASK-009"
   ],
-  "next_action": "TASK-009 remains BLOCKED_BY_HARDWARE after RAM upgrade: 11.74 GiB physical / 0.95 GiB available, below 2-GiB floor. D: is accessible. Free RAM and recheck; resolve compatible Surya backend/setup before loading. No next-model approval.",
+  "next_action": "Review reports/SURYA_CPU_PLAN.md; free RAM and recheck (1.04 GiB available). Approve CPU llama.cpp environment, resolve pinned binary/GGUF/projector and dependency/download budget before setup. TASK-009 remains blocked; no next-model approval.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -106,6 +106,24 @@
       "dataset_validation": "PASSED: 1155 frozen image/reference pairs",
       "storage_inspection_cleanup": "NOT_COMPLETED: automatic approval review rejected cleanup command; blocked by policy",
       "model_inference_executed": false,
+      "next_model_started": false
+    },
+    "cpu_plan_preparation": {
+      "report": "reports/SURYA_CPU_PLAN.md",
+      "profile": "reports/hardware_observations/surya-task009-20261102-recheck/HARDWARE_PROFILE.json",
+      "memory": {
+        "available_bytes": 1111896064,
+        "total_bytes": 12606803968
+      },
+      "loading_gate": {
+        "status": "BLOCKED_BY_HARDWARE",
+        "reason": "Less than 2 GiB free RAM; block model loading until rechecked.",
+        "floor_basis": "Conservative suite policy; not a vendor minimum."
+      },
+      "assets_verified": false,
+      "metadata_request": "Hugging Face SSL handshake timed out",
+      "environment_installed": false,
+      "project_moved": false,
       "next_model_started": false
     }
   }

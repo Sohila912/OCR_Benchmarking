@@ -2,6 +2,22 @@
 
 Updated: 2026-11-02 (Africa/Cairo).
 
+## TASK-009 CPU setup preparation after another resource check
+
+Prepared reports/SURYA_CPU_PLAN.md for review: retain Surya 2 / 0.22.1, propose
+isolated Windows CPU llama.cpp, concurrency one, and future assets/caches on D:.
+No executable adapter, environment, model directory or asset download was created.
+Alternative execution environment approval remains required by Task_codex.txt.
+Latest profile: reports/hardware_observations/surya-task009-20261102-recheck.
+Available RAM was 1,111,896,064 bytes (1.04 GiB), still below the 2-GiB generic
+floor. D: capacity does not remove this memory gate. CPU model-specific memory
+fit is not measured. Hugging Face metadata request timed out; exact GGUF/projector
+revision, sizes, precision and backend compatibility remain unresolved.
+User asked whether moving the project would help; explained storage benefit only
+and proposed D: for future large assets. No move was requested or performed.
+No other model started. Next: free RAM, recheck, approve concrete CPU environment,
+resolve pinned assets/dependencies and budget before downloading/loading.
+
 ## TASK-009 resource recheck after RAM upgrade — 2026-11-02
 
 User requested removal of storage-inspection files and continuation of the approved

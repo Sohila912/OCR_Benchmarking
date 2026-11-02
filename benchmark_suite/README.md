@@ -1,5 +1,10 @@
 # OCR benchmarking suite
 
+Latest checkpoint: TASK-011 Marker was approved on 2026-11-02 and is
+hardware-blocked. See [Marker assessment](reports/MARKER_BLOCKED.md).
+No inference occurred. TASK-012 standard PaddleOCR requires separate approval;
+earlier checkpoint notes below are historical.
+
 Latest checkpoint (2026-11-02): TASK-010 PaddleOCR-VL was explicitly approved
 and is hardware-blocked after a fresh assessment. See
 [PaddleOCR-VL assessment](reports/PADDLE_VL_BLOCKED.md). No inference occurred;

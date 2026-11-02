@@ -1,0 +1,38 @@
+{
+  "task": "TASK-011",
+  "model": "marker",
+  "date": "2026-11-02",
+  "status": "BLOCKED",
+  "reason": "BLOCKED_BY_HARDWARE",
+  "model_task_approved": true,
+  "candidate": "marker-pdf 2.0.0; Surya 2; optional external LLM disabled",
+  "latest_version_observed": "2.1.0",
+  "variant_changed": false,
+  "profile": "reports/hardware_observations/marker-task011-20261102/HARDWARE_PROFILE.json",
+  "memory": {
+    "available_bytes": 3626500096,
+    "total_bytes": 12606803968
+  },
+  "generic_loading_gate": {
+    "status": "REQUIRES_MODEL_PREFLIGHT",
+    "reason": "A generic floor does not establish any model's compatibility."
+  },
+  "estimated_cpu_budget_bytes": 10737418240,
+  "budget_basis": "Unmeasured suite estimate, not vendor minimum",
+  "evaluation_status": "NOT_EVALUATED",
+  "inference_executed": false,
+  "documents_processed": 0,
+  "dependencies_installed": false,
+  "model_weights_downloaded": false,
+  "accuracy": null,
+  "latency": null,
+  "peak_model_memory": null,
+  "next_model_started": false,
+  "report": "reports/MARKER_BLOCKED.md",
+  "evidence_sha256": {
+    "reports/hardware_observations/marker-task011-20261102/HARDWARE_PROFILE.json": "45e8a300ce8e18652200e92e0ca8fcec0917a393849c06c267d985849378db86",
+    "reports/hardware_observations/marker-task011-20261102/OFFICIAL_METADATA.json": "b2095f513fe0f3c1e2a97f49fe1ecf3eb0de0f50778a4eb32722fa87181d6e0d",
+    "reports/hardware_observations/marker-task011-20261102/pinned_readme.txt": "7768210ebfbb15c7f9bd5c3b6afeebe9fcbbda0cf61b76794ef403dbcde87ff4",
+    "reports/hardware_observations/marker-task011-20261102/pinned_settings.txt": "1e8775f4ccf73e3dbea9d237ff3b8dad575b23f6286af8561164630d36ce2ce1"
+  }
+}

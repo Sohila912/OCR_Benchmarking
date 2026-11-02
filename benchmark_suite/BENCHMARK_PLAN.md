@@ -4,6 +4,11 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
+Latest checkpoint: TASK-011 Marker explicitly approved on 2026-11-02 and
+BLOCKED_BY_HARDWARE after fresh preflight. See reports/MARKER_BLOCKED.md/json.
+No installation or inference occurred. TASK-012 standard PaddleOCR now requires
+separate approval. This supersedes older next-task statements below.
+
 Latest checkpoint (2026-11-02): the user explicitly approved TASK-010,
 PaddleOCR-VL, after the final Surya retry. TASK-010 is BLOCKED_BY_HARDWARE;
 see reports/PADDLE_VL_BLOCKED.md. No installation or inference occurred.
@@ -175,6 +180,10 @@ documented CC 7.0 requirement. See reports/PADDLE_VL_BLOCKED.md.
 - Next task: TASK-011 (requires user approval).
 
 ## TASK-011: Marker
+
+Approved 2026-11-02; hardware-blocked. Available RAM 3.38 GiB is below the
+retained estimated 10-GiB process budget. Marker 2.0.0 retained despite latest
+2.1.0 metadata; Surya backend/setup remains unresolved. See reports/MARKER_BLOCKED.md.
 
 - Objective: Set up and quantitatively evaluate exactly this selected model, then STOP.
 - Dependencies: TASK-003 successful hardware assessment; TASK-005 through TASK-008; explicit approval before advancing from a preceding model.

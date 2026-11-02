@@ -2,6 +2,21 @@
 
 Updated: 2026-11-02 (Africa/Cairo).
 
+## TASK-011 Marker hardware checkpoint
+
+User explicitly approved Marker. Fresh resources: 11.74 GiB usable RAM,
+3.38 GiB available; MX350 2 GiB / CC 6.1. The generic floor passes but the
+retained estimated 10-GiB process budget does not. Pinned Marker 2.0.0 still
+requires Surya for scanned pages, even in CPU fast mode. Latest metadata is
+2.1.0; no variant change occurred. Main-environment dependency conflicts and
+isolated backend integration remain unresolved. See reports/MARKER_BLOCKED.md/json
+and reports/hardware_observations/marker-task011-20261102/.
+
+TASK-011 is BLOCKED_BY_HARDWARE, not completed. No model installation, weight
+download, import or inference; no documents processed or scores measured.
+Production dependencies and frozen data are unchanged. TASK-012 standard
+PaddleOCR requires separate approval. This supersedes earlier next-task notes.
+
 ## TASK-010 PaddleOCR-VL hardware checkpoint
 
 The user explicitly approved the next model. Fresh resources: 11.74 GiB usable,

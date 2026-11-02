@@ -146,7 +146,17 @@
         "https://github.com/datalab-to/marker/blob/v2.0.0/README.md",
         "https://pypi.org/pypi/marker-pdf/json"
       ],
-      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE",
+      "task011_assessment": {
+        "date": "2026-11-02",
+        "task_approved": true,
+        "status": "BLOCKED",
+        "reason": "BLOCKED_BY_HARDWARE",
+        "evidence": "reports/MARKER_BLOCKED.json",
+        "latest_version_observed": "2.1.0",
+        "candidate_retained": "2.0.0",
+        "execution_started": false
+      }
     },
     "paddle": {
       "name": "Standard PaddleOCR; explicit language-specific detector/recognizer",

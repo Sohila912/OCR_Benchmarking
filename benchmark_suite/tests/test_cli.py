@@ -35,7 +35,11 @@ def root(tmp_path):
     state["models"] = {model: "BLOCKED" for model in MODEL_IDS}
     state["model_block_reasons"] = {model: "FIXTURE_REQUIRES_MODEL_APPROVAL" for model in MODEL_IDS}
     status_path.write_text(json.dumps(state), encoding="utf-8")
-    shutil.copyfile(SUITE/"configs/models.json", value/"configs/models.json")
+    catalog = json.loads((SUITE/"configs/models.json").read_bytes())
+    for entry in catalog["models"].values():
+        for field in ("spec", "config", "factory", "python", "requirements"):
+            entry[field] = None
+    (value/"configs/models.json").write_text(json.dumps(catalog), encoding="utf-8")
     return value
 
 

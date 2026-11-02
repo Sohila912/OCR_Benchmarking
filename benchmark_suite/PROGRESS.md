@@ -2,6 +2,26 @@
 
 Updated: 2026-11-02 (Africa/Cairo).
 
+## TASK-013 Tesseract verified; full evaluation incomplete
+
+The user asked to move to a model that fits. Selected Tesseract, leaving
+TASK-012 standard PaddleOCR pending. Registered native Tesseract 5.4.0,
+pinned tessdata_fast English/Arabic (5.55 MB total), OEM 1 / PSM 3, one thread,
+original frozen image pixels with a 300-DPI hint. The dedicated model virtual
+environment leaves the production environment unchanged. All assets and native
+executable/libraries are hashed; raw TSV/stderr and native line geometry survive.
+
+Development run 20261102T113905Z-280b16d4 processed 20 pages without failures.
+Full run 20261102T114008Z-48acf2b9 saved 437 of 1,135 pages (390 Arabic,
+47 English), zero OCR failures. It is BLOCKED after available RAM repeatedly
+fell below the unchanged 2-GiB safety floor. No final full-evaluation score,
+completion or selected run is claimed. All published bundles/identities were
+reverified. Sampled peak process/descendant RSS reached 694.4 MiB; no model OOM.
+Existing approval persists for resuming after stable headroom is available.
+All 203 suite tests pass (48.84 seconds); Ruff passed. CLI fixtures now reset temporary registrations
+as well as approvals, so future real registrations do not affect authorization tests.
+See reports/TESSERACT.md and configs/tesseract*. Do not start another model.
+
 ## TASK-011 Marker hardware checkpoint
 
 User explicitly approved Marker. Fresh resources: 11.74 GiB usable RAM,

@@ -4,6 +4,15 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
+Current work (2026-11-02): user requested a model that will fit; Tesseract
+TASK-013 is approved and verified for inference. TASK-012 standard PaddleOCR remains
+pending. Bilingual Tesseract development smoke processed 20/20 pages with zero
+failures. Evaluation run 20261102T114008Z-48acf2b9 has 437 saved pages with no OCR
+failures, but is incomplete and BLOCKED after available RAM repeatedly fell below
+the shared 2-GiB floor. Existing approval persists for later resumption. See
+reports/TESSERACT.md. No other model is authorized by this selection.
+This supersedes the prior next-task statements below.
+
 Latest checkpoint: TASK-011 Marker explicitly approved on 2026-11-02 and
 BLOCKED_BY_HARDWARE after fresh preflight. See reports/MARKER_BLOCKED.md/json.
 No installation or inference occurred. TASK-012 standard PaddleOCR now requires
@@ -206,6 +215,12 @@ retained estimated 10-GiB process budget. Marker 2.0.0 retained despite latest
 - Next task: TASK-013 (requires user approval).
 
 ## TASK-013: Tesseract
+
+Approved through the user's request to select a model that fits the laptop.
+Native Tesseract 5.4.0 with pinned English/Arabic tessdata_fast, OEM 1 / PSM 3,
+single CPU thread, private language assets and isolated Python environment.
+20-page development run passed; full evaluation is incomplete with 437 saved
+pages and blocked by the available-RAM safety floor. See reports/TESSERACT.md.
 
 - Objective: Set up and quantitatively evaluate exactly this selected model, then STOP.
 - Dependencies: TASK-003 successful hardware assessment; TASK-005 through TASK-008; explicit approval before advancing from a preceding model.

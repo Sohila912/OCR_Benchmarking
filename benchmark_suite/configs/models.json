@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "All model implementations/environments are pending their separately approved model tasks. Null entries never authorize execution. Factory paths are resolved only after shared preflight. No install actions are registered.",
+  "note": "Each registered model requires its own approval, pinned environment, assets and live preflight. Unregistered entries remain pending.",
   "models": {
     "surya": {
       "name": "Surya OCR",
@@ -41,11 +41,11 @@
     "tesseract": {
       "name": "Tesseract OCR",
       "task": "TASK-013",
-      "spec": null,
-      "config": null,
-      "factory": null,
-      "python": null,
-      "requirements": null
+      "spec": "configs/tesseract-spec.json",
+      "config": "configs/tesseract.json",
+      "factory": "benchmark_suite.adapters.tesseract:create_adapter",
+      "python": "environments/tesseract/Scripts/python.exe",
+      "requirements": "configs/tesseract-requirements.txt"
     },
     "docling_easyocr": {
       "name": "Docling + EasyOCR",

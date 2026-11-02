@@ -194,10 +194,10 @@
       "name": "Tesseract CLI with eng / ara, fixed OEM and PSM",
       "package": "native",
       "latest_package_version_observed": "5.5.4",
-      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "candidate_pin_status": "INSTALLED_NATIVE_5.4.0_AND_PINNED_TESSDATA_FAST",
       "execution_authorized": false,
       "license_summary": "Apache-2.0",
-      "hardware_compatibility": "LIMITED",
+      "hardware_compatibility": "COMPATIBLE",
       "gpu_required": false,
       "cpu_support": "DOCUMENTED",
       "memory_basis": "ESTIMATE_NOT_MEASURED",
@@ -205,7 +205,7 @@
       "recommended_host_ram_gib": 4,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 0,
-      "recommended_action": "Installed 5.4.0 supports eng only here; add verified ara assets later and free RAM. Upgrading engine is not necessary for initial baseline.",
+      "recommended_action": "Tesseract inference verified on this laptop: 20 development and 437 evaluation pages, no OCR failures. Full run incomplete after available RAM fell below 2 GiB; resume with stable headroom. See reports/TESSERACT.md.",
       "capabilities": {
         "english": "SUPPORTED",
         "arabic": "SUPPORTED_WITH_LANGUAGE_DATA",
@@ -220,7 +220,19 @@
         "https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest",
         "https://github.com/tesseract-ocr/tessdata_fast"
       ],
-      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+      "current_snapshot_loading": "BLOCKED_BY_AVAILABLE_RAM_FLOOR_AFTER_SUCCESSFUL_INFERENCE",
+      "selected_engine_version": "5.4.0",
+      "selected_assets": "reports/TESSERACT_ASSETS.json",
+      "task013_runtime": {
+        "task_approved": true,
+        "approval_source": "BENCHMARK_STATUS.json",
+        "catalog": "configs/models.json",
+        "note": "Research registry never grants execution; actual approval is enforced by tracker and runner.",
+        "status": "BLOCKED",
+        "inference_verified": true,
+        "sampled_peak_process_and_descendants_rss_bytes": 728166400,
+        "saved_evaluation_pages": 437
+      }
     },
     "docling_easyocr": {
       "name": "Docling standard PDF pipeline + EasyOCR 1.7.2",

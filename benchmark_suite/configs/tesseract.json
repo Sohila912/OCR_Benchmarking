@@ -1,0 +1,19 @@
+{
+  "purpose": "benchmark",
+  "device": "cpu",
+  "precision": "tessdata_fast integer LSTM",
+  "batch_size": 1,
+  "dpi": 300,
+  "preprocessing": {
+    "resize": "none",
+    "input": "original frozen image",
+    "dpi": "300 hint; no resampling"
+  },
+  "adapter_options": {
+    "executable": "C:\\Program Files\\Tesseract-OCR\\tesseract.exe",
+    "tessdata": "C:\\Users\\Shrouk\\Desktop\\OCR_Benchmarking\\benchmark_suite\\environments\\tesseract\\assets\\tessdata",
+    "timeout_seconds": 120
+  },
+  "location": "local",
+  "language": "both"
+}

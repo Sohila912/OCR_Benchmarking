@@ -1,0 +1,465 @@
+{
+  "model": "tesseract",
+  "task": "TASK-013",
+  "date": "2026-11-02",
+  "status": "BLOCKED",
+  "reason": "BLOCKED_BY_HARDWARE",
+  "detail": "Tesseract inference is verified on this laptop; full-run continuation blocked by shared 2 GiB available-RAM floor, not measured model memory exhaustion. No OCR failure or OOM was observed.",
+  "smoke": {
+    "model": "tesseract v5.4.0.20240606; tessdata_fast@87416418657359cb625c412a48b6e1d6d41c29bd",
+    "run_id": "20261102T113905Z-280b16d4",
+    "splits": [
+      "development"
+    ],
+    "evaluation_id": "b0df05940fe5c3d3c98bea0692667a09d7c85914c6d4a6b72a59b1e96a50d425",
+    "total_documents": 20,
+    "failed_documents": 0,
+    "success_rate": 1.0,
+    "cached_documents": 0,
+    "fresh_ocr_seconds": 20.6469462999994,
+    "mean_fresh_ocr_seconds": 1.03234731499997,
+    "median_fresh_ocr_seconds": 0.8015240499998981,
+    "sampled_peak_rss_bytes": 143265792,
+    "recorded_session_wall_seconds": 37.00937949999934,
+    "languages": [
+      {
+        "content_normalized_cer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.17899712866510564,
+              0.40232625083352797
+            ],
+            "clusters": 10,
+            "estimate": 0.2904386329043863,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.5258166491043204,
+            "mean": 0.29365433520259804,
+            "median": 0.3218509168216848,
+            "minimum": 0.04021739130434782,
+            "missing": 0,
+            "sample_std": 0.16543591797416382
+          },
+          "micro": 0.2904386329043863,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_normalized_wer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.2817695974039144,
+              0.6326482133281895
+            ],
+            "clusters": 10,
+            "estimate": 0.45774929915899076,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.8701298701298701,
+            "mean": 0.45486807028419557,
+            "median": 0.5525802677759002,
+            "minimum": 0.1,
+            "missing": 0,
+            "sample_std": 0.25205148316009607
+          },
+          "micro": 0.45774929915899076,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_raw_cer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.20709726849501361,
+              0.4663425318068729
+            ],
+            "clusters": 10,
+            "estimate": 0.3377517868745939,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.6149119213437116,
+            "mean": 0.3288947162034589,
+            "median": 0.33230564232036985,
+            "minimum": 0.053231939163498096,
+            "missing": 0,
+            "sample_std": 0.1851521296646779
+          },
+          "micro": 0.3377517868745939,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_raw_wer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.28177923131528243,
+              0.6326571797886502
+            ],
+            "clusters": 10,
+            "estimate": 0.4581497797356828,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.8701298701298701,
+            "mean": 0.455218947477178,
+            "median": 0.5525802677759002,
+            "minimum": 0.1,
+            "missing": 0,
+            "sample_std": 0.252229501938934
+          },
+          "micro": 0.4581497797356828,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "coverage": {
+          "chart_components": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_numeric": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_text": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_type": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "figure_detection": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "layout": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "reading_order": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "tables": {
+            "NOT_EVALUATED": 8,
+            "NOT_SUPPORTED": 2,
+            "SCORED": 0
+          },
+          "text": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 10
+          }
+        },
+        "document_category": null,
+        "failed_pages": 0,
+        "language": "ar",
+        "layout": {
+          "map": null,
+          "scored_pages": 0,
+          "status": "NOT_EVALUATED",
+          "unscored_pages": 10
+        },
+        "level": "language",
+        "tables": {
+          "reference_tables": 0,
+          "scored_tables": 0,
+          "teds": {
+            "count": 0,
+            "maximum": null,
+            "mean": null,
+            "median": null,
+            "minimum": null,
+            "missing": 0,
+            "sample_std": null
+          },
+          "teds_structure": {
+            "count": 0,
+            "maximum": null,
+            "mean": null,
+            "median": null,
+            "minimum": null,
+            "missing": 0,
+            "sample_std": null
+          }
+        },
+        "text_scope": "page-content",
+        "total_pages": 10
+      },
+      {
+        "content_normalized_cer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.046089886029675294,
+              0.12253943837861841
+            ],
+            "clusters": 10,
+            "estimate": 0.08958625525946703,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.26102502979737785,
+            "mean": 0.10102212375496887,
+            "median": 0.08062713542165598,
+            "minimum": 0.006222775357809583,
+            "missing": 0,
+            "sample_std": 0.08166143866516147
+          },
+          "micro": 0.08958625525946703,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_normalized_wer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.1519215721198368,
+              0.29121277199026896
+            ],
+            "clusters": 10,
+            "estimate": 0.2420771286750668,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.5,
+            "mean": 0.259527590034087,
+            "median": 0.27083624179812926,
+            "minimum": 0.04946996466431095,
+            "missing": 0,
+            "sample_std": 0.14016774717687489
+          },
+          "micro": 0.2420771286750668,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_raw_cer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.06588210528092378,
+              0.14397017604536835
+            ],
+            "clusters": 10,
+            "estimate": 0.10909301249421564,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.270906949352179,
+            "mean": 0.12617857854006603,
+            "median": 0.11049062272195101,
+            "minimum": 0.02103960396039604,
+            "missing": 0,
+            "sample_std": 0.08227743877344368
+          },
+          "micro": 0.10909301249421564,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_raw_wer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.1519215721198368,
+              0.29121277199026896
+            ],
+            "clusters": 10,
+            "estimate": 0.2420771286750668,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.5,
+            "mean": 0.259527590034087,
+            "median": 0.27083624179812926,
+            "minimum": 0.04946996466431095,
+            "missing": 0,
+            "sample_std": 0.14016774717687489
+          },
+          "micro": 0.2420771286750668,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "coverage": {
+          "chart_components": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_numeric": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_text": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_type": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "figure_detection": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 10,
+            "SCORED": 0
+          },
+          "layout": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 10,
+            "SCORED": 0
+          },
+          "reading_order": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 10,
+            "SCORED": 0
+          },
+          "tables": {
+            "NOT_EVALUATED": 8,
+            "NOT_SUPPORTED": 2,
+            "SCORED": 0
+          },
+          "text": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 10
+          }
+        },
+        "document_category": null,
+        "failed_pages": 0,
+        "language": "en",
+        "layout": {
+          "map": null,
+          "scored_pages": 0,
+          "status": "NOT_EVALUATED",
+          "unscored_pages": 10
+        },
+        "level": "language",
+        "tables": {
+          "reference_tables": 0,
+          "scored_tables": 0,
+          "teds": {
+            "count": 0,
+            "maximum": null,
+            "mean": null,
+            "median": null,
+            "minimum": null,
+            "missing": 0,
+            "sample_std": null
+          },
+          "teds_structure": {
+            "count": 0,
+            "maximum": null,
+            "mean": null,
+            "median": null,
+            "minimum": null,
+            "missing": 0,
+            "sample_std": null
+          }
+        },
+        "text_scope": "region edits pooled per image",
+        "total_pages": 10
+      }
+    ],
+    "completion_sha256": "9013a2d8aa21e554a3c9676d678e065c13871f8b61a6b5bb5ef1ba843cd6b4da",
+    "evaluation_metrics_sha256": "456e76f8f2f7fbc17cfed0fb3b3e3afb977ba58e1bdcc3ee8bba64c0f9639f63",
+    "memory_method": "50 ms sampled process and descendants RSS; not allocator peak",
+    "source_document_independence": "UNKNOWN",
+    "completion_status": "COMPLETED",
+    "plot_packages": {
+      "matplotlib": "3.10.7",
+      "numpy": "2.5.4",
+      "pillow": "13.0.0",
+      "contourpy": "1.4.0",
+      "cycler": "0.12.1",
+      "fonttools": "4.68.0",
+      "kiwisolver": "1.5.1",
+      "packaging": "26.3",
+      "pyparsing": "3.3.3",
+      "python-dateutil": "4.0.0",
+      "tzdata": "2026.6"
+    }
+  },
+  "incomplete_evaluation": {
+    "saved_documents": 437,
+    "saved_arabic": 390,
+    "saved_english": 47,
+    "failed_documents": 0,
+    "sampled_peak_rss_bytes": 728166400,
+    "complete": false,
+    "full_evaluation_scores": null
+  },
+  "smoke_report": "reports/visualizations/tesseract-smoke-20261102/MODEL_REPORT.md",
+  "incomplete_run": "results/tesseract/20261102T114008Z-48acf2b9",
+  "model_task_approved": true,
+  "next_model_started": false,
+  "verification": "All published partial bundles rehashed; all predictions validate and match document identity; no completion/selected-run marker fabricated."
+}

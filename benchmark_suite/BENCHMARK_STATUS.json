@@ -4,7 +4,7 @@
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-011",
+  "current_task": "TASK-013",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
@@ -18,7 +18,7 @@
     "TASK-010": "BLOCKED",
     "TASK-011": "BLOCKED",
     "TASK-012": "PENDING",
-    "TASK-013": "PENDING",
+    "TASK-013": "BLOCKED",
     "TASK-014": "PENDING",
     "TASK-015": "PENDING",
     "TASK-016": "PENDING",
@@ -44,15 +44,15 @@
     "paddle_vl": "BLOCKED_BY_HARDWARE",
     "marker": "BLOCKED_BY_HARDWARE",
     "paddle": "BLOCKED_BY_HARDWARE",
-    "tesseract": "BLOCKED_BY_HARDWARE",
     "docling_easyocr": "BLOCKED_BY_HARDWARE",
     "docling_tesseract": "BLOCKED_BY_HARDWARE",
     "granite_docling": "BLOCKED_BY_HARDWARE",
-    "baidu": "UNRESOLVED_IMPLEMENTATION_AND_API_APPROVAL"
+    "baidu": "UNRESOLVED_IMPLEMENTATION_AND_API_APPROVAL",
+    "tesseract": "BLOCKED_BY_HARDWARE"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "docs(benchmark): record Marker hardware preflight",
-  "approval_required_before": "TASK-012",
+  "checkpoint_git_commit_subject": "feat(benchmark): add verified Tesseract CPU baseline and resumable evaluation",
+  "approval_required_before": "TASK-014",
   "approved_tasks": [
     "TASK-001",
     "TASK-002",
@@ -64,9 +64,10 @@
     "TASK-008",
     "TASK-009",
     "TASK-010",
-    "TASK-011"
+    "TASK-011",
+    "TASK-013"
   ],
-  "next_action": "Marker TASK-011 approved and hardware-blocked; see reports/MARKER_BLOCKED.md. Resolve CPU headroom/backend before future setup. TASK-012 standard PaddleOCR requires separate approval.",
+  "next_action": "Tesseract verified: 20/20 development and 437 saved evaluation pages, zero OCR failures. Full run is incomplete because available RAM repeatedly fell below the shared 2 GiB floor. Free stable headroom, set TASK-013 and tesseract IN_PROGRESS via tracker (existing approval persists), then resume results/tesseract/20261102T114008Z-48acf2b9 with its isolated interpreter. No next model approved.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -210,6 +211,30 @@
         "reports/hardware_observations/marker-task011-20261102/pinned_readme.txt": "7768210ebfbb15c7f9bd5c3b6afeebe9fcbbda0cf61b76794ef403dbcde87ff4",
         "reports/hardware_observations/marker-task011-20261102/pinned_settings.txt": "1e8775f4ccf73e3dbea9d237ff3b8dad575b23f6286af8561164630d36ce2ce1"
       }
+    },
+    "tesseract_task013": {
+      "status": "BLOCKED",
+      "hardware_profile": "reports/hardware_observations/tesseract-task013-20261102/HARDWARE_PROFILE.json",
+      "report": "reports/TESSERACT.md",
+      "assets": "reports/TESSERACT_ASSETS.json",
+      "smoke_run": "results/tesseract/20261102T113905Z-280b16d4",
+      "smoke_processed": 20,
+      "smoke_failed": 0,
+      "full_run": "results/tesseract/20261102T114008Z-48acf2b9",
+      "suite_tests_passed": 203,
+      "ruff": "PASSED",
+      "next_model_started": false,
+      "full_saved_documents": 437,
+      "full_saved_arabic": 390,
+      "full_saved_english": 47,
+      "full_failed_documents": 0,
+      "full_run_complete": false,
+      "resource_pause": "Available RAM dropped below the shared 2 GiB floor; resume requires live recheck",
+      "windows_save_recovery": "One transient directory rename denial; valid cached prediction reused on resume; orphan temporary bundle retained",
+      "reason": "BLOCKED_BY_HARDWARE",
+      "sampled_peak_rss_bytes": 728166400,
+      "summary": "reports/TESSERACT_RESULTS.json",
+      "verification": "PASSED: all 203 benchmark-suite tests in 48.84 seconds; Ruff; asset/source hashes; all published partial bundles and prediction identities."
     }
   }
 }

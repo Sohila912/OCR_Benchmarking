@@ -1,20 +1,22 @@
 # OCR benchmarking suite
 
-Latest checkpoint: TASK-011 Marker was approved on 2026-11-02 and is
-hardware-blocked. See [Marker assessment](reports/MARKER_BLOCKED.md).
-No inference occurred. TASK-012 standard PaddleOCR requires separate approval;
-earlier checkpoint notes below are historical.
+Tesseract TASK-013 successfully processed all 20 development pages and saved
+437 evaluation pages with zero OCR failures. Full evaluation is incomplete:
+available RAM repeatedly fell below the shared 2-GiB floor. The saved run is
+resumable when stable headroom is available. See
+[Tesseract configuration and evidence](reports/TESSERACT.md). Standard PaddleOCR
+TASK-012 remains pending; no other model is selected. Older notes below are history.
 
-Latest checkpoint (2026-11-02): TASK-010 PaddleOCR-VL was explicitly approved
-and is hardware-blocked after a fresh assessment. See
-[PaddleOCR-VL assessment](reports/PADDLE_VL_BLOCKED.md). No inference occurred;
-TASK-011 Marker requires separate approval. Earlier checkpoint notes below
-remain historical.
+Surya, PaddleOCR-VL and Marker remain blocked. Their dated assessments are
+preserved in reports/SURYA_BLOCKED.md, reports/PADDLE_VL_BLOCKED.md and
+reports/MARKER_BLOCKED.md. Standard PaddleOCR remains pending.
 
 This isolated suite will compare nine OCR configurations across English and
 Arabic text, layout, reading order, tables and charts using verified public
 ground truth and auditable measurements. **Foundations, hardware/model research, dataset selection, local preparation, metrics, the shared adapter/runner and Windows menu/CLI are implemented.**
-The two approved primary datasets are downloaded and validated. No model evaluation or accuracy comparison has been run.
+The two approved primary datasets are downloaded and validated. Tesseract has
+completed development smoke and saved a partial frozen evaluation. No cross-model
+accuracy comparison has been run.
 
 Read [PROGRESS.md](PROGRESS.md), [BENCHMARK_STATUS.json](BENCHMARK_STATUS.json)
 and [BENCHMARK_PLAN.md](BENCHMARK_PLAN.md) before resuming work. The
@@ -119,8 +121,9 @@ Repeated `--model` is rejected. Menu cancellation returns without a model call.
 
 ### Model approval, setup and isolated environments
 
-All nine real implementations/environments are currently **PENDING** in
-configs/models.json; existing hardware/ambiguity blockers remain. Selecting a
+Tesseract is registered in configs/models.json with its dedicated environment;
+the other eight implementations remain pending. Existing hardware/ambiguity
+blockers remain. Selecting a
 menu item is not model approval. `setup`, `smoke`, `run` and `resume` refuse until
 the selected model's task is independently approved/current/IN_PROGRESS, its
 implementation and pinned environment exist, and live preflight passes. A completed
@@ -223,7 +226,7 @@ do not establish all nine candidates' capabilities.
 - TASK-007 (complete): [shared runner and recovery](reports/RUNNER.md), explicit
   adapter lifecycle, single-model approval/preflight gates, immutable raw/normalized
   bundles, cache/timings, scoped metrics and independent offline evaluation.
-  No real model factories are registered.
+  Tesseract was subsequently registered in TASK-013; the other real model factories remain pending.
 - TASK-008 (complete): [13-option launcher](scripts/run_benchmark.bat), matching
   [Python CLI](cli.py), pending model catalog and [verification](reports/CLI_VALIDATION.md).
   Real setup/execution still needs each separately approved model task.

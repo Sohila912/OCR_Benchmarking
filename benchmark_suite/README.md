@@ -1,5 +1,11 @@
 # OCR benchmarking suite
 
+Latest checkpoint: Docling + Tesseract completed the 20-page development run
+(19 successes, one timeout). The user deferred full evaluation and approved
+Granite Docling next. See [saved results and scope](reports/DOCLING_TESSERACT.md).
+Model files/native outputs/reviewed report and charts are on D:; canonical runner
+metadata is also preserved in this repository. Earlier checkpoint notes are history.
+
 Latest checkpoint (2026-11-03): Docling + EasyOCR was installed and actually
 attempted on CPU. Inference failed with a memory allocation error, including a
 D: retry after unrelated apps were closed. The tested job-memory budget was

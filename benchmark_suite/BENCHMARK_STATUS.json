@@ -4,7 +4,7 @@
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-014",
+  "current_task": "TASK-015",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
@@ -20,7 +20,7 @@
     "TASK-012": "PENDING",
     "TASK-013": "BLOCKED",
     "TASK-014": "BLOCKED",
-    "TASK-015": "PENDING",
+    "TASK-015": "BLOCKED",
     "TASK-016": "PENDING",
     "TASK-017": "PENDING",
     "TASK-018": "PENDING",
@@ -44,15 +44,15 @@
     "paddle_vl": "BLOCKED_BY_HARDWARE",
     "marker": "BLOCKED_BY_HARDWARE",
     "paddle": "BLOCKED_BY_HARDWARE",
-    "docling_tesseract": "BLOCKED_BY_HARDWARE",
     "granite_docling": "BLOCKED_BY_HARDWARE",
     "baidu": "UNRESOLVED_IMPLEMENTATION_AND_API_APPROVAL",
     "tesseract": "BLOCKED_BY_HARDWARE",
-    "docling_easyocr": "BLOCKED_BY_HARDWARE"
+    "docling_easyocr": "BLOCKED_BY_HARDWARE",
+    "docling_tesseract": "FULL_EVALUATION_DEFERRED_BY_USER"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "feat(benchmark): record bounded Docling EasyOCR CPU attempts on D drive",
-  "approval_required_before": "TASK-015",
+  "checkpoint_git_commit_subject": "feat(benchmark): save Docling Tesseract development checkpoint",
+  "approval_required_before": "TASK-017",
   "approved_tasks": [
     "TASK-001",
     "TASK-002",
@@ -66,9 +66,11 @@
     "TASK-010",
     "TASK-011",
     "TASK-013",
-    "TASK-014"
+    "TASK-014",
+    "TASK-015",
+    "TASK-016"
   ],
-  "next_action": "STOP at TASK-014: documented actual Docling + EasyOCR CPU inference allocation failures, including final D: trial after closing unrelated apps. No successful pages or accuracy scores; hardware-blocked for tested memory budget, not a disk-space failure or universal minimum. Model environment/assets remain cached on D:. Review reports/DOCLING_EASYOCR.md before a differently configured retry. TASK-015 has no approval; Tesseract partial run remains intact.",
+  "next_action": "Push the saved TASK-015 development checkpoint (19/20 conversions; one timeout; full split explicitly deferred), then start user-approved TASK-016 Granite Docling with D: assets and bounded CPU execution. TASK-017 remains unapproved.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -275,6 +277,23 @@
       "accuracy_scores": null,
       "selected_run_created": false,
       "verification": "204 suite tests passed; Ruff passed; real Windows job-cap allocation rejection test; native CPU pip check passed; downloaded model SHA256 inventory recorded."
+    },
+    "docling_tesseract_task015": {
+      "status": "BLOCKED",
+      "reason": "FULL_EVALUATION_DEFERRED_BY_USER",
+      "development_run_completed": true,
+      "development_attempted": 20,
+      "development_succeeded": 19,
+      "development_failed": 1,
+      "failure": "180-second Docling timeout on one Arabic image",
+      "full_evaluation_executed": false,
+      "report": "reports/DOCLING_TESSERACT.md",
+      "summary": "reports/DOCLING_TESSERACT_RESULTS.json",
+      "run": "results/docling_tesseract/20261103T095733Z-880fa5ba",
+      "d_report": "D:/OCR_Benchmarking_Assets/docling_tesseract/reports/development-20261103-reviewed",
+      "suite_tests_passed": 206,
+      "ruff": "PASSED",
+      "user_requested_push_and_next_model": true
     }
   }
 }

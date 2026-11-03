@@ -1,4 +1,4 @@
-"""Create an additional report/figure from an explicit completed Tesseract run."""
+"""Create an additional report/figure from an explicit completed local model run."""
 
 import argparse
 import csv
@@ -16,14 +16,16 @@ def main():
     parser.add_argument("--evaluation-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True, help="New directory; never overwritten")
     parser.add_argument("--plot-libs", type=Path, help="Optional isolated matplotlib package directory")
+    parser.add_argument("--model", choices=("tesseract", "docling_tesseract"), default="tesseract")
     args = parser.parse_args()
     run, evaluation = args.run_dir.resolve(), args.evaluation_dir.resolve()
     descriptor = json.loads((run / "run_manifest.json").read_bytes())
     completion_path = run / "completion.json"
     completion = json.loads(completion_path.read_bytes())
     metrics = json.loads((evaluation / "metrics.json").read_bytes())
-    if descriptor["identity"]["spec"]["model_id"] != "tesseract":
-        parser.error("Select a Tesseract run")
+    if descriptor["identity"]["spec"]["model_id"] != args.model:
+        parser.error("Selected model and saved run differ")
+    title = "Tesseract tessdata_fast" if args.model == "tesseract" else "Docling + Tesseract"
     if metrics["run_completion_sha256"] != hashlib.sha256(completion_path.read_bytes()).hexdigest():
         parser.error("Evaluation does not match the completed run")
     evaluation_manifest = json.loads((evaluation / "evaluation_manifest.json").read_bytes())
@@ -77,20 +79,21 @@ def main():
         axis.set_ylim(0, max([v + error for v, error in zip(values, errors[1])] + [1]) * 1.22)
         axis.set_ylabel("Normalized error rate (%) — lower is better")
         scope = "English: reference-region text" if language == "en" else "Arabic: page-content text"
-        axis.set_title(f"{scope}\n{row['total_pages']} pages; 95% page bootstrap CI", fontsize=10)
+        scored = row["coverage"]["text"]["SCORED"]
+        axis.set_title(f"{scope}\n{scored}/{row['total_pages']} pages scored; 95% page bootstrap CI", fontsize=10)
     axes[2].hist(latency, bins=min(30, max(5, len(latency) // 10)), color="#65758a", edgecolor="white")
-    axes[2].set(xlabel="Fresh OCR subprocess time (seconds)", ylabel="Pages", title="CPU OCR time per page")
+    axes[2].set(xlabel="Fresh measured inference time (seconds)", ylabel="Pages", title="CPU inference time per page")
     if not latency:
         axes[2].text(.5, .5, "No fresh OCR timing measurements", ha="center", transform=axes[2].transAxes)
-    figure.suptitle(f"Tesseract tessdata_fast — {','.join(summary['splits'])} split", fontsize=14)
-    figure.supxlabel("Language reference scopes differ. Page independence is unverified. OCR time excludes setup and evaluation.", fontsize=9)
+    figure.suptitle(f"{title} — {','.join(summary['splits'])} split", fontsize=14)
+    figure.supxlabel("Reference scopes differ. Page independence is unverified. Inference excludes initialization, external preprocessing and evaluation.", fontsize=9)
     figure.savefig(args.output / "text_errors_and_latency.png", dpi=180)
     figure.savefig(args.output / "text_errors_and_latency.svg")
     plt.close(figure)
     summary["plot_packages"] = {name: importlib.metadata.version(name) for name in
                                 ("matplotlib", "numpy", "pillow", "contourpy", "cycler", "fonttools", "kiwisolver", "packaging", "pyparsing", "python-dateutil", "tzdata")}
     (args.output / "summary.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
-    lines = [f"# Tesseract — {run.name}", "", f"Split: {summary['splits']}. "
+    lines = [f"# {title} — {run.name}", "", f"Split: {summary['splits']}. "
              f"Processed {summary['total_documents']} pages; {summary['failed_documents']} failed; "
              f"{summary['cached_documents']} reused from cache.", "",
              "| Language | Pages | Raw CER | Normalized CER | Raw WER | Normalized WER |",
@@ -106,12 +109,14 @@ def main():
     lines.extend(["", "English uses reference-region text; Arabic uses page content. "
                   "These scores do not share a common reference scope. "
                   "CER/WER are error rates, not document success or generic accuracy.", "",
-                  f"Fresh OCR time: {summary['fresh_ocr_seconds']:.2f} seconds; "
+                  f"Fresh measured inference time: {summary['fresh_ocr_seconds']:.2f} seconds; "
                   f"mean {mean_seconds} seconds/page. "
                   f"Recorded session wall time: {summary['recorded_session_wall_seconds']:.2f} seconds.",
                   f"Sampled peak process/descendant RSS: {peak_mib} MiB. "
                   "Sampling can miss short peaks; GPU inference was not used.", "",
-                  "Semantic layout, reading order, table structure and chart understanding are unsupported. "
+                  ("Semantic layout, reading order, table structure and chart understanding are unsupported. "
+                   if args.model == "tesseract" else
+                   "Native layout, reading-order and table predictions are evaluated where independent references exist; chart understanding is disabled. ") +
                   "Missing truth and unsupported outputs retain the shared evaluator's explicit statuses. "
                   "Page-bootstrap intervals do not establish source-document independence.", "",
                   "![Text errors and OCR latency](text_errors_and_latency.png)", "",

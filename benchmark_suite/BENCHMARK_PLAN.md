@@ -4,6 +4,14 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
+Latest checkpoint: TASK-015 development evaluation completed on 2026-11-03 with
+19/20 successful conversions and one Arabic 180-second timeout. The user explicitly
+deferred the 1,135-page full evaluation and requested saving/pushing this checkpoint
+and moving to TASK-016 Granite Docling. TASK-015 is BLOCKED with reason
+FULL_EVALUATION_DEFERRED_BY_USER, not fully completed or hardware-incompatible.
+See reports/DOCLING_TESSERACT.md and DOCLING_TESSERACT_RESULTS.json. TASK-016 is
+approved; TASK-017 remains unapproved. Earlier next-task statements below are history.
+
 Latest checkpoint (2026-11-03): TASK-014 Docling + EasyOCR was explicitly approved,
 including an actual CPU attempt despite the earlier unmeasured RAM estimate.
 Two inference attempts failed on the first English development image with a
@@ -260,6 +268,11 @@ evaluation. See reports/DOCLING_EASYOCR.md and DOCLING_EASYOCR_RESULTS.json.
 - Next task: TASK-015 (requires user approval).
 
 ## TASK-015: Docling + Tesseract
+
+Approved and development-evaluated 2026-11-03: 19/20 conversions, one Arabic timeout.
+The user explicitly deferred full evaluation and approved TASK-016 after saving
+and pushing this checkpoint. Full task completion/selected evaluation run is not
+claimed. See reports/DOCLING_TESSERACT.md and DOCLING_TESSERACT_RESULTS.json.
 
 - Objective: Set up and quantitatively evaluate exactly this selected model, then STOP.
 - Dependencies: TASK-003 successful hardware assessment; TASK-005 through TASK-008; explicit approval before advancing from a preceding model.

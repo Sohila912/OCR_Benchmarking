@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "Each registered model requires its own approval, pinned environment, assets and live preflight. Unregistered entries remain pending.",
+  "note": "Tesseract and Docling + Tesseract are registered; other model adapters remain pending. Approval, pinned environments/assets and live preflight are enforced independently.",
   "models": {
     "surya": {
       "name": "Surya OCR",
@@ -59,11 +59,11 @@
     "docling_tesseract": {
       "name": "Docling + Tesseract",
       "task": "TASK-015",
-      "spec": null,
-      "config": null,
-      "factory": null,
-      "python": null,
-      "requirements": null
+      "spec": "configs/docling_tesseract-spec.json",
+      "config": "configs/docling_tesseract.json",
+      "factory": "benchmark_suite.adapters.docling_tesseract:create_adapter",
+      "python": "environments/docling_tesseract/Scripts/python.exe",
+      "requirements": "configs/docling-tesseract-requirements.txt"
     },
     "granite_docling": {
       "name": "Granite Docling",

@@ -2,6 +2,34 @@
 
 Updated: 2026-11-03 (Africa/Cairo).
 
+## TASK-015 development checkpoint; full evaluation deferred by user
+
+Docling 2.143.1 + Tesseract CLI 5.4.0 with verified eng/ara/OSD assets on D:
+completed the frozen 20-page development run: 19 succeeded and one Arabic image
+hit Docling's 180-second timeout. Normalized CER/WER: English 26.69%/40.09%
+(10 scored pages); Arabic 50.26%/67.47% (9 scored pages). These are development
+scores with different language reference scopes, not full-evaluation accuracy.
+Run wall time was 662.99 seconds; peak sampled process/descendant RSS 2.08 GiB.
+
+Run: results/docling_tesseract/20261103T095733Z-880fa5ba; offline evaluation and
+all per-page/category/structure/performance CSVs are saved. Native outputs, report,
+charts and a canonical evaluation copy are on D:. See reports/DOCLING_TESSERACT.md,
+DOCLING_TESSERACT_RESULTS.json and DOCLING_TESSERACT_ASSETS.json. A preliminary
+two-page trial exposed missing OSD data, which was supplied/hashed before this run.
+
+The shared runner adapter uses a pinned external CPU worker with bounded memory,
+per-language startup, native coordinate/order/table exports and production normalizer
+reuse. Production code/dependencies are unchanged. Common trial code was factored
+for explicit backend selection; original EasyOCR entry point remains available.
+Owned process-tree cleanup handles Windows venv launchers and their descendants.
+206 suite tests and Ruff pass; native copies/hash checks and registered preflight pass.
+
+The user explicitly requested saving/pushing this result, deferring the full 1,135
+images, and advancing to Granite Docling TASK-016. TASK-015 is BLOCKED with reason
+FULL_EVALUATION_DEFERRED_BY_USER; no full-evaluation selected-run marker exists.
+TASK-016 is approved; TASK-017 is not. Preserve the prior Tesseract partial run and
+prior model attempts; original recorded code identity is required for resumption.
+
 ## TASK-014 Docling + EasyOCR actual attempt
 
 The user approved the next model, explicitly requested trying it and recording

@@ -7,6 +7,26 @@ import os
 _JOB_HANDLE = None
 
 
+def kill_owned_process_tree(pid):
+    """Terminate only the explicitly owned subprocess and its descendants."""
+    import psutil
+
+    try:
+        process = psutil.Process(pid)
+        children = process.children(recursive=True)
+    except psutil.NoSuchProcess:
+        return
+    for child in reversed(children):
+        try:
+            child.kill()
+        except psutil.NoSuchProcess:
+            pass
+    try:
+        process.kill()
+    except psutil.NoSuchProcess:
+        pass
+
+
 def limit_current_process(memory_bytes):
     global _JOB_HANDLE
     if os.name != "nt":

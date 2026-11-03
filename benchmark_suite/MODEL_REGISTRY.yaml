@@ -287,7 +287,7 @@
       "name": "Docling standard PDF pipeline + Tesseract CLI",
       "package": "docling",
       "latest_package_version_observed": "2.143.1",
-      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "candidate_pin_status": "REGISTERED_DEVELOPMENT_EVALUATED_FULL_DEFERRED",
       "execution_authorized": false,
       "license_summary": "MIT Docling code; Apache-2.0 Tesseract; model artifact licenses vary",
       "hardware_compatibility": "LIMITED",
@@ -298,7 +298,7 @@
       "recommended_host_ram_gib": 16,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 4,
-      "recommended_action": "Production Docling 2.80.0 exists; free RAM and add ara pack before trial. Current configured layout/table assets must be checked, not assumed.",
+      "recommended_action": "19/20 development pages succeeded, one CPU document timeout. Full evaluation deferred by user; see reports/DOCLING_TESSERACT.md.",
       "capabilities": {
         "english": "SUPPORTED",
         "arabic": "SUPPORTED_WITH_LANGUAGE_DATA",
@@ -313,7 +313,17 @@
         "https://huggingface.co/docling-project/docling-models",
         "https://pypi.org/pypi/docling/json"
       ],
-      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+      "current_snapshot_loading": "DEVELOPMENT_VERIFIED_FULL_EVALUATION_DEFERRED_BY_USER",
+      "task015_assessment": {
+        "date": "2026-11-03",
+        "task_approved": true,
+        "status": "BLOCKED",
+        "reason": "FULL_EVALUATION_DEFERRED_BY_USER",
+        "report": "reports/DOCLING_TESSERACT.md",
+        "development_attempted": 20,
+        "development_succeeded": 19,
+        "full_evaluation_executed": false
+      }
     },
     "granite_docling": {
       "name": "ibm-granite/granite-docling-258M via Docling VLM / Transformers",

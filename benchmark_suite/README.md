@@ -1,5 +1,17 @@
 # OCR benchmarking suite
 
+Latest model checkpoint (2026-11-03): the user clarified to move to the next
+model. Standard PaddleOCR TASK-012 is approved and completed all 20 development
+pages locally with zero conversion failures. English normalized CER/WER are
+7.98%/23.75%; Arabic 56.29%/77.29% (10 pages scored per language, different reference
+scopes). Sampled peak RSS 0.55 GiB; run wall 424.38 seconds. The isolated CPU
+runtime, pinned mobile models, inputs, native outputs and reviewed report/charts
+are on D:. See reports/PADDLE.md, PADDLE_RESULTS.json and PADDLE_ASSETS.json.
+214 tests, Ruff and isolated dependency check pass. TASK-012 remains IN_PROGRESS
+with full evaluation pending, not hardware-blocked. Baidu quota/offline work was
+stopped as requested and its saved results retained. Earlier next-action and
+approval statements below are historical. TASK-018 is not started.
+
 Latest continuation (2026-11-03): Unlimited-OCR-2 now has 7 saved successful
 hosted development pages (4 English, 3 Arabic), five more than the original two.
 The helper reused earlier successes and used the user's local Hugging Face login

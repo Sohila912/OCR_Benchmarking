@@ -4,7 +4,7 @@
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-017",
+  "current_task": "TASK-012",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
@@ -17,7 +17,7 @@
     "TASK-009": "BLOCKED",
     "TASK-010": "BLOCKED",
     "TASK-011": "BLOCKED",
-    "TASK-012": "PENDING",
+    "TASK-012": "IN_PROGRESS",
     "TASK-013": "BLOCKED",
     "TASK-014": "BLOCKED",
     "TASK-015": "BLOCKED",
@@ -32,7 +32,7 @@
     "surya": "BLOCKED",
     "paddle_vl": "BLOCKED",
     "marker": "BLOCKED",
-    "paddle": "BLOCKED",
+    "paddle": "IN_PROGRESS",
     "tesseract": "BLOCKED",
     "docling_easyocr": "BLOCKED",
     "docling_tesseract": "BLOCKED",
@@ -43,7 +43,6 @@
     "surya": "BLOCKED_BY_HARDWARE",
     "paddle_vl": "BLOCKED_BY_HARDWARE",
     "marker": "BLOCKED_BY_HARDWARE",
-    "paddle": "BLOCKED_BY_HARDWARE",
     "tesseract": "BLOCKED_BY_HARDWARE",
     "docling_easyocr": "BLOCKED_BY_HARDWARE",
     "docling_tesseract": "FULL_EVALUATION_DEFERRED_BY_USER",
@@ -51,7 +50,7 @@
     "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "feat(benchmark): extend Unlimited OCR trial with authenticated resume",
+  "checkpoint_git_commit_subject": "feat(benchmark): evaluate standard PaddleOCR development set",
   "approval_required_before": "TASK-018",
   "approved_tasks": [
     "TASK-001",
@@ -69,9 +68,10 @@
     "TASK-014",
     "TASK-015",
     "TASK-016",
-    "TASK-017"
+    "TASK-017",
+    "TASK-012"
   ],
-  "next_action": "After the free Hugging Face quota resets, reactivate already-approved TASK-017 and resume the saved hosted development trial with --authenticated and --reuse 20261103T114536Z-118e8f19. Seven successful pages are preserved; 13 remain. No paid calls or TASK-018 work.",
+  "next_action": "Review saved TASK-012 PaddleOCR development results (20/20 conversions; English CER 7.98%, Arabic 56.29%). Full 1135-page evaluation remains pending, roughly 6.57 CPU hours at observed fresh-worker mean. Existing approval persists; stop at this development checkpoint. Baidu quota/offline work remains stopped per user steering.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -354,7 +354,32 @@
       "reviewed_output_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\reports\\development-20261103-7pages",
       "local_hugging_face_login_configured": true,
       "credentials_saved_in_reports": false,
-      "suite_tests_passed": 212
+      "suite_tests_passed": 212,
+      "latest_quota_recheck": "D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261103T115650Z-3a12acf1",
+      "offline_partial_metrics_directory": "D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/evaluations/20261103T120039Z-05cad4bb",
+      "offline_work_stopped_at_user_request": true
+    },
+    "paddle_task012": {
+      "status": "IN_PROGRESS",
+      "user_approved": true,
+      "scope": "Standard local PaddleOCR, not PaddleOCR-VL or hosted Unlimited-OCR",
+      "asset_root": "D:/OCR_Benchmarking_Assets/paddle",
+      "full_evaluation_executed": false,
+      "development_run_completed": true,
+      "development_attempted": 20,
+      "development_succeeded": 20,
+      "development_failed": 0,
+      "report": "reports/PADDLE.md",
+      "summary": "reports/PADDLE_RESULTS.json",
+      "assets": "reports/PADDLE_ASSETS.json",
+      "run": "benchmark_suite\\results\\paddle\\20261103T120728Z-45bb7cec",
+      "evaluation": "benchmark_suite\\results\\paddle\\evaluations\\20261103T120728Z-45bb7cec\\6fa4c89f1d73-0760d4a5",
+      "d_report": "D:\\OCR_Benchmarking_Assets\\paddle\\reports\\development-20261103-reviewed",
+      "sampled_peak_rss_bytes": 593149952,
+      "full_evaluation_pending": true,
+      "suite_tests_passed": 214,
+      "ruff": "PASSED",
+      "isolated_dependency_check": "PASSED"
     }
   }
 }

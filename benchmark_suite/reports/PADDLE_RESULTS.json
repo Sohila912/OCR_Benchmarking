@@ -1,0 +1,546 @@
+{
+  "task": "TASK-012",
+  "status": "DEVELOPMENT_CHECKPOINT_COMPLETE",
+  "task_state": "IN_PROGRESS",
+  "full_evaluation_executed": false,
+  "official_selected_run_created": false,
+  "development": {
+    "model": "PaddleOCR3.6.0/Paddle3.2.2; PP-OCRv5_mobile_det@0d63e78e2b680928f6b1747d76a08db6e645efb7; en_rec@267c36e24c331595590fe7bd72bde2436fd286f2; arabic_rec@33d91636a65dca87f5562cc48860332ae367ee1b",
+    "run_id": "20261103T120728Z-45bb7cec",
+    "splits": [
+      "development"
+    ],
+    "evaluation_id": "6fa4c89f1d73e15594618dd16743a047a15d0ea17561e66410ab7712ab58ebb8",
+    "total_documents": 20,
+    "failed_documents": 0,
+    "success_rate": 1.0,
+    "cached_documents": 0,
+    "fresh_ocr_seconds": 416.4446774999815,
+    "mean_fresh_ocr_seconds": 20.822233874999075,
+    "median_fresh_ocr_seconds": 15.733387249994848,
+    "sampled_peak_rss_bytes": 593149952,
+    "recorded_session_wall_seconds": 424.3832124000037,
+    "languages": [
+      {
+        "content_normalized_cer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.3668375726467295,
+              0.6838924331762505
+            ],
+            "clusters": 10,
+            "estimate": 0.5628891656288917,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.7412429378531074,
+            "mean": 0.4984360519420229,
+            "median": 0.5277839985527452,
+            "minimum": 0.08097826086956522,
+            "missing": 0,
+            "sample_std": 0.24419244142858992
+          },
+          "micro": 0.5628891656288917,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_normalized_wer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.5720880102040816,
+              0.9008537121658459
+            ],
+            "clusters": 10,
+            "estimate": 0.7729275130156188,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.9649122807017544,
+            "mean": 0.7217772978281851,
+            "median": 0.7930864793597148,
+            "minimum": 0.2571428571428571,
+            "missing": 0,
+            "sample_std": 0.26102910197177204
+          },
+          "micro": 0.7729275130156188,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_raw_cer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.39964108533190523,
+              0.7068310369817007
+            ],
+            "clusters": 10,
+            "estimate": 0.589538661468486,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.7894305612453912,
+            "mean": 0.5210286014851286,
+            "median": 0.5844729344729345,
+            "minimum": 0.09342748506246605,
+            "missing": 0,
+            "sample_std": 0.24564593980754343
+          },
+          "micro": 0.589538661468486,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_raw_wer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.5720880102040816,
+              0.9008537121658459
+            ],
+            "clusters": 10,
+            "estimate": 0.7729275130156188,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.9649122807017544,
+            "mean": 0.7217772978281851,
+            "median": 0.7930864793597148,
+            "minimum": 0.2571428571428571,
+            "missing": 0,
+            "sample_std": 0.26102910197177204
+          },
+          "micro": 0.7729275130156188,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "coverage": {
+          "chart_components": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_numeric": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_text": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_type": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "figure_detection": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "layout": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "reading_order": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "tables": {
+            "NOT_EVALUATED": 8,
+            "NOT_SUPPORTED": 2,
+            "SCORED": 0
+          },
+          "text": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 10
+          }
+        },
+        "document_category": null,
+        "failed_pages": 0,
+        "language": "ar",
+        "layout": {
+          "map": null,
+          "scored_pages": 0,
+          "status": "NOT_EVALUATED",
+          "unscored_pages": 10
+        },
+        "level": "language",
+        "tables": {
+          "reference_tables": 0,
+          "scored_tables": 0,
+          "teds": {
+            "count": 0,
+            "maximum": null,
+            "mean": null,
+            "median": null,
+            "minimum": null,
+            "missing": 0,
+            "sample_std": null
+          },
+          "teds_structure": {
+            "count": 0,
+            "maximum": null,
+            "mean": null,
+            "median": null,
+            "minimum": null,
+            "missing": 0,
+            "sample_std": null
+          }
+        },
+        "text_scope": "page-content",
+        "total_pages": 10
+      },
+      {
+        "content_normalized_cer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.045848444309355946,
+              0.11276402580707248
+            ],
+            "clusters": 10,
+            "estimate": 0.07982702197288452,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.23718712753277713,
+            "mean": 0.09742757711608345,
+            "median": 0.08819477669403261,
+            "minimum": 0.0018264840182648401,
+            "missing": 0,
+            "sample_std": 0.07548846048782062
+          },
+          "micro": 0.07982702197288452,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_normalized_wer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.14965472498301222,
+              0.29177588477178223
+            ],
+            "clusters": 10,
+            "estimate": 0.23749522718594884,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.4,
+            "mean": 0.23759776242355904,
+            "median": 0.26452192667145935,
+            "minimum": 0.012121212121212121,
+            "missing": 0,
+            "sample_std": 0.12213480814035395
+          },
+          "micro": 0.23749522718594884,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_raw_cer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.06833117021269776,
+              0.13602554584152068
+            ],
+            "clusters": 10,
+            "estimate": 0.10082137899120777,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.24852767962308597,
+            "mean": 0.12471174583882452,
+            "median": 0.1129596138604111,
+            "minimum": 0.023514851485148515,
+            "missing": 0,
+            "sample_std": 0.07454590660733654
+          },
+          "micro": 0.10082137899120777,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "content_raw_wer": {
+          "ci95_page_bootstrap": {
+            "ci95": [
+              0.14965472498301222,
+              0.29177588477178223
+            ],
+            "clusters": 10,
+            "estimate": 0.23749522718594884,
+            "method": "percentile-linear-v1",
+            "missing_rows": 0,
+            "qualification": "Page bootstrap; source-document independence unverified",
+            "samples": 2000,
+            "seed": 1729,
+            "status": "SCORED",
+            "undefined_replicates": 0,
+            "unit": "page"
+          },
+          "macro": {
+            "count": 10,
+            "maximum": 0.4,
+            "mean": 0.23759776242355904,
+            "median": 0.26452192667145935,
+            "minimum": 0.012121212121212121,
+            "missing": 0,
+            "sample_std": 0.12213480814035395
+          },
+          "micro": 0.23749522718594884,
+          "unscored_pages": 0,
+          "zero_reference_edits": 0
+        },
+        "coverage": {
+          "chart_components": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_numeric": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_text": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "chart_type": {
+            "NOT_EVALUATED": 10,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 0
+          },
+          "figure_detection": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 10,
+            "SCORED": 0
+          },
+          "layout": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 10,
+            "SCORED": 0
+          },
+          "reading_order": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 10,
+            "SCORED": 0
+          },
+          "tables": {
+            "NOT_EVALUATED": 8,
+            "NOT_SUPPORTED": 2,
+            "SCORED": 0
+          },
+          "text": {
+            "NOT_EVALUATED": 0,
+            "NOT_SUPPORTED": 0,
+            "SCORED": 10
+          }
+        },
+        "document_category": null,
+        "failed_pages": 0,
+        "language": "en",
+        "layout": {
+          "map": null,
+          "scored_pages": 0,
+          "status": "NOT_EVALUATED",
+          "unscored_pages": 10
+        },
+        "level": "language",
+        "tables": {
+          "reference_tables": 0,
+          "scored_tables": 0,
+          "teds": {
+            "count": 0,
+            "maximum": null,
+            "mean": null,
+            "median": null,
+            "minimum": null,
+            "missing": 0,
+            "sample_std": null
+          },
+          "teds_structure": {
+            "count": 0,
+            "maximum": null,
+            "mean": null,
+            "median": null,
+            "minimum": null,
+            "missing": 0,
+            "sample_std": null
+          }
+        },
+        "text_scope": "region edits pooled per image",
+        "total_pages": 10
+      }
+    ],
+    "completion_sha256": "fac056301efe256027fe7f63014c82592dfe91ada7b8a07083f8658564ff8602",
+    "evaluation_metrics_sha256": "69acd42cbc94fa80220b1029911dd39ff666d903d02719a0e7f4a2be4378ea40",
+    "memory_method": "50 ms sampled process and descendants RSS; not allocator peak",
+    "source_document_independence": "UNKNOWN",
+    "completion_status": "COMPLETED",
+    "plot_packages": {
+      "matplotlib": "3.10.7",
+      "numpy": "2.5.4",
+      "pillow": "13.0.0",
+      "contourpy": "1.4.0",
+      "cycler": "0.12.1",
+      "fonttools": "4.68.0",
+      "kiwisolver": "1.5.1",
+      "packaging": "26.3",
+      "pyparsing": "3.3.3",
+      "python-dateutil": "4.0.0",
+      "tzdata": "2026.6"
+    }
+  },
+  "preliminary_two_page_trial": {
+    "scope": "bounded feasibility trial, not benchmark evaluation",
+    "directory": "D:\\OCR_Benchmarking_Assets\\paddle\\trials\\20261103T120435Z-47658509",
+    "asset_root": "D:\\OCR_Benchmarking_Assets\\paddle",
+    "python": "D:\\OCR_Benchmarking_Assets\\paddle\\venv\\Scripts\\python.exe",
+    "attempts": [
+      {
+        "language": "en",
+        "exit_code": 0,
+        "memory_limit_bytes": 3749695488,
+        "sampled_peak_rss_bytes": 535896064,
+        "sampled_peak_private_bytes": 566816768,
+        "minimum_system_available_bytes": 3947470848,
+        "guard_abort": null,
+        "wall_seconds": 21.686964599997737,
+        "worker_result": {
+          "model": "Standard PaddleOCR 3.6.0 / PaddlePaddle 3.2.2 CPU",
+          "scope": "bounded development trial; not a full evaluation",
+          "language": "en",
+          "status": "SUCCESS",
+          "documents_processed": 1,
+          "memory_limit_bytes": 3749695488,
+          "accuracy_scores": null,
+          "versions": {
+            "paddleocr": "3.6.0",
+            "paddlepaddle": "3.2.2",
+            "paddlex": "3.6.1",
+            "numpy": "2.3.5"
+          },
+          "initialization_seconds": 1.0470366000081412,
+          "document_id": "omnidocbench:aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec:0b79b57cef82fe28d333cf52",
+          "processing_input_path": "D:\\OCR_Benchmarking_Assets\\paddle\\inputs\\2fea47743eed2bae256a65649009d6d9e9412578c5b85857f5d266cd07de6c2f.png",
+          "inference_seconds": 8.675504800005001,
+          "recognized_lines": 56,
+          "text_characters": 247,
+          "recognizer": "en_PP-OCRv5_mobile_rec",
+          "wall_seconds": 19.87785149998672
+        }
+      },
+      {
+        "language": "ar",
+        "exit_code": 0,
+        "memory_limit_bytes": 3662831616,
+        "sampled_peak_rss_bytes": 466116608,
+        "sampled_peak_private_bytes": 547831808,
+        "minimum_system_available_bytes": 4022296576,
+        "guard_abort": null,
+        "wall_seconds": 9.792239100002917,
+        "worker_result": {
+          "model": "Standard PaddleOCR 3.6.0 / PaddlePaddle 3.2.2 CPU",
+          "scope": "bounded development trial; not a full evaluation",
+          "language": "ar",
+          "status": "SUCCESS",
+          "documents_processed": 1,
+          "memory_limit_bytes": 3662831616,
+          "accuracy_scores": null,
+          "versions": {
+            "paddleocr": "3.6.0",
+            "paddlepaddle": "3.2.2",
+            "paddlex": "3.6.1",
+            "numpy": "2.3.5"
+          },
+          "initialization_seconds": 0.25287630000093486,
+          "document_id": "misraj:7177bf70f77ce259890d6af0bef53f18faf26ec9:168c8ccb-6acb-4d91-8ece-3d6cd2bca72b",
+          "processing_input_path": "D:\\OCR_Benchmarking_Assets\\paddle\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png",
+          "inference_seconds": 6.121463200004655,
+          "recognized_lines": 29,
+          "text_characters": 553,
+          "recognizer": "arabic_PP-OCRv5_mobile_rec",
+          "wall_seconds": 9.308217400001013
+        }
+      }
+    ],
+    "maximum_memory_limit_gib": 4.0,
+    "model": "paddle",
+    "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+    "accuracy_scores": null,
+    "status": "SUCCESS"
+  },
+  "run_directory": "benchmark_suite\\results\\paddle\\20261103T120728Z-45bb7cec",
+  "evaluation_directory": "benchmark_suite\\results\\paddle\\evaluations\\20261103T120728Z-45bb7cec\\6fa4c89f1d73-0760d4a5",
+  "reviewed_report_directory": "D:\\OCR_Benchmarking_Assets\\paddle\\reports\\development-20261103-reviewed",
+  "run_manifest_sha256": "700b2d948db5721346557de777c88022d8a87fbc117f13c06851760d80062f33",
+  "completion_sha256": "fac056301efe256027fe7f63014c82592dfe91ada7b8a07083f8658564ff8602",
+  "full_run_linear_estimate_hours": 6.564787624478875,
+  "estimate_qualification": "Simple development-mean extrapolation with fresh worker per page; not a measured full run or guaranteed duration",
+  "verification": {
+    "suite_tests_passed": 214,
+    "ruff": "PASSED",
+    "isolated_dependency_check": "No broken requirements found."
+  },
+  "native_sources": [
+    "https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det",
+    "https://huggingface.co/PaddlePaddle/en_PP-OCRv5_mobile_rec",
+    "https://huggingface.co/PaddlePaddle/arabic_PP-OCRv5_mobile_rec"
+  ]
+}

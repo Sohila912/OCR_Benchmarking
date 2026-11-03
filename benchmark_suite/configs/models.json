@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "Tesseract, Docling + Tesseract and Granite Docling are registered. Granite uses the existing pinned lightweight coordinator and isolated D: CPU worker. Approval, assets and live preflight remain independent.",
+  "note": "Standard PaddleOCR, Tesseract, Docling + Tesseract and Granite Docling are registered. Pinned CPU workers/assets and coordinator libraries for newer models are on D:. Approval and live preflight remain independent.",
   "models": {
     "surya": {
       "name": "Surya OCR",
@@ -32,11 +32,11 @@
     "paddle": {
       "name": "PaddleOCR",
       "task": "TASK-012",
-      "spec": null,
-      "config": null,
-      "factory": null,
-      "python": null,
-      "requirements": null
+      "spec": "configs/paddle-spec.json",
+      "config": "configs/paddle.json",
+      "factory": "benchmark_suite.adapters.paddle:create_adapter",
+      "python": "environments/paddle/Scripts/python.exe",
+      "requirements": "configs/docling-tesseract-requirements.txt"
     },
     "tesseract": {
       "name": "Tesseract OCR",

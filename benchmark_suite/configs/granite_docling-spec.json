@@ -18,9 +18,9 @@
     "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\vocab.json": "e2bad0ce74e6ddfece426ef99e18067f4a6c3d4e65bb6dd9cfd638450cca0142"
   },
   "source_files": {
-    "benchmark_suite/adapters/granite_docling.py": "d6076078db3020821d3353bc71872bd18ee643487701e089913e7e32c9ee4209",
+    "benchmark_suite/adapters/granite_docling.py": "96d9fcf91aff616bff19027bab1826260b3590ae807356ab160f27d2301ec5d4",
     "benchmark_suite/scripts/granite_trial.py": "01e81ac178007633f69bdd2a4e1e9be0747b3e19b17ce4bff1ad8b068aacb8ce",
-    "benchmark_suite/scripts/docling_trial.py": "a1b4dd00bc0ed2e7a70a994c7a8a81c9de09239b0c67d1c139b1a9f038a00bae",
+    "benchmark_suite/scripts/docling_trial.py": "ea5da7230725cbfad3e4cf74b7048670e2931cc80b13261bae6e595f0cf6c127",
     "benchmark_suite/scripts/windows_job.py": "9b7278130ba4d41b47407b8f147f3bd6a008ea14662faf2f86315af0a0e87b02",
     "OCR/providers/docling.py": "c0c22f81e4e12fba53a3ada0b2f73960fe5694a4cfadbaadb1dc3bbdacf1aad7",
     "OCR/providers/common.py": "99c8e889ad13e1e64708db313f3dddeb3f6203e38f258950acc30dc32215c4d9",

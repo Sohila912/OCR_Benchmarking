@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--evaluation-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True, help="New directory; never overwritten")
     parser.add_argument("--plot-libs", type=Path, help="Optional isolated matplotlib package directory")
-    parser.add_argument("--model", choices=("tesseract", "docling_tesseract", "granite_docling"), default="tesseract")
+    parser.add_argument("--model", choices=("tesseract", "docling_tesseract", "granite_docling", "paddle"), default="tesseract")
     args = parser.parse_args()
     run, evaluation = args.run_dir.resolve(), args.evaluation_dir.resolve()
     descriptor = json.loads((run / "run_manifest.json").read_bytes())
@@ -26,7 +26,7 @@ def main():
     if descriptor["identity"]["spec"]["model_id"] != args.model:
         parser.error("Selected model and saved run differ")
     title = {"tesseract": "Tesseract tessdata_fast", "docling_tesseract": "Docling + Tesseract",
-             "granite_docling": "Granite Docling 258M"}[args.model]
+             "granite_docling": "Granite Docling 258M", "paddle": "PaddleOCR PP-OCRv5 mobile"}[args.model]
     if metrics["run_completion_sha256"] != hashlib.sha256(completion_path.read_bytes()).hexdigest():
         parser.error("Evaluation does not match the completed run")
     evaluation_manifest = json.loads((evaluation / "evaluation_manifest.json").read_bytes())
@@ -87,8 +87,8 @@ def main():
     if not latency:
         axes[2].text(.5, .5, "No fresh OCR timing measurements", ha="center", transform=axes[2].transAxes)
     figure.suptitle(f"{title} — {','.join(summary['splits'])} split", fontsize=14)
-    phase_note = ("Fresh inference includes per-page model startup, preprocessing, generation and export."
-                  if args.model == "granite_docling" else
+    phase_note = ("Fresh inference includes per-page model startup, preprocessing, native prediction and export."
+                  if args.model in {"granite_docling", "paddle"} else
                   "Inference excludes initialization, external preprocessing and evaluation.")
     figure.supxlabel("Reference scopes differ. Page independence is unverified. " + phase_note, fontsize=9)
     figure.savefig(args.output / "text_errors_and_latency.png", dpi=180)
@@ -120,7 +120,7 @@ def main():
                   f"Sampled peak process/descendant RSS: {peak_mib} MiB. "
                   "Sampling can miss short peaks; GPU inference was not used.", "",
                   ("Semantic layout, reading order, table structure and chart understanding are unsupported. "
-                   if args.model == "tesseract" else
+                   if args.model in {"tesseract", "paddle"} else
                    "Native layout, reading-order and table predictions are evaluated where independent references exist; chart understanding is disabled. ") +
                   "Missing truth and unsupported outputs retain the shared evaluator's explicit statuses. "
                   "Page-bootstrap intervals do not establish source-document independence.", "",

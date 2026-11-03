@@ -24,6 +24,9 @@ def write_json(path, data):
 
 
 def worker(args):
+    if args.model == "paddle":
+        from paddle_trial import worker as paddle_worker
+        return paddle_worker(args)
     if args.model == "granite_docling":
         from granite_trial import worker as granite_worker
         return granite_worker(args)
@@ -219,7 +222,7 @@ def main(default_model="docling_easyocr"):
     parser.add_argument("--python", type=Path)
     parser.add_argument("--asset-root", type=Path, required=True)
     parser.add_argument("--cache-root", type=Path)
-    parser.add_argument("--model", choices=("docling_easyocr", "docling_tesseract", "granite_docling"), default=default_model)
+    parser.add_argument("--model", choices=("docling_easyocr", "docling_tesseract", "granite_docling", "paddle"), default=default_model)
     parser.add_argument("--worker", action="store_true")
     parser.add_argument("--output", type=Path)
     parser.add_argument("--record", type=Path)

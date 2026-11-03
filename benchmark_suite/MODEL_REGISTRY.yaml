@@ -162,7 +162,7 @@
       "name": "Standard PaddleOCR; explicit language-specific detector/recognizer",
       "package": "paddleocr",
       "latest_package_version_observed": "3.7.0",
-      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "candidate_pin_status": "INSTALLED_ON_D_AND_DEVELOPMENT_EVALUATED",
       "execution_authorized": false,
       "license_summary": "Apache-2.0",
       "hardware_compatibility": "LIMITED",
@@ -173,7 +173,7 @@
       "recommended_host_ram_gib": 8,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 2,
-      "recommended_action": "Promising CPU route after freeing RAM; explicitly pin English/Arabic weights. Current package 3.6.0 is preserved.",
+      "recommended_action": "Local CPU development completed 20/20 conversions with 0.55-GiB sampled peak RSS. Full evaluation pending; Arabic text error remains high. See saved report before broader conclusions.",
       "capabilities": {
         "english": "SUPPORTED",
         "arabic": "SUPPORTED",
@@ -188,7 +188,17 @@
         "https://www.paddleocr.ai/main/en/version3.x/algorithm/PP-OCRv5/PP-OCRv5_multi_languages.html",
         "https://www.paddleocr.ai/main/en/version3.x/algorithm/PP-OCRv6/PP-OCRv6.html"
       ],
-      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+      "current_snapshot_loading": "BOUNDED_CPU_DEVELOPMENT_COMPLETED; FULL_EVALUATION_PENDING",
+      "measured_development": {
+        "report": "reports/PADDLE.md",
+        "results": "reports/PADDLE_RESULTS.json",
+        "assets": "reports/PADDLE_ASSETS.json",
+        "pages": 20,
+        "succeeded": 20,
+        "failed": 0,
+        "sampled_peak_rss_bytes": 593149952,
+        "full_evaluation_executed": false
+      }
     },
     "tesseract": {
       "name": "Tesseract CLI with eng / ara, fixed OEM and PSM",

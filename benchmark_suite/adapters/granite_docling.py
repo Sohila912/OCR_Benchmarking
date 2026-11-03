@@ -15,6 +15,7 @@ from benchmark_suite.scripts.windows_job import kill_owned_process_tree
 
 
 class GraniteDoclingAdapter(BenchmarkAdapter):
+    worker_model = "granite_docling"
     def __init__(self, spec):
         self.spec = spec
         self.process = None
@@ -34,11 +35,11 @@ class GraniteDoclingAdapter(BenchmarkAdapter):
                   "document_id": document.document_id, "benchmark_document": document.model_dump(mode="json")}
         (output / "input.json").write_text(json.dumps(record, ensure_ascii=False), encoding="utf-8")
         available = psutil.virtual_memory().available
-        if available < 3 * 1024**3:
-            raise RuntimeError("Available RAM below conservative 3-GiB Granite development floor")
+        if available < opts.get("minimum_available_ram_bytes", 3 * 1024**3):
+            raise RuntimeError("Available RAM below the configured development worker floor")
         cap = min(opts["maximum_job_memory_bytes"], available - 768 * 1024**2)
         script = Path(__file__).resolve().parents[1] / "scripts/docling_trial.py"
-        command = [opts["worker_python"], str(script), "--worker", "--model", "granite_docling",
+        command = [opts["worker_python"], str(script), "--worker", "--model", self.worker_model,
                    "--asset-root", str(root), "--output", str(output), "--record", str(output / "input.json"),
                    "--language", document.source_metadata["language"], "--memory-limit", str(cap)]
         before = time.monotonic()

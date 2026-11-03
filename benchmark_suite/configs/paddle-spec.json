@@ -1,0 +1,68 @@
+{
+  "model_id": "paddle",
+  "model_revision": "PaddleOCR3.6.0/Paddle3.2.2; PP-OCRv5_mobile_det@0d63e78e2b680928f6b1747d76a08db6e645efb7; en_rec@267c36e24c331595590fe7bd72bde2436fd286f2; arabic_rec@33d91636a65dca87f5562cc48860332ae367ee1b",
+  "adapter_revision": "1",
+  "assets": {
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\PP-OCRv5_mobile_det\\README.md": "4cc20ad6d41af86b3ce9885ffb0956e152574a2eb14179aeb07fd2d3956161ca",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\PP-OCRv5_mobile_det\\config.json": "7ac1c33f377ba58561f4b89d3180b6add2b7c5c60a4edac90fa4e0ceccdc6665",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\PP-OCRv5_mobile_det\\inference.json": "05feef1acb00aa4cd7362b15f7f501fc4f99d7b1fa73c1c871e0c7b1504b0f5c",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\PP-OCRv5_mobile_det\\inference.pdiparams": "afa1820cb16c1fd0dad589d0f8b389139061c1ef6d68019685fd07be997dda5b",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\PP-OCRv5_mobile_det\\inference.yml": "98069072e1b6b37d727fd9d9f11725faa46d6ea0de012f2ed26caea011c37699",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\en_PP-OCRv5_mobile_rec\\README.md": "4c1cfd6e103b0966fe97505b5254cfa35a931d47d7effca97a9db47fb57dd699",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\en_PP-OCRv5_mobile_rec\\config.json": "16103ac291a82fca50f0bb000d62a4b8168f6042f03c89c44cf32f241d1eb1f2",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\en_PP-OCRv5_mobile_rec\\inference.json": "fd1b6ec722ea841a72d3ba43e527df1d1066d5d7808e0503ee3eec7265188753",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\en_PP-OCRv5_mobile_rec\\inference.pdiparams": "3ec8a97ed6cefe8568d3e2ee90bb193299b566a7661aa4fd52d224b96b59f66b",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\en_PP-OCRv5_mobile_rec\\inference.yml": "27e91d0582f40168aa218303c76e184bc78fa7a5d105aad0cfbad8458b441067",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\arabic_PP-OCRv5_mobile_rec\\README.md": "9407c910bfbff151146db58c7e2b0fc35a65bd5a140a14b139e4f558ecb0380b",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\arabic_PP-OCRv5_mobile_rec\\config.json": "b531536bb3245c271db69ffcc2f343b2f1d4db0c1441bc8f9834bd06cf41ac00",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\arabic_PP-OCRv5_mobile_rec\\inference.json": "d43832804d89c0e18d59f8446a3babd0ef60c44bc335efddac3176caf71d50af",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\arabic_PP-OCRv5_mobile_rec\\inference.pdiparams": "4b4271fd1dd89a40b2056e1a42e58de7c0df2fdcf1a97ca9a8916d7ec45f9143",
+    "D:\\OCR_Benchmarking_Assets\\paddle\\models\\arabic_PP-OCRv5_mobile_rec\\inference.yml": "21368419e6c016c31db55d316d59e11c128e1913e6e6fe10287084710043d3a6"
+  },
+  "source_files": {
+    "benchmark_suite/adapters/paddle.py": "5ef91496edfe101f913608242ab55c517b0f2632617fd1d639b6d3c9ec8f1135",
+    "benchmark_suite/adapters/granite_docling.py": "96d9fcf91aff616bff19027bab1826260b3590ae807356ab160f27d2301ec5d4",
+    "benchmark_suite/scripts/paddle_trial.py": "805cdcbc509ecce2acd1d981b27ab470d89d857a5e766059bf29caa924621cf6",
+    "benchmark_suite/scripts/docling_trial.py": "ea5da7230725cbfad3e4cf74b7048670e2931cc80b13261bae6e595f0cf6c127",
+    "benchmark_suite/scripts/windows_job.py": "9b7278130ba4d41b47407b8f147f3bd6a008ea14662faf2f86315af0a0e87b02",
+    "OCR/schemas.py": "90234f8cd6a859c6dfe0cecadaab71089e11f756c1d9ae03be16c8906a21b7bf",
+    "OCR/providers/base.py": "11d4d2568e0eeeea25fd37132948680f2ebd144a823f0f8ade61dfee7031879a"
+  },
+  "packages": {
+    "pydantic": "2.13.5",
+    "pydantic-core": "2.46.5",
+    "annotated-types": "0.8.0",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "psutil": "7.2.2",
+    "rapidfuzz": "3.14.6",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2",
+    "tzdata": "2025.2"
+  },
+  "native_versions": {
+    "paddleocr": "3.6.0",
+    "paddlepaddle": "3.2.2"
+  },
+  "gpu_backend": "none",
+  "capabilities": {
+    "text": true,
+    "layout": false,
+    "reading_order": false,
+    "tables": false,
+    "chart_detection": false,
+    "chart_type": false,
+    "chart_text": false,
+    "chart_numeric": false
+  },
+  "label_map": {},
+  "requirements": {
+    "compatibility": "LIMITED",
+    "evidence": "Two actual native CPU trials succeeded, sampled process/descendant RSS <=535896064 bytes. Conservative 2-GiB available floor and <=2-GiB job cap with live reserve/abort; not a vendor minimum.",
+    "ram_bytes": 2147483648,
+    "disk_bytes": 104857600,
+    "vram_bytes": 0,
+    "min_compute_capability": 0.0
+  },
+  "raw_level": "Native PaddleX JSON containing text lines, confidence, quadrilateral/rectangle geometry and model/preprocessing settings, with worker timing envelope"
+}

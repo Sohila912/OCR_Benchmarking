@@ -1,0 +1,31 @@
+{
+  "purpose": "benchmark",
+  "device": "cpu",
+  "precision": "float32 native Paddle CPU; MKLDNN disabled",
+  "batch_size": 1,
+  "dpi": null,
+  "preprocessing": {
+    "original_pixels": "Byte-identical source image copied to D:; native detector resize max side 960",
+    "detector": "PP-OCRv5_mobile_det",
+    "recognizers": "en_PP-OCRv5_mobile_rec or arabic_PP-OCRv5_mobile_rec per frozen page language",
+    "orientation_unwarp_textline_orientation": false,
+    "recognition_batch_size": 1,
+    "text_rec_score_thresh": 0.0,
+    "cpu_threads": 2,
+    "phase_boundary": "Fresh worker per page; inference includes imports, checksums, initialization, native predict and JSON export/IPC. Native predict/init timings retained separately."
+  },
+  "adapter_options": {
+    "worker_python": "D:/OCR_Benchmarking_Assets/paddle/venv/Scripts/python.exe",
+    "asset_root": "D:/OCR_Benchmarking_Assets/paddle",
+    "maximum_job_memory_bytes": 2147483648,
+    "minimum_available_ram_bytes": 2147483648,
+    "worker_versions": {
+      "paddleocr": "3.6.0",
+      "paddlepaddle": "3.2.2",
+      "paddlex": "3.6.1",
+      "numpy": "2.3.5"
+    }
+  },
+  "location": "local",
+  "language": "both"
+}

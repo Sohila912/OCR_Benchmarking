@@ -66,6 +66,8 @@ def parser():
             sub.add_argument("--language", choices=("en", "ar", "both"), default="both")
         if command == "run":
             sub.add_argument("--mode", choices=("quick", "full"), default="quick")
+            sub.add_argument("--max-documents", type=int, help="Explicit bounded subset; never changes frozen manifests")
+            sub.add_argument("--sampling", choices=("manifest", "language-round-robin"), default="manifest")
         if command in {"resume", "evaluate", "report"}:
             sub.add_argument("--run-dir", type=Path, required=True, help="Explicit saved run directory; never select latest silently")
     return result
@@ -295,6 +297,11 @@ def dispatch(args, root):
         split = splits[0]
     else:
         settings.language = args.language
+        if command == "run":
+            if args.max_documents is not None and args.max_documents <= 0:
+                raise CLIError("Page limit must be positive")
+            settings.max_documents = args.max_documents
+            settings.sampling = args.sampling
         mode = "quick" if command == "smoke" else args.mode
         split = "development" if mode == "quick" else "evaluation"
     from benchmark_suite.runners.run import run

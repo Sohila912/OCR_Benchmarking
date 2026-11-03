@@ -108,15 +108,39 @@ def load_records(root, manifest, config):
     records = [r for r in records if config.language == "both" or r["language"] == config.language]
     if not records:
         raise ValueError("Empty selected cohort")
+    selection = None
+    if config.max_documents is not None:
+        if config.max_documents > len(records):
+            raise ValueError("Requested page limit exceeds the selected frozen cohort")
+        if config.sampling == "language-round-robin":
+            groups = {lang: iter([r for r in records if r["language"] == lang])
+                      for lang in sorted({r["language"] for r in records})}
+            ordered = []
+            while groups:
+                for lang in list(groups):
+                    value = next(groups[lang], None)
+                    if value is None:
+                        del groups[lang]
+                    else:
+                        ordered.append(value)
+            records = ordered
+        selection = {"max_documents": config.max_documents, "sampling": config.sampling,
+                     "available_documents": len(records), "scope": "explicit subset of unchanged frozen manifest"}
+        records = records[:config.max_documents]
+    elif config.sampling != "manifest":
+        raise ValueError("Non-default sampling requires an explicit page limit")
     for record in records:
         if config.purpose != "fixture" and (record["dataset_name"], record["dataset_version"]) not in PINS.values():
             raise IntegrityError("Unapproved dataset version")
         for path_key, hash_key in (("source_path", "file_hash"), ("ground_truth_reference", "reference_hash")):
             if digest(safe_path(root, record[path_key])) != record[hash_key]:
                 raise IntegrityError("Frozen source/reference checksum mismatch")
-    return records, {"manifest_sha256": expected, "provenance_sha256": digest(provenance_path),
+    cohort = {"manifest_sha256": expected, "provenance_sha256": digest(provenance_path),
                      "selected_document_ids": [r["document_id"] for r in records],
                      "splits": sorted({r["split"] for r in records})}
+    if selection is not None:
+        cohort["selection"] = selection
+    return records, cohort
 
 
 def code_identity():

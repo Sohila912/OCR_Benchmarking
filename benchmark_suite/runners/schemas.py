@@ -73,3 +73,5 @@ class RunConfig(StrictModel):
     adapter_options: dict = Field(default_factory=dict)
     location: Literal["local"] = "local"
     language: Literal["both", "en", "ar"] = "both"
+    max_documents: int | None = Field(default=None, ge=1)
+    sampling: Literal["manifest", "language-round-robin"] = "manifest"

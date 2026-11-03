@@ -1,5 +1,12 @@
 # OCR benchmarking suite
 
+Latest checkpoint (2026-11-03): Docling + EasyOCR was installed and actually
+attempted on CPU. Inference failed with a memory allocation error, including a
+D: retry after unrelated apps were closed. The tested job-memory budget was
+2.99 GiB; this is not a universal model minimum. Zero successful pages and no
+full-evaluation score. See [actual attempt and failure report](reports/DOCLING_EASYOCR.md).
+Environment, model cache, final trial input and outputs are on D:.
+
 Tesseract TASK-013 successfully processed all 20 development pages and saved
 437 evaluation pages with zero OCR failures. Full evaluation is incomplete:
 available RAM repeatedly fell below the shared 2-GiB floor. The saved run is

@@ -4,7 +4,17 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
-Current work (2026-11-02): user requested a model that will fit; Tesseract
+Latest checkpoint (2026-11-03): TASK-014 Docling + EasyOCR was explicitly approved,
+including an actual CPU attempt despite the earlier unmeasured RAM estimate.
+Two inference attempts failed on the first English development image with a
+1,258,291,200-byte CPU allocation error under controlled memory caps. The final
+retry used D: for the environment, models, caches, input copy and outputs after
+15 unrelated Edge/Bing Wallpaper processes were ended at the user's request.
+TASK-014 is BLOCKED_BY_HARDWARE for the tested memory budget; zero successful
+pages, no full evaluation or selected run. See reports/DOCLING_EASYOCR.md and
+reports/DOCLING_EASYOCR_RESULTS.json. TASK-015 is unapproved.
+
+Prior checkpoint (2026-11-02): user requested a model that will fit; Tesseract
 TASK-013 is approved and verified for inference. TASK-012 standard PaddleOCR remains
 pending. Bilingual Tesseract development smoke processed 20/20 pages with zero
 failures. Evaluation run 20261102T114008Z-48acf2b9 has 437 saved pages with no OCR
@@ -232,6 +242,13 @@ pages and blocked by the available-RAM safety floor. See reports/TESSERACT.md.
 - Next task: TASK-014 (requires user approval).
 
 ## TASK-014: Docling + EasyOCR
+
+Approved and attempted 2026-11-03. Isolated Docling 2.143.1 / EasyOCR 1.7.2
+environment and model cache are on D:. Models initialized, but actual CPU OCR
+failed to allocate 1,258,291,200 bytes, including a retry after unrelated app
+cleanup using a 2.99-GiB job memory cap. Arabic was not attempted after the
+English failure. BLOCKED_BY_HARDWARE for this budget, not a fabricated completed
+evaluation. See reports/DOCLING_EASYOCR.md and DOCLING_EASYOCR_RESULTS.json.
 
 - Objective: Set up and quantitatively evaluate exactly this selected model, then STOP.
 - Dependencies: TASK-003 successful hardware assessment; TASK-005 through TASK-008; explicit approval before advancing from a preceding model.

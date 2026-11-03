@@ -238,7 +238,7 @@
       "name": "Docling standard PDF pipeline + EasyOCR 1.7.2",
       "package": "docling",
       "latest_package_version_observed": "2.143.1",
-      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "candidate_pin_status": "TRIAL_ENVIRONMENT_INSTALLED_NOT_EVALUATED",
       "execution_authorized": false,
       "license_summary": "MIT Docling code; Apache-2.0 EasyOCR; model artifact licenses vary",
       "hardware_compatibility": "LIMITED",
@@ -249,7 +249,7 @@
       "recommended_host_ram_gib": 16,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 4,
-      "recommended_action": "EasyOCR absent; CPU supported but current free RAM insufficient; use explicit en / ar recognizers and low concurrency.",
+      "recommended_action": "Actual CPU inference failed within 2.5 and 2.99 GiB commit-memory caps; final retry used D: after app cleanup. Retain cached environment and models; see reports/DOCLING_EASYOCR.md before another configuration.",
       "capabilities": {
         "english": "SUPPORTED",
         "arabic": "SUPPORTED",
@@ -266,7 +266,22 @@
         "https://pypi.org/pypi/docling/json",
         "https://huggingface.co/docling-project/docling-models"
       ],
-      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+      "current_snapshot_loading": "BLOCKED_BY_HARDWARE_AFTER_BOUNDED_INFERENCE_ATTEMPT",
+      "task014_assessment": {
+        "date": "2026-11-03",
+        "task_approved": true,
+        "status": "BLOCKED",
+        "reason": "BLOCKED_BY_HARDWARE",
+        "selected_docling": "2.143.1",
+        "latest_docling_observed": "2.146.0",
+        "easyocr": "1.7.2",
+        "environment": "D:/OCR_Benchmarking_Assets/docling_easyocr/venv",
+        "report": "reports/DOCLING_EASYOCR.md",
+        "evidence": "reports/DOCLING_EASYOCR_RESULTS.json",
+        "inference_executed": true,
+        "successful_pages": 0,
+        "scope": "Bounded feasibility trials; no official evaluation run"
+      }
     },
     "docling_tesseract": {
       "name": "Docling standard PDF pipeline + Tesseract CLI",

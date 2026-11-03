@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-02",
+  "updated_date": "2026-11-03",
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-013",
+  "current_task": "TASK-014",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
@@ -19,7 +19,7 @@
     "TASK-011": "BLOCKED",
     "TASK-012": "PENDING",
     "TASK-013": "BLOCKED",
-    "TASK-014": "PENDING",
+    "TASK-014": "BLOCKED",
     "TASK-015": "PENDING",
     "TASK-016": "PENDING",
     "TASK-017": "PENDING",
@@ -44,15 +44,15 @@
     "paddle_vl": "BLOCKED_BY_HARDWARE",
     "marker": "BLOCKED_BY_HARDWARE",
     "paddle": "BLOCKED_BY_HARDWARE",
-    "docling_easyocr": "BLOCKED_BY_HARDWARE",
     "docling_tesseract": "BLOCKED_BY_HARDWARE",
     "granite_docling": "BLOCKED_BY_HARDWARE",
     "baidu": "UNRESOLVED_IMPLEMENTATION_AND_API_APPROVAL",
-    "tesseract": "BLOCKED_BY_HARDWARE"
+    "tesseract": "BLOCKED_BY_HARDWARE",
+    "docling_easyocr": "BLOCKED_BY_HARDWARE"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "feat(benchmark): add verified Tesseract CPU baseline and resumable evaluation",
-  "approval_required_before": "TASK-014",
+  "checkpoint_git_commit_subject": "feat(benchmark): record bounded Docling EasyOCR CPU attempts on D drive",
+  "approval_required_before": "TASK-015",
   "approved_tasks": [
     "TASK-001",
     "TASK-002",
@@ -65,9 +65,10 @@
     "TASK-009",
     "TASK-010",
     "TASK-011",
-    "TASK-013"
+    "TASK-013",
+    "TASK-014"
   ],
-  "next_action": "Tesseract verified: 20/20 development and 437 saved evaluation pages, zero OCR failures. Full run is incomplete because available RAM repeatedly fell below the shared 2 GiB floor. Free stable headroom, set TASK-013 and tesseract IN_PROGRESS via tracker (existing approval persists), then resume results/tesseract/20261102T114008Z-48acf2b9 with its isolated interpreter. No next model approved.",
+  "next_action": "STOP at TASK-014: documented actual Docling + EasyOCR CPU inference allocation failures, including final D: trial after closing unrelated apps. No successful pages or accuracy scores; hardware-blocked for tested memory budget, not a disk-space failure or universal minimum. Model environment/assets remain cached on D:. Review reports/DOCLING_EASYOCR.md before a differently configured retry. TASK-015 has no approval; Tesseract partial run remains intact.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -235,6 +236,45 @@
       "sampled_peak_rss_bytes": 728166400,
       "summary": "reports/TESSERACT_RESULTS.json",
       "verification": "PASSED: all 203 benchmark-suite tests in 48.84 seconds; Ruff; asset/source hashes; all published partial bundles and prediction identities."
+    },
+    "docling_easyocr_task014": {
+      "status": "BLOCKED",
+      "user_requested_actual_attempt": true,
+      "hardware_profile": "reports/hardware_observations/docling-easyocr-task014-20261103/HARDWARE_PROFILE.json",
+      "selected_docling": "2.143.1",
+      "selected_easyocr": "1.7.2",
+      "asset_root": "D:/OCR_Benchmarking_Assets/docling_easyocr",
+      "trial_protocol": "Dedicated CPU process with Windows job committed-memory cap, <=2.5 GiB, adjusted to leave 0.75 GiB available at launch; keep generic 2-GiB start floor; abort if system availability falls below 512 MiB. Feasibility trial only; not an official benchmark run.",
+      "guard_self_test": "PASSED: 128 MiB allocation rejected under 96 MiB job cap",
+      "next_model_started": false,
+      "environment_installed": true,
+      "pip_check": "PASSED",
+      "suite_tests_passed": 204,
+      "report": "reports/DOCLING_EASYOCR.md",
+      "trial_directories": [
+        "results/docling_easyocr/feasibility/20261103T084949Z-3b4e7736",
+        "results/docling_easyocr/feasibility/20261103T090228Z-ae16ec8b"
+      ],
+      "first_trial_outcome": "Coordinator stopped at asset download after 617 seconds; zero pages, no model OOM. Direct detector prefetch verified; second attempt is initializing.",
+      "resolved_requirements": "configs/docling-easyocr-trial-requirements.txt",
+      "reason": "BLOCKED_BY_HARDWARE",
+      "outcome": "Actual OCR inference failed on CPU allocation within the controlled commit-memory budget, including the D: retry after ending unrelated apps.",
+      "model_inference_executed": true,
+      "successful_documents": 0,
+      "failed_inference_attempts": 2,
+      "unique_documents_attempted": 1,
+      "arabic_attempted": false,
+      "final_trial_directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261103T092226Z-b1c73300",
+      "actual_memory_limit_bytes": 3208167424,
+      "sampled_peak_rss_bytes": 2669887488,
+      "sampled_peak_private_bytes": 2850996224,
+      "allocation_requested_bytes": 1258291200,
+      "ram_cleanup_processes_ended": 15,
+      "summary": "reports/DOCLING_EASYOCR_RESULTS.json",
+      "full_evaluation_completed": false,
+      "accuracy_scores": null,
+      "selected_run_created": false,
+      "verification": "204 suite tests passed; Ruff passed; real Windows job-cap allocation rejection test; native CPU pip check passed; downloaded model SHA256 inventory recorded."
     }
   }
 }

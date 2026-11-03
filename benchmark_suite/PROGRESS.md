@@ -1,6 +1,35 @@
 # Benchmark progress
 
-Updated: 2026-11-02 (Africa/Cairo).
+Updated: 2026-11-03 (Africa/Cairo).
+
+## TASK-014 Docling + EasyOCR actual attempt
+
+The user approved the next model, explicitly requested trying it and recording
+failure, requested D: storage, and authorized ending unrelated RAM-heavy apps.
+Installed Docling 2.143.1 / EasyOCR 1.7.2 in an isolated D: environment using
+independent copies of existing CPU Torch/Torchvision. Production packages are
+unchanged. Five downloaded model files on D: total 628,166,987 bytes; hashes,
+resolved dependencies, options, source identities and actual logs are retained.
+
+The first worker was interrupted during a slow detector download. After the
+detector was verified, initialization completed and CPU inference failed on the
+first English development image with DefaultCPUAllocator unable to allocate
+1,258,291,200 bytes under a 2.5-GiB job cap. Then Task Manager was opened and
+15 background Edge/Bing Wallpaper processes were ended at the user's request.
+The final retry copied and hashed the input on D: and put logs/outputs on D:.
+It failed on the same allocation under the larger, availability-derived 2.99-GiB
+cap. Sampled peak RSS was 2.49 GiB and private memory 2.66 GiB; system available
+RAM never fell below 1.28 GiB in that retry. No claim of whole-machine RAM
+exhaustion or universal model memory minimum is made.
+
+Zero successful pages; two failed inference attempts on one unique English
+image; Arabic not attempted. TASK-014 is BLOCKED_BY_HARDWARE for the tested
+budget. No accuracy/full-evaluation/selected-run marker. See reports/DOCLING_EASYOCR.md
+and DOCLING_EASYOCR_RESULTS.json. Final artifacts are in
+D:/OCR_Benchmarking_Assets/docling_easyocr/trials/20261103T092226Z-b1c73300/.
+All 204 suite tests, Ruff and isolated pip check pass; the job cap was verified
+with a real rejected allocation in a disposable child process. Stop at this
+checkpoint; TASK-015 is unapproved. Existing Tesseract partial results are intact.
 
 ## TASK-013 Tesseract verified; full evaluation incomplete
 

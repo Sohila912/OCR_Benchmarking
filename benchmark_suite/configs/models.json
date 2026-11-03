@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "Tesseract and Docling + Tesseract are registered; other model adapters remain pending. Approval, pinned environments/assets and live preflight are enforced independently.",
+  "note": "Tesseract, Docling + Tesseract and Granite Docling are registered. Granite uses the existing pinned lightweight coordinator and isolated D: CPU worker. Approval, assets and live preflight remain independent.",
   "models": {
     "surya": {
       "name": "Surya OCR",
@@ -68,11 +68,11 @@
     "granite_docling": {
       "name": "Granite Docling",
       "task": "TASK-016",
-      "spec": null,
-      "config": null,
-      "factory": null,
-      "python": null,
-      "requirements": null
+      "spec": "configs/granite_docling-spec.json",
+      "config": "configs/granite_docling.json",
+      "factory": "benchmark_suite.adapters.granite_docling:create_adapter",
+      "python": "environments/granite_docling/Scripts/python.exe",
+      "requirements": "configs/docling-tesseract-requirements.txt"
     },
     "baidu": {
       "name": "Baidu OCR",

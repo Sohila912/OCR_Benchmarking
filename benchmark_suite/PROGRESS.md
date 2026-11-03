@@ -2,6 +2,25 @@
 
 Updated: 2026-11-03 (Africa/Cairo).
 
+## TASK-016 Granite Docling bounded checkpoint - 2026-11-03
+
+Pinned Granite Docling 258M files and CPU float32/SDPA processing are on D:.
+The corrected two-page feasibility trial completed English and Arabic conversions
+(peak sampled RSS 2.10 GiB), but the Arabic prediction recognized no text.
+The attempted development runs encountered an import timeout, a transient Windows
+bundle-publication error and a native Python access violation. The affected page
+retried without periodic stack dumps did not crash, but repeated Arabic tatweel
+and reached the soft generation bound: 5,121 tokens, 620.87 seconds, no closing
+DocTags, zero completed documents in that retry.
+
+TASK-016 is BLOCKED: ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY, not a proven
+whole-machine RAM failure. No completed 20-page/full evaluation, accuracy scores,
+rankings or selected run. See reports/GRANITE_DOCLING.md, GRANITE_DOCLING_RESULTS.json
+and GRANITE_DOCLING_ASSETS.json. The bounded CPU adapter is registered; 210 suite
+tests and Ruff pass. TASK-015 was pushed and remotely verified at 6b92577; its
+full evaluation remains user-deferred. TASK-017 is unapproved. Earlier next-task
+and resume statements below are historical.
+
 ## TASK-015 development checkpoint; full evaluation deferred by user
 
 Docling 2.143.1 + Tesseract CLI 5.4.0 with verified eng/ara/OSD assets on D:

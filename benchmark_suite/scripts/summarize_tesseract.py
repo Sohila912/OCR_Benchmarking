@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--evaluation-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True, help="New directory; never overwritten")
     parser.add_argument("--plot-libs", type=Path, help="Optional isolated matplotlib package directory")
-    parser.add_argument("--model", choices=("tesseract", "docling_tesseract"), default="tesseract")
+    parser.add_argument("--model", choices=("tesseract", "docling_tesseract", "granite_docling"), default="tesseract")
     args = parser.parse_args()
     run, evaluation = args.run_dir.resolve(), args.evaluation_dir.resolve()
     descriptor = json.loads((run / "run_manifest.json").read_bytes())
@@ -25,7 +25,8 @@ def main():
     metrics = json.loads((evaluation / "metrics.json").read_bytes())
     if descriptor["identity"]["spec"]["model_id"] != args.model:
         parser.error("Selected model and saved run differ")
-    title = "Tesseract tessdata_fast" if args.model == "tesseract" else "Docling + Tesseract"
+    title = {"tesseract": "Tesseract tessdata_fast", "docling_tesseract": "Docling + Tesseract",
+             "granite_docling": "Granite Docling 258M"}[args.model]
     if metrics["run_completion_sha256"] != hashlib.sha256(completion_path.read_bytes()).hexdigest():
         parser.error("Evaluation does not match the completed run")
     evaluation_manifest = json.loads((evaluation / "evaluation_manifest.json").read_bytes())
@@ -86,7 +87,10 @@ def main():
     if not latency:
         axes[2].text(.5, .5, "No fresh OCR timing measurements", ha="center", transform=axes[2].transAxes)
     figure.suptitle(f"{title} — {','.join(summary['splits'])} split", fontsize=14)
-    figure.supxlabel("Reference scopes differ. Page independence is unverified. Inference excludes initialization, external preprocessing and evaluation.", fontsize=9)
+    phase_note = ("Fresh inference includes per-page model startup, preprocessing, generation and export."
+                  if args.model == "granite_docling" else
+                  "Inference excludes initialization, external preprocessing and evaluation.")
+    figure.supxlabel("Reference scopes differ. Page independence is unverified. " + phase_note, fontsize=9)
     figure.savefig(args.output / "text_errors_and_latency.png", dpi=180)
     figure.savefig(args.output / "text_errors_and_latency.svg")
     plt.close(figure)
@@ -109,6 +113,7 @@ def main():
     lines.extend(["", "English uses reference-region text; Arabic uses page content. "
                   "These scores do not share a common reference scope. "
                   "CER/WER are error rates, not document success or generic accuracy.", "",
+                  phase_note, "",
                   f"Fresh measured inference time: {summary['fresh_ocr_seconds']:.2f} seconds; "
                   f"mean {mean_seconds} seconds/page. "
                   f"Recorded session wall time: {summary['recorded_session_wall_seconds']:.2f} seconds.",

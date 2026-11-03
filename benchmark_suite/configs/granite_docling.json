@@ -1,0 +1,34 @@
+{
+  "purpose": "benchmark",
+  "device": "cpu",
+  "precision": "float32; CPU SDPA",
+  "batch_size": 1,
+  "dpi": null,
+  "preprocessing": {
+    "resize": "native processor defaults; original image pixels copied unchanged onto D:",
+    "threads": 2,
+    "prompt": "Convert this page to docling.",
+    "decoding": "greedy; one beam; KV cache enabled",
+    "max_new_tokens": 8192,
+    "max_generation_seconds": 600,
+    "stop_strings": [
+      "</doctag>",
+      "<|end_of_text|>"
+    ],
+    "phase_boundary": "Fresh worker per page: inference includes imports, checksum verification, initialization, image preprocessing, generation, DocTags conversion, normalization/export and IPC. Native generation/init timings retained separately."
+  },
+  "adapter_options": {
+    "worker_python": "D:/OCR_Benchmarking_Assets/docling_easyocr/venv/Scripts/python.exe",
+    "asset_root": "D:/OCR_Benchmarking_Assets/granite_docling",
+    "maximum_job_memory_bytes": 4294967296,
+    "worker_versions": {
+      "torch": "2.14.1",
+      "torchvision": "0.29.1",
+      "transformers": "5.22.1",
+      "docling-core": "2.105.0",
+      "docling": "2.143.1"
+    }
+  },
+  "location": "local",
+  "language": "both"
+}

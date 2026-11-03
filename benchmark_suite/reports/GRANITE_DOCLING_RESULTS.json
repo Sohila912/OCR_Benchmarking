@@ -1,0 +1,372 @@
+{
+  "task": "TASK-016",
+  "scope": "Bounded development feasibility only; no completed quantitative evaluation",
+  "model": "ibm-granite/granite-docling-258M",
+  "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+  "feasibility": {
+    "scope": "bounded feasibility trial, not benchmark evaluation",
+    "directory": "D:\\OCR_Benchmarking_Assets\\granite_docling\\trials\\20261103T103457Z-6e1e5c9a",
+    "asset_root": "D:\\OCR_Benchmarking_Assets\\granite_docling",
+    "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+    "attempts": [
+      {
+        "language": "en",
+        "exit_code": 0,
+        "memory_limit_bytes": 2728701952,
+        "sampled_peak_rss_bytes": 2256871424,
+        "sampled_peak_private_bytes": 2704494592,
+        "minimum_system_available_bytes": 1307820032,
+        "guard_abort": null,
+        "wall_seconds": 128.36563650000608,
+        "worker_result": {
+          "scope": "bounded development-page feasibility trial; not a full evaluation",
+          "model": "ibm-granite/granite-docling-258M",
+          "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+          "language": "en",
+          "status": "SUCCESS",
+          "documents_processed": 1,
+          "memory_limit_bytes": 2728701952,
+          "dtype": "float32",
+          "device": "cpu",
+          "attention": "sdpa",
+          "threads": 2,
+          "maximum_new_tokens": 8192,
+          "maximum_generation_seconds": 600,
+          "decoding": "greedy; one beam",
+          "accuracy_scores": null,
+          "versions": {
+            "torch": "2.14.1",
+            "torchvision": "0.29.1",
+            "transformers": "5.22.1",
+            "docling-core": "2.105.0",
+            "docling": "2.143.1"
+          },
+          "document_id": "omnidocbench:aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec:0b79b57cef82fe28d333cf52",
+          "source_sha256": "2fea47743eed2bae256a65649009d6d9e9412578c5b85857f5d266cd07de6c2f",
+          "processing_input_path": "D:\\OCR_Benchmarking_Assets\\granite_docling\\inputs\\2fea47743eed2bae256a65649009d6d9e9412578c5b85857f5d266cd07de6c2f.png",
+          "initialization_seconds": 3.918965599994408,
+          "input_tensor_shapes": {
+            "input_ids": [
+              1,
+              877
+            ],
+            "attention_mask": [
+              1,
+              877
+            ],
+            "pixel_values": [
+              1,
+              13,
+              3,
+              512,
+              512
+            ],
+            "pixel_attention_mask": [
+              1,
+              13,
+              512,
+              512
+            ]
+          },
+          "input_tokens": 877,
+          "generation_seconds": 93.1497195999982,
+          "generated_tokens": 484,
+          "natural_or_document_stop": true,
+          "markdown_characters": 910,
+          "output_pages": 1,
+          "output_tables": 0,
+          "wall_seconds": 126.50330389999726
+        }
+      },
+      {
+        "language": "ar",
+        "exit_code": 0,
+        "memory_limit_bytes": 2841841664,
+        "sampled_peak_rss_bytes": 2239102976,
+        "sampled_peak_private_bytes": 2654879744,
+        "minimum_system_available_bytes": 1425600512,
+        "guard_abort": null,
+        "wall_seconds": 44.88711310000508,
+        "worker_result": {
+          "scope": "bounded development-page feasibility trial; not a full evaluation",
+          "model": "ibm-granite/granite-docling-258M",
+          "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+          "language": "ar",
+          "status": "SUCCESS",
+          "documents_processed": 1,
+          "memory_limit_bytes": 2841841664,
+          "dtype": "float32",
+          "device": "cpu",
+          "attention": "sdpa",
+          "threads": 2,
+          "maximum_new_tokens": 8192,
+          "maximum_generation_seconds": 600,
+          "decoding": "greedy; one beam",
+          "accuracy_scores": null,
+          "versions": {
+            "torch": "2.14.1",
+            "torchvision": "0.29.1",
+            "transformers": "5.22.1",
+            "docling-core": "2.105.0",
+            "docling": "2.143.1"
+          },
+          "document_id": "misraj:7177bf70f77ce259890d6af0bef53f18faf26ec9:168c8ccb-6acb-4d91-8ece-3d6cd2bca72b",
+          "source_sha256": "4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd",
+          "processing_input_path": "D:\\OCR_Benchmarking_Assets\\granite_docling\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png",
+          "initialization_seconds": 1.2563935999933165,
+          "input_tensor_shapes": {
+            "input_ids": [
+              1,
+              878
+            ],
+            "attention_mask": [
+              1,
+              878
+            ],
+            "pixel_values": [
+              1,
+              13,
+              3,
+              512,
+              512
+            ],
+            "pixel_attention_mask": [
+              1,
+              13,
+              512,
+              512
+            ]
+          },
+          "input_tokens": 878,
+          "generation_seconds": 32.775732099995366,
+          "generated_tokens": 102,
+          "natural_or_document_stop": true,
+          "markdown_characters": 78,
+          "output_pages": 1,
+          "output_tables": 0,
+          "wall_seconds": 43.58960949999164
+        }
+      }
+    ],
+    "maximum_memory_limit_gib": 4.0,
+    "model": "granite_docling",
+    "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+    "accuracy_scores": null,
+    "status": "SUCCESS"
+  },
+  "initial_setup_failure": {
+    "scope": "bounded feasibility trial, not benchmark evaluation",
+    "directory": "D:\\OCR_Benchmarking_Assets\\granite_docling\\trials\\20261103T103226Z-8b95b604",
+    "asset_root": "D:\\OCR_Benchmarking_Assets\\granite_docling",
+    "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+    "attempts": [
+      {
+        "language": "en",
+        "exit_code": 1,
+        "memory_limit_bytes": 3207065600,
+        "sampled_peak_rss_bytes": 1498877952,
+        "sampled_peak_private_bytes": 1713156096,
+        "minimum_system_available_bytes": 2584092672,
+        "guard_abort": null,
+        "wall_seconds": 36.292728800006444,
+        "worker_result": {
+          "scope": "bounded development-page feasibility trial; not a full evaluation",
+          "model": "ibm-granite/granite-docling-258M",
+          "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+          "language": "en",
+          "status": "FAILED",
+          "documents_processed": 0,
+          "memory_limit_bytes": 3207065600,
+          "dtype": "float32",
+          "device": "cpu",
+          "attention": "sdpa",
+          "threads": 2,
+          "maximum_new_tokens": 8192,
+          "maximum_generation_seconds": 600,
+          "decoding": "greedy; one beam",
+          "accuracy_scores": null,
+          "versions": {
+            "torch": "2.14.1",
+            "torchvision": "0.29.1",
+            "transformers": "5.22.1",
+            "docling-core": "2.105.0",
+            "docling": "2.143.1"
+          },
+          "document_id": "omnidocbench:aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec:0b79b57cef82fe28d333cf52",
+          "source_sha256": "2fea47743eed2bae256a65649009d6d9e9412578c5b85857f5d266cd07de6c2f",
+          "processing_input_path": "D:\\OCR_Benchmarking_Assets\\granite_docling\\inputs\\2fea47743eed2bae256a65649009d6d9e9412578c5b85857f5d266cd07de6c2f.png",
+          "initialization_seconds": 4.683634000000893,
+          "phase": "image_preprocessing",
+          "error_type": "ValueError",
+          "error": "Cannot use apply_chat_template because this processor does not have a chat template.",
+          "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Shrouk\\Desktop\\OCR_Benchmarking\\benchmark_suite\\scripts\\granite_trial.py\", line 81, in worker\n    prompt = processor.apply_chat_template(messages, add_generation_prompt=True)\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\transformers\\processing_utils.py\", line 2049, in apply_chat_template\n    raise ValueError(\n        \"Cannot use apply_chat_template because this processor does not have a chat template.\"\n    )\nValueError: Cannot use apply_chat_template because this processor does not have a chat template.\n",
+          "wall_seconds": 32.96422349999193
+        }
+      }
+    ],
+    "maximum_memory_limit_gib": 4.0,
+    "model": "granite_docling",
+    "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+    "accuracy_scores": null,
+    "status": "NOT_COMPLETED"
+  },
+  "successful_diagnostic_without_periodic_stacks": {
+    "scope": "bounded development-page feasibility trial; not a full evaluation",
+    "model": "ibm-granite/granite-docling-258M",
+    "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+    "language": "ar",
+    "status": "SUCCESS",
+    "documents_processed": 1,
+    "memory_limit_bytes": 4294967296,
+    "dtype": "float32",
+    "device": "cpu",
+    "attention": "sdpa",
+    "threads": 2,
+    "maximum_new_tokens": 8192,
+    "maximum_generation_seconds": 600,
+    "decoding": "greedy; one beam",
+    "accuracy_scores": null,
+    "versions": {
+      "torch": "2.14.1",
+      "torchvision": "0.29.1",
+      "transformers": "5.22.1",
+      "docling-core": "2.105.0",
+      "docling": "2.143.1"
+    },
+    "document_id": "misraj:7177bf70f77ce259890d6af0bef53f18faf26ec9:168c8ccb-6acb-4d91-8ece-3d6cd2bca72b",
+    "source_sha256": "4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd",
+    "processing_input_path": "D:\\OCR_Benchmarking_Assets\\granite_docling\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png",
+    "initialization_seconds": 1.8297547999973176,
+    "input_tensor_shapes": {
+      "input_ids": [
+        1,
+        878
+      ],
+      "attention_mask": [
+        1,
+        878
+      ],
+      "pixel_values": [
+        1,
+        13,
+        3,
+        512,
+        512
+      ],
+      "pixel_attention_mask": [
+        1,
+        13,
+        512,
+        512
+      ]
+    },
+    "input_tokens": 878,
+    "generation_seconds": 27.89360920000763,
+    "generated_tokens": 102,
+    "natural_or_document_stop": true,
+    "markdown_characters": 78,
+    "output_pages": 1,
+    "output_tables": 0,
+    "wall_seconds": 48.795719799993094
+  },
+  "interrupted_runs": [
+    "results/granite_docling/20261103T104517Z-8e470899",
+    "results/granite_docling/20261103T110250Z-f24d0a5f"
+  ],
+  "native_crash": {
+    "TimeCreated": "2026-11-03T13:07:56.4048154+02:00",
+    "Message": "Faulting application name: python.exe, version: 3.13.7150.1013, time stamp: 0x689df05c\r\nFaulting module name: python313.dll, version: 3.13.7150.1013, time stamp: 0x689df006\r\nException code: 0xc0000005\r\nFault offset: 0x00000000002b62dc\r\nFaulting process id: 0x16C8\r\nFaulting application start time: 0x1DD6B82F61B3087\r\nFaulting application path: C:\\Users\\Shrouk\\Desktop\\pythonInstalll\\python.exe\r\nFaulting module path: C:\\Users\\Shrouk\\Desktop\\pythonInstalll\\python313.dll\r\nReport Id: f2100ac4-c0cd-4fc7-a6ad-b9a95609bb96\r\nFaulting package full name: \r\nFaulting package-relative application ID: "
+  },
+  "interrupted_second_run": {
+    "completed_bundles": 2,
+    "successful_bundles": 1,
+    "failed_bundles": 1,
+    "next_worker_stopped_by_coordinator": true,
+    "periodic_stack_dumps_enabled": true
+  },
+  "accuracy_scores": null,
+  "full_evaluation_executed": false,
+  "development_evaluation_completed": false,
+  "selected_run_created": false,
+  "preceding_checkpoint_push_verified": "6b92577626686fb83ffe93ec17841474d122fdee",
+  "verification": {
+    "suite_tests_passed": 210,
+    "ruff": "PASSED"
+  },
+  "evidence_sha256": {
+    "reports\\hardware_observations\\granite-docling-task016-20261103\\HARDWARE_PROFILE.json": "53a9fe4dc264c33e375711d4cefc9d74d47db4f1a0a82c981164e64910417653",
+    "reports\\hardware_observations\\granite-docling-task016-20261103\\OFFICIAL_METADATA.json": "e3629c9a42c2b6f5277042404e76f3564e575e0836887fd6b45aa2b15da43c6f",
+    "reports\\hardware_observations\\granite-docling-task016-20261103\\DOWNLOAD.json": "dfda628cd2fab9144f9d6e61f176e66b862621bfc660a94bec1475ea2656c752",
+    "reports\\hardware_observations\\granite-docling-task016-20261103\\CHAT_TEMPLATE.json": "79810ac59d18508c3d25b97f4a12b36dcdc3e4b5b746fb4908250962389d2e02",
+    "reports\\hardware_observations\\granite-docling-task016-20261103\\WINDOWS_CRASH.json": "8128672eba6814b342eecaaed6a4bfb06197a8199b482f75852d6675ffa388fb"
+  },
+  "status": "BLOCKED",
+  "reason": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY",
+  "final_retry_without_periodic_stacks": {
+    "scope": "bounded development-page feasibility trial; not a full evaluation",
+    "model": "ibm-granite/granite-docling-258M",
+    "revision": "982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+    "language": "ar",
+    "status": "INCOMPLETE",
+    "documents_processed": 0,
+    "memory_limit_bytes": 4294967296,
+    "dtype": "float32",
+    "device": "cpu",
+    "attention": "sdpa",
+    "threads": 2,
+    "maximum_new_tokens": 8192,
+    "maximum_generation_seconds": 600,
+    "decoding": "greedy; one beam",
+    "accuracy_scores": null,
+    "versions": {
+      "torch": "2.14.1",
+      "torchvision": "0.29.1",
+      "transformers": "5.22.1",
+      "docling-core": "2.105.0",
+      "docling": "2.143.1"
+    },
+    "document_id": "misraj:7177bf70f77ce259890d6af0bef53f18faf26ec9:1788cdde-c12e-499e-93b7-be2fe1b2cda5",
+    "source_sha256": "3d07905be0bdeba005db4381e75a4538bc1fb620260bd835fe51152a5bdc8b75",
+    "processing_input_path": "D:\\OCR_Benchmarking_Assets\\granite_docling\\inputs\\3d07905be0bdeba005db4381e75a4538bc1fb620260bd835fe51152a5bdc8b75.png",
+    "initialization_seconds": 1.0261753000086173,
+    "input_tensor_shapes": {
+      "input_ids": [
+        1,
+        878
+      ],
+      "attention_mask": [
+        1,
+        878
+      ],
+      "pixel_values": [
+        1,
+        13,
+        3,
+        512,
+        512
+      ],
+      "pixel_attention_mask": [
+        1,
+        13,
+        512,
+        512
+      ]
+    },
+    "input_tokens": 878,
+    "generation_seconds": 620.8736554000061,
+    "generated_tokens": 5121,
+    "natural_or_document_stop": false,
+    "phase": "generation",
+    "error_type": "GenerationLimitReached",
+    "error": "Output reached the token/time bound without a natural or closing-document stop",
+    "wall_seconds": 629.0621835000056
+  },
+  "final_retry_output": {
+    "characters": 2725,
+    "tatweel_u0640_count": 2515,
+    "closing_doctag_present": false,
+    "doctags_sha256": "4b99f1f96048e9cb4182213c32d32cb260d38ba8935cea48c76fa787cc1b0588",
+    "directory": "D:\\OCR_Benchmarking_Assets\\granite_docling\\diagnostics\\page-two-no-stack-dump",
+    "generation_time_bound_is_soft": true
+  }
+}

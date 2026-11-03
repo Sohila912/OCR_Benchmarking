@@ -1,0 +1,83 @@
+{
+  "model_id": "granite_docling",
+  "model_revision": "ibm-granite/granite-docling-258M@982fe3b40f2fa73c365bdb1bcacf6c81b7184bfe",
+  "adapter_revision": "1",
+  "assets": {
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\added_tokens.json": "882e49757a3bea90e00df1d2dc8c18b2b526ff77380db20439feeb1f053a63cd",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\chat_template.jinja": "a4b0bf4348b014acca131da664d05b61e39d5dc8af980f1913846a57ccc6d289",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\config.json": "4fbb5d2ad9549663e5740b36a5f45cb3d861d20d2e1c158af8569765f9864f30",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\generation_config.json": "369256b622c73d709b248da31ba4332ef19c01dec6e311d8e4b671bc1321bc06",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\merges.txt": "b6fe424e334903f7fb84d3a106d9730455f4744b9fe3c21ee136d97a00e72502",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\model.safetensors": "1cdad234deb1cde18ee6a586f849057f19851daf1fedce2e40aff791dbe46f61",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\preprocessor_config.json": "6cb6e36d6fcb88ca1502c4a26750715dc3e7dedddc9a8f17b27d8d167d1457e7",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\processor_config.json": "e7bff42da73ae9eec9042ef20e066e11f1ee20f025358ff79131e3c0fb549b46",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\README.md": "b43727febeba2c6ce20b8746322e7687ca667d81a12d0364f346148f30622d84",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\special_tokens_map.json": "45c073d82ba37a1fc69c8d6a772d17a8e4f78b64b63c0fce2c77d18a3259d18e",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\tokenizer.json": "673ef3c60759806916ebf37c5d9b79f7ffd53a1419f1ebd75bfec8f177c2b1b3",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\tokenizer_config.json": "261f9491897226589c131a4ac5993c495eec2104dace144f69c397682865a3a0",
+    "D:\\OCR_Benchmarking_Assets\\granite_docling\\model\\vocab.json": "e2bad0ce74e6ddfece426ef99e18067f4a6c3d4e65bb6dd9cfd638450cca0142"
+  },
+  "source_files": {
+    "benchmark_suite/adapters/granite_docling.py": "d6076078db3020821d3353bc71872bd18ee643487701e089913e7e32c9ee4209",
+    "benchmark_suite/scripts/granite_trial.py": "01e81ac178007633f69bdd2a4e1e9be0747b3e19b17ce4bff1ad8b068aacb8ce",
+    "benchmark_suite/scripts/docling_trial.py": "a1b4dd00bc0ed2e7a70a994c7a8a81c9de09239b0c67d1c139b1a9f038a00bae",
+    "benchmark_suite/scripts/windows_job.py": "9b7278130ba4d41b47407b8f147f3bd6a008ea14662faf2f86315af0a0e87b02",
+    "OCR/providers/docling.py": "c0c22f81e4e12fba53a3ada0b2f73960fe5694a4cfadbaadb1dc3bbdacf1aad7",
+    "OCR/providers/common.py": "99c8e889ad13e1e64708db313f3dddeb3f6203e38f258950acc30dc32215c4d9",
+    "OCR/config.py": "949ec0f7f259f2a8e8690a4181acf2d062e23b212a7d0c2e0ee9202e85259c9f",
+    "OCR/pdf.py": "d77dadbbf493ab75ba4e5cafddc660a14b20f200c8fea812345127d7648e0297",
+    "OCR/logging_utils.py": "1f3bd269db3846dd656963c26742f651446b197ce569d879eb149e23aeb254be",
+    "OCR/errors.py": "cf2b070e7fdd5b40afaa1f012b88c673cec33dc0b24f4ae9708b2f5b81d624e1",
+    "OCR/providers/tesseract.py": "73f2a288a0c2dac5c1af156e08698aa338e3559638ba097db3bdcf6a83c8d8d4"
+  },
+  "packages": {
+    "ocr-benchmarking": "2.0.0",
+    "annotated-types": "0.8.0",
+    "markdown-it-py": "4.2.0",
+    "mdurl": "0.1.2",
+    "psutil": "7.2.2",
+    "pydantic": "2.13.5",
+    "pydantic-core": "2.46.5",
+    "rapidfuzz": "3.14.6",
+    "typing-extensions": "4.16.0",
+    "typing-inspection": "0.4.4",
+    "tzdata": "2025.2"
+  },
+  "native_versions": {},
+  "gpu_backend": "none",
+  "capabilities": {
+    "text": true,
+    "layout": true,
+    "reading_order": true,
+    "tables": true,
+    "chart_detection": false,
+    "chart_type": false,
+    "chart_text": false,
+    "chart_numeric": false
+  },
+  "label_map": {
+    "text": "paragraph",
+    "paragraph": "paragraph",
+    "title": "heading",
+    "section_header": "heading",
+    "caption": "caption",
+    "footnote": "footnote",
+    "page_header": "header",
+    "page_footer": "footer",
+    "table": "table",
+    "picture": "figure",
+    "formula": "equation",
+    "list_item": "list",
+    "code": "code",
+    "reference": "reference"
+  },
+  "requirements": {
+    "compatibility": "LIMITED",
+    "evidence": "Two bounded CPU float32/SDPA pages completed with sampled peak RSS 2.10 GiB. Conservative available RAM floor 3 GiB; worker commit cap <=4 GiB with 768 MiB reserve. Arabic publisher support experimental; first Arabic trial contained only picture regions.",
+    "ram_bytes": 3221225472,
+    "disk_bytes": 629145600,
+    "vram_bytes": 0,
+    "min_compute_capability": 0.0
+  },
+  "raw_level": "Native DocTags, parsed DoclingDocument and Markdown retained on D:; normalized prediction plus worker timing in runner raw envelope"
+}

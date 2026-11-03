@@ -11,6 +11,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import time
 from uuid import uuid4
 
 from benchmark_suite.dataset_io import atomic_json, digest, safe_path
@@ -84,7 +85,18 @@ def publish_bundle(destination, files, metadata):
         checksums[name] = hashlib.sha256(payload).hexdigest()
     write_new(temporary / "bundle.json", json_bytes({"files": checksums, "metadata": metadata}))
     # Caller holds the suite lock. Orphan temporary directories are preserved.
-    os.rename(temporary, destination)
+    # Windows scanners can briefly hold a just-written directory open. Retry
+    # only this specific sharing/access error; never replace an existing bundle.
+    for attempt in range(10):
+        try:
+            if destination.exists():
+                raise FileExistsError(destination)
+            os.rename(temporary, destination)
+            break
+        except PermissionError as exc:
+            if getattr(exc, "winerror", None) != 5 or attempt == 9:
+                raise
+            time.sleep(.1)
 
 
 def read_bundle(path):

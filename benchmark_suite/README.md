@@ -1,5 +1,12 @@
 # OCR benchmarking suite
 
+Latest checkpoint: Granite Docling loaded on CPU using D: assets, but its Arabic
+development attempt had a native runtime crash and a retry reached the generation
+limit with repeated tatweel characters. No completed development/full evaluation
+or accuracy scores. See [Granite evidence and limitations](reports/GRANITE_DOCLING.md).
+Docling + Tesseract checkpoint 6b92577 was pushed; its full run remains deferred.
+Earlier checkpoint notes below are history.
+
 Latest checkpoint: Docling + Tesseract completed the 20-page development run
 (19 successes, one timeout). The user deferred full evaluation and approved
 Granite Docling next. See [saved results and scope](reports/DOCLING_TESSERACT.md).

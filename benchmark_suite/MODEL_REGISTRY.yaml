@@ -2,7 +2,7 @@
   "schema_version": 1,
   "research_date": "2026-10-28",
   "timezone": "Africa/Cairo",
-  "note": "JSON syntax is valid YAML 1.2. Research candidates do not alter installed versions or authorize execution. Memory/storage planning budgets are estimates, not vendor guarantees; GPU budgets apply only to compatible GPU paths. No CPU/GPU trial was run. See reports for sources, confidence and remedies.",
+  "note": "JSON syntax is valid YAML 1.2. Planning memory/storage budgets remain estimates, not vendor guarantees; dated measured trials are recorded separately per model. Research metadata does not grant execution approval; the validated task tracker gates execution.",
   "hardware_profile": "reports/HARDWARE_PROFILE.json",
   "model_order": [
     "surya",
@@ -329,7 +329,7 @@
       "name": "ibm-granite/granite-docling-258M via Docling VLM / Transformers",
       "package": "docling",
       "latest_package_version_observed": "2.143.1",
-      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "candidate_pin_status": "PINNED_FILES_VERIFIED_AND_CPU_TRIALED",
       "execution_authorized": false,
       "license_summary": "MIT Docling code; Apache-2.0 Granite weights",
       "hardware_compatibility": "LIMITED",
@@ -340,7 +340,7 @@
       "recommended_host_ram_gib": 12,
       "estimated_gpu_vram_gib_from": 2,
       "estimated_additional_storage_gib": 4,
-      "recommended_action": "CPU example documented; ~0.48 GiB weights do not imply total memory fit. Arabic is experimental; current RAM blocks loading.",
+      "recommended_action": "Review the saved bounded CPU checkpoint: corrected feasibility trial converted two pages, first Arabic output recognized no text, development hit a native runtime crash, and no-stack-dump retry reached its generation bound with repeated tatweel. Full development/evaluation remains incomplete.",
       "capabilities": {
         "english": "SUPPORTED",
         "arabic": "EXPERIMENTAL",
@@ -363,7 +363,22 @@
           "sha256": "1cdad234deb1cde18ee6a586f849057f19851daf1fedce2e40aff791dbe46f61"
         }
       ],
-      "current_snapshot_loading": "BLOCKED_BY_HARDWARE"
+      "current_snapshot_loading": "BOUNDED_CPU_LOADING_AND_TWO_PAGE_TRIAL_SUCCEEDED",
+      "measured_trial": {
+        "date": "2026-11-03",
+        "report": "reports/GRANITE_DOCLING.md",
+        "results": "reports/GRANITE_DOCLING_RESULTS.json",
+        "assets": "reports/GRANITE_DOCLING_ASSETS.json",
+        "trial_pages": 2,
+        "conversions_succeeded": 2,
+        "sampled_peak_rss_bytes": 2256871424,
+        "full_evaluation_executed": false,
+        "accuracy_scores": null,
+        "planning_memory_estimate_unchanged": true,
+        "status": "BLOCKED",
+        "reason": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY",
+        "development_evaluation_completed": false
+      }
     },
     "baidu": {
       "name": "UNRESOLVED: propose Baidu Cloud high-accuracy OCR API; not local PaddleOCR",

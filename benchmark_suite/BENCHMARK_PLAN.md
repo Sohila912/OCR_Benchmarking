@@ -4,6 +4,17 @@ Source of requirements: repository-root `Task_codex.txt`. Created 2026-10-28 (Af
 
 ## Execution and resume contract
 
+Latest checkpoint (2026-11-03): the user clarified Baidu means the free
+open-source Unlimited-OCR repository. TASK-017 is approved. Its linked official
+Hugging Face demo completed one frozen English and one Arabic image, with server
+elapsed times 25.9/53.7 seconds and neither response truncated. Inputs, native
+outputs and readable copies are on D:. See reports/BAIDU_UNLIMITED_OCR.md and
+BAIDU_UNLIMITED_OCR_RESULTS.json. These are hosted feasibility results, not local
+inference, accuracy scores or a completed 20-page/full evaluation. Local CUDA/VRAM
+and formal hosted reproducibility remain blockers; TASK-017 is BLOCKED with
+successful feasibility preserved. No paid Cloud API or credentials were used.
+TASK-018 is not started. Earlier next-task/approval statements below are history.
+
 ## TASK-016 Granite Docling bounded checkpoint - 2026-11-03
 
 Pinned Granite Docling 258M files and CPU float32/SDPA processing are on D:.

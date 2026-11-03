@@ -4,7 +4,7 @@
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-016",
+  "current_task": "TASK-017",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
@@ -22,7 +22,7 @@
     "TASK-014": "BLOCKED",
     "TASK-015": "BLOCKED",
     "TASK-016": "BLOCKED",
-    "TASK-017": "PENDING",
+    "TASK-017": "BLOCKED",
     "TASK-018": "PENDING",
     "TASK-019": "PENDING",
     "TASK-020": "PENDING",
@@ -44,15 +44,15 @@
     "paddle_vl": "BLOCKED_BY_HARDWARE",
     "marker": "BLOCKED_BY_HARDWARE",
     "paddle": "BLOCKED_BY_HARDWARE",
-    "baidu": "UNRESOLVED_IMPLEMENTATION_AND_API_APPROVAL",
     "tesseract": "BLOCKED_BY_HARDWARE",
     "docling_easyocr": "BLOCKED_BY_HARDWARE",
     "docling_tesseract": "FULL_EVALUATION_DEFERRED_BY_USER",
-    "granite_docling": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY"
+    "granite_docling": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY",
+    "baidu": "LOCAL_CUDA_VRAM_AND_HOSTED_REPRODUCIBILITY_LIMITATIONS"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "feat(benchmark): record bounded Granite CPU trials",
-  "approval_required_before": "TASK-017",
+  "checkpoint_git_commit_subject": "feat(benchmark): verify Baidu Unlimited OCR hosted feasibility",
+  "approval_required_before": "TASK-018",
   "approved_tasks": [
     "TASK-001",
     "TASK-002",
@@ -68,9 +68,10 @@
     "TASK-013",
     "TASK-014",
     "TASK-015",
-    "TASK-016"
+    "TASK-016",
+    "TASK-017"
   ],
-  "next_action": "Review saved Granite runtime/generation failures before further TASK-016 work. No completed development/full evaluation. TASK-017 Baidu is unapproved and requires implementation/API/credential/cost clarification before calls.",
+  "next_action": "Baidu Unlimited-OCR-2 hosted feasibility succeeded for English and Arabic. Review saved D: outputs; formal 20-page/full evaluation needs a supported reproducible GPU route. TASK-018 remains unapproved; preserve all earlier partial runs.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -315,6 +316,34 @@
       "final_retry_generated_tokens": 5121,
       "final_retry_generation_seconds": 620.8736554000061,
       "suite_tests_passed": 210,
+      "ruff": "PASSED"
+    },
+    "baidu_task017": {
+      "status": "BLOCKED",
+      "user_selected_repository": "https://github.com/baidu/Unlimited-OCR",
+      "github_commit": "ea42e6d15ff93fdd0e8041fc0ac70880513453d3",
+      "model": "baidu/Unlimited-OCR-2",
+      "model_revision_inspected": "0480966938291445591f69f08a13b041c073a96a",
+      "asset_root": "D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr",
+      "preceding_push_verified": "512fd4aaed7b3325348c255dc4afaa21b0a663d3",
+      "paid_cloud_calls_authorized": false,
+      "full_evaluation_executed": false,
+      "reason": "LOCAL_CUDA_VRAM_AND_HOSTED_REPRODUCIBILITY_LIMITATIONS",
+      "report": "reports/BAIDU_UNLIMITED_OCR.md",
+      "summary": "reports/BAIDU_UNLIMITED_OCR_RESULTS.json",
+      "hosted_feasibility_status": "SUCCESS",
+      "hosted_documents_processed": 2,
+      "hosted_languages": [
+        "en",
+        "ar"
+      ],
+      "hosted_truncated": false,
+      "local_model_inference_executed": false,
+      "model_weights_downloaded": false,
+      "development_evaluation_completed": false,
+      "accuracy_scores": null,
+      "remote_model_weight_revision": "UNVERIFIED",
+      "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261103T112846Z-0540b88f",
       "ruff": "PASSED"
     }
   }

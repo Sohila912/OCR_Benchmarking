@@ -381,36 +381,48 @@
       }
     },
     "baidu": {
-      "name": "UNRESOLVED: propose Baidu Cloud high-accuracy OCR API; not local PaddleOCR",
-      "package": "external_api",
+      "name": "Baidu Unlimited-OCR-2 (open-source; hosted feasibility tested)",
+      "package": "custom Transformers model; hosted demo used",
       "latest_package_version_observed": null,
-      "candidate_pin_status": "RESEARCH_ONLY_NOT_INSTALLED",
+      "candidate_pin_status": "SOURCE_CONFIG_METADATA_PINNED; HOSTED_TWO_PAGE_FEASIBILITY_SUCCEEDED",
       "execution_authorized": false,
-      "license_summary": "Proprietary hosted service terms; not local open-source weights",
-      "hardware_compatibility": "UNKNOWN",
+      "license_summary": "MIT source and model card; hosted demo subject to its platform terms",
+      "hardware_compatibility": "LIMITED",
       "gpu_required": false,
-      "cpu_support": "API_CLIENT_ONLY_IF_CONFIRMED",
+      "cpu_support": "Hosted HTTP client works; pinned native multimodal route contains CUDA calls",
       "memory_basis": "ESTIMATE_NOT_MEASURED",
       "estimated_process_ram_gib_from": 0.5,
       "recommended_host_ram_gib": 4,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 0,
-      "recommended_action": "Confirm product/endpoint and budget; credentials/quotas/service terms unverified. No API requests authorized.",
+      "recommended_action": "Retain two successful hosted examples. Formal benchmark pending: local VRAM insufficient and hosted weight revision unverified. No Baidu Cloud API account required for this selected route.",
       "capabilities": {
-        "english": "ENDPOINT_DEPENDENT",
-        "arabic": "ENDPOINT_DEPENDENT",
-        "layout": "ENDPOINT_DEPENDENT",
-        "reading_order": "UNKNOWN",
-        "tables": "ENDPOINT_DEPENDENT",
-        "chart_data": "ENDPOINT_DEPENDENT",
+        "english": "ONE_PAGE_HOSTED_FEASIBILITY_SUCCESS",
+        "arabic": "ONE_PAGE_HOSTED_FEASIBILITY_SUCCESS",
+        "layout": "Grounding markers returned; not quantitatively validated",
+        "reading_order": "NOT_EVALUATED",
+        "tables": "NOT_EVALUATED",
+        "chart_data": "UNKNOWN",
         "structured_output": "SUPPORTED"
       },
       "sources": [
-        "https://cloud.baidu.com/product/ocr/general",
-        "https://cloud.baidu.com/doc/OCR/s/1k3h7y3db",
-        "https://cloud.baidu.com/doc/OCR/s/9k3h7xuv6"
+        "https://github.com/baidu/Unlimited-OCR",
+        "https://huggingface.co/baidu/Unlimited-OCR-2",
+        "https://huggingface.co/spaces/baidu/Unlimited-OCR-2"
       ],
-      "current_snapshot_loading": "BLOCKED_PENDING_IMPLEMENTATION_AND_API_APPROVAL"
+      "current_snapshot_loading": "LOCAL_CUDA_VRAM_BLOCKED; HOSTED_FEASIBILITY_SUCCEEDED",
+      "weight_repository": "baidu/Unlimited-OCR-2",
+      "weight_revision": "0480966938291445591f69f08a13b041c073a96a",
+      "planning_budget_scope": "Existing 0.5 GiB/4 GiB host/zero VRAM estimates apply only to the HTTP client, not local model loading",
+      "selected_implementation_clarified_by_user": true,
+      "measured_trial": {
+        "report": "reports/BAIDU_UNLIMITED_OCR.md",
+        "results": "reports/BAIDU_UNLIMITED_OCR_RESULTS.json",
+        "execution_location": "remote public demo",
+        "successes": 2,
+        "full_evaluation_executed": false,
+        "remote_weight_revision": "UNVERIFIED"
+      }
     }
   }
 }

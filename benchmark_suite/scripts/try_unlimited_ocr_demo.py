@@ -1,5 +1,6 @@
-"""Two public frozen pages through Baidu's linked free demo; not a local benchmark."""
+"""Frozen development pages through Baidu's linked free demo; not a local benchmark."""
 
+import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
@@ -20,7 +21,46 @@ def save(path, value):
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
+def reusable_results(directory, records, seen=None):
+    """Reuse only complete, identical-input results with the same request settings."""
+    if directory is None:
+        return {}
+    directory = directory.resolve()
+    seen = set() if seen is None else seen
+    if directory in seen or len(seen) >= 20:
+        raise ValueError("Cyclic or excessively deep reuse chain")
+    seen.add(directory)
+    if not directory.is_relative_to((ROOT / "demo_trials").resolve()):
+        raise ValueError("Reuse requires an explicit trial under the D: demo root")
+    prior = json.loads((directory / "trial.json").read_text(encoding="utf-8"))
+    if prior["host"] != HOST or prior["model"] != "baidu/Unlimited-OCR-2" or prior["parameters"] != {
+        "instruction": "", "mode": "auto", "max_page_tokens": 20000}:
+        raise ValueError("Prior trial model, host or parameters differ")
+    wanted = {r["document_id"]: r for r in records}
+    results = reusable_results(Path(prior["reuse_source"]), records, seen) if prior.get("reuse_source") else {}
+    for path in directory.glob("*/result.json"):
+        state = json.loads(path.read_text(encoding="utf-8"))
+        record = wanted.get(state["document_id"])
+        if state["status"] != "SUCCESS" or record is None:
+            continue
+        saved = json.loads((path.parent / "input.json").read_text(encoding="utf-8"))
+        response = json.loads((path.parent / "response.json").read_text(encoding="utf-8"))
+        image = path.parent / (record["file_hash"] + Path(record["source_path"]).suffix)
+        if (saved != record or state["source_sha256"] != record["file_hash"]
+                or hashlib.sha256(image.read_bytes()).hexdigest() != record["file_hash"]
+                or not response.get("done") or response.get("truncated") is not False):
+            raise ValueError("Prior successful result failed input/completion verification")
+        results[record["document_id"]] = dict(state, reused=True, source_directory=str(path.parent),
+            source_response_sha256=hashlib.sha256((path.parent / "response.json").read_bytes()).hexdigest())
+    return results
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--development", action="store_true", help="Attempt all 20 frozen development pages")
+    parser.add_argument("--reuse", type=Path, help="Explicit previous successful trial; preserve it unchanged")
+    parser.add_argument("--authenticated", action="store_true", help="Use an existing local Hugging Face login for free demo quota; never log the token")
+    args = parser.parse_args()
     sys.path.insert(0, str(SUITE.parent))
     from benchmark_suite.runners.preflight import authorize_model
 
@@ -33,12 +73,37 @@ def main():
         "parameters": {"instruction": "", "mode": "auto", "max_page_tokens": 20000},
         "attempts": [], "accuracy_scores": None}
     records = [json.loads(line) for line in (SUITE / "datasets/manifest/development.jsonl").read_text(encoding="utf-8").splitlines()]
+    by_language = {lang: [r for r in records if r["language"] == lang] for lang in ("en", "ar")}
+    records = [r for pair in zip(by_language["en"], by_language["ar"], strict=True) for r in pair]
+    if not args.development:
+        records = records[:2]
+    reuse = reusable_results(args.reuse, records)
+    summary.update(target_documents=len(records), reuse_source=str(args.reuse) if args.reuse else None)
     session = requests.Session()
     session.trust_env = False  # Do not implicitly use .netrc credentials.
+    if args.authenticated:
+        from huggingface_hub import get_token
+        token = get_token()
+        if not token:
+            raise RuntimeError("No local Hugging Face login. Run hf auth login locally; never put a token in chat or trial files.")
+        session.headers["Authorization"] = "Bearer " + token
+        summary["authentication"] = "Saved Hugging Face credential; token not logged"
+    deployment = session.get("https://huggingface.co/api/spaces/baidu/Unlimited-OCR-2", timeout=30)
+    deployment.raise_for_status()
+    metadata = deployment.json()
+    save(out / "deployment_before.json", metadata)
+    summary["demo_app_revision"] = metadata["sha"]
+    if metadata["sha"] != "78c27d176793811cf8b5e74b62ceb04dd773c29a":
+        raise RuntimeError("Hosted app deployment changed since inspection; stop before uploading")
     print(f"Hosted demo trial: {out}", flush=True)
-    for lang in ("en", "ar"):
-        record = next(r for r in records if r["language"] == lang)
-        page = out / lang
+    for index, record in enumerate(records, start=1):
+        lang = record["language"]
+        if record["document_id"] in reuse:
+            summary["attempts"].append(reuse[record["document_id"]])
+            save(out / "trial.json", summary)
+            print(f"Reused verified {lang} result: {record['document_id']}", flush=True)
+            continue
+        page = out / f"{index:03}-{lang}"
         page.mkdir()
         save(page / "input.json", record)
         source = SUITE / record["source_path"]
@@ -101,7 +166,10 @@ def main():
         print(json.dumps(state), flush=True)
         if state["status"] != "SUCCESS":
             break
-    summary["status"] = "SUCCESS" if len(summary["attempts"]) == 2 and all(a["status"] == "SUCCESS" for a in summary["attempts"]) else "NOT_COMPLETED"
+    summary["status"] = "SUCCESS" if len(summary["attempts"]) == len(records) and all(a["status"] == "SUCCESS" for a in summary["attempts"]) else "NOT_COMPLETED"
+    summary["reused_successes"] = sum(bool(a.get("reused")) for a in summary["attempts"])
+    summary["fresh_successes"] = sum(a["status"] == "SUCCESS" and not a.get("reused") for a in summary["attempts"])
+    summary["unattempted_documents"] = len(records) - len(summary["attempts"])
     save(out / "trial.json", summary)
     return 0 if summary["status"] == "SUCCESS" else 1
 

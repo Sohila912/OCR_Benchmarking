@@ -1,5 +1,16 @@
 # OCR benchmarking suite
 
+Latest continuation (2026-11-03): Unlimited-OCR-2 now has 7 saved successful
+hosted development pages (4 English, 3 Arabic), five more than the original two.
+The helper reused earlier successes and used the user's local Hugging Face login
+for four new calls. The next request hit the free account quota (90 s requested,
+59 s left; the service advised retrying in about 24 hours). TASK-017 is BLOCKED:
+HOSTED_FREE_QUOTA_EXHAUSTED. There are 13 pages remaining, including one quota-denied
+page and 12 never attempted. Outputs and reviewed per-page CSV/Markdown copies are
+on D:; see reports/BAIDU_UNLIMITED_OCR.md. No paid service or quota workaround was
+used. Full evaluation and accuracy scoring remain incomplete; 212 suite tests
+and Ruff pass. Earlier next-action/checkpoint statements below are history.
+
 Latest checkpoint (2026-11-03): the user clarified Baidu means the free
 open-source Unlimited-OCR repository. TASK-017 is approved. Its linked official
 Hugging Face demo completed one frozen English and one Arabic image, with server

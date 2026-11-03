@@ -48,10 +48,10 @@
     "docling_easyocr": "BLOCKED_BY_HARDWARE",
     "docling_tesseract": "FULL_EVALUATION_DEFERRED_BY_USER",
     "granite_docling": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY",
-    "baidu": "LOCAL_CUDA_VRAM_AND_HOSTED_REPRODUCIBILITY_LIMITATIONS"
+    "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "feat(benchmark): verify Baidu Unlimited OCR hosted feasibility",
+  "checkpoint_git_commit_subject": "feat(benchmark): extend Unlimited OCR trial with authenticated resume",
   "approval_required_before": "TASK-018",
   "approved_tasks": [
     "TASK-001",
@@ -71,7 +71,7 @@
     "TASK-016",
     "TASK-017"
   ],
-  "next_action": "Baidu Unlimited-OCR-2 hosted feasibility succeeded for English and Arabic. Review saved D: outputs; formal 20-page/full evaluation needs a supported reproducible GPU route. TASK-018 remains unapproved; preserve all earlier partial runs.",
+  "next_action": "After the free Hugging Face quota resets, reactivate already-approved TASK-017 and resume the saved hosted development trial with --authenticated and --reuse 20261103T114536Z-118e8f19. Seven successful pages are preserved; 13 remain. No paid calls or TASK-018 work.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -328,11 +328,11 @@
       "preceding_push_verified": "512fd4aaed7b3325348c255dc4afaa21b0a663d3",
       "paid_cloud_calls_authorized": false,
       "full_evaluation_executed": false,
-      "reason": "LOCAL_CUDA_VRAM_AND_HOSTED_REPRODUCIBILITY_LIMITATIONS",
+      "reason": "HOSTED_FREE_QUOTA_EXHAUSTED",
       "report": "reports/BAIDU_UNLIMITED_OCR.md",
       "summary": "reports/BAIDU_UNLIMITED_OCR_RESULTS.json",
       "hosted_feasibility_status": "SUCCESS",
-      "hosted_documents_processed": 2,
+      "hosted_documents_processed": 7,
       "hosted_languages": [
         "en",
         "ar"
@@ -343,8 +343,18 @@
       "development_evaluation_completed": false,
       "accuracy_scores": null,
       "remote_model_weight_revision": "UNVERIFIED",
-      "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261103T112846Z-0540b88f",
-      "ruff": "PASSED"
+      "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261103T114536Z-118e8f19",
+      "ruff": "PASSED",
+      "additional_pages_requested_by_user": true,
+      "successful_english": 4,
+      "successful_arabic": 3,
+      "remaining_development_pages": 13,
+      "never_attempted_development_pages": 12,
+      "quota_denied_in_latest_continuation": 1,
+      "reviewed_output_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\reports\\development-20261103-7pages",
+      "local_hugging_face_login_configured": true,
+      "credentials_saved_in_reports": false,
+      "suite_tests_passed": 212
     }
   }
 }

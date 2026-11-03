@@ -1,5 +1,57 @@
 # Baidu Unlimited-OCR 2: working hosted feasibility checkpoint
 
+## Latest continuation: 7 successful pages; free account quota exhausted
+
+The user requested more pages and then configured a local Hugging Face login.
+The continuation targeted the same 20 frozen development images, alternating
+English/Arabic and reusing verified successes instead of spending quota on them.
+Native parameters and inspected demo deployment stayed the same.
+
+The anonymous continuation completed one additional English page (9.0 seconds
+server elapsed), then the next Arabic request hit the anonymous quota. After
+login, the authenticated continuation reused all three prior successes and
+completed four more pages: Arabic 34.8 s, English 51.8 s, Arabic 48.9 s and
+English 100.4 s. Every saved success reported truncated=false.
+
+**Total saved: 7 successful pages (4 English, 3 Arabic).** This is five additional
+successes beyond the original two-page checkpoint. The next Arabic request was
+rejected before model execution with the service message:
+`You have exceeded your free ZeroGPU quota (90s requested vs. 59s left).`
+It advised retrying in `23:55:25` at the time of rejection (about 24 hours).
+This is a service quota denial, not a failed OCR generation or laptop RAM error.
+
+Of the 20 targets, 7 succeeded, 1 was quota-denied in this continuation and 12
+were never attempted. **13 remain**, including the denied page. Historical
+anonymous quota errors are preserved separately rather than counted as extra
+unique failed documents. No quota workaround, extra account, paid subscription,
+GPU rental or model substitution was used.
+
+Authenticated trial:
+`D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261103T114536Z-118e8f19`.
+Reviewed native outputs, readable displays, per-page timing CSV and SHA256
+manifest: `D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/reports/development-20261103-7pages`.
+Original two-page and anonymous continuation artifacts remain intact.
+
+Use the following after quota resets and TASK-017 is active in the tracker:
+
+```powershell
+.venv-ocr\Scripts\python.exe benchmark_suite/scripts/try_unlimited_ocr_demo.py --development --reuse D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261103T114536Z-118e8f19 --authenticated
+```
+
+The helper follows and validates the saved reuse chain, checks original input
+hashes and completion/truncation fields, and requires the same inspected app
+revision. Authentication reads the existing local Hugging Face credential; it is
+never printed or saved in request/report files. Failed requests are not reused
+as successes. Two new tests cover chained reuse, corrupt source rejection and
+cycle detection; all 212 suite tests and Ruff pass.
+
+TASK-017 is currently BLOCKED with reason HOSTED_FREE_QUOTA_EXHAUSTED. The
+20-page development and full 1,135-page evaluations are incomplete. The hosted
+weight revision/remote resource-telemetry limitations below still apply. No OCR
+accuracy or cross-model rank is inferred from seven successful conversions.
+
+The original two-page checkpoint below is retained as history.
+
 2026-11-03 (Africa/Cairo), TASK-017. The user identified
 https://github.com/baidu/Unlimited-OCR as the intended free implementation.
 This replaces the earlier unresolved Baidu Cloud API assumption. No Baidu Cloud

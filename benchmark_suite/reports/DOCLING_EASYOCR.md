@@ -1,5 +1,64 @@
 # Docling + EasyOCR: TASK-014 actual-attempt record
 
+## English development continuation — 2026-11-04
+
+**All 10 English development pages were attempted: 8 successful conversions,
+2 repeated native process crashes.** This is not a completed successful English
+evaluation and no CER/WER is claimed. Arabic inference remains pending; this
+continuation did not make further Arabic download or inference requests.
+
+The same scale-1.0 configuration was used throughout: Docling 2.143.1, EasyOCR
+1.7.2, CPU-only Torch 2.14.1, full-page OCR, two threads, native layout/table
+pipeline and batch sizes one. Original source and reference hashes were verified.
+The first successful English page was reused. Nine fresh pages were attempted;
+seven succeeded and two crashed. Only those two failures were retried, with all
+eight successes checksum-verified and reused. Both failed again.
+
+| Development position | Document suffix | Exit on both attempts |
+|---|---|---|
+| 8 | `a8d4366b6d7f7975b974ad9f` | `0xc0000005` |
+| 9 | `dccbdfa70f17acb79f9dda3f` | `0xc0000005` |
+
+The native Windows exit code 3221225477 (`0xc0000005`) indicates an access
+violation. No caught Python exception or worker result JSON was produced for
+these pages; logs end after conversion starts. Retried processes had a 4-GiB
+committed-memory cap, and sampled private memory was near that cap. The exact
+trigger is unconfirmed; this is not presented as a proven model OOM. No guard
+low-RAM abort occurred. Other page outputs were retained without replacement.
+
+Fresh attempts in this continuation totaled 341.26 supervised worker seconds,
+including all failures and both retries; this is not total elapsed batch time
+or pure inference time. Peak sampled process/descendant RSS across fresh
+attempts was 4,026,572,800 bytes (3.75 GiB), with 100-ms sampling.
+The earlier reused page's memory/time remains in its original trial evidence.
+All eight successful worker version sets match. Recognition quality has not
+been scored, and reduced OCR scale can affect quality.
+
+- First batch: `D:/OCR_Benchmarking_Assets/docling_easyocr/english_development/20261104T133127Z-d5109745`.
+- Failed-page retries: `D:/OCR_Benchmarking_Assets/docling_easyocr/english_development/20261104T133628Z-ba75368f`.
+- Reviewed native outputs, logs, input identities, source snapshots, per-page CSV
+  and SHA256 manifests: `D:/OCR_Benchmarking_Assets/docling_easyocr/reports/english-development-20261104-reviewed`.
+- Driver: `scripts/try_easyocr_english.py`, which requires an explicit verified
+  reuse source, attempts each English page separately, continues after individual
+  failures, and retains the existing memory floor/cap and low-RAM/time guards.
+  It reuses only successful identical-input scale-1 pages and checks completed
+  continuation artifact hashes before reusing their outputs. Ruff and live
+  run/artifact checks passed. The existing 216 suite tests passed at the preceding
+  shared-helper checkpoint; no shared worker/model setting changed here.
+
+TASK-014 is BLOCKED with `REPEATED_NATIVE_CRASH_ON_TWO_ENGLISH_DEVELOPMENT_PAGES`.
+The remaining Arabic asset acquisition blocker is also retained. No official
+selected-run marker, complete bilingual/full score or subsequent model run exists.
+Windows paging settings were not changed, and the agent did not close Chrome.
+
+```powershell
+.venv-ocr\Scripts\python.exe benchmark_suite/scripts/try_easyocr_english.py --python D:/OCR_Benchmarking_Assets/docling_easyocr/venv/Scripts/python.exe --asset-root D:/OCR_Benchmarking_Assets/docling_easyocr --reuse D:/OCR_Benchmarking_Assets/docling_easyocr/english_development/20261104T133628Z-ba75368f
+```
+
+That command would reuse the eight successes and retry the two failures; it does
+not imply that another unchanged retry will succeed. Earlier checkpoints below
+are historical.
+
 ## Latest retry — 2026-11-04
 
 **English conversion now succeeds with an explicitly reduced OCR scale of 1.0.**

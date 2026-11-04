@@ -273,7 +273,7 @@
       "recommended_host_ram_gib": 16,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 4,
-      "recommended_action": "Scale 1.0 English feasibility succeeded at sampled peak RSS 2.35 GiB. Finish and verify missing Arabic recognition model before Arabic retry; default scale still failed bounded memory allocation.",
+      "recommended_action": "All ten English development pages attempted at OCR scale 1.0: eight succeeded; two repeat native access violations under 4-GiB caps. Preserve successes and investigate native/memory issue; Arabic recognition asset remains incomplete.",
       "capabilities": {
         "english": "SUPPORTED",
         "arabic": "SUPPORTED",
@@ -290,12 +290,12 @@
         "https://pypi.org/pypi/docling/json",
         "https://huggingface.co/docling-project/docling-models"
       ],
-      "current_snapshot_loading": "LOWER_SCALE_ENGLISH_SUCCESS; ARABIC_ASSET_DOWNLOAD_INCOMPLETE",
+      "current_snapshot_loading": "ENGLISH_SCALE1_8_OF_10_SUCCESS; TWO_REPEATED_NATIVE_CRASHES; ARABIC_ASSET_INCOMPLETE",
       "task014_assessment": {
         "date": "2026-11-04",
         "task_approved": true,
         "status": "BLOCKED",
-        "reason": "ARABIC_RECOGNITION_ASSET_DOWNLOAD_INCOMPLETE",
+        "reason": "REPEATED_NATIVE_CRASH_ON_TWO_ENGLISH_DEVELOPMENT_PAGES",
         "selected_docling": "2.143.1",
         "latest_docling_observed": "2.146.0",
         "easyocr": "1.7.2",
@@ -303,10 +303,13 @@
         "report": "reports/DOCLING_EASYOCR.md",
         "evidence": "reports/DOCLING_EASYOCR_RESULTS.json",
         "inference_executed": true,
-        "successful_pages": 1,
+        "successful_pages": 8,
         "scope": "Bounded feasibility trials; no official evaluation run",
         "ocr_scale": 1.0,
-        "arabic_inference_executed": false
+        "arabic_inference_executed": false,
+        "english_pages_attempted": 10,
+        "english_pages_failed": 2,
+        "english_development_complete": false
       }
     },
     "docling_tesseract": {

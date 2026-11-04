@@ -1,5 +1,14 @@
 # Benchmark progress
 
+Latest English continuation (2026-11-04): Docling + EasyOCR scale 1.0
+attempted all ten English development pages. Eight conversions succeeded; two
+pages crashed with native Windows exit 0xc0000005 and repeated the crash on
+isolated retry under 4-GiB process caps. Exact cause is unconfirmed. All outputs,
+logs and checksums are on D:. See [English continuation report](reports/DOCLING_EASYOCR.md).
+TASK-014 remains BLOCKED; no completed English/bilingual/full evaluation or
+accuracy score is claimed. Arabic inference remains pending on its missing
+recognition asset. Earlier checkpoint statements are historical.
+
 Latest Docling + EasyOCR retry (2026-11-04): after the user freed RAM,
 default OCR scale 3.0 still failed a 1.17-GiB allocation under a 3.94-GiB cap.
 Explicit scale 1.0 completed the first English development page (sampled peak

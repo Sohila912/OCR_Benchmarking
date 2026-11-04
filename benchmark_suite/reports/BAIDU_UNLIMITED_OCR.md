@@ -1,5 +1,48 @@
 # Baidu Unlimited-OCR 2: working hosted feasibility checkpoint
 
+## Latest quota-reset continuation — 2026-11-04
+
+**12 saved successful development pages: 6 English and 6 Arabic.** The free
+quota reset allowed five additional completed conversions (three Arabic and two
+English); seven earlier successes were checksum-verified and reused. All 12
+saved successes report `truncated=false`. The same model, request parameters,
+frozen images and inspected hosted app revision were retained.
+
+| New page | Server-reported elapsed | Client request wall | Tokens |
+|---|---:|---:|---:|
+| Arabic, development position 8 | 83.2 s | 129.46 s | 1,418 |
+| English, position 9 | 46.3 s | 70.95 s | 852 |
+| Arabic, position 10 | 33.8 s | 56.44 s | 620 |
+| English, position 11 | 11.6 s | 23.00 s | 186 |
+| Arabic, position 12 | 40.2 s | 80.22 s | 728 |
+
+The next English request was quota-denied: **90 seconds requested versus 78
+seconds remaining**. The service advised retrying in **23:54:01** at rejection.
+This is a free-service quota limit, not an OCR generation failure or laptop RAM
+error. Eight development pages remain: one denied request and seven not attempted
+in this continuation. No further requests were issued after the quota rejection.
+No paid subscription, quota workaround or alternate account was used.
+
+New trial: `D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261104T125515Z-b748224f`.
+Reviewed readable outputs, native responses, copied inputs, timings CSV and SHA256
+manifest: `D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/reports/development-20261104-12pages`.
+The hosted app revision remained unchanged in before/after metadata checks.
+The served model-weight revision and remote peak RAM/VRAM remain unverified.
+Conversion completion alone is not an accuracy score. No new CER/WER or official
+full-evaluation score is claimed; development and full evaluations remain incomplete.
+
+TASK-017 returns to BLOCKED: HOSTED_FREE_QUOTA_EXHAUSTED. Its existing authorization
+persists. A later continuation should use this newest trial as `--reuse`, preserving
+all 12 verified outputs. Existing local login was used without logging credentials.
+Final validation: 56 reuse/tracking tests passed; live tracker validated. No inference
+code, source/reference documents or model parameters changed.
+
+```powershell
+.venv-ocr\Scripts\python.exe benchmark_suite/scripts/try_unlimited_ocr_demo.py --development --reuse D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261104T125515Z-b748224f --authenticated
+```
+
+Earlier seven-page and two-page checkpoints below are historical.
+
 ## Latest continuation: 7 successful pages; free account quota exhausted
 
 The user requested more pages and then configured a local Hugging Face login.

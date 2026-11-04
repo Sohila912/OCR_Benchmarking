@@ -1,5 +1,16 @@
 # Benchmark progress
 
+Latest continuation (2026-11-04): Baidu Unlimited-OCR-2 completed five new
+hosted development pages after the free quota reset. Total saved: 12 successes
+(6 English/6 Arabic), all untruncated; seven prior successes were verified/reused.
+The next request exhausted free quota (90 seconds requested versus 78 remaining;
+service advised 23:54:01 until retry). Eight development pages remain. Results,
+readable outputs and checksums are on D:. See [Baidu report](reports/BAIDU_UNLIMITED_OCR.md).
+TASK-017 is BLOCKED by free quota. No paid service or official full evaluation
+was started; hosted weight revision remains unverified. Paddle's completed
+200-page subset is preserved; its remaining full evaluation is deferred while
+following the user's Baidu request. Earlier next-action statements are historical.
+
 Latest checkpoint (reviewed 2026-11-04): PaddleOCR completed the requested
 200 additional evaluation pages (100 English, 100 Arabic), with zero conversion
 failures. Text scores cover 99 English pages (one unavailable reference) and all

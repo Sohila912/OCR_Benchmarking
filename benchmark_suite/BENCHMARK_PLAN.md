@@ -1,5 +1,14 @@
 # OCR benchmark implementation plan
 
+Latest Docling + EasyOCR retry (2026-11-04): after the user freed RAM,
+default OCR scale 3.0 still failed a 1.17-GiB allocation under a 3.94-GiB cap.
+Explicit scale 1.0 completed the first English development page (sampled peak
+RSS 2.35 GiB). Arabic has not reached inference: its missing 200-MB recognition
+archive could not finish downloading. TASK-014 is BLOCKED on asset acquisition;
+no completed bilingual/full evaluation or accuracy score is claimed. Results,
+logs and partial downloads remain on D:. See [retry report](reports/DOCLING_EASYOCR.md).
+Windows paging settings were unchanged. Earlier checkpoint statements are historical.
+
 Latest continuation (2026-11-04): Baidu Unlimited-OCR-2 completed five new
 hosted development pages after the free quota reset. Total saved: 12 successes
 (6 English/6 Arabic), all untruncated; seven prior successes were verified/reused.

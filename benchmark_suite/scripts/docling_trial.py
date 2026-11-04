@@ -89,7 +89,7 @@ def worker(args):
             )
         else:
             language = ["en"] if args.language == "en" else ["ar", "en"]
-            ocr = EasyOcrOptions(lang=language, force_full_page_ocr=True, use_gpu=False,
+            ocr = EasyOcrOptions(lang=language, scale=args.easyocr_scale, force_full_page_ocr=True, use_gpu=False,
                                  model_storage_directory=str(root / "easyocr" / "model"), download_enabled=True)
             state["versions"]["easyocr"] = importlib.metadata.version("easyocr")
         options = PdfPipelineOptions(
@@ -158,6 +158,7 @@ def supervise(args):
     outcome = {"scope": "bounded feasibility trial, not benchmark evaluation", "directory": str(directory),
                "asset_root": str(args.asset_root), "python": str(args.python), "attempts": [],
                "maximum_memory_limit_gib": args.max_memory_gib, "model": args.model,
+               "easyocr_scale": args.easyocr_scale if args.model == "docling_easyocr" else None,
                "user_authorization": "Selected model task is explicitly approved; record actual trial outcome", "accuracy_scores": None}
     print(f"Trial artifacts: {directory}", flush=True)
     for language in ("en", "ar"):
@@ -175,6 +176,8 @@ def supervise(args):
                    "--memory-limit", str(limit), "--model", args.model]
         if args.cache_root:
             command.extend(["--cache-root", str(args.cache_root)])
+        if args.model == "docling_easyocr":
+            command.extend(["--easyocr-scale", str(args.easyocr_scale)])
         start = time.monotonic()
         rss_peak = private_peak = 0
         free_min = available
@@ -229,6 +232,8 @@ def main(default_model="docling_easyocr"):
     parser.add_argument("--language", choices=("en", "ar"))
     parser.add_argument("--memory-limit", type=int)
     parser.add_argument("--max-memory-gib", type=float, default=2.5)
+    parser.add_argument("--easyocr-scale", type=float, choices=(1.0, 1.5, 2.0, 3.0), default=3.0,
+                        help="Explicit Docling EasyOCR render scale; default 3.0 preserves previous trials")
     args = parser.parse_args()
     if not 0 < args.max_memory_gib <= 4:
         parser.error("Maximum trial commit-memory cap must be positive and at most 4 GiB")

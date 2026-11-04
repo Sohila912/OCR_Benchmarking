@@ -20,7 +20,7 @@
   "source_files": {
     "benchmark_suite/adapters/granite_docling.py": "96d9fcf91aff616bff19027bab1826260b3590ae807356ab160f27d2301ec5d4",
     "benchmark_suite/scripts/granite_trial.py": "01e81ac178007633f69bdd2a4e1e9be0747b3e19b17ce4bff1ad8b068aacb8ce",
-    "benchmark_suite/scripts/docling_trial.py": "ea5da7230725cbfad3e4cf74b7048670e2931cc80b13261bae6e595f0cf6c127",
+    "benchmark_suite/scripts/docling_trial.py": "203374bc5bb1e1215031b51e6e7c6d0cd4b43f4fa340bc018e5065f0739686f2",
     "benchmark_suite/scripts/windows_job.py": "9b7278130ba4d41b47407b8f147f3bd6a008ea14662faf2f86315af0a0e87b02",
     "OCR/providers/docling.py": "c0c22f81e4e12fba53a3ada0b2f73960fe5694a4cfadbaadb1dc3bbdacf1aad7",
     "OCR/providers/common.py": "99c8e889ad13e1e64708db313f3dddeb3f6203e38f258950acc30dc32215c4d9",

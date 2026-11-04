@@ -1,5 +1,64 @@
 # Docling + EasyOCR: TASK-014 actual-attempt record
 
+## Latest retry — 2026-11-04
+
+**English conversion now succeeds with an explicitly reduced OCR scale of 1.0.**
+Arabic inference remains pending because its recognition model is not cached and
+the asset transfer did not complete. This is a one-page feasibility success,
+not a completed bilingual development evaluation or an accuracy score.
+
+The user closed Chrome tabs themselves. Available RAM rose from about 1.07 GiB
+to 4.65 GiB. Runtime and all five existing model files on D: verified; dependency
+check found no broken requirements. Windows paging settings were not changed.
+
+First retry retained default OCR scale 3.0. It reached English inference and
+again failed to allocate 1,258,291,200 bytes (1.17 GiB), under a 4,229,595,136-byte
+(3.94-GiB) Windows committed-memory cap. Peak sampled RSS was 3,869,229,056 bytes;
+private memory 4,092,243,968 bytes. Wall time 71.57 seconds. The supervisor did
+not abort for low system RAM. This failure is specific to the bounded process,
+not a claim that every Docling/EasyOCR configuration needs more than this laptop.
+
+A separately disclosed retry set Docling's supported EasyOCR render scale to
+**1.0 instead of 3.0**, using a new explicit `--easyocr-scale` flag. Default flag
+value remains 3.0. Same Docling 2.143.1/EasyOCR 1.7.2, CPU Torch, two threads,
+full-page OCR, layout/table batches of one, and original source pixels. Internal
+OCR raster scale changed, which may affect recognition quality. This is not a
+like-for-like accuracy comparison with the default scale or other models.
+
+English completed successfully: conversion 13.22 s, worker wall 25.65 s,
+supervised wall 26.80 s. Sampled peak RSS **2,527,514,624 bytes (2.35 GiB)**;
+peak private memory 2,774,663,168 bytes. Native Docling JSON and Markdown were
+saved on D: (157 Markdown characters, 5 text items, no tables). Sampled memory
+can miss short peaks. No CER/WER or accuracy claim follows from conversion success.
+
+Arabic initialization then requested the uncached `arabic.pth` model (publisher
+MD5 `993074555550e4e06a6077d55ff0449a`; archive 199,916,962 bytes). The coordinator
+stopped its worker during the slow download, preserving partial data and the
+English result. A separate download was attempted; its four-part ranged transfer
+ended with remote connection reset 10054. No Arabic model was extracted or
+verified and no Arabic inference failure is claimed. Partial files stay on D:;
+ARABIC_ASSET_DOWNLOAD.json records the acquisition outcome. Arabic model download
+must finish and verify before a bilingual retry.
+
+Artifacts:
+
+- Default retry: `D:/OCR_Benchmarking_Assets/docling_easyocr/trials/20261104T130525Z-ecb5178f`.
+- Scale-1 retry: `D:/OCR_Benchmarking_Assets/docling_easyocr/trials/20261104T130720Z-ee563595`.
+- Reviewed reports, native results, worker-source snapshot and hashes:
+  `D:/OCR_Benchmarking_Assets/docling_easyocr/reports/retry-20261104-scale1`.
+
+TASK-014 remains BLOCKED, now with `ARABIC_RECOGNITION_ASSET_DOWNLOAD_INCOMPLETE`.
+The registered official adapter/full benchmark remains incomplete. No source or
+reference image was overwritten. All 216 suite tests and Ruff pass. Current
+Paddle/Granite worker-source pins were refreshed because the shared trial helper
+changed; their historical immutable run identities were preserved.
+
+```powershell
+.venv-ocr\Scripts\python.exe benchmark_suite/scripts/try_docling_easyocr.py --python D:/OCR_Benchmarking_Assets/docling_easyocr/venv/Scripts/python.exe --asset-root D:/OCR_Benchmarking_Assets/docling_easyocr --max-memory-gib 4 --easyocr-scale 1
+```
+
+Earlier attempts below are historical and used default scale 3.0.
+
 Date: 2026-11-03 (Africa/Cairo). The user approved the next model and explicitly
 requested an actual attempt, with any failure recorded in Markdown.
 

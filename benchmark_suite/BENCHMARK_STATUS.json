@@ -4,7 +4,7 @@
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-017",
+  "current_task": "TASK-014",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
@@ -44,14 +44,14 @@
     "paddle_vl": "BLOCKED_BY_HARDWARE",
     "marker": "BLOCKED_BY_HARDWARE",
     "tesseract": "BLOCKED_BY_HARDWARE",
-    "docling_easyocr": "BLOCKED_BY_HARDWARE",
     "docling_tesseract": "FULL_EVALUATION_DEFERRED_BY_USER",
     "granite_docling": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY",
     "paddle": "REMAINING_FULL_EVALUATION_DEFERRED_BY_USER",
-    "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED"
+    "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED",
+    "docling_easyocr": "ARABIC_RECOGNITION_ASSET_DOWNLOAD_INCOMPLETE"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "docs(benchmark): expand Baidu hosted trial to twelve pages",
+  "checkpoint_git_commit_subject": "feat(benchmark): retry EasyOCR with explicit lower OCR scale",
   "approval_required_before": "TASK-018",
   "approved_tasks": [
     "TASK-001",
@@ -72,7 +72,7 @@
     "TASK-017",
     "TASK-012"
   ],
-  "next_action": "Baidu quota-reset continuation saved: 12 successful development outputs, 8 remaining. Wait for free quota reset before further hosted calls; newest reusable trial is demo_trials/20261104T125515Z-b748224f. No next model started.",
+  "next_action": "Docling + EasyOCR scale-1 English success saved on D:. Arabic recognition model download incomplete; verify the missing asset before retrying Arabic. No full benchmark or next model started.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -253,7 +253,7 @@
       "next_model_started": false,
       "environment_installed": true,
       "pip_check": "PASSED",
-      "suite_tests_passed": 204,
+      "suite_tests_passed": 216,
       "report": "reports/DOCLING_EASYOCR.md",
       "trial_directories": [
         "results/docling_easyocr/feasibility/20261103T084949Z-3b4e7736",
@@ -261,10 +261,10 @@
       ],
       "first_trial_outcome": "Coordinator stopped at asset download after 617 seconds; zero pages, no model OOM. Direct detector prefetch verified; second attempt is initializing.",
       "resolved_requirements": "configs/docling-easyocr-trial-requirements.txt",
-      "reason": "BLOCKED_BY_HARDWARE",
+      "reason": "ARABIC_RECOGNITION_ASSET_DOWNLOAD_INCOMPLETE",
       "outcome": "Actual OCR inference failed on CPU allocation within the controlled commit-memory budget, including the D: retry after ending unrelated apps.",
       "model_inference_executed": true,
-      "successful_documents": 0,
+      "successful_documents": 1,
       "failed_inference_attempts": 2,
       "unique_documents_attempted": 1,
       "arabic_attempted": false,
@@ -278,7 +278,16 @@
       "full_evaluation_completed": false,
       "accuracy_scores": null,
       "selected_run_created": false,
-      "verification": "204 suite tests passed; Ruff passed; real Windows job-cap allocation rejection test; native CPU pip check passed; downloaded model SHA256 inventory recorded."
+      "verification": "204 suite tests passed; Ruff passed; real Windows job-cap allocation rejection test; native CPU pip check passed; downloaded model SHA256 inventory recorded.",
+      "user_requested_retry": true,
+      "retry_date": "2026-11-04",
+      "arabic_inference_executed": false,
+      "latest_trial": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T130720Z-ee563595",
+      "default_retry": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T130525Z-ecb5178f",
+      "lower_memory_ocr_scale": 1.0,
+      "d_report": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\reports\\retry-20261104-scale1",
+      "ruff": "PASSED",
+      "paging_settings_changed": false
     },
     "docling_tesseract_task015": {
       "status": "BLOCKED",

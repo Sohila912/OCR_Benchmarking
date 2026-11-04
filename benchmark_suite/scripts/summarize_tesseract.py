@@ -54,6 +54,10 @@ def main():
         "memory_method": "50 ms sampled process and descendants RSS; not allocator peak",
         "source_document_independence": "UNKNOWN", "completion_status": completion["state"],
     }
+    selection = descriptor["dataset"].get("selection")
+    summary["cohort_selection"] = selection
+    split_label = (f"{','.join(summary['splits'])} subset ({summary['total_documents']}/{selection['available_documents']} pages)"
+                   if selection else f"{','.join(summary['splits'])} split")
     if args.plot_libs:
         sys.path.insert(0, str(args.plot_libs.resolve()))
     import matplotlib
@@ -86,7 +90,7 @@ def main():
     axes[2].set(xlabel="Fresh measured inference time (seconds)", ylabel="Pages", title="CPU inference time per page")
     if not latency:
         axes[2].text(.5, .5, "No fresh OCR timing measurements", ha="center", transform=axes[2].transAxes)
-    figure.suptitle(f"{title} — {','.join(summary['splits'])} split", fontsize=14)
+    figure.suptitle(f"{title} — {split_label}", fontsize=14)
     phase_note = ("Fresh inference includes per-page model startup, preprocessing, native prediction and export."
                   if args.model in {"granite_docling", "paddle"} else
                   "Inference excludes initialization, external preprocessing and evaluation.")
@@ -100,14 +104,17 @@ def main():
     lines = [f"# {title} — {run.name}", "", f"Split: {summary['splits']}. "
              f"Processed {summary['total_documents']} pages; {summary['failed_documents']} failed; "
              f"{summary['cached_documents']} reused from cache.", "",
-             "| Language | Pages | Raw CER | Normalized CER | Raw WER | Normalized WER |",
-             "|---|---:|---:|---:|---:|---:|"]
+             "| Language | Pages | Text-scored pages | Raw CER | Normalized CER | Raw WER | Normalized WER |",
+             "|---|---:|---:|---:|---:|---:|---:|"]
     def rate(value):
         return f"{value:.2%}" if value is not None else "NOT_EVALUATED"
     for row in strata:
         values = [rate(row[f"content_{mode}_{metric}"]["micro"])
                   for metric in ("cer", "wer") for mode in ("raw", "normalized")]
-        lines.append(f"| {row['language']} | {row['total_pages']} | " + " | ".join(values) + " |")
+        lines.append(f"| {row['language']} | {row['total_pages']} | {row['coverage']['text']['SCORED']} | " + " | ".join(values) + " |")
+    if selection:
+        lines.extend(["", f"Explicit subset: {summary['total_documents']}/{selection['available_documents']} pages; "
+                      f"selection: {selection['sampling']}. This is not a completed full evaluation."])
     mean_seconds = f"{summary['mean_fresh_ocr_seconds']:.3f}" if summary['mean_fresh_ocr_seconds'] is not None else "NOT_MEASURED"
     peak_mib = f"{summary['sampled_peak_rss_bytes'] / 1024**2:.1f}" if summary['sampled_peak_rss_bytes'] is not None else "NOT_MEASURED"
     lines.extend(["", "English uses reference-region text; Arabic uses page content. "

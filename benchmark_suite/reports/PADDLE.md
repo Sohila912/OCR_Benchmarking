@@ -1,3 +1,9 @@
+# Standard PaddleOCR checkpoints
+
+Latest: [200-page evaluation subset](PADDLE_EVALUATION_200.md) completed with
+200 conversions, zero failures and 199 text-scored pages. Reviewed 2026-11-04.
+935 evaluation pages remain; the development checkpoint below is historical.
+
 # Standard PaddleOCR: completed 20-page development checkpoint
 
 2026-11-03 (Africa/Cairo), TASK-012. The user clarified to advance to the next

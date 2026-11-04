@@ -1,5 +1,16 @@
 # OCR benchmarking suite
 
+Latest checkpoint (reviewed 2026-11-04): PaddleOCR completed the requested
+200 additional evaluation pages (100 English, 100 Arabic), with zero conversion
+failures. Text scores cover 99 English pages (one unavailable reference) and all
+100 Arabic pages. Normalized CER/WER: English 14.17%/23.48%, Arabic 51.53%/71.34%;
+reference scopes differ. Wall time 97.89 minutes; sampled peak RSS 0.71 GiB.
+The deterministic subset is separate from the 20 development pages. Results and
+canonical copies are saved on D:. See [the 200-page report](reports/PADDLE_EVALUATION_200.md).
+TASK-012 remains IN_PROGRESS: 935 of 1,135 evaluation pages remain. No full
+selected-run marker or subsequent model run was created. Earlier checkpoint and
+next-action statements below are historical.
+
 Latest model checkpoint (2026-11-03): the user clarified to move to the next
 model. Standard PaddleOCR TASK-012 is approved and completed all 20 development
 pages locally with zero conversion failures. English normalized CER/WER are

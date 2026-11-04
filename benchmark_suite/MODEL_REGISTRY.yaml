@@ -162,7 +162,7 @@
       "name": "Standard PaddleOCR; explicit language-specific detector/recognizer",
       "package": "paddleocr",
       "latest_package_version_observed": "3.7.0",
-      "candidate_pin_status": "INSTALLED_ON_D_AND_DEVELOPMENT_EVALUATED",
+      "candidate_pin_status": "INSTALLED_ON_D_DEVELOPMENT_AND_200_PAGE_SUBSET_EVALUATED",
       "execution_authorized": false,
       "license_summary": "Apache-2.0",
       "hardware_compatibility": "LIMITED",
@@ -173,7 +173,7 @@
       "recommended_host_ram_gib": 8,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 2,
-      "recommended_action": "Local CPU development completed 20/20 conversions with 0.55-GiB sampled peak RSS. Full evaluation pending; Arabic text error remains high. See saved report before broader conclusions.",
+      "recommended_action": "200/200 additional evaluation conversions completed; 99 English and 100 Arabic pages text-scored. Arabic error remains high. Full evaluation has 935 pages remaining; see saved subset report.",
       "capabilities": {
         "english": "SUPPORTED",
         "arabic": "SUPPORTED",
@@ -188,7 +188,7 @@
         "https://www.paddleocr.ai/main/en/version3.x/algorithm/PP-OCRv5/PP-OCRv5_multi_languages.html",
         "https://www.paddleocr.ai/main/en/version3.x/algorithm/PP-OCRv6/PP-OCRv6.html"
       ],
-      "current_snapshot_loading": "BOUNDED_CPU_DEVELOPMENT_COMPLETED; FULL_EVALUATION_PENDING",
+      "current_snapshot_loading": "BOUNDED_CPU_200_PAGE_SUBSET_COMPLETED; FULL_EVALUATION_PENDING",
       "measured_development": {
         "report": "reports/PADDLE.md",
         "results": "reports/PADDLE_RESULTS.json",
@@ -197,6 +197,20 @@
         "succeeded": 20,
         "failed": 0,
         "sampled_peak_rss_bytes": 593149952,
+        "full_evaluation_executed": false
+      },
+      "measured_evaluation_subset_200": {
+        "report": "reports/PADDLE_EVALUATION_200.md",
+        "results": "reports/PADDLE_RESULTS.json",
+        "pages": 200,
+        "succeeded": 200,
+        "failed": 0,
+        "text_scored": {
+          "en": 99,
+          "ar": 100
+        },
+        "sampled_peak_rss_bytes": 759783424,
+        "remaining_evaluation_pages": 935,
         "full_evaluation_executed": false
       }
     },

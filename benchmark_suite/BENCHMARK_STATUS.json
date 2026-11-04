@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-03",
+  "updated_date": "2026-11-04",
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
@@ -50,7 +50,7 @@
     "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "feat(benchmark): evaluate standard PaddleOCR development set",
+  "checkpoint_git_commit_subject": "docs(benchmark): save PaddleOCR 200-page evaluation results",
   "approval_required_before": "TASK-018",
   "approved_tasks": [
     "TASK-001",
@@ -71,7 +71,7 @@
     "TASK-017",
     "TASK-012"
   ],
-  "next_action": "Review saved TASK-012 PaddleOCR development results (20/20 conversions; English CER 7.98%, Arabic 56.29%). Full 1135-page evaluation remains pending, roughly 6.57 CPU hours at observed fresh-worker mean. Existing approval persists; stop at this development checkpoint. Baidu quota/offline work remains stopped per user steering.",
+  "next_action": "Requested PaddleOCR 200-page evaluation subset completed and reviewed. Preserve this checkpoint; 935 full-evaluation pages remain. No further inference started.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -377,9 +377,31 @@
       "d_report": "D:\\OCR_Benchmarking_Assets\\paddle\\reports\\development-20261103-reviewed",
       "sampled_peak_rss_bytes": 593149952,
       "full_evaluation_pending": true,
-      "suite_tests_passed": 214,
+      "suite_tests_passed": 216,
       "ruff": "PASSED",
-      "isolated_dependency_check": "PASSED"
+      "isolated_dependency_check": "PASSED",
+      "evaluation_subset_status": "COMPLETED",
+      "evaluation_subset_target": 200,
+      "evaluation_subset_sampling": "language-round-robin",
+      "evaluation_subset_languages": {
+        "en": 100,
+        "ar": 100
+      },
+      "user_requested_200_evaluation_pages": true,
+      "evaluation_subset_run": "benchmark_suite\\results\\paddle\\20261103T124313Z-fc565574",
+      "evaluation_subset_selection_copy": "D:\\OCR_Benchmarking_Assets\\paddle\\evaluation_batches\\20261103T124313Z-fc565574\\selection.json",
+      "evaluation_subset_succeeded": 200,
+      "evaluation_subset_failed": 0,
+      "evaluation_subset_text_scored": {
+        "en": 99,
+        "ar": 100
+      },
+      "evaluation_subset_evaluation": "benchmark_suite/results/paddle/evaluations/20261103T124313Z-fc565574/d093025e6da5-6c9978f1",
+      "evaluation_subset_d_report": "D:/OCR_Benchmarking_Assets/paddle/reports/evaluation-200-20261104-reviewed",
+      "evaluation_subset_report": "reports/PADDLE_EVALUATION_200.md",
+      "remaining_evaluation_pages": 935,
+      "evaluation_subset_sampled_peak_rss_bytes": 759783424,
+      "evaluation_subset_recorded_wall_seconds": 5873.580351000011
     }
   }
 }

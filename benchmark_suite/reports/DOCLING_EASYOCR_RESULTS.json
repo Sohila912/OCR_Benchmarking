@@ -3,8 +3,8 @@
   "model": "docling_easyocr",
   "date": "2026-11-04",
   "status": "BLOCKED",
-  "reason": "REPEATED_NATIVE_CRASH_ON_TWO_ENGLISH_DEVELOPMENT_PAGES",
-  "outcome": "English scale-1 development cohort fully attempted: 8/10 conversions succeeded; 2 pages exited with native Windows access violation 0xc0000005 twice each. No completed English/bilingual/full evaluation claimed; Arabic asset still incomplete.",
+  "reason": "ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH",
+  "outcome": "Arabic recognition model downloaded and publisher checksum verified on D:. Four Arabic inference attempts at scale 1.0 produced zero successful pages: three native access violations (including reduced-cap and diagnostic trials); MKLDNN-disabled attempt returned an explicit 8,375,500,800-byte allocation failure under a 4-GiB process cap. Eight English development successes remain intact.",
   "trials": [
     {
       "scope": "bounded feasibility trial, not benchmark evaluation",
@@ -978,6 +978,330 @@
       "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
       "accuracy_scores": null,
       "status": "NOT_COMPLETED"
+    },
+    {
+      "scope": "bounded feasibility trial, not benchmark evaluation",
+      "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134424Z-ed0f4d0d",
+      "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+      "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+      "attempts": [
+        {
+          "language": "ar",
+          "exit_code": 3221225477,
+          "memory_limit_bytes": 2353913856,
+          "sampled_peak_rss_bytes": 1591713792,
+          "sampled_peak_private_bytes": 1905893376,
+          "minimum_system_available_bytes": 1205673984,
+          "guard_abort": null,
+          "wall_seconds": 36.13602730000275
+        }
+      ],
+      "maximum_memory_limit_gib": 4.0,
+      "model": "docling_easyocr",
+      "easyocr_scale": 1.0,
+      "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+      "accuracy_scores": null,
+      "selected_languages": [
+        "ar"
+      ],
+      "status": "NOT_COMPLETED"
+    },
+    {
+      "scope": "bounded feasibility trial, not benchmark evaluation",
+      "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134652Z-5ce75c10",
+      "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+      "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+      "attempts": [
+        {
+          "language": "ar",
+          "exit_code": 3221225477,
+          "memory_limit_bytes": 4294967296,
+          "sampled_peak_rss_bytes": 3450380288,
+          "sampled_peak_private_bytes": 3791007744,
+          "minimum_system_available_bytes": 1766588416,
+          "guard_abort": null,
+          "wall_seconds": 19.4609538000077
+        }
+      ],
+      "maximum_memory_limit_gib": 4.0,
+      "model": "docling_easyocr",
+      "easyocr_scale": 1.0,
+      "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+      "accuracy_scores": null,
+      "selected_languages": [
+        "ar"
+      ],
+      "status": "NOT_COMPLETED"
+    },
+    {
+      "scope": "bounded feasibility trial, not benchmark evaluation",
+      "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134802Z-bbfd5011",
+      "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+      "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+      "attempts": [
+        {
+          "language": "ar",
+          "exit_code": 3221225477,
+          "memory_limit_bytes": 4294967296,
+          "sampled_peak_rss_bytes": 3438170112,
+          "sampled_peak_private_bytes": 3766468608,
+          "minimum_system_available_bytes": 1760206848,
+          "guard_abort": null,
+          "wall_seconds": 19.294733200018527
+        }
+      ],
+      "maximum_memory_limit_gib": 4.0,
+      "model": "docling_easyocr",
+      "easyocr_scale": 1.0,
+      "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+      "accuracy_scores": null,
+      "selected_languages": [
+        "ar"
+      ],
+      "status": "NOT_COMPLETED"
+    },
+    {
+      "scope": "bounded feasibility trial, not benchmark evaluation",
+      "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134905Z-c8d2dd09",
+      "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+      "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+      "attempts": [
+        {
+          "language": "ar",
+          "exit_code": 1,
+          "memory_limit_bytes": 4294967296,
+          "sampled_peak_rss_bytes": 3315093504,
+          "sampled_peak_private_bytes": 3587166208,
+          "minimum_system_available_bytes": 1915879424,
+          "guard_abort": null,
+          "wall_seconds": 16.591459999996005,
+          "worker_result": {
+            "scope": "bounded feasibility trial, not benchmark evaluation",
+            "language": "ar",
+            "memory_limit_bytes": 4294967296,
+            "status": "FAILED",
+            "documents_processed": 0,
+            "torch_mkldnn_enabled": false,
+            "versions": {
+              "docling": "2.143.1",
+              "docling-slim": "2.143.1",
+              "torch": "2.14.1",
+              "torchvision": "0.29.1",
+              "transformers": "5.22.1",
+              "easyocr": "1.7.2"
+            },
+            "model": "docling_easyocr",
+            "torch_cuda": null,
+            "pipeline_options": {
+              "document_timeout": 180.0,
+              "accelerator_options": {
+                "num_threads": 2,
+                "device": "cpu",
+                "cuda_use_flash_attention2": false
+              },
+              "enable_remote_services": false,
+              "allow_external_plugins": false,
+              "artifacts_path": null,
+              "do_picture_classification": false,
+              "picture_classification_options": {
+                "engine_options": {
+                  "engine_type": "transformers",
+                  "top_k": null
+                },
+                "model_spec": {
+                  "name": "document_figure_classifier_v2",
+                  "repo_id": "docling-project/DocumentFigureClassifier-v2.5",
+                  "revision": "main",
+                  "engine_overrides": {}
+                }
+              },
+              "do_picture_description": false,
+              "picture_description_options": {
+                "batch_size": 8,
+                "scale": 2.0,
+                "picture_area_threshold": 0.05,
+                "classification_allow": null,
+                "classification_deny": null,
+                "classification_min_confidence": 0.0
+              },
+              "do_chart_extraction": false,
+              "chart_extraction_options": {
+                "engine_options": {
+                  "engine_type": "auto_inline",
+                  "prefer_vllm": false,
+                  "trust_remote_code": false
+                },
+                "model_spec": {
+                  "name": "Granite-Vision-4.1-4B",
+                  "default_repo_id": "ibm-granite/granite-vision-4.1-4b",
+                  "revision": "dd48e97503de471803850df70843cf9eb5da8712",
+                  "prompt": "<chart2csv>",
+                  "response_format": "plaintext",
+                  "supported_engines": [
+                    "mlx",
+                    "api_lmstudio",
+                    "transformers",
+                    "api_ollama",
+                    "api_openai"
+                  ],
+                  "engine_overrides": {
+                    "transformers": {
+                      "repo_id": null,
+                      "revision": null,
+                      "torch_dtype": "bfloat16",
+                      "min_engine_version": null,
+                      "extra_config": {
+                        "transformers_model_type": "automodel-imagetexttotext"
+                      }
+                    },
+                    "mlx": {
+                      "repo_id": null,
+                      "revision": null,
+                      "torch_dtype": null,
+                      "min_engine_version": "0.7.0",
+                      "extra_config": {}
+                    }
+                  },
+                  "api_overrides": {
+                    "api_lmstudio": {
+                      "params": {
+                        "model": "granite-vision-4.1-4b"
+                      }
+                    },
+                    "api_ollama": {
+                      "params": {
+                        "model": "granite-vision-4.1-4b"
+                      }
+                    },
+                    "api_openai": {
+                      "params": {
+                        "model": "granite-vision-4.1-4b"
+                      }
+                    }
+                  },
+                  "trust_remote_code": true,
+                  "stop_strings": [],
+                  "temperature": 0.0,
+                  "max_new_tokens": 4096,
+                  "extra_generation_config": {}
+                },
+                "chart2csv": true,
+                "chart2summary": false,
+                "chart2code": false,
+                "output_format": "granite_vision_charts",
+                "use_natural_language_prompts": false
+              },
+              "images_scale": 1.0,
+              "generate_page_images": false,
+              "generate_picture_images": false,
+              "do_table_structure": true,
+              "extract_form_fields": false,
+              "do_ocr": true,
+              "do_code_enrichment": false,
+              "do_formula_enrichment": false,
+              "force_backend_text": false,
+              "table_structure_options": {},
+              "ocr_options": {
+                "mode": "full_page",
+                "lang": [
+                  "ar",
+                  "en"
+                ],
+                "scale": 1.0,
+                "force_full_page_ocr": true
+              },
+              "layout_options": {
+                "keep_empty_clusters": false,
+                "skip_cell_assignment": false,
+                "create_orphan_clusters": true
+              },
+              "code_formula_options": {
+                "engine_options": {
+                  "engine_type": "auto_inline",
+                  "prefer_vllm": false,
+                  "trust_remote_code": false
+                },
+                "model_spec": {
+                  "name": "CodeFormulaV2",
+                  "default_repo_id": "docling-project/CodeFormulaV2",
+                  "revision": "main",
+                  "prompt": "",
+                  "response_format": "plaintext",
+                  "supported_engines": null,
+                  "engine_overrides": {
+                    "transformers": {
+                      "repo_id": null,
+                      "revision": null,
+                      "torch_dtype": null,
+                      "min_engine_version": null,
+                      "extra_config": {
+                        "transformers_model_type": "automodel-imagetexttotext",
+                        "extra_generation_config": {
+                          "skip_special_tokens": false
+                        },
+                        "torch_dtype": "bfloat16"
+                      }
+                    }
+                  },
+                  "api_overrides": {},
+                  "trust_remote_code": false,
+                  "stop_strings": [
+                    "</doctag>",
+                    "<end_of_utterance>"
+                  ],
+                  "temperature": 0.0,
+                  "max_new_tokens": 4096,
+                  "extra_generation_config": {}
+                },
+                "scale": 2.0,
+                "max_size": null,
+                "extract_code": true,
+                "extract_formulas": true,
+                "expansion_factor": 0.18,
+                "stop_on_repetition": true
+              },
+              "generate_table_images": false,
+              "generate_parsed_pages": false,
+              "use_reading_order_separators": true,
+              "heading_hierarchy_options": {
+                "enabled": false,
+                "use_bookmarks": true,
+                "use_numbering": true,
+                "use_style": true,
+                "use_font_style": true,
+                "style_size_tolerance": 0.05,
+                "numbering_schemes": null,
+                "max_level": 6,
+                "bookmark_match_threshold": 0.8
+              },
+              "ocr_batch_size": 1,
+              "layout_batch_size": 1,
+              "table_batch_size": 1,
+              "batch_polling_interval_seconds": 0.5,
+              "queue_max_size": 100,
+              "stage_shutdown_timeout_seconds": 15.0
+            },
+            "initialization_seconds_including_downloads": 6.564322999998694,
+            "document_id": "misraj:7177bf70f77ce259890d6af0bef53f18faf26ec9:168c8ccb-6acb-4d91-8ece-3d6cd2bca72b",
+            "source_sha256": "4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd",
+            "processing_input_path": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png",
+            "phase": "inference",
+            "error_type": "ConversionError",
+            "error": "Conversion failed for: D:\\OCR_Benchmarking_Assets\\docling_easyocr\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png with status: failure. Errors: [enforce fail at alloc_cpu.cpp:117] data. DefaultCPUAllocator: not enough memory: you tried to allocate 8375500800 bytes.",
+            "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Shrouk\\Desktop\\OCR_Benchmarking\\benchmark_suite\\scripts\\docling_trial.py\", line 133, in worker\n    result = converter.convert(source, raises_on_error=True)\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\pydantic\\_internal\\_validate_call.py\", line 40, in wrapper_function\n    return wrapper(*args, **kwargs)\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\pydantic\\_internal\\_validate_call.py\", line 137, in __call__\n    res = self.__pydantic_validator__.validate_python(pydantic_core.ArgsKwargs(args, kwargs))\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\docling\\document_converter.py\", line 706, in convert\n    first_result = next(all_res, None)\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\docling\\document_converter.py\", line 800, in convert_all\n    raise ConversionError(\n    ...<2 lines>...\n    ) from get_input_rejection_cause(conv_res.input)\ndocling.exceptions.ConversionError: Conversion failed for: D:\\OCR_Benchmarking_Assets\\docling_easyocr\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png with status: failure. Errors: [enforce fail at alloc_cpu.cpp:117] data. DefaultCPUAllocator: not enough memory: you tried to allocate 8375500800 bytes.\n",
+            "wall_seconds": 15.222425000014482
+          }
+        }
+      ],
+      "maximum_memory_limit_gib": 4.0,
+      "model": "docling_easyocr",
+      "easyocr_scale": 1.0,
+      "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+      "accuracy_scores": null,
+      "selected_languages": [
+        "ar"
+      ],
+      "status": "NOT_COMPLETED"
     }
   ],
   "trial_artifacts": [
@@ -985,14 +1309,22 @@
     "benchmark_suite\\results\\docling_easyocr\\feasibility\\20261103T090228Z-ae16ec8b\\trial.json",
     "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261103T092226Z-b1c73300\\trial.json",
     "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T130525Z-ecb5178f\\trial.json",
-    "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T130720Z-ee563595\\trial.json"
+    "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T130720Z-ee563595\\trial.json",
+    "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134424Z-ed0f4d0d\\trial.json",
+    "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134652Z-5ce75c10\\trial.json",
+    "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134802Z-bbfd5011\\trial.json",
+    "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134905Z-c8d2dd09\\trial.json"
   ],
   "trial_sha256": [
     "c94e5a8c50a374a2aefb389bbbbb6946b0c89b48de8d3a3deac968781ed2df53",
     "e028f7430cd27111303f05d9cdbcf9ac0f45f17b7f4ee954777e3742e84e59aa",
     "49894228d3b021e014beea639cf3dce08e9f873d7c27e7c1637a4ab5bb5e8bf1",
     "52afc5fe6796d64b38b1c3060c8fd88218dd392d1e2fff5b3be8227a04f24c76",
-    "6562386f774408a84a8811c93c720d2aac1f781146b16fc0f3ce424d781ec506"
+    "6562386f774408a84a8811c93c720d2aac1f781146b16fc0f3ce424d781ec506",
+    "99979f88f8459f8a9435b2916254e650c1ba7571b65e550486fba965595bbae4",
+    "b98995f07a675a7f43a3ad42c3bc05a0c858153b3c9926d88083cd91724e49de",
+    "32ae404f037d6b24bf46e11dc209fbe8897696bd9fd52a7b5b59464d38078247",
+    "f75a96fa948906bc3a32b833390c1d00f9c23386e1817f6b3941ce7a9f1c8595"
   ],
   "ram_cleanup": {
     "UserAuthorized": true,
@@ -1087,13 +1419,19 @@
       "path": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\hf\\hub\\models--docling-project--docling-models\\snapshots\\fc0f2d45e2218ea24bce5045f58a389aed16dc23\\model_artifacts\\tableformer\\fast\\tableformer_fast.safetensors",
       "bytes": 145453276,
       "sha256": "3119563aab5a7c96fda4d621119b63fd8806272b86c30936d15507616422f718"
+    },
+    {
+      "path": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\easyocr\\model\\arabic.pth",
+      "bytes": 215400714,
+      "sha256": "2a9afd42c374deb98aed0b53c9b77d75e1d00d4e0501f3b0276c54190c89b1a8",
+      "publisher_md5": "993074555550e4e06a6077d55ff0449a"
     }
   ],
-  "model_file_bytes": 628166987,
-  "attempted_unique_documents": 10,
-  "failed_inference_attempts": 7,
+  "model_file_bytes": 843567701,
+  "attempted_unique_documents": 11,
+  "failed_inference_attempts": 11,
   "successful_documents": 8,
-  "arabic_attempted": false,
+  "arabic_attempted": true,
   "accuracy_scores": null,
   "selected_run_created": false,
   "next_model_started": false,
@@ -5072,6 +5410,401 @@
       "ruff": "PASSED",
       "artifact_checksums": "VERIFIED",
       "successful_worker_versions_match": true
+    }
+  },
+  "arabic_retry_20261104": {
+    "acquisition": {
+      "url": "https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/arabic.zip",
+      "expected_archive_bytes": 199916962,
+      "expected_model_md5": "993074555550e4e06a6077d55ff0449a",
+      "archive": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\downloads\\arabic-resumable.zip",
+      "target": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\easyocr\\model\\arabic.pth",
+      "status": "VERIFIED",
+      "errors": [],
+      "initial_prefix_source": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\easyocr\\model\\temp.zip",
+      "downloaded_bytes": 199916962,
+      "archive_sha256": "90b08b8e456d435bcdd96141221db5f116ef03ab3efc2d3239cfb24520ad7756",
+      "model_bytes": 215400714,
+      "model_sha256": "2a9afd42c374deb98aed0b53c9b77d75e1d00d4e0501f3b0276c54190c89b1a8",
+      "elapsed_seconds": 199.49720969999908
+    },
+    "trial_directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134424Z-ed0f4d0d",
+    "trial": {
+      "scope": "bounded feasibility trial, not benchmark evaluation",
+      "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134424Z-ed0f4d0d",
+      "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+      "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+      "attempts": [
+        {
+          "language": "ar",
+          "exit_code": 3221225477,
+          "memory_limit_bytes": 2353913856,
+          "sampled_peak_rss_bytes": 1591713792,
+          "sampled_peak_private_bytes": 1905893376,
+          "minimum_system_available_bytes": 1205673984,
+          "guard_abort": null,
+          "wall_seconds": 36.13602730000275
+        }
+      ],
+      "maximum_memory_limit_gib": 4.0,
+      "model": "docling_easyocr",
+      "easyocr_scale": 1.0,
+      "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+      "accuracy_scores": null,
+      "selected_languages": [
+        "ar"
+      ],
+      "status": "NOT_COMPLETED"
+    },
+    "arabic_successes": 0,
+    "reason": "ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH",
+    "accuracy_scores": null,
+    "waiting_for_user_to_free_ram": false,
+    "all_trial_directories": [
+      "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134424Z-ed0f4d0d",
+      "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134652Z-5ce75c10",
+      "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134802Z-bbfd5011",
+      "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134905Z-c8d2dd09"
+    ],
+    "all_trials": [
+      {
+        "scope": "bounded feasibility trial, not benchmark evaluation",
+        "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134424Z-ed0f4d0d",
+        "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+        "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+        "attempts": [
+          {
+            "language": "ar",
+            "exit_code": 3221225477,
+            "memory_limit_bytes": 2353913856,
+            "sampled_peak_rss_bytes": 1591713792,
+            "sampled_peak_private_bytes": 1905893376,
+            "minimum_system_available_bytes": 1205673984,
+            "guard_abort": null,
+            "wall_seconds": 36.13602730000275
+          }
+        ],
+        "maximum_memory_limit_gib": 4.0,
+        "model": "docling_easyocr",
+        "easyocr_scale": 1.0,
+        "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+        "accuracy_scores": null,
+        "selected_languages": [
+          "ar"
+        ],
+        "status": "NOT_COMPLETED"
+      },
+      {
+        "scope": "bounded feasibility trial, not benchmark evaluation",
+        "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134652Z-5ce75c10",
+        "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+        "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+        "attempts": [
+          {
+            "language": "ar",
+            "exit_code": 3221225477,
+            "memory_limit_bytes": 4294967296,
+            "sampled_peak_rss_bytes": 3450380288,
+            "sampled_peak_private_bytes": 3791007744,
+            "minimum_system_available_bytes": 1766588416,
+            "guard_abort": null,
+            "wall_seconds": 19.4609538000077
+          }
+        ],
+        "maximum_memory_limit_gib": 4.0,
+        "model": "docling_easyocr",
+        "easyocr_scale": 1.0,
+        "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+        "accuracy_scores": null,
+        "selected_languages": [
+          "ar"
+        ],
+        "status": "NOT_COMPLETED"
+      },
+      {
+        "scope": "bounded feasibility trial, not benchmark evaluation",
+        "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134802Z-bbfd5011",
+        "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+        "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+        "attempts": [
+          {
+            "language": "ar",
+            "exit_code": 3221225477,
+            "memory_limit_bytes": 4294967296,
+            "sampled_peak_rss_bytes": 3438170112,
+            "sampled_peak_private_bytes": 3766468608,
+            "minimum_system_available_bytes": 1760206848,
+            "guard_abort": null,
+            "wall_seconds": 19.294733200018527
+          }
+        ],
+        "maximum_memory_limit_gib": 4.0,
+        "model": "docling_easyocr",
+        "easyocr_scale": 1.0,
+        "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+        "accuracy_scores": null,
+        "selected_languages": [
+          "ar"
+        ],
+        "status": "NOT_COMPLETED"
+      },
+      {
+        "scope": "bounded feasibility trial, not benchmark evaluation",
+        "directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134905Z-c8d2dd09",
+        "asset_root": "D:\\OCR_Benchmarking_Assets\\docling_easyocr",
+        "python": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Scripts\\python.exe",
+        "attempts": [
+          {
+            "language": "ar",
+            "exit_code": 1,
+            "memory_limit_bytes": 4294967296,
+            "sampled_peak_rss_bytes": 3315093504,
+            "sampled_peak_private_bytes": 3587166208,
+            "minimum_system_available_bytes": 1915879424,
+            "guard_abort": null,
+            "wall_seconds": 16.591459999996005,
+            "worker_result": {
+              "scope": "bounded feasibility trial, not benchmark evaluation",
+              "language": "ar",
+              "memory_limit_bytes": 4294967296,
+              "status": "FAILED",
+              "documents_processed": 0,
+              "torch_mkldnn_enabled": false,
+              "versions": {
+                "docling": "2.143.1",
+                "docling-slim": "2.143.1",
+                "torch": "2.14.1",
+                "torchvision": "0.29.1",
+                "transformers": "5.22.1",
+                "easyocr": "1.7.2"
+              },
+              "model": "docling_easyocr",
+              "torch_cuda": null,
+              "pipeline_options": {
+                "document_timeout": 180.0,
+                "accelerator_options": {
+                  "num_threads": 2,
+                  "device": "cpu",
+                  "cuda_use_flash_attention2": false
+                },
+                "enable_remote_services": false,
+                "allow_external_plugins": false,
+                "artifacts_path": null,
+                "do_picture_classification": false,
+                "picture_classification_options": {
+                  "engine_options": {
+                    "engine_type": "transformers",
+                    "top_k": null
+                  },
+                  "model_spec": {
+                    "name": "document_figure_classifier_v2",
+                    "repo_id": "docling-project/DocumentFigureClassifier-v2.5",
+                    "revision": "main",
+                    "engine_overrides": {}
+                  }
+                },
+                "do_picture_description": false,
+                "picture_description_options": {
+                  "batch_size": 8,
+                  "scale": 2.0,
+                  "picture_area_threshold": 0.05,
+                  "classification_allow": null,
+                  "classification_deny": null,
+                  "classification_min_confidence": 0.0
+                },
+                "do_chart_extraction": false,
+                "chart_extraction_options": {
+                  "engine_options": {
+                    "engine_type": "auto_inline",
+                    "prefer_vllm": false,
+                    "trust_remote_code": false
+                  },
+                  "model_spec": {
+                    "name": "Granite-Vision-4.1-4B",
+                    "default_repo_id": "ibm-granite/granite-vision-4.1-4b",
+                    "revision": "dd48e97503de471803850df70843cf9eb5da8712",
+                    "prompt": "<chart2csv>",
+                    "response_format": "plaintext",
+                    "supported_engines": [
+                      "mlx",
+                      "api_lmstudio",
+                      "transformers",
+                      "api_ollama",
+                      "api_openai"
+                    ],
+                    "engine_overrides": {
+                      "transformers": {
+                        "repo_id": null,
+                        "revision": null,
+                        "torch_dtype": "bfloat16",
+                        "min_engine_version": null,
+                        "extra_config": {
+                          "transformers_model_type": "automodel-imagetexttotext"
+                        }
+                      },
+                      "mlx": {
+                        "repo_id": null,
+                        "revision": null,
+                        "torch_dtype": null,
+                        "min_engine_version": "0.7.0",
+                        "extra_config": {}
+                      }
+                    },
+                    "api_overrides": {
+                      "api_lmstudio": {
+                        "params": {
+                          "model": "granite-vision-4.1-4b"
+                        }
+                      },
+                      "api_ollama": {
+                        "params": {
+                          "model": "granite-vision-4.1-4b"
+                        }
+                      },
+                      "api_openai": {
+                        "params": {
+                          "model": "granite-vision-4.1-4b"
+                        }
+                      }
+                    },
+                    "trust_remote_code": true,
+                    "stop_strings": [],
+                    "temperature": 0.0,
+                    "max_new_tokens": 4096,
+                    "extra_generation_config": {}
+                  },
+                  "chart2csv": true,
+                  "chart2summary": false,
+                  "chart2code": false,
+                  "output_format": "granite_vision_charts",
+                  "use_natural_language_prompts": false
+                },
+                "images_scale": 1.0,
+                "generate_page_images": false,
+                "generate_picture_images": false,
+                "do_table_structure": true,
+                "extract_form_fields": false,
+                "do_ocr": true,
+                "do_code_enrichment": false,
+                "do_formula_enrichment": false,
+                "force_backend_text": false,
+                "table_structure_options": {},
+                "ocr_options": {
+                  "mode": "full_page",
+                  "lang": [
+                    "ar",
+                    "en"
+                  ],
+                  "scale": 1.0,
+                  "force_full_page_ocr": true
+                },
+                "layout_options": {
+                  "keep_empty_clusters": false,
+                  "skip_cell_assignment": false,
+                  "create_orphan_clusters": true
+                },
+                "code_formula_options": {
+                  "engine_options": {
+                    "engine_type": "auto_inline",
+                    "prefer_vllm": false,
+                    "trust_remote_code": false
+                  },
+                  "model_spec": {
+                    "name": "CodeFormulaV2",
+                    "default_repo_id": "docling-project/CodeFormulaV2",
+                    "revision": "main",
+                    "prompt": "",
+                    "response_format": "plaintext",
+                    "supported_engines": null,
+                    "engine_overrides": {
+                      "transformers": {
+                        "repo_id": null,
+                        "revision": null,
+                        "torch_dtype": null,
+                        "min_engine_version": null,
+                        "extra_config": {
+                          "transformers_model_type": "automodel-imagetexttotext",
+                          "extra_generation_config": {
+                            "skip_special_tokens": false
+                          },
+                          "torch_dtype": "bfloat16"
+                        }
+                      }
+                    },
+                    "api_overrides": {},
+                    "trust_remote_code": false,
+                    "stop_strings": [
+                      "</doctag>",
+                      "<end_of_utterance>"
+                    ],
+                    "temperature": 0.0,
+                    "max_new_tokens": 4096,
+                    "extra_generation_config": {}
+                  },
+                  "scale": 2.0,
+                  "max_size": null,
+                  "extract_code": true,
+                  "extract_formulas": true,
+                  "expansion_factor": 0.18,
+                  "stop_on_repetition": true
+                },
+                "generate_table_images": false,
+                "generate_parsed_pages": false,
+                "use_reading_order_separators": true,
+                "heading_hierarchy_options": {
+                  "enabled": false,
+                  "use_bookmarks": true,
+                  "use_numbering": true,
+                  "use_style": true,
+                  "use_font_style": true,
+                  "style_size_tolerance": 0.05,
+                  "numbering_schemes": null,
+                  "max_level": 6,
+                  "bookmark_match_threshold": 0.8
+                },
+                "ocr_batch_size": 1,
+                "layout_batch_size": 1,
+                "table_batch_size": 1,
+                "batch_polling_interval_seconds": 0.5,
+                "queue_max_size": 100,
+                "stage_shutdown_timeout_seconds": 15.0
+              },
+              "initialization_seconds_including_downloads": 6.564322999998694,
+              "document_id": "misraj:7177bf70f77ce259890d6af0bef53f18faf26ec9:168c8ccb-6acb-4d91-8ece-3d6cd2bca72b",
+              "source_sha256": "4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd",
+              "processing_input_path": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png",
+              "phase": "inference",
+              "error_type": "ConversionError",
+              "error": "Conversion failed for: D:\\OCR_Benchmarking_Assets\\docling_easyocr\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png with status: failure. Errors: [enforce fail at alloc_cpu.cpp:117] data. DefaultCPUAllocator: not enough memory: you tried to allocate 8375500800 bytes.",
+              "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\Shrouk\\Desktop\\OCR_Benchmarking\\benchmark_suite\\scripts\\docling_trial.py\", line 133, in worker\n    result = converter.convert(source, raises_on_error=True)\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\pydantic\\_internal\\_validate_call.py\", line 40, in wrapper_function\n    return wrapper(*args, **kwargs)\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\pydantic\\_internal\\_validate_call.py\", line 137, in __call__\n    res = self.__pydantic_validator__.validate_python(pydantic_core.ArgsKwargs(args, kwargs))\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\docling\\document_converter.py\", line 706, in convert\n    first_result = next(all_res, None)\n  File \"D:\\OCR_Benchmarking_Assets\\docling_easyocr\\venv\\Lib\\site-packages\\docling\\document_converter.py\", line 800, in convert_all\n    raise ConversionError(\n    ...<2 lines>...\n    ) from get_input_rejection_cause(conv_res.input)\ndocling.exceptions.ConversionError: Conversion failed for: D:\\OCR_Benchmarking_Assets\\docling_easyocr\\inputs\\4a7131ee411796b5c6f112a668c746ed9e867b215f0c94b310a7fe04f81a70bd.png with status: failure. Errors: [enforce fail at alloc_cpu.cpp:117] data. DefaultCPUAllocator: not enough memory: you tried to allocate 8375500800 bytes.\n",
+              "wall_seconds": 15.222425000014482
+            }
+          }
+        ],
+        "maximum_memory_limit_gib": 4.0,
+        "model": "docling_easyocr",
+        "easyocr_scale": 1.0,
+        "user_authorization": "Selected model task is explicitly approved; record actual trial outcome",
+        "accuracy_scores": null,
+        "selected_languages": [
+          "ar"
+        ],
+        "status": "NOT_COMPLETED"
+      }
+    ],
+    "available_ram_after_user_closed_tabs_gib": 4.8,
+    "arabic_inference_attempts": 4,
+    "unique_arabic_documents_attempted": 1,
+    "remaining_arabic_development_pages_not_attempted": 9,
+    "native_crash_location": "EasyOCR CRAFT detector, torch.nn.modules.conv CPU convolution (faulthandler trace)",
+    "native_crash_cause": "UNCONFIRMED; explicit allocation failure established only for MKLDNN-disabled backend",
+    "diagnostic_mkldnn_disabled_allocation_bytes": 8375500800,
+    "reviewed_report_directory": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\reports\\arabic-retry-20261104-reviewed",
+    "verification": {
+      "suite_tests_passed": 216,
+      "ruff": "PASSED",
+      "publisher_md5": "VERIFIED",
+      "sha256": "RECORDED_AND_VERIFIED"
     }
   }
 }

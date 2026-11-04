@@ -48,10 +48,10 @@
     "granite_docling": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY",
     "paddle": "REMAINING_FULL_EVALUATION_DEFERRED_BY_USER",
     "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED",
-    "docling_easyocr": "REPEATED_NATIVE_CRASH_ON_TWO_ENGLISH_DEVELOPMENT_PAGES"
+    "docling_easyocr": "ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "feat(benchmark): attempt complete EasyOCR English development cohort",
+  "checkpoint_git_commit_subject": "feat(benchmark): cache Arabic EasyOCR model and record bounded retries",
   "approval_required_before": "TASK-018",
   "approved_tasks": [
     "TASK-001",
@@ -72,7 +72,7 @@
     "TASK-017",
     "TASK-012"
   ],
-  "next_action": "English EasyOCR scale-1 checkpoint saved: 8/10 successful, two repeated native crashes; investigate native/memory failure before another retry. Arabic model download remains incomplete. No next model started.",
+  "next_action": "Arabic model download on D: verified. Arabic scale-1 inference failed in four bounded attempts; retain eight English successes and investigate memory/native CPU backend constraints before more inference. No next model started.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -261,7 +261,7 @@
       ],
       "first_trial_outcome": "Coordinator stopped at asset download after 617 seconds; zero pages, no model OOM. Direct detector prefetch verified; second attempt is initializing.",
       "resolved_requirements": "configs/docling-easyocr-trial-requirements.txt",
-      "reason": "REPEATED_NATIVE_CRASH_ON_TWO_ENGLISH_DEVELOPMENT_PAGES",
+      "reason": "ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH",
       "outcome": "Actual OCR inference failed on CPU allocation within the controlled commit-memory budget, including the D: retry after ending unrelated apps.",
       "model_inference_executed": true,
       "successful_documents": 8,
@@ -281,7 +281,7 @@
       "verification": "204 suite tests passed; Ruff passed; real Windows job-cap allocation rejection test; native CPU pip check passed; downloaded model SHA256 inventory recorded.",
       "user_requested_retry": true,
       "retry_date": "2026-11-04",
-      "arabic_inference_executed": false,
+      "arabic_inference_executed": true,
       "latest_trial": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T130720Z-ee563595",
       "default_retry": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T130525Z-ecb5178f",
       "lower_memory_ocr_scale": 1.0,
@@ -298,7 +298,21 @@
       "english_continuation_first_batch": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\english_development\\20261104T133127Z-d5109745",
       "english_continuation_retry": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\english_development\\20261104T133628Z-ba75368f",
       "native_exit_code": "0xc0000005",
-      "native_crash_cause": "UNCONFIRMED"
+      "native_crash_cause": "UNCONFIRMED",
+      "user_requested_arabic_retry": true,
+      "arabic_download_status": "VERIFIED",
+      "arabic_inference_attempts": 4,
+      "arabic_successful_pages": 0,
+      "arabic_unique_documents_attempted": 1,
+      "arabic_model_sha256": "2a9afd42c374deb98aed0b53c9b77d75e1d00d4e0501f3b0276c54190c89b1a8",
+      "arabic_trial_directories": [
+        "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134424Z-ed0f4d0d",
+        "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134652Z-5ce75c10",
+        "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134802Z-bbfd5011",
+        "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\trials\\20261104T134905Z-c8d2dd09"
+      ],
+      "d_arabic_report": "D:\\OCR_Benchmarking_Assets\\docling_easyocr\\reports\\arabic-retry-20261104-reviewed",
+      "diagnostic_single_allocation_bytes": 8375500800
     },
     "docling_tesseract_task015": {
       "status": "BLOCKED",

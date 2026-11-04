@@ -1,5 +1,68 @@
 # Docling + EasyOCR: TASK-014 actual-attempt record
 
+## Latest Arabic retry — 2026-11-04
+
+**Arabic model download completed and verified on D:. Arabic inference still
+has zero successful pages.** The eight saved English successes remain intact.
+This retry targeted the first frozen Arabic development image; the other nine
+Arabic development images were not attempted. No Arabic accuracy score or
+completed English/bilingual/full evaluation is claimed.
+
+The 199,916,962-byte publisher archive resumed from the existing 16,654,336-byte
+partial prefix and completed in 199.50 seconds. Installed `arabic.pth` is
+215,400,714 bytes, verified against EasyOCR 1.7.2's publisher MD5
+`993074555550e4e06a6077d55ff0449a`. SHA256:
+`2a9afd42c374deb98aed0b53c9b77d75e1d00d4e0501f3b0276c54190c89b1a8`.
+Archive SHA256: `90b08b8e456d435bcdd96141221db5f116ef03ab3efc2d3239cfb24520ad7756`.
+Archive, model and acquisition metadata are all under
+`D:/OCR_Benchmarking_Assets/docling_easyocr/`. No production package or Windows
+paging configuration was changed. The resumable download helper preserves partial
+bytes, checks exact HTTP range/size, validates the sole archive member and model
+checksum, and refuses to overwrite a differing installed model.
+
+Four isolated Arabic attempts used the same Docling 2.143.1/EasyOCR 1.7.2,
+CPU Torch 2.14.1, Arabic-plus-English recognition model, full-page OCR scale 1.0,
+two threads and batch sizes one. All used a byte-identical D: processing input.
+The first trial had limited available RAM; after the user closed Chrome tabs,
+availability returned to 4.8 GiB and the full retained 4-GiB process cap was used.
+
+| Attempt | Commit-memory cap | Supervised wall | Outcome |
+|---|---:|---:|---|
+| Initial, reduced headroom | 2.19 GiB | 36.14 s | 0xc0000005 |
+| After user freed RAM | 4.00 GiB | 19.46 s | 0xc0000005 |
+| Crash-stack diagnostic | 4.00 GiB | 19.29 s | 0xc0000005 |
+| MKLDNN disabled diagnostic | 4.00 GiB | 16.59 s | Allocation error |
+
+The native access violation trace places the crash in EasyOCR's CRAFT detector
+inside a PyTorch CPU convolution. Its exact underlying cause remains unconfirmed.
+The final diagnostic explicitly disabled PyTorch MKLDNN; this separate backend
+configuration returned `DefaultCPUAllocator: not enough memory`, requesting
+**8,375,500,800 bytes (7.80 GiB) for a single allocation**, beyond the 4-GiB job cap.
+This establishes a memory failure for that diagnostic setting, not a universal
+minimum or proof that all earlier native crashes share the same cause. There was
+no supervisor low-system-RAM abort. Failed native trials have no successful
+output/result JSON; their logs and supervisor receipts are preserved.
+
+The Arabic-only supervisor option prevents rerunning successful English pages.
+`--disable-mkldnn` is opt-in and the ordinary backend default is preserved.
+Current Paddle/Granite source pins were refreshed for the changed shared helper;
+historical immutable runs were preserved. All 216 suite tests and Ruff pass.
+
+Reviewed acquisition metadata, trial receipts, crash traces and source snapshots:
+`D:/OCR_Benchmarking_Assets/docling_easyocr/reports/arabic-retry-20261104-reviewed`.
+All four original trial directories are recorded in DOCLING_EASYOCR_RESULTS.json,
+`arabic_retry_20261104`. The download blocker is resolved. TASK-014 is BLOCKED
+with `ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH`; zero Arabic pages succeeded.
+
+```powershell
+.venv-ocr\Scripts\python.exe benchmark_suite/scripts/prefetch_easyocr_arabic.py
+.venv-ocr\Scripts\python.exe benchmark_suite/scripts/try_docling_easyocr.py --python D:/OCR_Benchmarking_Assets/docling_easyocr/venv/Scripts/python.exe --asset-root D:/OCR_Benchmarking_Assets/docling_easyocr --max-memory-gib 4 --easyocr-scale 1 --language ar
+```
+
+These reproduce asset verification and the attempted configuration; another
+unchanged retry is not expected to resolve the recorded failure. Earlier
+missing-download and pending-Arabic statements below are historical.
+
 ## English development continuation — 2026-11-04
 
 **All 10 English development pages were attempted: 8 successful conversions,

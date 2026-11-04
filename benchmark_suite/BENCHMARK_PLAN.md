@@ -1,5 +1,15 @@
 # OCR benchmark implementation plan
 
+Latest Arabic retry (2026-11-04): Docling + EasyOCR's missing Arabic model
+is fully downloaded and publisher-checksum verified on D:. Four attempts on the
+first Arabic development image produced zero successful pages: native CRAFT CPU
+convolution access violations; the separate MKLDNN-disabled diagnostic returned
+a 7.80-GiB single-allocation memory error under a 4-GiB job cap. The eight English
+successes remain saved. TASK-014 is BLOCKED by inference memory/native failure,
+not asset downloading. See [Arabic retry report](reports/DOCLING_EASYOCR.md).
+No complete bilingual/full evaluation or accuracy score is claimed. Earlier
+checkpoint and missing-download statements are historical.
+
 Latest English continuation (2026-11-04): Docling + EasyOCR scale 1.0
 attempted all ten English development pages. Eight conversions succeeded; two
 pages crashed with native Windows exit 0xc0000005 and repeated the crash on

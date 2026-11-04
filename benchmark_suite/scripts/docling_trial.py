@@ -67,6 +67,9 @@ def worker(args):
         threads = 1 if args.model == "docling_tesseract" else 2
         torch.set_num_threads(threads)
         torch.set_num_interop_threads(1)
+        if args.disable_mkldnn:
+            torch.backends.mkldnn.enabled = False
+        state["torch_mkldnn_enabled"] = torch.backends.mkldnn.enabled
         state["versions"] = {name: importlib.metadata.version(name) for name in
                              ("docling", "docling-slim", "torch", "torchvision", "transformers")}
         state["model"] = args.model
@@ -161,7 +164,9 @@ def supervise(args):
                "easyocr_scale": args.easyocr_scale if args.model == "docling_easyocr" else None,
                "user_authorization": "Selected model task is explicitly approved; record actual trial outcome", "accuracy_scores": None}
     print(f"Trial artifacts: {directory}", flush=True)
-    for language in ("en", "ar"):
+    languages = [args.language] if args.language else ["en", "ar"]
+    outcome["selected_languages"] = languages
+    for language in languages:
         available = psutil.virtual_memory().available
         if available < 2 * GIB:
             outcome["blocked_reason"] = "Available RAM below retained 2-GiB generic floor before worker start"
@@ -178,6 +183,8 @@ def supervise(args):
             command.extend(["--cache-root", str(args.cache_root)])
         if args.model == "docling_easyocr":
             command.extend(["--easyocr-scale", str(args.easyocr_scale)])
+        if args.disable_mkldnn:
+            command.append("--disable-mkldnn")
         start = time.monotonic()
         rss_peak = private_peak = 0
         free_min = available
@@ -214,7 +221,7 @@ def supervise(args):
         print(json.dumps(attempt, default=str), flush=True)
         if process.returncode:
             break
-    outcome["status"] = "SUCCESS" if len(outcome["attempts"]) == 2 and all(x["exit_code"] == 0 for x in outcome["attempts"]) else "NOT_COMPLETED"
+    outcome["status"] = "SUCCESS" if len(outcome["attempts"]) == len(languages) and all(x["exit_code"] == 0 for x in outcome["attempts"]) else "NOT_COMPLETED"
     write_json(directory / "trial.json", outcome)
     print(f"Trial {outcome['status']}: {directory}", flush=True)
     return 0 if outcome["status"] == "SUCCESS" else 1
@@ -234,6 +241,8 @@ def main(default_model="docling_easyocr"):
     parser.add_argument("--max-memory-gib", type=float, default=2.5)
     parser.add_argument("--easyocr-scale", type=float, choices=(1.0, 1.5, 2.0, 3.0), default=3.0,
                         help="Explicit Docling EasyOCR render scale; default 3.0 preserves previous trials")
+    parser.add_argument("--disable-mkldnn", action="store_true",
+                        help="Explicit CPU backend diagnostic; default preserves PyTorch MKLDNN setting")
     args = parser.parse_args()
     if not 0 < args.max_memory_gib <= 4:
         parser.error("Maximum trial commit-memory cap must be positive and at most 4 GiB")

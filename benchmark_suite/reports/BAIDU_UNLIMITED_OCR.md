@@ -1,5 +1,52 @@
 # Baidu Unlimited-OCR 2: working hosted feasibility checkpoint
 
+## Latest quota-reset continuation — 2026-11-09
+
+**14 saved successful development pages: 7 English and 7 Arabic.** This
+continuation added two complete, untruncated outputs, reusing the earlier twelve
+verified successes. Six of the original twenty development targets remain.
+
+| New page | Server-reported elapsed | Client request wall | Tokens | Markdown characters |
+|---|---:|---:|---:|---:|
+| English, interleaved position 13 | 115.7 s | 120.19 s | 2,103 | 6,771 |
+| Arabic, position 14 | 61.8 s | 64.97 s | 1,142 | 2,964 |
+
+The next English request (position 15) returned **GPU task aborted**, a hosted
+worker error after 113.77 seconds of client request wall time. No completed
+output was saved for that request. It was retried once, preserving and reusing
+all fourteen successes. The retry was quota-denied: **90 seconds requested versus
+22 seconds remaining**, with a service retry delay of **23:52:41** at rejection.
+The worker abort and quota rejection are separate events on the same document;
+they are not counted as two unique failed pages or successful conversions.
+Five other development pages were never attempted in this continuation.
+
+First new trial:
+`D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261109T073624Z-c69092b2`.
+Quota-denied retry, now the newest reusable checkpoint:
+`D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261109T074343Z-3da68193`.
+Reviewed native responses, readable outputs, copied inputs, per-page CSV, both
+new trial logs and SHA256 manifest:
+`D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/reports/development-20261109-14pages`.
+
+The hosted app revision remained unchanged in before/after metadata checks.
+The same frozen images, request parameters and existing authenticated free
+account were used. No credentials were logged, paid subscription enabled or
+quota workaround used. Actual served weight revision and remote RAM/VRAM remain
+unverified. Server-reported elapsed and client wall times do not share the same
+measurement boundary as local CPU inference. All fourteen successes report
+`truncated=false`; conversion completion is not an OCR accuracy score.
+
+TASK-017 is BLOCKED: HOSTED_FREE_QUOTA_EXHAUSTED. Six pages remain, and no
+completed twenty-page development/full evaluation or official selected-run marker
+is claimed. Existing authorization persists. Reuse verification and the focused
+tracking/reuse tests passed (56 tests). No inference code or model settings changed.
+
+```powershell
+.venv-ocr\Scripts\python.exe benchmark_suite/scripts/try_unlimited_ocr_demo.py --development --reuse D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261109T074343Z-3da68193 --authenticated
+```
+
+Earlier twelve-page and seven-page checkpoints below are historical.
+
 ## Latest quota-reset continuation — 2026-11-04
 
 **12 saved successful development pages: 6 English and 6 Arabic.** The free

@@ -426,7 +426,7 @@
       "recommended_host_ram_gib": 4,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 0,
-      "recommended_action": "12 hosted development successes (6 English/6 Arabic) saved after quota-reset retry; 8 remain. Resume newest trial after free quota resets. Hosted model-weight revision remains unverified.",
+      "recommended_action": "14 hosted development successes (7 English/7 Arabic) saved; six remain. Latest worker-aborted request was retried once and quota-denied. Resume newest trial after free quota resets; hosted weight revision unverified.",
       "capabilities": {
         "english": "ONE_PAGE_HOSTED_FEASIBILITY_SUCCESS",
         "arabic": "ONE_PAGE_HOSTED_FEASIBILITY_SUCCESS",
@@ -441,7 +441,7 @@
         "https://huggingface.co/baidu/Unlimited-OCR-2",
         "https://huggingface.co/spaces/baidu/Unlimited-OCR-2"
       ],
-      "current_snapshot_loading": "HOSTED_TWELVE_PAGES_SUCCEEDED; FREE_QUOTA_EXHAUSTED; LOCAL_CUDA_VRAM_BLOCKED",
+      "current_snapshot_loading": "HOSTED_FOURTEEN_PAGES_SUCCEEDED; FREE_QUOTA_EXHAUSTED; LOCAL_CUDA_VRAM_BLOCKED",
       "weight_repository": "baidu/Unlimited-OCR-2",
       "weight_revision": "0480966938291445591f69f08a13b041c073a96a",
       "planning_budget_scope": "Existing 0.5 GiB/4 GiB host/zero VRAM estimates apply only to the HTTP client, not local model loading",
@@ -450,14 +450,14 @@
         "report": "reports/BAIDU_UNLIMITED_OCR.md",
         "results": "reports/BAIDU_UNLIMITED_OCR_RESULTS.json",
         "execution_location": "remote public demo",
-        "successes": 12,
+        "successes": 14,
         "full_evaluation_executed": false,
         "remote_weight_revision": "UNVERIFIED",
-        "successful_english": 6,
-        "successful_arabic": 6,
-        "remaining_pages": 8,
+        "successful_english": 7,
+        "successful_arabic": 7,
+        "remaining_pages": 6,
         "continuation_reason": "HOSTED_FREE_QUOTA_EXHAUSTED",
-        "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261104T125515Z-b748224f"
+        "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261109T074343Z-3da68193"
       }
     }
   }

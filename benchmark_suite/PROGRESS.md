@@ -1,5 +1,14 @@
 # Benchmark progress
 
+Latest Baidu continuation (2026-11-09): the free hosted Unlimited-OCR-2
+trial added two untruncated successes, bringing the saved total to 14 pages
+(7 English/7 Arabic). The next hosted request aborted; one retry then hit free
+quota (90 seconds requested versus 22 left; service advised 23:52:41 until retry).
+Six development pages remain. All outputs, errors and reviewed copies are on D:.
+See [Baidu report](reports/BAIDU_UNLIMITED_OCR.md). TASK-017 is BLOCKED by free
+quota; no completed development/full evaluation or accuracy score is claimed.
+Earlier next-action and checkpoint statements below are historical.
+
 Latest Arabic retry (2026-11-04): Docling + EasyOCR's missing Arabic model
 is fully downloaded and publisher-checksum verified on D:. Four attempts on the
 first Arabic development image produced zero successful pages: native CRAFT CPU

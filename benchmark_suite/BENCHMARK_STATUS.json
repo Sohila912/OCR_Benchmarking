@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-04",
+  "updated_date": "2026-11-09",
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
-  "current_task": "TASK-014",
+  "current_task": "TASK-017",
   "tasks": {
     "TASK-001": "COMPLETED",
     "TASK-002": "COMPLETED",
@@ -47,11 +47,11 @@
     "docling_tesseract": "FULL_EVALUATION_DEFERRED_BY_USER",
     "granite_docling": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY",
     "paddle": "REMAINING_FULL_EVALUATION_DEFERRED_BY_USER",
-    "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED",
-    "docling_easyocr": "ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH"
+    "docling_easyocr": "ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH",
+    "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED"
   },
   "last_completed_checkpoint": "TASK-008",
-  "checkpoint_git_commit_subject": "feat(benchmark): cache Arabic EasyOCR model and record bounded retries",
+  "checkpoint_git_commit_subject": "docs(benchmark): expand Baidu hosted trial to fourteen pages",
   "approval_required_before": "TASK-018",
   "approved_tasks": [
     "TASK-001",
@@ -72,7 +72,7 @@
     "TASK-017",
     "TASK-012"
   ],
-  "next_action": "Arabic model download on D: verified. Arabic scale-1 inference failed in four bounded attempts; retain eight English successes and investigate memory/native CPU backend constraints before more inference. No next model started.",
+  "next_action": "Baidu continuation saved: 14 successful development pages (7 English/7 Arabic), 6 remaining. Wait for free quota reset before further calls; newest reusable trial demo_trials/20261109T074343Z-3da68193. No next model started.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -367,7 +367,7 @@
       "report": "reports/BAIDU_UNLIMITED_OCR.md",
       "summary": "reports/BAIDU_UNLIMITED_OCR_RESULTS.json",
       "hosted_feasibility_status": "SUCCESS",
-      "hosted_documents_processed": 12,
+      "hosted_documents_processed": 14,
       "hosted_languages": [
         "en",
         "ar"
@@ -378,25 +378,27 @@
       "development_evaluation_completed": false,
       "accuracy_scores": null,
       "remote_model_weight_revision": "UNVERIFIED",
-      "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261104T125515Z-b748224f",
+      "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261109T074343Z-3da68193",
       "ruff": "PASSED",
       "additional_pages_requested_by_user": true,
-      "successful_english": 6,
-      "successful_arabic": 6,
-      "remaining_development_pages": 8,
-      "never_attempted_development_pages": 7,
+      "successful_english": 7,
+      "successful_arabic": 7,
+      "remaining_development_pages": 6,
+      "never_attempted_development_pages": 5,
       "quota_denied_in_latest_continuation": 1,
-      "reviewed_output_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\reports\\development-20261104-12pages",
+      "reviewed_output_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\reports\\development-20261109-14pages",
       "local_hugging_face_login_configured": true,
       "credentials_saved_in_reports": false,
       "suite_tests_passed": 216,
-      "latest_quota_recheck": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261104T125515Z-b748224f",
+      "latest_quota_recheck": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261109T074343Z-3da68193",
       "offline_partial_metrics_directory": "D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/evaluations/20261103T120039Z-05cad4bb",
       "offline_work_stopped_at_user_request": true,
-      "fresh_successes_in_latest_continuation": 5,
-      "reused_successes_in_latest_continuation": 7,
-      "quota_reset_retry_date": "2026-11-04",
-      "continuation_focused_tests_passed": 56
+      "fresh_successes_in_latest_continuation": 2,
+      "reused_successes_in_latest_continuation": 12,
+      "quota_reset_retry_date": "2026-11-09",
+      "continuation_focused_tests_passed": 56,
+      "hosted_worker_aborts_in_latest_continuation": 1,
+      "reused_successes_in_quota_retry": 14
     },
     "paddle_task012": {
       "status": "BLOCKED",

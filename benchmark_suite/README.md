@@ -1,5 +1,7 @@
 # OCR benchmarking suite
 
+**Management summary:** [Open the presentation-friendly report](reports/BENCHMARK_SUMMARY.html) · [Markdown version](reports/BENCHMARK_SUMMARY.md). Updated 9 November 2026.
+
 Latest Baidu continuation (2026-11-09): the free hosted Unlimited-OCR-2
 trial added two untruncated successes, bringing the saved total to 14 pages
 (7 English/7 Arabic). The next hosted request aborted; one retry then hit free

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OCR Benchmark — Management Summary — 9 November 2026</title><style>@page{size:A4;margin:16mm}*{box-sizing:border-box}body{font-family:Segoe UI,Arial,sans-serif;color:#1f2937;margin:0;background:#edf1f5;line-height:1.5;font-size:15px}main{max-width:1120px;margin:32px auto;background:white;padding:40px 48px;box-shadow:0 3px 18px #14263818;border-top:6px solid #245a81}h1{font-size:30px;line-height:1.2;color:#153c58;margin:0 0 12px}h2{font-size:20px;color:#153c58;margin:28px 0 10px;border-bottom:1px solid #dce4eb;padding-bottom:7px}p{margin:10px 0}table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;line-height:1.45}th{background:#eaf1f7;text-align:left;color:#153c58}th,td{padding:9px 11px;border:1px solid #d5dfe8;vertical-align:top}tr:nth-child(even) td{background:#fafbfd}thead{display:table-header-group}tr{break-inside:avoid}strong{color:#173f5a}a{color:#185b8c;text-decoration:none}li{margin:7px 0}footer{color:#64748b;font-size:12px;border-top:1px solid #dce4eb;margin-top:26px;padding-top:12px}@media print{body{background:white;font-size:10pt;line-height:1.35}main{max-width:none;margin:0;padding:0;border:0;box-shadow:none}h1{font-size:22pt}h2{font-size:14pt;break-after:avoid;margin-top:18px}table{font-size:8.5pt}th,td{padding:6px}a{color:inherit;text-decoration:none}p,li{orphans:3;widows:3}}</style></head><body><main><h1>OCR benchmark: management progress report</h1>
+<p><strong>As of 9 November 2026 · Arabic and English OCR · Interim results</strong></p>
+<h2>Current position</h2>
+<p>The shared benchmarking framework is complete, all nine planned model candidates
+have been assessed or attempted, and several models have produced saved outputs.
+<strong>No model has completed the full 1,135-page evaluation. There is no validated
+overall winner or finished cross-model comparison yet.</strong></p>
+<p>The clearest measured evaluation checkpoint is PaddleOCR: 200 evaluation pages
+converted without failures, with text scores available for 199 pages. Tesseract
+has the largest saved evaluation coverage: 437 pages, with no OCR failures at its
+last checkpoint. Baidu has now reached 14 successful hosted development pages.</p>
+<table>
+<thead>
+<tr>
+<th>Project area</th>
+<th>Position</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared framework</td>
+<td>Foundation tasks 1–8 completed: research, frozen datasets, metrics, common runner, checkpoints and Windows execution tools</td>
+</tr>
+<tr>
+<td>Dataset</td>
+<td>20 development pages: 10 English and 10 Arabic; separate frozen evaluation set: 1,135 pages, comprising 745 English and 390 Arabic</td>
+</tr>
+<tr>
+<td>Model assessment</td>
+<td>All nine candidates reviewed; some blocked before inference, others tested on development or partial evaluation cohorts</td>
+</tr>
+<tr>
+<td>Full evaluation</td>
+<td>0 of 9 model tasks fully completed; a saved subset is not a completed full benchmark</td>
+</tr>
+<tr>
+<td>Final deliverables</td>
+<td>Comprehensive comparison, final visualizations and final benchmark report remain pending</td>
+</tr>
+</tbody>
+</table>
+<h2>Results by model</h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>What has actually been achieved</th>
+<th>Current limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PaddleOCR</strong></td>
+<td>20/20 development conversions; <strong>200/200 evaluation conversions</strong>, with 199 text-scored pages</td>
+<td>935 evaluation pages remain; continuation was deferred to test other models</td>
+</tr>
+<tr>
+<td><strong>Tesseract</strong></td>
+<td>20/20 development conversions; <strong>437/1,135 evaluation predictions saved</strong>: 390 Arabic and 47 English; zero OCR failures</td>
+<td>Paused when available RAM fell below the runner's 2-GiB start floor; 698 evaluation pages remain</td>
+</tr>
+<tr>
+<td><strong>Docling + Tesseract</strong></td>
+<td>19/20 development conversions; text scores for 10 English and 9 Arabic pages</td>
+<td>One Arabic timeout; full evaluation deferred at the user's request</td>
+</tr>
+<tr>
+<td><strong>Docling + EasyOCR</strong></td>
+<td>At reduced OCR scale 1.0, <strong>8/10 English development pages succeeded</strong>; Arabic model downloaded and verified on D:</td>
+<td>Two English pages repeatedly crashed; first Arabic page failed four attempts, including a memory-allocation error in an alternate CPU backend</td>
+</tr>
+<tr>
+<td><strong>Baidu Unlimited-OCR-2</strong></td>
+<td><strong>14/20 hosted development conversions</strong>: 7 English and 7 Arabic, all untruncated</td>
+<td>Six pages remain; free daily quota exhausted after a hosted worker abort and one retry; served model-weight revision is unverified</td>
+</tr>
+<tr>
+<td><strong>Granite Docling</strong></td>
+<td>Two bounded feasibility conversions produced output; the first Arabic output contained no recognized text</td>
+<td>Subsequent generation/runtime instability; no completed development evaluation</td>
+</tr>
+<tr>
+<td><strong>Surya OCR</strong></td>
+<td>Hardware/backend readiness investigated; no successful OCR inference</td>
+<td>Selected backend/environment could not be established within the tested hardware constraints</td>
+</tr>
+<tr>
+<td><strong>PaddleOCR-VL</strong></td>
+<td>Hardware/software feasibility assessed; no successful OCR inference</td>
+<td>GPU/RAM/runtime constraints</td>
+</tr>
+<tr>
+<td><strong>Marker</strong></td>
+<td>Hardware/software feasibility assessed; no successful OCR inference</td>
+<td>Hardware/runtime constraints before inference</td>
+</tr>
+</tbody>
+</table>
+<h2>Measured text recognition results</h2>
+<p><strong>CER and WER are character and word error rates; lower is better.</strong> A successful
+conversion means the pipeline produced a completed output, not that the text was
+correct. These rows are separate checkpoints, not a performance ranking.</p>
+<table>
+<thead>
+<tr>
+<th>Model and cohort</th>
+<th style="text-align:right">Text-scored pages, English / Arabic</th>
+<th style="text-align:right">English CER / WER</th>
+<th style="text-align:right">Arabic CER / WER</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PaddleOCR — 200-page evaluation subset</td>
+<td style="text-align:right">99 / 100</td>
+<td style="text-align:right"><strong>14.17% / 23.48%</strong></td>
+<td style="text-align:right"><strong>51.53% / 71.34%</strong></td>
+</tr>
+<tr>
+<td>PaddleOCR — 20-page development set</td>
+<td style="text-align:right">10 / 10</td>
+<td style="text-align:right">7.98% / 23.75%</td>
+<td style="text-align:right">56.29% / 77.29%</td>
+</tr>
+<tr>
+<td>Tesseract — 20-page development set</td>
+<td style="text-align:right">10 / 10</td>
+<td style="text-align:right">8.96% / 24.21%</td>
+<td style="text-align:right">29.04% / 45.77%</td>
+</tr>
+<tr>
+<td>Docling + Tesseract — development run</td>
+<td style="text-align:right">10 / 9</td>
+<td style="text-align:right">26.69% / 40.09%</td>
+<td style="text-align:right">50.26% / 67.47%</td>
+</tr>
+</tbody>
+</table>
+<p>All rates above use the shared text normalization policy. English is scored
+against independently allocated reference-region text; Arabic uses page-content
+text, so their reference scopes differ. Paddle's evaluation subset selected the
+first 100 pages per language deterministically; it is not a random corpus sample.
+One English evaluation page lacked a text reference and was not scored. The
+Docling + Tesseract timeout is also excluded from text scoring, not zero-filled.
+Source-document independence is unverified. These limits prevent an overall
+accuracy ranking from these checkpoints.</p>
+<p>Baidu's 14 conversions and EasyOCR's eight English successes <strong>do not yet have
+published text accuracy scores in their current reports</strong>. No full-evaluation
+score is available for Tesseract's incomplete 437-page run.</p>
+<h2>Runtime, resources and evidence</h2>
+<p>Paddle's 200-page batch took <strong>97.89 minutes</strong>, with sampled peak process and
+descendant RSS of <strong>0.71 GiB</strong>. Timings include fresh worker startup and related
+processing overhead; sampled RSS can miss short peaks. These are measured local
+CPU results, not projected full-run performance.</p>
+<p>The laptop has 12 GB installed RAM (about 11.74 GiB usable) and an MX350 with
+2-GiB VRAM. Available RAM varies with other applications. D: holds downloaded
+assets, isolated runtimes, native outputs and reviewed copies; disk capacity does
+not replace physical RAM. Windows paging settings have not been changed.</p>
+<p>Baidu runs on a free external hosted demo, so its quota, hardware and timing
+boundary differ from local CPU tests. No paid service was enabled. Model support
+for layout, reading order and tables varies; unsupported outputs and missing
+references are recorded explicitly rather than treated as zero scores.</p>
+<h2>What remains to finish</h2>
+<ol>
+<li><strong>Complete consistent evaluation coverage.</strong> Paddle has 935 pages remaining.
+Tesseract has 698 remaining; its saved run must be recovered with its recorded
+execution identity before continuation, or replaced by a clearly versioned run.</li>
+<li><strong>Finish the development checkpoints.</strong> Baidu has six pages left when free
+quota permits. Docling + Tesseract has one timeout to resolve. EasyOCR and
+Granite need their recorded native, memory or generation failures investigated.</li>
+<li><strong>Score and review saved outputs.</strong> In particular, distinguish Baidu/EasyOCR
+conversion completion from text quality, and report failures and coverage.</li>
+<li><strong>Produce the final comparison.</strong> Use matching cohorts, disclose local versus
+hosted execution, and keep text, structure and resource results separate.</li>
+</ol>
+<p><strong>Management takeaway:</strong> the project has a working, checkpointed benchmark and
+useful interim evidence. The remaining work is completing comparable evaluations
+and resolving execution blockers.</p>
+<h2>Supporting reports</h2>
+<ul>
+<li><a href="PADDLE_EVALUATION_200.md">Paddle: 200-page evaluation results</a></li>
+<li><a href="TESSERACT.md">Tesseract: development and saved evaluation coverage</a></li>
+<li><a href="DOCLING_TESSERACT.md">Docling + Tesseract</a></li>
+<li><a href="DOCLING_EASYOCR.md">Docling + EasyOCR: English and Arabic attempts</a></li>
+<li><a href="BAIDU_UNLIMITED_OCR.md">Baidu Unlimited-OCR: latest 14-page checkpoint</a></li>
+<li><a href="GRANITE_DOCLING.md">Granite Docling</a></li>
+<li><a href="MODEL_HARDWARE_COMPATIBILITY.md">Hardware compatibility assessment</a></li>
+</ul>
+<p>This report summarizes the saved project evidence as of the date above. Later
+execution may change these counts; individual reports retain the underlying
+configuration, artifact identities and failure records.</p>
+<footer>OCR Benchmarking project · Interim management summary · Prepared 9 November 2026 (Africa/Cairo)</footer></main></body></html>

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_date": "2026-11-09",
+  "updated_date": "2026-11-24",
   "timezone": "Africa/Cairo",
   "branch": "feature/ocr-comprehensive-benchmark",
   "audited_base_commit": "4215badd51c760f6800ab590938aaf407f659a77",
@@ -48,7 +48,7 @@
     "granite_docling": "ARABIC_GENERATION_LIMIT_AND_RUNTIME_INSTABILITY",
     "paddle": "REMAINING_FULL_EVALUATION_DEFERRED_BY_USER",
     "docling_easyocr": "ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH",
-    "baidu": "HOSTED_FREE_QUOTA_EXHAUSTED"
+    "baidu": "HOSTED_GPU_WORKER_ABORTED_ON_EVALUATION_PAGE"
   },
   "last_completed_checkpoint": "TASK-008",
   "checkpoint_git_commit_subject": "docs(benchmark): expand Baidu hosted trial to fourteen pages",
@@ -72,7 +72,7 @@
     "TASK-017",
     "TASK-012"
   ],
-  "next_action": "Baidu continuation saved: 14 successful development pages (7 English/7 Arabic), 6 remaining. Wait for free quota reset before further calls; newest reusable trial demo_trials/20261109T074343Z-3da68193. No next model started.",
+  "next_action": "Baidu development remains complete at 20/20. Evaluation page 1 aborted twice on the free hosted GPU worker; 0/1135 evaluation pages completed. Retry the saved evaluation checkpoint when the worker is usable; see reports/BAIDU_UNLIMITED_OCR.md.",
   "verification": {
     "status": "COMPLETED",
     "task": "TASK-009",
@@ -443,6 +443,52 @@
       "remaining_evaluation_pages": 935,
       "evaluation_subset_sampled_peak_rss_bytes": 759783424,
       "evaluation_subset_recorded_wall_seconds": 5873.580351000011
+    },
+    "baidu_20261112": {
+      "development_successes": 17,
+      "remaining": 3,
+      "reusable_trial": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261112T090026Z-6b39f86e",
+      "retry_after_utc": "2026-11-13T09:00:31.916617+00:00"
+    },
+    "baidu_latest_continuation": {
+      "development_successes": 20,
+      "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261116T092839Z-b92d9544",
+      "reason": "HOSTED_DEVELOPMENT_COMPLETE_FULL_EVALUATION_DEFERRED"
+    },
+    "baidu_20261124_preflight": {
+      "available_ram_bytes": 999899136,
+      "physical_ram_bytes": 12606803968,
+      "disk_free_bytes": 993912709120,
+      "execution": "hosted HTTP client only; no local model loading",
+      "target_pages": 1135,
+      "batch_limit": 10,
+      "input_and_reference_hashes_verified": 10
+    },
+    "baidu_evaluation_20261124": {
+      "date": "2026-11-24",
+      "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261124T075531Z-5cea4b8a",
+      "split": "evaluation",
+      "total_successes": 0,
+      "target_pages": 1135,
+      "remaining_pages": 1135,
+      "new_successes": 0,
+      "status": "HOSTED_GPU_WORKER_ABORTED",
+      "attempts": [
+        {
+          "language": "en",
+          "document_id": "omnidocbench:aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec:00f8eeecee150fcdc641fb8d",
+          "status": "FAILED",
+          "source_sha256": "f8e8bf63ab208873403f609f9b6280fd7d46ad41739edbf3f867eb877cae3963",
+          "documents_processed": 0,
+          "event_id": "6e57e6379db945c8b94dba99def10291",
+          "error_type": "RuntimeError",
+          "error": "Hosted demo error: {'error': 'GPU task aborted', 'duration': 10, 'visible': True, 'title': 'ZeroGPU worker error'}",
+          "request_wall_seconds": 112.43964449991472
+        }
+      ],
+      "previous_trial": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261124T075258Z-864181d5",
+      "accuracy_scores": null,
+      "verification": "93 runner, tracking and metric tests passed; first ten frozen images and references verified; remote deployment unchanged."
     }
   }
 }

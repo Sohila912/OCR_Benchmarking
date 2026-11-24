@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OCR Benchmark — Management Summary — 9 November 2026</title><style>@page{size:A4;margin:16mm}*{box-sizing:border-box}body{font-family:Segoe UI,Arial,sans-serif;color:#1f2937;margin:0;background:#edf1f5;line-height:1.5;font-size:15px}main{max-width:1120px;margin:32px auto;background:white;padding:40px 48px;box-shadow:0 3px 18px #14263818;border-top:6px solid #245a81}h1{font-size:30px;line-height:1.2;color:#153c58;margin:0 0 12px}h2{font-size:20px;color:#153c58;margin:28px 0 10px;border-bottom:1px solid #dce4eb;padding-bottom:7px}p{margin:10px 0}table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;line-height:1.45}th{background:#eaf1f7;text-align:left;color:#153c58}th,td{padding:9px 11px;border:1px solid #d5dfe8;vertical-align:top}tr:nth-child(even) td{background:#fafbfd}thead{display:table-header-group}tr{break-inside:avoid}strong{color:#173f5a}a{color:#185b8c;text-decoration:none}li{margin:7px 0}footer{color:#64748b;font-size:12px;border-top:1px solid #dce4eb;margin-top:26px;padding-top:12px}@media print{body{background:white;font-size:10pt;line-height:1.35}main{max-width:none;margin:0;padding:0;border:0;box-shadow:none}h1{font-size:22pt}h2{font-size:14pt;break-after:avoid;margin-top:18px}table{font-size:8.5pt}th,td{padding:6px}a{color:inherit;text-decoration:none}p,li{orphans:3;widows:3}}</style></head><body><main><h1>OCR benchmark: management progress report</h1>
-<p><strong>As of 9 November 2026 · Arabic and English OCR · Interim results</strong></p>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OCR Benchmark — Management Summary — 24 November 2026</title><style>@page{size:A4;margin:16mm}*{box-sizing:border-box}body{font-family:Segoe UI,Arial,sans-serif;color:#1f2937;margin:0;background:#edf1f5;line-height:1.5;font-size:15px}main{max-width:1120px;margin:32px auto;background:white;padding:40px 48px;box-shadow:0 3px 18px #14263818;border-top:6px solid #245a81}h1{font-size:30px;line-height:1.2;color:#153c58;margin:0 0 12px}h2{font-size:20px;color:#153c58;margin:28px 0 10px;border-bottom:1px solid #dce4eb;padding-bottom:7px}p{margin:10px 0}table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;line-height:1.45}th{background:#eaf1f7;text-align:left;color:#153c58}th,td{padding:9px 11px;border:1px solid #d5dfe8;vertical-align:top}tr:nth-child(even) td{background:#fafbfd}thead{display:table-header-group}tr{break-inside:avoid}strong{color:#173f5a}a{color:#185b8c;text-decoration:none}li{margin:7px 0}footer{color:#64748b;font-size:12px;border-top:1px solid #dce4eb;margin-top:26px;padding-top:12px}@media print{body{background:white;font-size:10pt;line-height:1.35}main{max-width:none;margin:0;padding:0;border:0;box-shadow:none}h1{font-size:22pt}h2{font-size:14pt;break-after:avoid;margin-top:18px}table{font-size:8.5pt}th,td{padding:6px}a{color:inherit;text-decoration:none}p,li{orphans:3;widows:3}}</style></head><body><main><h1>OCR benchmark: management progress report</h1>
+<p><strong>As of 24 November 2026 · Arabic and English OCR · Interim results</strong></p>
 <h2>Current position</h2>
 <p>The shared benchmarking framework is complete, all nine planned model candidates
 have been assessed or attempted, and several models have produced saved outputs.
@@ -9,7 +9,7 @@ overall winner or finished cross-model comparison yet.</strong></p>
 <p>The clearest measured evaluation checkpoint is PaddleOCR: 200 evaluation pages
 converted without failures, with text scores available for 199 pages. Tesseract
 has the largest saved evaluation coverage: 437 pages, with no OCR failures at its
-last checkpoint. Baidu has now reached 14 successful hosted development pages.</p>
+last checkpoint. Baidu completed all 20 hosted development pages; the first evaluation page aborted twice on the hosted worker.</p>
 <table>
 <thead>
 <tr>
@@ -72,8 +72,8 @@ last checkpoint. Baidu has now reached 14 successful hosted development pages.</
 </tr>
 <tr>
 <td><strong>Baidu Unlimited-OCR-2</strong></td>
-<td><strong>14/20 hosted development conversions</strong>: 7 English and 7 Arabic, all untruncated</td>
-<td>Six pages remain; free daily quota exhausted after a hosted worker abort and one retry; served model-weight revision is unverified</td>
+<td><strong>20/20</strong> successful hosted development conversions (10 English and 10 Arabic pages scored)</td>
+<td>0/1,135 evaluation pages completed: first page aborted twice on the hosted worker on 24 November; hosted weight revision is unverified</td>
 </tr>
 <tr>
 <td><strong>Granite Docling</strong></td>
@@ -112,6 +112,12 @@ correct. These rows are separate checkpoints, not a performance ranking.</p>
 </thead>
 <tbody>
 <tr>
+<td>Baidu — hosted development set</td>
+<td style="text-align:right">10 / 10</td>
+<td style="text-align:right">5.85% / 19.63%</td>
+<td style="text-align:right">18.59% / 30.20%</td>
+</tr>
+<tr>
 <td>PaddleOCR — 200-page evaluation subset</td>
 <td style="text-align:right">99 / 100</td>
 <td style="text-align:right"><strong>14.17% / 23.48%</strong></td>
@@ -145,7 +151,7 @@ One English evaluation page lacked a text reference and was not scored. The
 Docling + Tesseract timeout is also excluded from text scoring, not zero-filled.
 Source-document independence is unverified. These limits prevent an overall
 accuracy ranking from these checkpoints.</p>
-<p>Baidu's 14 conversions and EasyOCR's eight English successes <strong>do not yet have
+<p>EasyOCR's eight English successes <strong>do not yet have
 published text accuracy scores in their current reports</strong>. No full-evaluation
 score is available for Tesseract's incomplete 437-page run.</p>
 <h2>Runtime, resources and evidence</h2>
@@ -166,10 +172,9 @@ references are recorded explicitly rather than treated as zero scores.</p>
 <li><strong>Complete consistent evaluation coverage.</strong> Paddle has 935 pages remaining.
 Tesseract has 698 remaining; its saved run must be recovered with its recorded
 execution identity before continuation, or replaced by a clearly versioned run.</li>
-<li><strong>Finish the development checkpoints.</strong> Baidu has six pages left when free
-quota permits. Docling + Tesseract has one timeout to resolve. EasyOCR and
+<li><strong>Finish the development checkpoints.</strong> Docling + Tesseract has one timeout to resolve. EasyOCR and
 Granite need their recorded native, memory or generation failures investigated.</li>
-<li><strong>Score and review saved outputs.</strong> In particular, distinguish Baidu/EasyOCR
+<li><strong>Score and review saved outputs.</strong> In particular, distinguish EasyOCR
 conversion completion from text quality, and report failures and coverage.</li>
 <li><strong>Produce the final comparison.</strong> Use matching cohorts, disclose local versus
 hosted execution, and keep text, structure and resource results separate.</li>
@@ -183,11 +188,11 @@ and resolving execution blockers.</p>
 <li><a href="TESSERACT.md">Tesseract: development and saved evaluation coverage</a></li>
 <li><a href="DOCLING_TESSERACT.md">Docling + Tesseract</a></li>
 <li><a href="DOCLING_EASYOCR.md">Docling + EasyOCR: English and Arabic attempts</a></li>
-<li><a href="BAIDU_UNLIMITED_OCR.md">Baidu Unlimited-OCR: latest 14-page checkpoint</a></li>
+<li><a href="BAIDU_UNLIMITED_OCR.md">Baidu Unlimited-OCR: completed 20-page development set</a></li>
 <li><a href="GRANITE_DOCLING.md">Granite Docling</a></li>
 <li><a href="MODEL_HARDWARE_COMPATIBILITY.md">Hardware compatibility assessment</a></li>
 </ul>
 <p>This report summarizes the saved project evidence as of the date above. Later
 execution may change these counts; individual reports retain the underlying
 configuration, artifact identities and failure records.</p>
-<footer>OCR Benchmarking project · Interim management summary · Prepared 9 November 2026 (Africa/Cairo)</footer></main></body></html>
+<footer>OCR Benchmarking project · Interim management summary · Prepared 24 November 2026 (Africa/Cairo)</footer></main></body></html>

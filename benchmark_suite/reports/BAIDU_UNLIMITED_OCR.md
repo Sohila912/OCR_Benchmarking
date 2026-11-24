@@ -1,4 +1,53 @@
-# Baidu Unlimited-OCR 2: working hosted feasibility checkpoint
+# Baidu Unlimited-OCR-2 hosted benchmark
+
+## 24 November 2026 · Evaluation continuation blocked by hosted worker
+
+The existing development set remains **20/20 complete**. A bounded batch of up to ten new pages was started on the separate frozen **1,135-page evaluation split**. The first English page (`00f8eeecee150fcdc641fb8d`, a dense newspaper layout) returned `GPU task aborted` in both the original request and one retry. Neither request produced a completed response. **0/1,135 evaluation pages are complete**; one unique page was attempted twice, and 1,134 pages remain unattempted. No quota-denial message was received, so this checkpoint is classified as a hosted worker failure, not confirmed quota exhaustion. No further requests were made.
+
+The runner now supports `--evaluation --max-new-pages N`, preserving deterministic English/Arabic interleaving, including the unequal language counts, and stopping on a failed request or the page budget. The evaluator selects the trial's frozen split and verifies its manifest checksum. Saved development trials retain their existing behavior. Six focused runner tests and 87 tracking/metric tests passed (93 total). The first ten evaluation input/reference pairs passed checksum verification; the hosted app revision was unchanged.
+
+An offline rerun of all twenty saved development outputs reproduced **every aggregate metric and output identity exactly**, including English CER/WER **5.85% / 19.63%** and Arabic **18.59% / 30.20%**. This is revalidation of saved outputs, not new OCR inference. Partial streamed text from the failed evaluation attempts was not scored. The hosted model-weight revision remains unverified.
+
+- [First failed trial](D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261124T075258Z-864181d5/trial.json)
+- [Retry checkpoint](D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261124T075531Z-5cea4b8a/trial.json)
+- [Reproduced development metrics](D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/evaluations/20261124T075756Z-4acf3cfd/metrics.json)
+- [Recorded evidence and artifact hashes](BAIDU_UNLIMITED_OCR_RESULTS.json)
+
+To continue once the hosted worker is usable, reactivate the approved TASK-017/Baidu checkpoint in `BENCHMARK_STATUS.json`, then run:
+
+```powershell
+.venv-ocr/Scripts/python.exe benchmark_suite/scripts/try_unlimited_ocr_demo.py --evaluation --max-new-pages 10 --authenticated --reuse D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261124T075531Z-5cea4b8a
+```
+
+Record checksums for any new responses in `BAIDU_UNLIMITED_OCR_RESULTS.json` before calling `evaluate_unlimited_demo.py --trial <new-trial-directory>`. Preserve the failed trials; do not count them as completed predictions. This session used the existing free hosted route and enabled no paid services.
+
+## 16 November 2026 · Complete development set
+
+Baidu Unlimited-OCR-2 completed **20 of 20** development documents. Two hosted sessions added positions 18–20. The first completed positions 18 and 19. Uploading position 20 timed out before job submission. The retry reused nineteen verified responses and submitted only the remaining page. All twenty outputs were untruncated. Each input and archived response was matched to the frozen document before scoring.
+
+| Language | Converted | Text scored | Normalized CER | Normalized WER |
+|---|---:|---:|---:|---:|
+| English | 10 | 10 | 5.85% | 19.63% |
+| Arabic | 10 | 10 | 18.59% | 30.20% |
+
+On the corresponding registered InkLight development run, English CER/WER were 7.29% / 23.63% and Arabic CER/WER were 25.85% / 41.41%. English scoring uses annotated text regions and Arabic scoring uses the page text. The hosted service did not expose its exact model-weight revision. The separate 1,135-page Baidu evaluation is outside this development checkpoint.
+
+[Completed trial](D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261116T092839Z-b92d9544/trial.json) · [Evaluation metrics](D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/evaluations/20261116T092857Z-2afd3e8b/metrics.json) · [Recorded response hashes](BAIDU_UNLIMITED_OCR_RESULTS.json)
+
+## 12 November 2026 · 17 development pages
+
+The authenticated free demo verified fourteen saved responses and completed development positions 15–17. The seventeen outputs are complete and untruncated. Matching upstream response hashes, frozen image/reference hashes and the pinned Baidu parser were verified before scoring.
+
+| Language | Scored pages | Normalized micro CER | Normalized micro WER |
+|---|---:|---:|---:|
+| English | 9 of 10 | 6.38% | 21.45% |
+| Arabic | 8 of 10 | 21.57% | 35.63% |
+
+Page 18 was quota-denied (90 seconds requested, 44 available). Positions 18–20 remain. The service reported a reset around 11:01 Cairo time on 13 November. Its exact served model-weight revision remains unverified.
+
+- [Reusable checkpoint](D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261112T090026Z-6b39f86e/trial.json)
+- [Evaluated outputs and provenance](D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/evaluations/20261112T090647Z-8925212e/metrics.json)
+- [Checked-in checkpoint and hashes](BAIDU_UNLIMITED_OCR_RESULTS.json)
 
 ## Latest quota-reset continuation — 2026-11-09
 

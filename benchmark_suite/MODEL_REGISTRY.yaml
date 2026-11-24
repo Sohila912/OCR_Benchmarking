@@ -415,7 +415,7 @@
       "name": "Baidu Unlimited-OCR-2 (open-source; hosted feasibility tested)",
       "package": "custom Transformers model; hosted demo used",
       "latest_package_version_observed": null,
-      "candidate_pin_status": "SOURCE_CONFIG_METADATA_PINNED; HOSTED_TWO_PAGE_FEASIBILITY_SUCCEEDED",
+      "candidate_pin_status": "SOURCE_CONFIG_METADATA_PINNED; HOSTED_DEVELOPMENT_COMPLETE; WEIGHT_REVISION_UNVERIFIED",
       "execution_authorized": false,
       "license_summary": "MIT source and model card; hosted demo subject to its platform terms",
       "hardware_compatibility": "LIMITED",
@@ -426,10 +426,10 @@
       "recommended_host_ram_gib": 4,
       "estimated_gpu_vram_gib_from": 0,
       "estimated_additional_storage_gib": 0,
-      "recommended_action": "14 hosted development successes (7 English/7 Arabic) saved; six remain. Latest worker-aborted request was retried once and quota-denied. Resume newest trial after free quota resets; hosted weight revision unverified.",
+      "recommended_action": "Baidu development remains complete at 20/20. Evaluation page 1 aborted twice on the free hosted GPU worker; 0/1135 evaluation pages completed. Retry the saved evaluation checkpoint when the worker is usable; see reports/BAIDU_UNLIMITED_OCR.md.",
       "capabilities": {
-        "english": "ONE_PAGE_HOSTED_FEASIBILITY_SUCCESS",
-        "arabic": "ONE_PAGE_HOSTED_FEASIBILITY_SUCCESS",
+        "english": "10_DEVELOPMENT_PAGES_SCORED",
+        "arabic": "10_DEVELOPMENT_PAGES_SCORED",
         "layout": "Grounding markers returned; not quantitatively validated",
         "reading_order": "NOT_EVALUATED",
         "tables": "NOT_EVALUATED",
@@ -441,7 +441,7 @@
         "https://huggingface.co/baidu/Unlimited-OCR-2",
         "https://huggingface.co/spaces/baidu/Unlimited-OCR-2"
       ],
-      "current_snapshot_loading": "HOSTED_FOURTEEN_PAGES_SUCCEEDED; FREE_QUOTA_EXHAUSTED; LOCAL_CUDA_VRAM_BLOCKED",
+      "current_snapshot_loading": "HOSTED_DEVELOPMENT_20_COMPLETE; EVALUATION_GPU_WORKER_ABORTED; LOCAL_CUDA_VRAM_BLOCKED",
       "weight_repository": "baidu/Unlimited-OCR-2",
       "weight_revision": "0480966938291445591f69f08a13b041c073a96a",
       "planning_budget_scope": "Existing 0.5 GiB/4 GiB host/zero VRAM estimates apply only to the HTTP client, not local model loading",
@@ -450,14 +450,27 @@
         "report": "reports/BAIDU_UNLIMITED_OCR.md",
         "results": "reports/BAIDU_UNLIMITED_OCR_RESULTS.json",
         "execution_location": "remote public demo",
-        "successes": 14,
+        "successes": 20,
         "full_evaluation_executed": false,
         "remote_weight_revision": "UNVERIFIED",
-        "successful_english": 7,
-        "successful_arabic": 7,
-        "remaining_pages": 6,
-        "continuation_reason": "HOSTED_FREE_QUOTA_EXHAUSTED",
-        "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261109T074343Z-3da68193"
+        "successful_english": 10,
+        "successful_arabic": 10,
+        "remaining_pages": 0,
+        "continuation_reason": "DEVELOPMENT_COMPLETE",
+        "trial_directory": "D:/OCR_Benchmarking_Assets/baidu_unlimited_ocr/demo_trials/20261116T092839Z-b92d9544"
+      },
+      "evaluation_trial": {
+        "date": "2026-11-24",
+        "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261124T075531Z-5cea4b8a",
+        "split": "evaluation",
+        "total_successes": 0,
+        "target_pages": 1135,
+        "remaining_pages": 1135,
+        "new_successes": 0,
+        "status": "HOSTED_GPU_WORKER_ABORTED",
+        "previous_trial": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261124T075258Z-864181d5",
+        "accuracy_scores": null,
+        "verification": "93 runner, tracking and metric tests passed; first ten frozen images and references verified; remote deployment unchanged."
       }
     }
   }

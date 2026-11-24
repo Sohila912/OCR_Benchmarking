@@ -1,7 +1,7 @@
 {
   "task": "TASK-017",
   "selected_implementation": "Open-source Baidu Unlimited-OCR-2; user clarified GitHub repository, replacing the earlier unresolved Cloud API assumption",
-  "date": "2026-11-09",
+  "date": "2026-11-24",
   "github_commit": "ea42e6d15ff93fdd0e8041fc0ac70880513453d3",
   "model_revision_inspected": "0480966938291445591f69f08a13b041c073a96a",
   "model_parameter_metadata": {
@@ -1384,6 +1384,222 @@
     "verification": {
       "focused_tests_passed": 56,
       "input_and_output_reuse_verification": "PASSED"
+    }
+  },
+  "quota_reset_continuation_20261112": {
+    "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261112T090026Z-6b39f86e",
+    "reused": 14,
+    "new_successes": 3,
+    "total_successes": 17,
+    "remaining": 3,
+    "quota_error": "Hosted demo error: {'error': 'You have exceeded your free ZeroGPU quota (90s requested vs. 44s left). Try again in 23:55:18. Subscribe to Hugging Face PRO to get 40 min of ZeroGPU quota a day - https://huggingface.co/subscribe/pro?from=ZeroGPU', 'duration': 10, 'visible': True, 'title': 'ZeroGPU quota exceeded'}",
+    "service_retry_after_utc": "2026-11-13T09:00:31.916617+00:00",
+    "artifact_sha256": {
+      "demo_trials\\20261112T090026Z-6b39f86e\\015-en\\input.json": "9d56bff910fba3e186df4e615b6b6091eeca95e3cee91106c1cb3a3ea7cf4260",
+      "demo_trials\\20261112T090026Z-6b39f86e\\015-en\\prediction.md": "97f656997deaa5983353dfbda05c79b77104d049c73d3e96d63cafeb587da949",
+      "demo_trials\\20261112T090026Z-6b39f86e\\015-en\\raw.txt": "c8f76afcde4264049f8d826196a36ce78a0f75b50bfc06a8cf2e057711e1f4ae",
+      "demo_trials\\20261112T090026Z-6b39f86e\\015-en\\request.json": "1b89ae1f55f1f418ac553019a287175a736d6d24bd2fc2108b432d3e883b8391",
+      "demo_trials\\20261112T090026Z-6b39f86e\\015-en\\response.json": "0eab965c676ea4fdb07cdf008283a8f1d11246e756a6982ed112cdb4048c3d48",
+      "demo_trials\\20261112T090026Z-6b39f86e\\015-en\\result.json": "29e34045dfdb5f03ae0bcdacf66d9c708bc307f14de350dd7789b0cd93dec737",
+      "demo_trials\\20261112T090026Z-6b39f86e\\016-ar\\input.json": "cf74fe20cb885ca1e2eba40a57ab6468c8289f205e87203989f1ea098687af5b",
+      "demo_trials\\20261112T090026Z-6b39f86e\\016-ar\\prediction.md": "390855d7f0071b5886e8eea45ed2cd9604b928229819cb68e023fe06f038db1d",
+      "demo_trials\\20261112T090026Z-6b39f86e\\016-ar\\raw.txt": "eb3d9f92129c371f65c8d438032ea6c98040944268e783ddace8dd81af9e367a",
+      "demo_trials\\20261112T090026Z-6b39f86e\\016-ar\\request.json": "fc5688180c31050927a11f4e0bc2b87f9c3d2e97be02632546faaf1a0cf7024b",
+      "demo_trials\\20261112T090026Z-6b39f86e\\016-ar\\response.json": "4ee8872ba8f8810c81bbc8343ba0a18952fbf43c62177c725817e4733ba9a21c",
+      "demo_trials\\20261112T090026Z-6b39f86e\\016-ar\\result.json": "93c3af4e56e4a5d1750e9fa3cc077303cc0f9928b6624428953c1e9a14d19bc9",
+      "demo_trials\\20261112T090026Z-6b39f86e\\017-en\\input.json": "50802009296ee4ea8b5b9851447965641540d30dbc56ad586901e45f27edf373",
+      "demo_trials\\20261112T090026Z-6b39f86e\\017-en\\prediction.md": "26f6f2b57d701e36aab7e0a639dda8f24a6baf8cddb2ae139c6ac8edc310ddc9",
+      "demo_trials\\20261112T090026Z-6b39f86e\\017-en\\raw.txt": "c52e55a3a443170b360b55c147ae1eeb70af63246af12c56b6eea3beaaf36905",
+      "demo_trials\\20261112T090026Z-6b39f86e\\017-en\\request.json": "33f5cee76c9cc7bad4c4cf19417c9ba7f635ec5711e55096cee8cfc67aaa8e4c",
+      "demo_trials\\20261112T090026Z-6b39f86e\\017-en\\response.json": "58c0ddb34375b17515f376426ec0dc7d3527d52e63070bb58892c66a99f26445",
+      "demo_trials\\20261112T090026Z-6b39f86e\\017-en\\result.json": "41ede8bfa736edb6dd87fd1e8e989ba69c5701401774bb82877a062f2aa1fb95",
+      "demo_trials\\20261112T090026Z-6b39f86e\\018-ar\\input.json": "92d3b8153cb5d543dcd4eff6c95a54aea5cca7c5fab33cbd1478f1671575e422",
+      "demo_trials\\20261112T090026Z-6b39f86e\\018-ar\\request.json": "e4dc6270ead25e1cf8aa6f69e934a0c4821f1e6ece78a85b3c052dae7c2e10df",
+      "demo_trials\\20261112T090026Z-6b39f86e\\018-ar\\result.json": "afd6177d6a029df497fee40a613cbfc59b6c81f57f418a8a32f3cc34a564fb9d",
+      "demo_trials\\20261112T090026Z-6b39f86e\\deployment_before.json": "2e5e2d9380a9d8b6cd908bf6c65d2f938abcc20c757189d5b1a268329845e15f",
+      "demo_trials\\20261112T090026Z-6b39f86e\\trial.json": "2c09f6626a21246b89e455274f68f7bc764ca802aee0e219f9e6f63ef7833c55"
+    },
+    "evaluation_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\evaluations\\20261112T090647Z-8925212e",
+    "normalized_text": {
+      "ar": {
+        "pages": 8,
+        "cer": 0.21572354211663067,
+        "wer": 0.35625311410064775
+      },
+      "en": {
+        "pages": 9,
+        "cer": 0.06378587552402451,
+        "wer": 0.2144691780821918
+      }
+    }
+  },
+  "quota_continuation_20261116T092521Z-999df09d": {
+    "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261116T092521Z-999df09d",
+    "total_successes": 19,
+    "remaining": 1,
+    "reused": 17,
+    "new_successes": 2,
+    "status": "NOT_COMPLETED",
+    "artifact_sha256": {
+      "demo_trials\\20261116T092521Z-999df09d\\deployment_before.json": "2e5e2d9380a9d8b6cd908bf6c65d2f938abcc20c757189d5b1a268329845e15f",
+      "demo_trials\\20261116T092521Z-999df09d\\trial.json": "c44693981262b0c917c9ddc6e77b5b2dde76a4c9c91de2beacae3c27a66f777b",
+      "demo_trials\\20261116T092521Z-999df09d\\018-ar\\input.json": "92d3b8153cb5d543dcd4eff6c95a54aea5cca7c5fab33cbd1478f1671575e422",
+      "demo_trials\\20261116T092521Z-999df09d\\018-ar\\prediction.md": "a705f45d763f7c062a2adbe40a94c3475d8c03bf9f6ad79a32d6f2ae607cdc86",
+      "demo_trials\\20261116T092521Z-999df09d\\018-ar\\raw.txt": "9c9f5d80fce10c1d7af075f1d25d11afc7f40b69e9eaed9846b5a07906385304",
+      "demo_trials\\20261116T092521Z-999df09d\\018-ar\\request.json": "c80d86c2fa87bdaf384f4fa2dede206c94ae55954e6d43c340c8f529663c741a",
+      "demo_trials\\20261116T092521Z-999df09d\\018-ar\\response.json": "b5cbb54facc019d41ee548dbac080351ed987b7ae66be80cc8812f7cc464455f",
+      "demo_trials\\20261116T092521Z-999df09d\\018-ar\\result.json": "4712fdce891f4324ef5ca17d37d7355c5712789d2e27710ad04b066220893941",
+      "demo_trials\\20261116T092521Z-999df09d\\019-en\\input.json": "110aaa730f118f3d5819f8094a8fff62bfebbe0df5ff206944e87f13746e1231",
+      "demo_trials\\20261116T092521Z-999df09d\\019-en\\prediction.md": "f8b4366d6005cb85429b15a2cf0705d5df2d361245c730537f6da2bc9f9fbcb4",
+      "demo_trials\\20261116T092521Z-999df09d\\019-en\\raw.txt": "6503e690fa0ce039c1ec0e06703cb9fcdc2f9463a88eb3850394ee9880e8ff21",
+      "demo_trials\\20261116T092521Z-999df09d\\019-en\\request.json": "7335f001a1baa6f76eb00c15b22c76ba0dcde039d20e9731c842065802fc7249",
+      "demo_trials\\20261116T092521Z-999df09d\\019-en\\response.json": "725ffb4f12aa38b12651018cfbc8b760e21219e47b6a2df0f36522b08e6bb483",
+      "demo_trials\\20261116T092521Z-999df09d\\019-en\\result.json": "2867b4708e17337c0fffd1c269007a8dc57068cf3340974047020ae6349fc6ad",
+      "demo_trials\\20261116T092521Z-999df09d\\020-ar\\input.json": "ba82deee96af552a4d4d8d23b1646daaf301702dc07a465d540b7ebc2236e60a",
+      "demo_trials\\20261116T092521Z-999df09d\\020-ar\\result.json": "2088f5e28e22b4ef8bdf61c8330993a31dd0cccfab93d7948088dc2f334e56cf"
+    },
+    "evaluation_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\evaluations\\20261116T092812Z-6fc58f6c",
+    "normalized_text": {
+      "ar": {
+        "pages": 9,
+        "cer": 0.18911419423692635,
+        "wer": 0.30902348578491967
+      },
+      "en": {
+        "pages": 10,
+        "cer": 0.05849696119682094,
+        "wer": 0.19625811378388697
+      }
+    }
+  },
+  "quota_continuation_20261116T092839Z-b92d9544": {
+    "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261116T092839Z-b92d9544",
+    "total_successes": 20,
+    "remaining": 0,
+    "reused": 19,
+    "new_successes": 1,
+    "status": "SUCCESS",
+    "artifact_sha256": {
+      "demo_trials\\20261116T092839Z-b92d9544\\deployment_before.json": "2e5e2d9380a9d8b6cd908bf6c65d2f938abcc20c757189d5b1a268329845e15f",
+      "demo_trials\\20261116T092839Z-b92d9544\\trial.json": "c29a5fdaa4e3f867e3a05fee88e64d0ecb63356cde0bfbae00e674431d6f9abb",
+      "demo_trials\\20261116T092839Z-b92d9544\\020-ar\\input.json": "ba82deee96af552a4d4d8d23b1646daaf301702dc07a465d540b7ebc2236e60a",
+      "demo_trials\\20261116T092839Z-b92d9544\\020-ar\\prediction.md": "ebaea7fac1976c7a3b2eef48ec5a6085fed82cff1463f1ec7715157d65f2d777",
+      "demo_trials\\20261116T092839Z-b92d9544\\020-ar\\raw.txt": "3a3e4fbc2653edd159286209893e35d1a46ac5cc38d8330fb7aa8afcd5af96ab",
+      "demo_trials\\20261116T092839Z-b92d9544\\020-ar\\request.json": "407bd96d689f480cefa1a4ee47f5568ff6449fa1c372ab0102b99e36bf554e79",
+      "demo_trials\\20261116T092839Z-b92d9544\\020-ar\\response.json": "0fa97c1162cf4e7bab35d3cdc98eed79d9755993a57091a9889746872e53767f",
+      "demo_trials\\20261116T092839Z-b92d9544\\020-ar\\result.json": "a0eae3b062f3d3dd82a25d20ecfbe305d64b38033b8d7a144a09864a5de5e63d"
+    },
+    "evaluation_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\evaluations\\20261116T092857Z-2afd3e8b",
+    "normalized_text": {
+      "ar": {
+        "pages": 10,
+        "cer": 0.18590009685900097,
+        "wer": 0.3019623548257909,
+        "scored_pages": 10
+      },
+      "en": {
+        "pages": 10,
+        "cer": 0.05849696119682094,
+        "wer": 0.19625811378388697,
+        "scored_pages": 10
+      }
+    }
+  },
+  "evaluation_20261124_first_attempt": {
+    "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261124T075258Z-864181d5",
+    "split": "evaluation",
+    "total_successes": 0,
+    "target_pages": 1135,
+    "status": "NOT_COMPLETED",
+    "attempts": [
+      {
+        "language": "en",
+        "document_id": "omnidocbench:aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec:00f8eeecee150fcdc641fb8d",
+        "status": "FAILED",
+        "source_sha256": "f8e8bf63ab208873403f609f9b6280fd7d46ad41739edbf3f867eb877cae3963",
+        "documents_processed": 0,
+        "event_id": "9938c2dbf05a47ac986c6d6c74b4e710",
+        "error_type": "RuntimeError",
+        "error": "Hosted demo error: {'error': 'GPU task aborted', 'duration': 10, 'visible': True, 'title': 'ZeroGPU worker error'}",
+        "request_wall_seconds": 137.4398632000666
+      }
+    ],
+    "artifact_sha256": {
+      "demo_trials\\20261124T075258Z-864181d5\\deployment_before.json": "f489ad3a0d85c71e739d1d63fcd27494a9ef1dad09bb480d5b834b3740c96491",
+      "demo_trials\\20261124T075258Z-864181d5\\trial.json": "243c9654cd3dae8bc3efefd1742d2c7adadd9f894763d91de97c58f8a408132f",
+      "demo_trials\\20261124T075258Z-864181d5\\001-en\\events.txt": "2db68670f82a18f0d0737d88c26b52581691236b86fd602bc42fa371baa1551e",
+      "demo_trials\\20261124T075258Z-864181d5\\001-en\\f8e8bf63ab208873403f609f9b6280fd7d46ad41739edbf3f867eb877cae3963.png": "f8e8bf63ab208873403f609f9b6280fd7d46ad41739edbf3f867eb877cae3963",
+      "demo_trials\\20261124T075258Z-864181d5\\001-en\\input.json": "715e04458c840924f80ef33bf03a0045bbc532ac8d9a6c1077250848ec318055",
+      "demo_trials\\20261124T075258Z-864181d5\\001-en\\request.json": "7bf4d8df4bad15c498d82f60fd79e9f70c7a94d8abdf4c3d8a24dcb9f83f5766",
+      "demo_trials\\20261124T075258Z-864181d5\\001-en\\result.json": "6fd05ecc619da34d57898d02e59433004e42ca7033fd476fb4fbae5391d71c73"
+    }
+  },
+  "evaluation_20261124_retry": {
+    "date": "2026-11-24",
+    "trial_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261124T075531Z-5cea4b8a",
+    "split": "evaluation",
+    "total_successes": 0,
+    "target_pages": 1135,
+    "remaining_pages": 1135,
+    "new_successes": 0,
+    "status": "HOSTED_GPU_WORKER_ABORTED",
+    "attempts": [
+      {
+        "language": "en",
+        "document_id": "omnidocbench:aa1ee96d106dbe53d0ae59474d75c6e6d9b53fec:00f8eeecee150fcdc641fb8d",
+        "status": "FAILED",
+        "source_sha256": "f8e8bf63ab208873403f609f9b6280fd7d46ad41739edbf3f867eb877cae3963",
+        "documents_processed": 0,
+        "event_id": "6e57e6379db945c8b94dba99def10291",
+        "error_type": "RuntimeError",
+        "error": "Hosted demo error: {'error': 'GPU task aborted', 'duration': 10, 'visible': True, 'title': 'ZeroGPU worker error'}",
+        "request_wall_seconds": 112.43964449991472
+      }
+    ],
+    "previous_trial": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261124T075258Z-864181d5",
+    "artifact_sha256": {
+      "demo_trials\\20261124T075531Z-5cea4b8a\\deployment_before.json": "f489ad3a0d85c71e739d1d63fcd27494a9ef1dad09bb480d5b834b3740c96491",
+      "demo_trials\\20261124T075531Z-5cea4b8a\\trial.json": "b7743de99c5b219542acf2dd941e2beb157dbb0c384bf06ef33f6d0b8fe05cb7",
+      "demo_trials\\20261124T075531Z-5cea4b8a\\001-en\\events.txt": "fa417d87f15badf09d2d5a235570e63e3c7cf130912631329507d1f6c67e15ed",
+      "demo_trials\\20261124T075531Z-5cea4b8a\\001-en\\f8e8bf63ab208873403f609f9b6280fd7d46ad41739edbf3f867eb877cae3963.png": "f8e8bf63ab208873403f609f9b6280fd7d46ad41739edbf3f867eb877cae3963",
+      "demo_trials\\20261124T075531Z-5cea4b8a\\001-en\\input.json": "715e04458c840924f80ef33bf03a0045bbc532ac8d9a6c1077250848ec318055",
+      "demo_trials\\20261124T075531Z-5cea4b8a\\001-en\\request.json": "7bf4d8df4bad15c498d82f60fd79e9f70c7a94d8abdf4c3d8a24dcb9f83f5766",
+      "demo_trials\\20261124T075531Z-5cea4b8a\\001-en\\result.json": "ddd3475ab66802e4ca457327a40cd0c775c58756ab498f84dcfe6552e7e0164e"
+    },
+    "accuracy_scores": null,
+    "verification": "93 runner, tracking and metric tests passed; first ten frozen images and references verified; remote deployment unchanged."
+  },
+  "development_reverification_20261124": {
+    "evaluation_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\evaluations\\20261124T075756Z-4acf3cfd",
+    "successful_pages_evaluated": 20,
+    "all_strata_and_output_identities_match_prior": true,
+    "previous_evaluation_directory": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\evaluations\\20261116T092857Z-2afd3e8b",
+    "artifact_sha256": {
+      "evaluations\\20261124T075756Z-4acf3cfd\\environment.json": "cb00555ecc6f1f3214511c5be64e8c35f286a3814ed1d6f60944b04c0b2deff6",
+      "evaluations\\20261124T075756Z-4acf3cfd\\evaluation_manifest.json": "7bfff634052176068f628aac2bd537c1f832d5e1e6ebf5c2f564f3d69e029532",
+      "evaluations\\20261124T075756Z-4acf3cfd\\metrics.csv": "d1fc064e240a4fbb3fe0fe489d81d1a052f1d8223f3587e56332af5a3b9c55fe",
+      "evaluations\\20261124T075756Z-4acf3cfd\\metrics.json": "116fd2c96d9de53543109058c839fd78d3ef85f725aceb1d64c9137e57a86ae6",
+      "evaluations\\20261124T075756Z-4acf3cfd\\per_page_metrics.csv": "3424c0a86e8e1a5e2db10394ec4728f1a508d410ad3addb1104418eb472ebbf7",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\04162c09ea79a43f02cb476a.json": "d2a4cf2d903678ab8c2236f59e66cab5e2b12f4f0d0e32e023e077d6e95234f1",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\2ae105adcd21ec9fb8d562c8.json": "b507f3c377f72684044d15a2ea73fd434e9fa1e99486d5eefe10ce2aee941cdb",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\359319d90a6cc9f31de1bd49.json": "4156c8f7f15af300302d54d1b2b5dd8d0ece0d28a4922125b6d625132a28c6f3",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\45b56dddee0d3eb9d73463f8.json": "b4121235214fd7f048efd1aa22121b80e7f868921ad6540fa84993420f11a37a",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\5333444b4e77ddbddbeb97c6.json": "e0b7d2eb21e2b55aca9ad0744e65b44597952b9e045c75bb8d1900f7bef4dddb",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\54e9d87c842903690f636617.json": "c5285eaee3b8279bd40ddf2989127ff51336cbec14934b46e2280480d3131b8c",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\559f07c09134875c1225b7d2.json": "6b52a9561f82f87ae72ea5030c9ae7008ee83a82c57b63d13294bd86a21b5fa2",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\6db72ffc2202a488d4b4ab83.json": "923b244ff4db60c620710866387c553550313bc338b63b3b5bb6ef67029ff513",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\745eff35fea3ef93e76484a7.json": "0d59b0fb3ea2cf460789d5b846c1ddbf350cde5cd8abac3d67f88adb933e6e1d",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\784cad5a2e2c3bb191d6b78a.json": "b6be7bf3f01ee91071a6887561b00644294f36d4f5a4d4c7db096fc25e1b2881",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\9104c9097133aac9755f7c15.json": "02ffe0d8eb7b68da498778c076d7309414e6154c7e6aa0ee86ed57cbbc8e0771",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\9e41860fee1a1fd9ac4feecd.json": "2bfebc7a5eb825a8a88270dc1d0f9a60ddcccb48c10916cb286fb99709c19cf2",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\b1e5e3e28192bd1e01a8ce97.json": "8d5dc1e436200f5d0d253e682973758773a62a57e0668b34d44cbd2ef5fde441",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\c5a954a50d9f66380a2b3e8f.json": "3b1cfeeb8345dd18125f7525f0ec1ac95e7bbdd8571554b7b33a4c41cd49ca40",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\d01396c0dd080d911e0899ad.json": "a607db3603fa902ea5044ef5c9d5d0f68c368da6207480fe6603bf82cb2b154c",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\d2b0f5c97382988387b9e6d5.json": "e00bf1b8f9c039cf3c00abf528606042eadc7f883a69d35c14b66fdab0c9e823",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\d5165a50e13fa3c73fee89d8.json": "ce46676d5a61930411393fd8e1fb90ddb6961d15e8c4f501054520ad048f3e61",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\dc550ec03f18e7755bafb4d8.json": "abb3bbead8dc89b8c63dab8fc6b85c994309c39d66de05d60a279615b89f21a1",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\de533c303176e0a82c0ba70a.json": "98582adf789632295c2e9785c3f9ccef1eac1837ffb6ec3177a9922404a0a4a9",
+      "evaluations\\20261124T075756Z-4acf3cfd\\predictions\\ed966a69737eb9fdcf963dc6.json": "73cc6e242b38e544400211755e7526b25c4ab0419a16dae2b77700240db1fd06"
     }
   }
 }

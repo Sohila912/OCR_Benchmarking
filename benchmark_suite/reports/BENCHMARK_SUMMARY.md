@@ -1,6 +1,6 @@
 # OCR benchmark: management progress report
 
-**As of 9 November 2026 · Arabic and English OCR · Interim results**
+**As of 24 November 2026 · Arabic and English OCR · Interim results**
 
 ## Current position
 
@@ -12,7 +12,7 @@ overall winner or finished cross-model comparison yet.**
 The clearest measured evaluation checkpoint is PaddleOCR: 200 evaluation pages
 converted without failures, with text scores available for 199 pages. Tesseract
 has the largest saved evaluation coverage: 437 pages, with no OCR failures at its
-last checkpoint. Baidu has now reached 14 successful hosted development pages.
+last checkpoint. Baidu completed all 20 hosted development pages; the first evaluation page aborted twice on the hosted worker.
 
 | Project area | Position |
 |---|---|
@@ -30,7 +30,7 @@ last checkpoint. Baidu has now reached 14 successful hosted development pages.
 | **Tesseract** | 20/20 development conversions; **437/1,135 evaluation predictions saved**: 390 Arabic and 47 English; zero OCR failures | Paused when available RAM fell below the runner's 2-GiB start floor; 698 evaluation pages remain |
 | **Docling + Tesseract** | 19/20 development conversions; text scores for 10 English and 9 Arabic pages | One Arabic timeout; full evaluation deferred at the user's request |
 | **Docling + EasyOCR** | At reduced OCR scale 1.0, **8/10 English development pages succeeded**; Arabic model downloaded and verified on D: | Two English pages repeatedly crashed; first Arabic page failed four attempts, including a memory-allocation error in an alternate CPU backend |
-| **Baidu Unlimited-OCR-2** | **14/20 hosted development conversions**: 7 English and 7 Arabic, all untruncated | Six pages remain; free daily quota exhausted after a hosted worker abort and one retry; served model-weight revision is unverified |
+| **Baidu Unlimited-OCR-2** | **20/20** successful hosted development conversions (10 English and 10 Arabic pages scored) | 0/1,135 evaluation pages completed: first page aborted twice on the hosted worker on 24 November; hosted weight revision is unverified |
 | **Granite Docling** | Two bounded feasibility conversions produced output; the first Arabic output contained no recognized text | Subsequent generation/runtime instability; no completed development evaluation |
 | **Surya OCR** | Hardware/backend readiness investigated; no successful OCR inference | Selected backend/environment could not be established within the tested hardware constraints |
 | **PaddleOCR-VL** | Hardware/software feasibility assessed; no successful OCR inference | GPU/RAM/runtime constraints |
@@ -44,6 +44,7 @@ correct. These rows are separate checkpoints, not a performance ranking.
 
 | Model and cohort | Text-scored pages, English / Arabic | English CER / WER | Arabic CER / WER |
 |---|---:|---:|---:|
+| Baidu — hosted development set | 10 / 10 | 5.85% / 19.63% | 18.59% / 30.20% |
 | PaddleOCR — 200-page evaluation subset | 99 / 100 | **14.17% / 23.48%** | **51.53% / 71.34%** |
 | PaddleOCR — 20-page development set | 10 / 10 | 7.98% / 23.75% | 56.29% / 77.29% |
 | Tesseract — 20-page development set | 10 / 10 | 8.96% / 24.21% | 29.04% / 45.77% |
@@ -58,7 +59,7 @@ Docling + Tesseract timeout is also excluded from text scoring, not zero-filled.
 Source-document independence is unverified. These limits prevent an overall
 accuracy ranking from these checkpoints.
 
-Baidu's 14 conversions and EasyOCR's eight English successes **do not yet have
+EasyOCR's eight English successes **do not yet have
 published text accuracy scores in their current reports**. No full-evaluation
 score is available for Tesseract's incomplete 437-page run.
 
@@ -84,10 +85,9 @@ references are recorded explicitly rather than treated as zero scores.
 1. **Complete consistent evaluation coverage.** Paddle has 935 pages remaining.
    Tesseract has 698 remaining; its saved run must be recovered with its recorded
    execution identity before continuation, or replaced by a clearly versioned run.
-2. **Finish the development checkpoints.** Baidu has six pages left when free
-   quota permits. Docling + Tesseract has one timeout to resolve. EasyOCR and
+2. **Finish the development checkpoints.** Docling + Tesseract has one timeout to resolve. EasyOCR and
    Granite need their recorded native, memory or generation failures investigated.
-3. **Score and review saved outputs.** In particular, distinguish Baidu/EasyOCR
+3. **Score and review saved outputs.** In particular, distinguish EasyOCR
    conversion completion from text quality, and report failures and coverage.
 4. **Produce the final comparison.** Use matching cohorts, disclose local versus
    hosted execution, and keep text, structure and resource results separate.
@@ -102,7 +102,7 @@ and resolving execution blockers.
 - [Tesseract: development and saved evaluation coverage](TESSERACT.md)
 - [Docling + Tesseract](DOCLING_TESSERACT.md)
 - [Docling + EasyOCR: English and Arabic attempts](DOCLING_EASYOCR.md)
-- [Baidu Unlimited-OCR: latest 14-page checkpoint](BAIDU_UNLIMITED_OCR.md)
+- [Baidu Unlimited-OCR: completed 20-page development set](BAIDU_UNLIMITED_OCR.md)
 - [Granite Docling](GRANITE_DOCLING.md)
 - [Hardware compatibility assessment](MODEL_HARDWARE_COMPATIBILITY.md)
 

@@ -1,5 +1,9 @@
 # OCR benchmarking suite
 
+## 24 November 2026 · Baidu evaluation continuation
+
+Baidu's 20-page development results were reproduced exactly from saved outputs. The separate 1,135-page evaluation was started with a ten-page session budget, but its first English page aborted twice on the hosted GPU worker. No new evaluation page completed (0/1,135); TASK-017 is BLOCKED by the remote worker. Quota exhaustion was not reported. Bounded evaluation/resume support is implemented and 93 tests passed. See the [Baidu report](reports/BAIDU_UNLIMITED_OCR.md) for evidence and the continuation command. Earlier checkpoints below are historical.
+
 **Management summary:** [Open the presentation-friendly report](reports/BENCHMARK_SUMMARY.html) · [Markdown version](reports/BENCHMARK_SUMMARY.md). Updated 9 November 2026.
 
 Latest Baidu continuation (2026-11-09): the free hosted Unlimited-OCR-2

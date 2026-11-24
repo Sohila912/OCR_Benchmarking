@@ -1,4 +1,4 @@
-"""Offline conditional evaluation of saved successful hosted development outputs."""
+"""Offline conditional evaluation of saved successful hosted outputs."""
 
 import argparse
 from datetime import datetime, timezone
@@ -39,11 +39,23 @@ def main():
     spec.loader.exec_module(upstream)
     policy_path = SUITE / "configs/evaluation.json"
     policy = json.loads(policy_path.read_text(encoding="utf-8"))
-    manifest = SUITE / "datasets/manifest/development.jsonl"
+    trial = json.loads((args.trial / "trial.json").read_text(encoding="utf-8"))
+    split = trial.get("split", "development")
+    if split not in {"development", "evaluation"}:
+        raise ValueError("Unknown trial split")
+    manifest = SUITE / f"datasets/manifest/{split}.jsonl"
+    if trial.get("manifest_sha256", digest(manifest)) != digest(manifest):
+        raise ValueError("Frozen trial manifest checksum mismatch")
     records = [json.loads(line) for line in manifest.read_text(encoding="utf-8").splitlines()]
     saved = reusable_results(args.trial, records)
     evidence = json.loads((SUITE / "reports/BAIDU_UNLIMITED_OCR_RESULTS.json").read_text(encoding="utf-8"))
-    expected = {**evidence["trial_artifact_sha256"], **evidence["extended_development_trial"]["artifact_sha256"]}
+    expected = dict(evidence["trial_artifact_sha256"])
+    for checkpoint in evidence.values():
+        if isinstance(checkpoint, dict):
+            for path, checksum in checkpoint.get("artifact_sha256", {}).items():
+                if path in expected and expected[path] != checksum:
+                    raise ValueError(f"Conflicting saved artifact checksum for {path}")
+                expected[path] = checksum
     model = AdapterSpec(model_id="baidu", model_revision="HOSTED_WEIGHT_REVISION_UNVERIFIED",
         adapter_revision="offline-native-blocks-v1", capabilities=Capabilities(text=True, layout=True,
         reading_order=True, tables=True), label_map=LABEL_MAP, requirements=Requirements(
@@ -76,14 +88,16 @@ def main():
         identities.append({"document_id": record["document_id"], "response_path": str(response_path),
             "response_sha256": digest(response_path), "source_sha256": record["file_hash"],
             "reference_sha256": record["reference_hash"]})
-    summary = {"scope": "Conditional offline metrics on saved successful hosted development outputs; not a completed 20-page or full evaluation",
-        "target_development_pages": len(records), "successful_pages_evaluated": len(rows),
+    summary = {"scope": f"Conditional offline metrics on saved successful hosted {split} outputs; completeness is recorded by page counts",
+        "split": split, "target_pages": len(records), "successful_pages_evaluated": len(rows),
         "pages_without_successful_output": len(records)-len(rows), "excluded_failures_policy": "Quota-denied/unattempted pages have no predictions or scores; never zero-filled",
         "remote_weight_revision": "UNVERIFIED", "strata": aggregate(rows, policy),
         "policy": policy, "spec": model.model_dump(mode="json"), "code": code_identity(),
         "manifest_sha256": digest(manifest), "evaluation_policy_sha256": digest(policy_path),
         "upstream_parser_sha256": PARSER_SHA, "upstream_commit": "ea42e6d15ff93fdd0e8041fc0ac70880513453d3",
-        "outputs": identities, "selection_bias": "First completed pages of the interleaved frozen development sequence; not representative or an official cross-model comparison"}
+        "outputs": identities, "selection_bias": f"First completed pages of the interleaved frozen {split} sequence; partial results are not representative or an official cross-model comparison"}
+    if split == "development":
+        summary["target_development_pages"] = len(records)
     for name, data in [("metrics.json", summary), ("environment.json", environment())]:
         (out / name).write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (out / "per_page_metrics.csv").write_bytes(csv_bytes(rows))

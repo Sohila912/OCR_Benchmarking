@@ -6,6 +6,8 @@ Baidu's 20-page development results were reproduced exactly from saved outputs. 
 
 ## 16 November 2026
 
+InkLight's registered worker converted 20 development pages and all 1,135 evaluation pages. Eight English evaluation pages lacked a valid text score. The selected full run and its evaluation hashes are recorded in [InkLight results](reports/INKLIGHT_RESULTS.json).
+
 Baidu completed all 20 hosted development documents, including the three outstanding at the preceding checkpoint. All outputs were untruncated and all twenty were scored. The [Baidu report](reports/BAIDU_UNLIMITED_OCR.md) links to the verified responses and evaluation.
 
 

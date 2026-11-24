@@ -14,7 +14,7 @@ import re
 import sys
 from uuid import uuid4
 
-from benchmark_suite.tracking import MODEL_IDS, load_status
+from benchmark_suite.tracking import MODEL_IDS, MODEL_TASKS, load_status
 
 ROOT = Path(__file__).resolve().parent
 MENU = (
@@ -90,10 +90,10 @@ def _inside(root, value):
 def catalog(root):
     data = _json(root/"configs/models.json")
     if data.get("schema_version") != 1 or set(data.get("models", {})) != set(MODEL_IDS):
-        raise CLIError("Model catalog must contain exactly the nine requested candidates")
-    for i, model in enumerate(MODEL_IDS, 9):
+        raise CLIError("Model catalog must match the registered candidates")
+    for model, task in MODEL_TASKS.items():
         entry = data["models"][model]
-        if set(entry) != {"name", "task", "spec", "config", "factory", "python", "requirements"} or entry["task"] != f"TASK-{i:03}":
+        if set(entry) != {"name", "task", "spec", "config", "factory", "python", "requirements"} or entry["task"] != task:
             raise CLIError("Invalid model catalog entry")
         for field in ("spec", "config", "python", "requirements"):
             if entry[field] is not None:
@@ -383,11 +383,12 @@ def main(argv=None, *, root=None):
 def _choose_model():
     for index, model in enumerate(MODEL_IDS, 1):
         print(f"{index}. {model}")
-    value = input("Select one model (1-9, 0 cancels): ").strip()
+    count = len(MODEL_IDS)
+    value = input(f"Select one model (1-{count}, 0 cancels): ").strip()
     if value == "0":
         return None
-    if value not in {str(i) for i in range(1, 10)}:
-        raise ValueError("Select one number from 1 to 9")
+    if value not in {str(i) for i in range(1, count+1)}:
+        raise ValueError(f"Select one number from 1 to {count}")
     return MODEL_IDS[int(value)-1]
 
 

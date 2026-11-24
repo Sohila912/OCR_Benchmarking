@@ -4,22 +4,14 @@
 
 ## Current position
 
-The shared benchmarking framework is complete, all nine planned model candidates
-have been assessed or attempted, and several models have produced saved outputs.
-**No model has completed the full 1,135-page evaluation. There is no validated
-overall winner or finished cross-model comparison yet.**
-
-The clearest measured evaluation checkpoint is PaddleOCR: 200 evaluation pages
-converted without failures, with text scores available for 199 pages. Tesseract
-has the largest saved evaluation coverage: 437 pages, with no OCR failures at its
-last checkpoint. Baidu completed all 20 hosted development pages; the first evaluation page aborted twice on the hosted worker.
+InkLight completed the full frozen evaluation, converting all 1,135 images with zero failures. The evaluator scored text on 1,127 images. PaddleOCR has a separate 200-page evaluation checkpoint and Tesseract has 437 saved predictions. The other models have different coverage.
 
 | Project area | Position |
 |---|---|
 | Shared framework | Foundation tasks 1–8 completed: research, frozen datasets, metrics, common runner, checkpoints and Windows execution tools |
 | Dataset | 20 development pages: 10 English and 10 Arabic; separate frozen evaluation set: 1,135 pages, comprising 745 English and 390 Arabic |
-| Model assessment | All nine candidates reviewed; some blocked before inference, others tested on development or partial evaluation cohorts |
-| Full evaluation | 0 of 9 model tasks fully completed; a saved subset is not a completed full benchmark |
+| Model assessment | Ten candidates reviewed; some blocked before inference, others tested on development or partial evaluation cohorts |
+| Full evaluation | InkLight completed 1,135 pages; nine other candidates have partial evaluations or feasibility records |
 | Final deliverables | Comprehensive comparison, final visualizations and final benchmark report remain pending |
 
 ## Results by model
@@ -31,6 +23,7 @@ last checkpoint. Baidu completed all 20 hosted development pages; the first eval
 | **Docling + Tesseract** | 19/20 development conversions; text scores for 10 English and 9 Arabic pages | One Arabic timeout; full evaluation deferred at the user's request |
 | **Docling + EasyOCR** | At reduced OCR scale 1.0, **8/10 English development pages succeeded**; Arabic model downloaded and verified on D: | Two English pages repeatedly crashed; first Arabic page failed four attempts, including a memory-allocation error in an alternate CPU backend |
 | **Baidu Unlimited-OCR-2** | **20/20** successful hosted development conversions (10 English and 10 Arabic pages scored) | 0/1,135 evaluation pages completed: first page aborted twice on the hosted worker on 24 November; hosted weight revision is unverified |
+| **InkLight 0.3.2** | 20/20 development and **1,135/1,135 evaluation** conversions | 1,127 evaluation pages scored for text; optional structure disabled. [Results](INKLIGHT.md) |
 | **Granite Docling** | Two bounded feasibility conversions produced output; the first Arabic output contained no recognized text | Subsequent generation/runtime instability; no completed development evaluation |
 | **Surya OCR** | Hardware/backend readiness investigated; no successful OCR inference | Selected backend/environment could not be established within the tested hardware constraints |
 | **PaddleOCR-VL** | Hardware/software feasibility assessed; no successful OCR inference | GPU/RAM/runtime constraints |
@@ -44,6 +37,9 @@ correct. These rows are separate checkpoints, not a performance ranking.
 
 | Model and cohort | Text-scored pages, English / Arabic | English CER / WER | Arabic CER / WER |
 |---|---:|---:|---:|
+| InkLight — full registered evaluation | 737 / 390 | 9.69% / 21.29% | 25.06% / 37.67% |
+| InkLight — source-checkout evaluation subset | 99 / 100 | 10.68% / 21.07% | 26.12% / 42.42% |
+| InkLight — registered development set | 10 / 10 | 7.29% / 23.63% | 25.85% / 41.41% |
 | Baidu — hosted development set | 10 / 10 | 5.85% / 19.63% | 18.59% / 30.20% |
 | PaddleOCR — 200-page evaluation subset | 99 / 100 | **14.17% / 23.48%** | **51.53% / 71.34%** |
 | PaddleOCR — 20-page development set | 10 / 10 | 7.98% / 23.75% | 56.29% / 77.29% |
@@ -54,7 +50,7 @@ All rates above use the shared text normalization policy. English is scored
 against independently allocated reference-region text; Arabic uses page-content
 text, so their reference scopes differ. Paddle's evaluation subset selected the
 first 100 pages per language deterministically; it is not a random corpus sample.
-One English evaluation page lacked a text reference and was not scored. The
+In that PaddleOCR subset, one English page lacked a text reference. In the full InkLight run, five English pages lacked reference text, two lacked eligible reference geometry, and one had a zero-width predicted line box. The
 Docling + Tesseract timeout is also excluded from text scoring, not zero-filled.
 Source-document independence is unverified. These limits prevent an overall
 accuracy ranking from these checkpoints.

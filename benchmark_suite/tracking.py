@@ -18,11 +18,14 @@ import tempfile
 from typing import Any
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
-TASK_IDS = tuple(f"TASK-{number:03}" for number in range(1, 22))
-MODEL_IDS = (
-    "surya", "paddle_vl", "marker", "paddle", "tesseract",
-    "docling_easyocr", "docling_tesseract", "granite_docling", "baidu",
-)
+TASK_IDS = tuple(f"TASK-{number:03}" for number in range(1, 23))
+MODEL_TASKS = {
+    "surya": "TASK-009", "paddle_vl": "TASK-010", "marker": "TASK-011",
+    "paddle": "TASK-012", "tesseract": "TASK-013", "docling_easyocr": "TASK-014",
+    "docling_tesseract": "TASK-015", "granite_docling": "TASK-016",
+    "baidu": "TASK-017", "inklight": "TASK-022",
+}
+MODEL_IDS = tuple(MODEL_TASKS)
 STATES = frozenset({"PENDING", "IN_PROGRESS", "BLOCKED", "COMPLETED", "FAILED", "SKIPPED"})
 TRANSITIONS = {
     "PENDING": {"IN_PROGRESS", "BLOCKED", "SKIPPED"},
@@ -117,10 +120,10 @@ def validate_status(status: Any) -> dict[str, Any]:
     if any(state in {"IN_PROGRESS", "COMPLETED"} for state in status["models"].values()):
         _require(status["tasks"]["TASK-003"] == "COMPLETED",
                  "Model execution requires a completed hardware assessment task.")
-    for number, model in enumerate(MODEL_IDS, start=9):
+    for model, task in MODEL_TASKS.items():
         state = status["models"][model]
         if state in {"IN_PROGRESS", "COMPLETED"}:
-            _require(status["tasks"][f"TASK-{number:03}"] == state,
+            _require(status["tasks"][task] == state,
                      f"{model} must match its approved evaluation task state.")
     verification = status["verification"]
     _require(isinstance(verification, dict) and isinstance(verification.get("status"), str)
@@ -161,6 +164,13 @@ def load_status(path: str | Path) -> dict[str, Any]:
         data = json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=unique_object)
     except (UnicodeError, json.JSONDecodeError) as exc:
         raise StatusError("Checkpoint is not valid UTF-8 JSON; preserve it for diagnosis.") from exc
+    # Checkpoints written before InkLight joined the suite have the original
+    # 21 tasks and nine models. Preserve their approvals and task identities.
+    if (isinstance(data, dict) and isinstance(data.get("tasks"), dict)
+            and isinstance(data.get("models"), dict)
+            and set(data["tasks"]) == set(TASK_IDS) - {"TASK-022"}
+            and set(data["models"]) == set(MODEL_IDS) - {"inklight"}):
+        data["tasks"]["TASK-022"] = data["models"]["inklight"] = "PENDING"
     return validate_status(data)
 
 

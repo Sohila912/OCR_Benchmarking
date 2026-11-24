@@ -13,7 +13,8 @@
     "docling_easyocr",
     "docling_tesseract",
     "granite_docling",
-    "baidu"
+    "baidu",
+    "inklight"
   ],
   "models": {
     "surya": {
@@ -472,6 +473,32 @@
         "accuracy_scores": null,
         "verification": "93 runner, tracking and metric tests passed; first ten frozen images and references verified; remote deployment unchanged."
       }
+    },
+    "inklight": {
+      "name": "InkLight 0.3.2 (Indra OCR)",
+      "package": "inklight",
+      "source_commit": "97efb49e65068ed52a47e7dc4fd0d7cfe4513707",
+      "weight_repository": "datalab-to/indra-ocr",
+      "weight_revision": "bd02167fdf2005a19962cc15188f8496a2c87d3b",
+      "execution_authorized": false,
+      "hardware_compatibility": "COMPATIBLE",
+      "memory_basis": "ESTIMATE_NOT_MEASURED",
+      "estimated_process_ram_gib_from": 0.5,
+      "gpu_required": false,
+      "cpu_support": "VERIFIED",
+      "capabilities": {
+        "english": "SUPPORTED",
+        "arabic": "SUPPORTED",
+        "layout": "NOT_EVALUATED_OCR_ONLY",
+        "reading_order": "NATIVE_LINE_ORDER",
+        "tables": "STRUCTURE_EXTENSION_DISABLED",
+        "chart_data": "UNSUPPORTED",
+        "structured_output": "SUPPORTED"
+      },
+      "sources": [
+        "https://github.com/MahmoudYahiaAhmed/inklight/tree/97efb49e65068ed52a47e7dc4fd0d7cfe4513707",
+        "https://huggingface.co/datalab-to/indra-ocr/tree/bd02167fdf2005a19962cc15188f8496a2c87d3b"
+      ]
     }
   }
 }

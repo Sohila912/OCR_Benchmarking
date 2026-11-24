@@ -1,0 +1,22 @@
+{
+  "purpose": "benchmark",
+  "device": "cpu",
+  "precision": "published Indra ONNX weights; CPUExecutionProvider",
+  "batch_size": 1,
+  "preprocessing": {
+    "input": "unchanged frozen image",
+    "script": "automatic per line",
+    "orientation": "native InkLight",
+    "structure": false,
+    "lifecycle": "fresh bounded Windows CPU worker per page, native startup counted in inference"
+  },
+  "adapter_options": {
+    "model_dir": "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b",
+    "threads": 4,
+    "mode": "auto",
+    "worker_memory_bytes": 1342177280,
+    "timeout_seconds": 180
+  },
+  "location": "local",
+  "language": "both"
+}

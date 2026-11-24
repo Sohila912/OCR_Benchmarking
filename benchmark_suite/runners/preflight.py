@@ -11,7 +11,7 @@ import psutil
 
 from benchmark_suite.dataset_io import digest
 from benchmark_suite.scripts.check_hardware import PACKAGE_PROBE, parse_nvidia_csv, run_probe
-from benchmark_suite.tracking import MODEL_IDS, load_status
+from benchmark_suite.tracking import MODEL_TASKS, load_status
 
 GIB = 1024**3
 
@@ -32,10 +32,10 @@ def authorize(spec, config, status_path):
 
 def authorize_model(model_id, status_path):
     """Shared CLI/runner gate; it neither imports a factory nor grants approval."""
-    if model_id not in MODEL_IDS:
+    if model_id not in MODEL_TASKS:
         raise PreflightBlocked(["Unregistered model; no execution approval"])
     status = load_status(status_path)
-    task = f"TASK-{MODEL_IDS.index(model_id)+9:03}"
+    task = MODEL_TASKS[model_id]
     if any(status["tasks"][f"TASK-{i:03}"] != "COMPLETED" for i in (3, 5, 6, 7, 8)):
         raise PreflightBlocked(["Shared prerequisites TASK-003/005/006/007/008 are incomplete"])
     if task not in status["approved_tasks"] or status["tasks"][task] != "IN_PROGRESS" or status["current_task"] != task:

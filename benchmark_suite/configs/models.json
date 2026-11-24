@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "note": "Standard PaddleOCR, Tesseract, Docling + Tesseract and Granite Docling are registered. Pinned CPU workers/assets and coordinator libraries for newer models are on D:. Approval and live preflight remain independent.",
+  "note": "Runnable candidates identify their factory, configuration and pinned environment. Execution approval is recorded in BENCHMARK_STATUS.json.",
   "models": {
     "surya": {
       "name": "Surya OCR",
@@ -82,6 +82,15 @@
       "factory": null,
       "python": null,
       "requirements": null
+    },
+    "inklight": {
+      "name": "InkLight 0.3.2 (Indra OCR)",
+      "task": "TASK-022",
+      "spec": "configs/inklight-spec.json",
+      "config": "configs/inklight.json",
+      "factory": "benchmark_suite.adapters.inklight:create_adapter",
+      "python": "environments/inklight/Scripts/python.exe",
+      "requirements": "configs/inklight-requirements.txt"
     }
   }
 }

@@ -1,0 +1,223 @@
+{
+  "source_commit": "97efb49e65068ed52a47e7dc4fd0d7cfe4513707",
+  "weight_revision": "bd02167fdf2005a19962cc15188f8496a2c87d3b",
+  "scope": "Measured source-checkout OCR review preceding registered runs. Same frozen image identities and text scoring policy for development and evaluation200. Mixed PDFs use the legacy corpus and application text normalization.",
+  "review_evidence": {
+    "development": {
+      "path": "runtime/inklight-0.3.2-development-review.json",
+      "sha256": "6e1a48a900d947d431b8ffc26f94583ade392ac97a1e08b110a1da9624d8aabc"
+    },
+    "evaluation200": {
+      "path": "runtime/inklight-0.3.2-evaluation200-review.json",
+      "sha256": "eae28c30ef0d3577e9a8ffb88500effbce29c8c3720198e2ea4932f151fb4785"
+    },
+    "mixed": {
+      "path": "runtime/inklight-0.3.2-mixed-review.json",
+      "sha256": "96d094f55d271b5ad25caed7612873c4de4be1762985851b5d0e53229469b1cd"
+    },
+    "baidu": {
+      "path": "runtime/inklight-0.3.2-baidu-review.json",
+      "sha256": "99370e594cea6f3136539aa58ee8d19e3a755ec78d200706a7edd5b06e52c855"
+    }
+  },
+  "development": {
+    "en": {
+      "pages": 10,
+      "cer": 0.07287283777466105,
+      "wer": 0.23634975181366935
+    },
+    "ar": {
+      "pages": 10,
+      "cer": 0.25453161754531617,
+      "wer": 0.4124949939927913
+    }
+  },
+  "evaluation200": {
+    "PaddleOCR": {
+      "en": {
+        "n": 99,
+        "cer": 0.1416855528807813,
+        "wer": 0.2348386509075175
+      },
+      "ar": {
+        "n": 100,
+        "cer": 0.5153359937083103,
+        "wer": 0.7134084346659075
+      }
+    },
+    "InkLight": {
+      "en": {
+        "n": 99,
+        "cer": 0.10683724225417938,
+        "wer": 0.21072168704880326
+      },
+      "ar": {
+        "n": 100,
+        "cer": 0.2612434825667764,
+        "wer": 0.4241734108747814
+      }
+    }
+  },
+  "common_tesseract": {
+    "Tesseract": {
+      "en": {
+        "n": 47,
+        "cer": 0.11109329913433792,
+        "wer": 0.20399527652037
+      },
+      "ar": {
+        "n": 100,
+        "cer": 0.3228423290903265,
+        "wer": 0.5060799544511774
+      }
+    },
+    "PaddleOCR": {
+      "en": {
+        "n": 47,
+        "cer": 0.14398845783905098,
+        "wer": 0.22672702223971658
+      },
+      "ar": {
+        "n": 100,
+        "cer": 0.5153359937083103,
+        "wer": 0.7134084346659075
+      }
+    },
+    "InkLight": {
+      "en": {
+        "n": 47,
+        "cer": 0.09656941327348509,
+        "wer": 0.1924817949222594
+      },
+      "ar": {
+        "n": 100,
+        "cer": 0.2612434825667764,
+        "wer": 0.4241734108747814
+      }
+    }
+  },
+  "mixed": {
+    "inklight": {
+      "cer": 0.7279129321382842,
+      "wer": 0.8963210702341137
+    },
+    "markerocr": {
+      "cer": 1.0123239436619718,
+      "wer": 1.1872909698996656
+    },
+    "paddleocr": {
+      "cer": 0.7834507042253521,
+      "wer": 0.975752508361204
+    },
+    "tesseractocr": {
+      "cer": 0.8447503201024328,
+      "wer": 1.0058528428093645
+    }
+  },
+  "hosted_baidu_paired14": {
+    "baidu": {
+      "en": {
+        "pages": 7,
+        "cer": 0.04653876069484055,
+        "wer": 0.19844020797227035
+      },
+      "ar": {
+        "pages": 7,
+        "cer": 0.20012043356081896,
+        "wer": 0.3203033838973162
+      }
+    },
+    "inklight": {
+      "en": {
+        "pages": 7,
+        "cer": 0.06274306455794659,
+        "wer": 0.24523396880415946
+      },
+      "ar": {
+        "pages": 7,
+        "cer": 0.2874347651545564,
+        "wer": 0.46966161026837805
+      }
+    }
+  },
+  "review_evaluation_sources": {
+    "manifest_sha256": "eae4642e19f7c9f2f159723954f6974fc2296d1e92dcc64225ccf7b145a877a7",
+    "evaluation_config_sha256": "4e68c819410bea54a9864f13c432cf546598a40f0926f1172909f6bc4ef6cb15",
+    "python": "3.13.7",
+    "runtime": {
+      "onnxruntime": "1.31.1",
+      "numpy": "2.3.3",
+      "rapidfuzz": "3.14.5",
+      "markdown-it-py": "4.0.0"
+    },
+    "opencv": "4.11.0",
+    "seconds_reading_200_images": 153.9158792000015
+  },
+  "registered_development_run": {
+    "run_id": "20261112T091727Z-718581fc",
+    "run_directory": "results/inklight/20261112T091727Z-718581fc",
+    "metrics_file": "results/inklight/evaluations/20261112T091727Z-718581fc/2a3869a2c115-d3c3e005/metrics.json",
+    "metrics_sha256": "374f1da672fad9443500dd5031ed386e3712e9ad5d416249bdbafbd253607598",
+    "converted": 20,
+    "failed": 0,
+    "wall_seconds": 65.8888728999882,
+    "fresh_pages": 20,
+    "inference_seconds": 51.69731180006056,
+    "normalized_text": {
+      "ar": {
+        "scored_pages": 10,
+        "cer": 0.2585443475854435,
+        "wer": 0.41409691629955947
+      },
+      "en": {
+        "scored_pages": 10,
+        "cer": 0.07287283777466105,
+        "wer": 0.23634975181366935
+      }
+    }
+  },
+  "resident_engine_preflight": {
+    "run_id": "20261112T090820Z-649e85d2",
+    "progress_file": "benchmark_suite/results/inklight/20261112T090820Z-649e85d2/progress.json",
+    "initialization_verified": true,
+    "completed_pages": 0,
+    "state": "BLOCKED_BY_HARDWARE"
+  },
+  "registered_evaluation_run": {
+    "run_id": "20261116T082501Z-61be2819",
+    "run_directory": "results/inklight/20261116T082501Z-61be2819",
+    "metrics_file": "results/inklight/evaluations/20261116T082501Z-61be2819/633486256392-4087b9c1/metrics.json",
+    "completion_sha256": "c7813595316c891e1939187d275554eb271de0e04b653da21f8faeeb00e6a33b",
+    "metrics_sha256": "e3c10d42ba0eca08dc745ff4189d0b5b5cd1d8f900aebbfb2d996fb06e248f4d",
+    "evaluation_manifest_sha256": "5b8f6f35697ddcbfe164da04a64ffe3d61bb7a28262eaed530529915c6d1f3c3",
+    "target_pages": 1135,
+    "converted": 1135,
+    "failed": 0,
+    "wall_seconds": 3603.6066447999997,
+    "fresh_pages": 1135,
+    "cached_pages": 0,
+    "inference_seconds": 3179.978202800019,
+    "sampled_peak_rss_bytes": 862158848,
+    "normalized_text": {
+      "ar": {
+        "target_pages": 390,
+        "failed_pages": 0,
+        "scored_pages": 390,
+        "cer": 0.25057443259553575,
+        "wer": 0.3766660101109579
+      },
+      "en": {
+        "target_pages": 745,
+        "failed_pages": 0,
+        "scored_pages": 737,
+        "cer": 0.09693640857874754,
+        "wer": 0.2128578447091496
+      }
+    },
+    "unscored_english_pages": {
+      "REFERENCE_UNAVAILABLE": 5,
+      "REFERENCE_GEOMETRY_GATE": 2,
+      "PREDICTION_GEOMETRY_UNAVAILABLE_OR_INVALID": 1
+    }
+  }
+}

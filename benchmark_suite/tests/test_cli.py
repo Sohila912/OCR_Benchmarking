@@ -47,6 +47,11 @@ def response(capsys):
     return json.loads(capsys.readouterr().out)
 
 
+def test_menu_can_select_inklight(monkeypatch):
+    monkeypatch.setattr("builtins.input", lambda prompt: str(MODEL_IDS.index("inklight") + 1))
+    assert cli._choose_model() == "inklight"
+
+
 def test_help_works_without_site_packages_or_model_imports():
     reply = subprocess.run([sys.executable, "-S", "-m", "benchmark_suite.cli", "--help"], capture_output=True, text=True, check=False)
     assert reply.returncode == 0

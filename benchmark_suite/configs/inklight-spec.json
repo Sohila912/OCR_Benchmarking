@@ -1,0 +1,55 @@
+{
+  "model_id": "inklight",
+  "model_revision": "InkLight 0.3.2@97efb49e65068ed52a47e7dc4fd0d7cfe4513707; Indra OCR@bd02167fdf2005a19962cc15188f8496a2c87d3b",
+  "adapter_revision": "2",
+  "assets": {
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/det.onnx": "f2bd4cba23e9c328cf7ec824634e423e191a2c6aacbbf35c62bd79dd70f62f59",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/rec.onnx": "475972a2710be4a3cbfeb2bc7f3624ffd563de07de42476fc7a290d4e1ece484",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/rec_rtl.onnx": "468796bd684486a8388c30c8b4ed2a26e3eeb1f8ff02831c24c2e12c79a2a834",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/rec_cjk.onnx": "4a035516a17e62cdf33a4fe2d88077654cb8841cff024685cdef4e351694ef50",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/rec_world.onnx": "c8d1e59f21b04966f179d2d2d8e22b230d22110b3f89855bbbf2624a58c40043",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/order.onnx": "a42db2e8b536ad3d84045a4b7f9b0a72667cf8be4aa02d63f7b38004719fb180",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/orient.onnx": "20eaf670f55a7cf9facfe1bdd6c7b8e40be75bbf4d48a3df43f66aa3bbd874fd",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/script.onnx": "b6ce4e926e19c243faaf37bd46880398bf2cb4ae56a29e1177a3b017c1280e36",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/meta.json": "4ce4c94b46f5d644033c02e718322014ff4081270f385038c571912b56696339",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/lm.npz": "6c0fb618a363a0acdd05d4f5b0edd9e8146d2d990541b87f6130bbfe17cea58d",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/lm_cjk.npz": "6d64f13f4f90f4e529bd63340c6df76238d007feaef2abb903d8cd28d92bc2f3",
+    "D:/OCR_Benchmarking_Assets/inklight/weights/bd02167fdf2005a19962cc15188f8496a2c87d3b/lm_world.npz": "34df5e74a2fcbb9cf5e7f360a559375ffa2e04d2d2943a42308c177bcb444d5d"
+  },
+  "source_files": {
+    "benchmark_suite/adapters/inklight.py": "23d31c33103e858c26577c95fc1c8573cb26ac34564c23ef28609e9e3ce0f7ef",
+    "OCR/schemas.py": "90234f8cd6a859c6dfe0cecadaab71089e11f756c1d9ae03be16c8906a21b7bf",
+    "OCR/providers/base.py": "11d4d2568e0eeeea25fd37132948680f2ebd144a823f0f8ade61dfee7031879a",
+    "benchmark_suite/scripts/inklight_worker.py": "4cbf41135ae897e92fdf81091ce17a03e8d98934507933a36f814c1ebebdccf2",
+    "benchmark_suite/scripts/windows_job.py": "9b7278130ba4d41b47407b8f147f3bd6a008ea14662faf2f86315af0a0e87b02"
+  },
+  "packages": {
+    "inklight": "0.3.2",
+    "onnxruntime": "1.31.1",
+    "opencv-python-headless": "5.0.0.93",
+    "numpy": "2.5.4",
+    "pillow": "13.0.0",
+    "pypdfium2": "5.15.2",
+    "tokenizers": "0.23.3",
+    "pydantic": "2.13.5",
+    "psutil": "7.2.2",
+    "rapidfuzz": "3.14.6",
+    "markdown-it-py": "4.2.0",
+    "tzdata": "2025.2"
+  },
+  "native_versions": {
+    "inklight_build": "97efb49e65"
+  },
+  "gpu_backend": "none",
+  "capabilities": {
+    "text": true
+  },
+  "label_map": {},
+  "requirements": {
+    "compatibility": "COMPATIBLE",
+    "evidence": "1.25 GiB worker commit limit, below the shared 2 GiB available-RAM floor. A persistent engine previously needed 410 MiB sampled initialization RSS and retained memory between pages.",
+    "ram_bytes": 1342177280,
+    "disk_bytes": 536870912
+  },
+  "raw_level": "Full native InkLight DocumentContent JSON including per-line boxes, confidence, page rotation, Markdown, text blocks and warnings."
+}

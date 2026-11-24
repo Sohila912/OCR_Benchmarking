@@ -1,6 +1,7 @@
 """Recovery and policy tests; no models, services or downloaded data needed."""
 
 from copy import deepcopy
+import json
 from pathlib import Path
 import subprocess
 import sys
@@ -32,6 +33,16 @@ def start(status):
     updated["tasks"]["TASK-002"] = "IN_PROGRESS"
     updated["next_action"] = "Create architecture; Arabic label: \u0627\u062e\u062a\u0628\u0627\u0631"
     return updated
+
+
+def test_load_pre_inklight_checkpoint_preserves_model_approvals(tmp_path, initial):
+    legacy = deepcopy(initial)
+    del legacy["tasks"]["TASK-022"]
+    del legacy["models"]["inklight"]
+    path = tmp_path / "old-status.json"
+    path.write_text(json.dumps(legacy), encoding="utf-8")
+    assert tracking.load_status(path) == initial
+    assert json.loads(path.read_bytes()) == legacy
 
 
 def test_roundtrip_and_terminal_checkpoint(tmp_path, initial):

@@ -26,7 +26,8 @@
     "TASK-018": "PENDING",
     "TASK-019": "PENDING",
     "TASK-020": "PENDING",
-    "TASK-021": "PENDING"
+    "TASK-021": "PENDING",
+    "TASK-022": "COMPLETED"
   },
   "models": {
     "surya": "BLOCKED",
@@ -37,7 +38,8 @@
     "docling_easyocr": "BLOCKED",
     "docling_tesseract": "BLOCKED",
     "granite_docling": "BLOCKED",
-    "baidu": "BLOCKED"
+    "baidu": "BLOCKED",
+    "inklight": "COMPLETED"
   },
   "model_block_reasons": {
     "surya": "BLOCKED_BY_HARDWARE",
@@ -50,7 +52,7 @@
     "docling_easyocr": "ARABIC_INFERENCE_MEMORY_LIMIT_AND_NATIVE_CRASH",
     "baidu": "HOSTED_GPU_WORKER_ABORTED_ON_EVALUATION_PAGE"
   },
-  "last_completed_checkpoint": "TASK-008",
+  "last_completed_checkpoint": "TASK-022",
   "checkpoint_git_commit_subject": "docs(benchmark): expand Baidu hosted trial to fourteen pages",
   "approval_required_before": "TASK-018",
   "approved_tasks": [
@@ -70,7 +72,8 @@
     "TASK-015",
     "TASK-016",
     "TASK-017",
-    "TASK-012"
+    "TASK-012",
+    "TASK-022"
   ],
   "next_action": "Baidu development remains complete at 20/20. Evaluation page 1 aborted twice on the free hosted GPU worker; 0/1135 evaluation pages completed. Retry the saved evaluation checkpoint when the worker is usable; see reports/BAIDU_UNLIMITED_OCR.md.",
   "verification": {
@@ -449,6 +452,21 @@
       "remaining": 3,
       "reusable_trial": "D:\\OCR_Benchmarking_Assets\\baidu_unlimited_ocr\\demo_trials\\20261112T090026Z-6b39f86e",
       "retry_after_utc": "2026-11-13T09:00:31.916617+00:00"
+    },
+    "inklight_task022": {
+      "development_run": "20261112T091727Z-718581fc",
+      "development_pages": 20,
+      "development_failures": 0,
+      "evaluation_run": "20261116T082501Z-61be2819",
+      "evaluation_progress": "results\\inklight\\20261116T082501Z-61be2819\\progress.json",
+      "report": "reports/INKLIGHT.md",
+      "evaluation_converted": 1135,
+      "evaluation_scored": 1127,
+      "evaluation_failures": 0,
+      "final_metrics": "results/inklight/evaluations/20261116T082501Z-61be2819/633486256392-4087b9c1/metrics.json",
+      "metrics_sha256": "e3c10d42ba0eca08dc745ff4189d0b5b5cd1d8f900aebbfb2d996fb06e248f4d",
+      "suite_tests_passed": 219,
+      "lint": "passed"
     },
     "baidu_latest_continuation": {
       "development_successes": 20,

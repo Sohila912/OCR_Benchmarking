@@ -1,0 +1,1042 @@
+# CODEX TASK — Build a Research-Grade OCR Benchmarking Framework
+
+## ROLE
+
+Act as a Senior AI/ML Engineer, Document AI Researcher, and MLOps Engineer.
+
+You are working inside my existing **OCR_Benchmarking** repository.
+
+Your objective is to create a professional, reproducible, publication-quality OCR benchmarking framework to compare multiple OCR models across Arabic documents, English documents, layout understanding, tables, charts, and complex document structures.
+
+I want actual quantitative evaluation results, not subjective opinions or superficial comparisons.
+
+**CRITICAL: Do not attempt the entire project in one Codex session.**
+
+Divide the implementation into independent, clearly documented tasks. Complete tasks incrementally and stop at explicit checkpoints so I can resume tomorrow or whenever my Codex quota resets.
+
+---
+
+# 1. GIT BRANCH AND PROJECT SAFETY
+
+1. Inspect the repository structure and current Git status.
+2. Create a dedicated branch:
+
+   `feature/ocr-comprehensive-benchmark`
+
+3. Do not modify the existing OCR production pipeline unless essential.
+4. Keep all new benchmarking functionality isolated.
+5. Reuse existing services, model adapters, and utilities where appropriate.
+6. Do not delete existing files or overwrite existing benchmark results.
+7. Never commit downloaded datasets, large model weights, credentials, or environment secrets.
+8. Make meaningful Git commits after each completed task, but ask before committing if repository instructions require approval.
+
+Proposed structure (adapt based on the existing repository):
+
+```text
+OCR_Benchmarking/
+│
+├── benchmark_suite/
+│   ├── README.md
+│   ├── BENCHMARK_PLAN.md
+│   ├── PROGRESS.md
+│   ├── BENCHMARK_STATUS.json
+│   ├── MODEL_REGISTRY.yaml
+│   ├── datasets/
+│   │   ├── manifest/
+│   │   ├── english/
+│   │   └── arabic/
+│   ├── adapters/
+│   ├── metrics/
+│   ├── runners/
+│   ├── configs/
+│   ├── scripts/
+│   │   └── run_benchmark.bat
+│   ├── tests/
+│   ├── results/
+│   │   ├── surya/
+│   │   ├── paddle_vl/
+│   │   ├── marker/
+│   │   ├── paddle/
+│   │   ├── tesseract/
+│   │   ├── docling_easyocr/
+│   │   ├── docling_tesseract/
+│   │   ├── granite_docling/
+│   │   ├── baidu/
+│   │   └── comparisons/
+│   └── reports/
+```
+
+This is a suggested organization, not an instruction to duplicate an existing working architecture.
+
+---
+# 2.1 — HARDWARE COMPATIBILITY AND RESOURCE REQUIREMENTS
+
+**CRITICAL: Before installing or running any OCR model, determine whether my laptop can realistically support it.**
+
+I am working on a Windows laptop. Do not assume I have a dedicated NVIDIA GPU or sufficient RAM/VRAM.
+
+## TASK A — Detect My Laptop Specifications
+
+Automatically inspect and document:
+
+- CPU model and number of cores
+- Total and available RAM
+- GPU model(s)
+- Dedicated GPU VRAM
+- CUDA availability and version
+- GPU driver compatibility
+- Python version
+- Windows version
+- Available disk space
+- Whether WSL2 is available
+- Existing PyTorch and PaddlePaddle GPU support
+
+Save this information in:
+
+`benchmark_suite/reports/HARDWARE_PROFILE.md`
+
+## TASK B — Assess Each Model's Hardware Requirements
+
+For every OCR model (Surya, PaddleOCR-VL, Marker, PaddleOCR, Tesseract, Docling + EasyOCR, Docling + Tesseract, Granite Docling, and Baidu), document:
+
+1. Minimum practical hardware requirements.
+2. Recommended hardware requirements.
+3. Whether GPU acceleration is mandatory, recommended, or optional.
+4. Estimated RAM and VRAM requirements, clearly labeled as estimates when not verified.
+5. CPU-only support and its expected performance limitations.
+6. CUDA, driver, and dependency requirements.
+7. Windows compatibility.
+8. Whether WSL2, Docker, or Linux is required or recommended.
+9. Model download size and expected storage requirements.
+10. Whether quantization, reduced batch size, lower resolution, or another supported optimization could make the model runnable.
+
+**Do not invent exact hardware requirements.** Verify them against official documentation where available, and distinguish documented minimums from practical estimates.
+
+## TASK C — Create a Hardware Compatibility Report
+
+Generate:
+
+`benchmark_suite/reports/MODEL_HARDWARE_COMPATIBILITY.md`
+
+Include a table:
+
+| Model | GPU Required? | RAM Needed | VRAM Needed | CPU Support | My Laptop Compatible? | Recommended Action |
+|---|---|---|---|---|---|---|
+
+Use the following compatibility statuses:
+
+- **COMPATIBLE:** Expected to run on my current laptop.
+- **LIMITED:** Can run with restrictions or significantly reduced performance.
+- **INCOMPATIBLE:** Cannot realistically run with my current hardware/software.
+- **UNKNOWN:** Insufficient evidence to determine compatibility.
+
+For every LIMITED or INCOMPATIBLE model, explain:
+
+- Exactly which hardware or software requirement is not met.
+- What is needed to make the model work.
+- Whether a smaller model or CPU configuration is possible.
+- Whether upgrading RAM, using a different GPU, or using cloud GPU resources would resolve the issue.
+- An appropriate cloud GPU configuration if required.
+- Whether the cloud setup could incur costs.
+
+If a model needs an external API instead of local inference, clearly explain the provider requirements, credentials, limits, and potential costs.
+
+## TASK D — Safe Execution
+
+Before running each model:
+
+1. Perform a hardware compatibility preflight check.
+2. Estimate memory and storage requirements.
+3. Prevent configurations likely to cause system crashes or out-of-memory failures.
+4. Do not automatically provision paid cloud resources.
+5. Do not automatically install CUDA, GPU drivers, WSL2, or other major system dependencies.
+6. Do not automatically switch to another model variant without telling me.
+7. If a model is incompatible, explain why and propose viable alternatives.
+8. Ask for my approval before trying an alternative execution environment.
+
+If a model cannot run locally, mark it **BLOCKED_BY_HARDWARE**, not FAILED.
+
+Keep it in the benchmarking plan so I can evaluate it later on more powerful hardware.
+
+## TASK E — Benchmark Fairness Across Hardware
+
+If some models are benchmarked locally and others in the cloud:
+
+- Record the exact hardware specifications for each run.
+- Label local and cloud execution separately.
+- Do not directly rank inference speed or resource efficiency across different hardware without appropriate qualification.
+- Keep text accuracy and document-structure scores comparable when evaluation settings are equivalent.
+- Preserve batch size, precision, image resolution, and runtime configuration.
+
+## REQUIRED OUTPUT
+
+Before beginning TASK-009 (the first model evaluation), present:
+
+1. My detected laptop specifications.
+2. A compatibility assessment for all nine models.
+3. The models I can run locally.
+4. The models that need additional resources.
+5. The exact hardware/software needed for incompatible models.
+6. A recommended execution strategy that prioritizes free, local execution.
+
+**IMPORTANT: I want to know about hardware limitations BEFORE spending time downloading, installing, or attempting to execute a model.**
+
+If my laptop is insufficient, explain the requirements and stop rather than repeatedly attempting an installation that cannot succeed.
+
+Update TASK-003 in `BENCHMARK_PLAN.md` to include this hardware compatibility assessment and make successful completion of the assessment a prerequisite for any model execution.
+# 2. OCR MODELS TO BENCHMARK
+
+Evaluate the following independently:
+
+1. Surya OCR
+2. PaddleOCR-VL
+3. Marker
+4. PaddleOCR (standard pipeline)
+5. Tesseract OCR
+6. Docling + EasyOCR
+7. Docling + Tesseract
+8. Granite Docling
+9. Baidu OCR
+
+For each candidate:
+
+- Verify the current official repository, model version, supported capabilities, and license.
+- Identify whether it supports Arabic and English.
+- Identify whether it supports table extraction, chart interpretation, layout detection, reading order, and structured output.
+- Determine CPU/GPU requirements.
+- Identify installation dependencies and conflicts.
+- Prefer local/open-source implementations when possible.
+- Clearly document external API requirements and costs.
+- Never assume a model supports a capability without verifying it.
+- Treat unsupported features as `NOT_SUPPORTED`, not as fabricated scores.
+- If a model fails to initialize, document the failure and diagnostic logs.
+
+Clarify ambiguous implementations before running them. For example, distinguish a Baidu OCR API from an open-source PaddleOCR implementation.
+
+Document any capability or configuration differences that prevent a perfectly equivalent comparison.
+
+**IMPORTANT: Do not install or execute every model simultaneously.**
+
+Build the shared framework first, then test exactly one model at a time.
+
+---
+
+# 3. DATASET RESEARCH AND ACQUISITION
+
+Find two primary public benchmarking datasets:
+
+- **Dataset A — English**
+- **Dataset B — Arabic**
+
+Search credible sources including GitHub, Hugging Face, Kaggle, academic repositories, and recognized Document AI benchmark collections.
+
+The datasets must contain ground-truth/reference annotations suitable for objective evaluation.
+
+## Dataset requirements
+
+Prioritize datasets containing:
+
+- Scanned documents
+- Digitally generated PDFs
+- Printed text
+- Multiple columns
+- Complex page layouts
+- Tables
+- Figures and charts
+- Headings and paragraphs
+- Reading-order annotations
+- Arabic right-to-left text where applicable
+
+Ground truth may include text transcripts, bounding boxes, layout labels, table structures, or manually verified reference files.
+
+**CRITICAL: Never treat an OCR model's own generated output as ground truth.**
+
+If a dataset supplies only text references, use it for text extraction metrics, not unsupported table/chart/layout metrics.
+
+If no two datasets sufficiently cover all requirements, choose the best English and Arabic primary datasets, then propose supplementary public datasets for missing capabilities.
+
+Do not invent annotation labels, reference files, or ground truth.
+
+## Dataset selection report
+
+Before downloading large datasets, produce:
+
+`benchmark_suite/datasets/DATASET_SELECTION.md`
+
+Include:
+
+1. Dataset name
+2. Source URL
+3. Dataset size and document/page counts
+4. Language coverage
+5. License and usage restrictions
+6. Ground-truth format
+7. Supported evaluation categories
+8. Download procedure
+9. Known limitations
+10. Rationale for selection
+
+Record source version, download date, and checksums.
+
+Ask for approval before downloading large or restricted datasets.
+
+## Dataset standardization
+
+Build a standardized dataset manifest.
+
+Each document should preserve:
+
+- Document ID
+- Dataset name/version
+- Source path
+- File hash
+- Language
+- Document category
+- Page count
+- Ground-truth reference
+- Available annotation types
+- Dataset split
+- Relevant evaluation capabilities
+
+Use a deterministic test subset for development, then a frozen full evaluation set.
+
+Avoid data leakage and ensure every model processes the same documents.
+
+---
+
+# 4. EVALUATION METRICS
+
+I want detailed, quantitative metrics for **each model, each language, and each document category**.
+
+Implement metrics only when valid ground truth exists.
+
+## A. Text extraction accuracy
+
+Calculate:
+
+- Character Error Rate (CER)
+- Word Error Rate (WER)
+- Character Accuracy, explicitly defined
+- Word Accuracy, explicitly defined
+- Normalized Edit Distance
+- Exact Match Rate
+- Precision/Recall/F1 for clearly defined text-matching units, where appropriate
+
+Evaluate English and Arabic separately.
+
+For Arabic, support configurable normalization:
+
+- Diacritics
+- Alef variants
+- Hamza handling
+- Tatweel
+- Unicode normalization
+- Whitespace
+
+Preserve both raw-text and normalized-text scores.
+
+Do not silently remove meaningful characters or change the reference text.
+
+## B. Document layout analysis
+
+Evaluate:
+
+- Layout detection precision
+- Layout detection recall
+- Layout detection F1
+- Bounding-box IoU
+- mAP when valid detection annotations exist
+- Per-class performance
+
+Possible layout categories:
+
+- Title
+- Heading
+- Paragraph
+- Table
+- Figure
+- Chart
+- Caption
+- Header
+- Footer
+- List
+- Other annotated classes
+
+Map model-specific labels into a canonical taxonomy.
+
+Use consistent IoU thresholds and matching rules.
+
+Do not penalize a model for categories that the benchmark itself does not annotate.
+
+## C. Reading order accuracy
+
+Evaluate:
+
+- Reading-order accuracy
+- Normalized inversion rate
+- Kendall's Tau where applicable
+- Multi-column reading-order correctness
+- Arabic right-to-left reading-order correctness
+
+Only evaluate when reliable reading-order references exist.
+
+## D. Table extraction
+
+Evaluate:
+
+- Table detection precision/recall/F1
+- Table bounding-box IoU
+- Table structure similarity using TEDS where applicable
+- Cell text accuracy
+- Cell matching F1
+- Row and column structure correctness
+- Merged-cell recognition
+- Header preservation
+
+Include simple and complex tables when the datasets support them.
+
+Handle models that return plain text separately from models that return structured HTML/Markdown/cell annotations.
+
+Do not substitute superficial string similarity for structural evaluation.
+
+## E. Charts and figures
+
+Evaluate chart capabilities separately:
+
+- Chart/figure detection accuracy
+- Chart region localization
+- Chart type classification accuracy
+- Text extraction from charts
+- Data extraction accuracy when numeric chart ground truth exists
+- Structural completeness where annotated
+
+Possible chart types:
+
+- Bar
+- Line
+- Pie
+- Scatter
+- Area
+- Mixed charts
+
+Distinguish **detecting a chart**, **reading text inside a chart**, and **recovering chart data**.
+
+These are different capabilities and must have different scores.
+
+Do not invent chart-level scores when reference annotations are absent.
+
+## F. Arabic-specific evaluation
+
+Report:
+
+- Arabic CER and WER
+- Arabic normalized CER and WER
+- Mixed Arabic/English performance
+- Numeral recognition when annotated
+- Arabic reading order
+- Arabic table extraction performance
+- RTL layout handling
+
+Report unsupported/untested categories explicitly.
+
+## G. Performance and efficiency
+
+Record:
+
+- Model initialization time
+- Inference time
+- Total processing time
+- Seconds per page
+- Throughput (pages/minute)
+- Peak RAM usage
+- Peak GPU VRAM usage, if available
+- CPU/GPU device
+- Model weight size
+- Model/dependency versions
+- Failed pages/documents
+- Success rate
+- External API latency and cost, where applicable
+
+Distinguish cold-start and warm inference.
+
+Exclude one-time installations and downloads from inference latency.
+
+Track preprocessing, inference, and postprocessing separately where practical.
+
+---
+
+# 5. EVALUATION FAIRNESS AND STATISTICAL RIGOR
+
+To make the benchmark scientifically credible:
+
+1. Use identical frozen evaluation documents.
+2. Use identical evaluation normalization and matching logic.
+3. Record preprocessing differences.
+4. Record resolution and DPI settings.
+5. Track hardware and environment.
+6. Record model versions and configuration.
+7. Distinguish OCR-only from end-to-end document understanding.
+8. Avoid giving one model an unfair advantage through manual corrections.
+9. Never change the test dataset after seeing model results without versioning it.
+10. Preserve raw outputs so evaluation metrics can be recalculated.
+
+Where feasible, add:
+
+- Per-document metric distributions
+- Median, mean, standard deviation
+- 95% confidence intervals using document-level bootstrap resampling
+- Failure counts and failure categories
+- Performance by document type
+- Performance by page complexity
+
+Distinguish metrics where **higher is better** from those where **lower is better**.
+
+Do not report a single overall score without explaining how it was calculated.
+
+### Scoring system
+
+Produce independent scores for:
+
+- English OCR
+- Arabic OCR
+- Layout analysis
+- Table understanding
+- Chart understanding
+- Reading order
+- Speed
+- Resource efficiency
+- Reliability
+
+Use a consistent 0–100 display scale only where a mathematically justified transformation exists.
+
+Optionally define a weighted composite score, but make weights configurable, explain them, and avoid treating missing metrics as zero.
+
+A model must not rank highly simply because unsupported categories were excluded without disclosure.
+
+---
+
+# 6. STANDARDIZED MODEL ADAPTERS
+
+Build reusable model adapters with a common interface.
+
+Each adapter should expose functions equivalent to:
+
+```python
+initialize(config)
+predict(document)
+normalize_output(raw_output)
+get_capabilities()
+get_metadata()
+cleanup()
+```
+
+The common prediction result should preserve:
+
+- Full extracted text
+- Page-level text
+- Text blocks
+- Bounding boxes
+- Reading order
+- Layout labels
+- Tables and table structure
+- Chart/figure annotations where supported
+- Model metadata
+- Execution time
+- Warnings and errors
+- Original unmodified raw output
+
+Do not fabricate structured fields that a model does not provide.
+
+Keep adapter-specific outputs for debugging.
+
+Use the existing normalized OCR schema if it is compatible; otherwise introduce a benchmark-specific compatibility layer.
+
+---
+
+# 7. OUTPUT FILES FOR EVERY MODEL
+
+After completing **each individual model**, generate its own results directory.
+
+Example:
+
+```text
+results/surya/
+│
+├── run_manifest.json
+├── config.yaml
+├── environment.json
+├── predictions.jsonl
+├── raw_outputs/
+├── normalized_outputs/
+├── metrics.json
+├── metrics.csv
+├── per_document_metrics.csv
+├── per_page_metrics.csv
+├── english_results.csv
+├── arabic_results.csv
+├── layout_metrics.csv
+├── table_metrics.csv
+├── chart_metrics.csv
+├── reading_order_metrics.csv
+├── performance_metrics.csv
+├── failures.csv
+├── errors.log
+├── visualizations/
+└── MODEL_REPORT.md
+```
+
+Generate files containing explicit `NOT_EVALUATED` / `NOT_SUPPORTED` statuses for inapplicable categories instead of inventing values.
+
+## MODEL_REPORT.md
+
+Each model report must include:
+
+1. Model and version
+2. Installation/configuration
+3. Dataset information
+4. Quantitative results
+5. Arabic performance
+6. English performance
+7. Tables/layout/charts
+8. Runtime and memory
+9. Failure analysis
+10. Strengths and weaknesses supported by measurements
+11. Example predictions vs ground truth
+12. Reproduction commands
+13. Limitations
+14. Completion status
+
+Preserve raw predictions and metadata so I can audit each result later.
+
+Never overwrite previous runs. Use unique run IDs and maintain a stable pointer/manifest for the selected official run.
+
+---
+
+# 8. COMPARATIVE BENCHMARKING
+
+Once at least two models have valid results, support automatic comparison.
+
+Create:
+
+- `results/comparisons/model_comparison.csv`
+- `results/comparisons/model_comparison.json`
+- `reports/COMPARATIVE_REPORT.md`
+- Individual metric visualizations
+
+Include:
+
+- Arabic CER/WER comparison
+- English CER/WER comparison
+- Layout F1 comparison
+- Table TEDS comparison
+- Chart accuracy comparison where available
+- Runtime comparison
+- RAM/VRAM comparison
+- Success rate comparison
+- Performance by document category
+- Per-model coverage matrix
+
+Support a sortable ranking by selected metric.
+
+Use charts such as bar charts, heatmaps, and speed-vs-accuracy scatter plots where appropriate.
+
+When some models have not been evaluated, display them as **PENDING** rather than zero.
+
+Generate comparisons from stored result files, without rerunning completed OCR inference.
+
+---
+
+# 9. WINDOWS EXECUTION AND AUTOMATION
+
+My development environment is Windows, using VS Code and Python.
+
+Create a simple Windows entry point:
+
+`benchmark_suite/scripts/run_benchmark.bat`
+
+It should provide a straightforward menu:
+
+```text
+========================================
+       OCR BENCHMARKING SUITE
+========================================
+
+1. Check environment
+2. Show available models
+3. Show benchmark progress
+4. Setup selected model
+5. Validate datasets
+6. Run quick smoke test
+7. Run selected model benchmark
+8. Resume interrupted benchmark
+9. Evaluate stored predictions
+10. Generate model report
+11. Compare completed models
+12. Generate final comparison report
+13. Exit
+
+========================================
+```
+
+Requirements:
+
+- Detect Python environment.
+- Validate dependencies.
+- Check dataset availability.
+- Check model readiness.
+- Provide understandable error messages.
+- Allow selection of one model.
+- Allow selection of English, Arabic, or both.
+- Allow quick/full evaluation modes.
+- Save logs automatically.
+- Avoid reinstalling packages unnecessarily.
+- Resume unfinished runs.
+- Never silently execute all models.
+- Avoid duplicate inference on already completed document/model/configuration combinations.
+- Invalidate cached predictions when meaningful model configuration changes.
+- Use PowerShell helpers if necessary, but keep the `.bat` as the simple entry point.
+
+Use isolated model environments when dependency conflicts exist.
+
+Do not install incompatible dependencies into the main application environment.
+
+Provide equivalent Python CLI commands for automation and CI.
+
+---
+
+# 10. PAUSE/RESUME AND CODEX QUOTA MANAGEMENT
+
+**THIS IS ONE OF MY MOST IMPORTANT REQUIREMENTS.**
+
+I have limited Codex usage quotas.
+
+I must be able to stop at any time and continue tomorrow, even in a completely new Codex conversation.
+
+Implement persistent task tracking.
+
+Create:
+
+- `BENCHMARK_PLAN.md`
+- `PROGRESS.md`
+- `BENCHMARK_STATUS.json`
+
+## BENCHMARK_PLAN.md
+
+Include numbered, independent tasks with:
+
+- Task ID
+- Task title
+- Objective
+- Dependencies
+- Exact files to create/modify
+- Acceptance criteria
+- Verification commands
+- Expected outputs
+- Definition of done
+- Next task
+
+## PROGRESS.md
+
+Track:
+
+- Completed tasks
+- Current task
+- Last completed checkpoint
+- Modified files
+- Pending issues
+- Successful tests
+- Failed tests
+- Decisions taken
+- Next exact actions
+- Recommended next Codex prompt
+
+## BENCHMARK_STATUS.json
+
+Track machine-readable states such as:
+
+```json
+{
+  "current_task": "TASK-001",
+  "tasks": {
+    "TASK-001": "IN_PROGRESS",
+    "TASK-002": "PENDING"
+  },
+  "models": {
+    "surya": "PENDING",
+    "paddle_vl": "PENDING",
+    "marker": "PENDING",
+    "paddle": "PENDING",
+    "tesseract": "PENDING",
+    "docling_easyocr": "PENDING",
+    "docling_tesseract": "PENDING",
+    "granite_docling": "PENDING",
+    "baidu": "PENDING"
+  },
+  "last_completed_checkpoint": null,
+  "next_action": "Complete TASK-001"
+}
+```
+
+Update these files after every meaningful checkpoint.
+
+Allowed states:
+
+- PENDING
+- IN_PROGRESS
+- BLOCKED
+- COMPLETED
+- FAILED
+- SKIPPED
+
+Use atomic writes for machine-readable progress files.
+
+## Resume behavior
+
+At the beginning of EVERY new Codex session:
+
+1. Read `BENCHMARK_PLAN.md`.
+2. Read `PROGRESS.md`.
+3. Read `BENCHMARK_STATUS.json`.
+4. Check Git status.
+5. Identify the last completed task.
+6. Validate relevant existing outputs.
+7. Continue from the first incomplete task.
+8. Do not redo completed work unnecessarily.
+9. Never assume the previous session finished successfully without checking artifacts.
+
+At the end of each task, print:
+
+```text
+========================================
+TASK COMPLETION REPORT
+========================================
+
+Task ID:
+Task name:
+Status:
+Files created:
+Files modified:
+Tests executed:
+Tests passed:
+Results generated:
+Known issues:
+Git checkpoint:
+Next task:
+
+Resume prompt:
+"Read benchmark_suite/PROGRESS.md and
+benchmark_suite/BENCHMARK_STATUS.json.
+Validate the last checkpoint and continue
+with the next approved task."
+
+========================================
+```
+
+If the session ends unexpectedly, progress must remain recoverable.
+
+---
+
+# 11. REQUIRED TASK BREAKDOWN
+
+Create a detailed plan using at least the following task structure.
+
+## PHASE 1 — FOUNDATIONS
+
+**TASK-001: Repository audit and branch creation**
+
+Inspect the existing project, create the branch, and identify reusable components.
+
+**TASK-002: Benchmark architecture and progress tracking**
+
+Create directory organization, task plan, status files, and checkpoint mechanism.
+
+**TASK-003: Model capability and dependency research**
+
+Investigate all nine model configurations and document compatibility.
+
+**TASK-004: Dataset research and selection**
+
+Find English and Arabic ground-truth datasets and produce the dataset-selection report.
+
+**TASK-005: Dataset acquisition and standardization**
+
+After approval, download permitted datasets, validate references, and build manifests.
+
+**TASK-006: Evaluation metrics implementation**
+
+Implement metric calculators and automated metric unit tests.
+
+**TASK-007: Common model adapter and runner**
+
+Build the standardized inference interface, caching, run IDs, logs, and recovery logic.
+
+**TASK-008: Windows execution tools and README**
+
+Create the `.bat` launcher, CLI, setup documentation, and smoke tests.
+
+## PHASE 2 — INDIVIDUAL MODEL EVALUATION
+
+**TASK-009: Surya OCR**
+
+Install, configure, benchmark, evaluate, save outputs, write report, STOP.
+
+**TASK-010: PaddleOCR-VL**
+
+Install, configure, benchmark, evaluate, save outputs, write report, STOP.
+
+**TASK-011: Marker**
+
+Install, configure, benchmark, evaluate, save outputs, write report, STOP.
+
+**TASK-012: PaddleOCR**
+
+Install, configure, benchmark, evaluate, save outputs, write report, STOP.
+
+**TASK-013: Tesseract**
+
+Install, configure, benchmark, evaluate, save outputs, write report, STOP.
+
+**TASK-014: Docling + EasyOCR**
+
+Install, configure, benchmark, evaluate, save outputs, write report, STOP.
+
+**TASK-015: Docling + Tesseract**
+
+Install, configure, benchmark, evaluate, save outputs, write report, STOP.
+
+**TASK-016: Granite Docling**
+
+Install, configure, benchmark, evaluate, save outputs, write report, STOP.
+
+**TASK-017: Baidu OCR**
+
+Confirm implementation and any API requirements, benchmark, evaluate, save outputs, write report, STOP.
+
+Every model task MUST finish with:
+
+- Saved predictions
+- Saved evaluation metrics
+- Performance measurements
+- Error diagnostics
+- Individual model report
+- Updated progress files
+- Clear pass/fail status
+
+If installation or execution is blocked, document it rather than concealing the failure.
+
+**Do not begin the next model until I explicitly approve it.**
+
+## PHASE 3 — COMPARISON AND FINAL VALIDATION
+
+**TASK-018: Cross-model comparison engine**
+
+Generate standardized comparisons from saved results.
+
+**TASK-019: Visualizations and comparative reports**
+
+Generate tables, charts, and metric rankings.
+
+**TASK-020: Reproducibility and audit tests**
+
+Validate reproducibility, metric calculations, missing-data handling, and run completeness.
+
+**TASK-021: Final documentation**
+
+Finish README files, usage instructions, and benchmark conclusions.
+
+Each task must be individually executable and resumable.
+
+---
+
+# 12. BENCHMARK README
+
+Create a separate, comprehensive:
+
+`benchmark_suite/README.md`
+
+This README must explain:
+
+- Purpose of benchmarking
+- Supported models
+- Dataset sources and licenses
+- Evaluation methodology
+- All metric definitions
+- Metric calculation formulas
+- Arabic-specific text normalization
+- Environment requirements
+- Installation
+- Windows setup
+- Running the `.bat`
+- Running a single model
+- Running a smoke test
+- Resuming a failed run
+- Interpreting results
+- Comparing models
+- Generating reports
+- Troubleshooting
+- Limitations and known issues
+
+Assume another AI engineer should be able to clone the repository and reproduce the benchmark without asking me for undocumented steps.
+
+---
+
+# 13. IMPLEMENTATION QUALITY
+
+Follow production-level engineering practices:
+
+- Python type hints
+- Modular design
+- Pydantic schemas where useful
+- Structured logging
+- Clear exception handling
+- Deterministic dataset splits
+- Reproducible configuration
+- Dependency pinning or lockfiles
+- No hardcoded machine-specific paths
+- No hardcoded credentials
+- Unit tests
+- Integration/smoke tests
+- Sensible resource management
+- No unnecessary frameworks
+- No duplicated benchmark logic
+- Clear separation between inference and evaluation
+
+Keep configurations practical and maintainable.
+
+Avoid overengineering functionality unrelated to OCR benchmarking.
+
+---
+
+# 14. SPECIAL EXECUTION RULES
+
+Follow these instructions strictly:
+
+1. **Do not implement all tasks now.**
+2. Start with TASK-001 only.
+3. Build the plan before performing large installations or downloads.
+4. Complete one task at a time.
+5. Validate the acceptance criteria before marking a task COMPLETED.
+6. Update progress and checkpoint files after every task.
+7. Always preserve work already completed.
+8. Never run all nine models in the same session unless I explicitly override this rule.
+9. Do not move from one OCR model to the next automatically.
+10. Do not hide model failures, skip failed documents silently, or fabricate results.
+11. Ask for approval before costly downloads, paid API usage, or potentially destructive repository changes.
+12. If a task is blocked, mark it BLOCKED and explain why.
+13. After an individual model evaluation, stop and present its report.
+14. Prioritize correctness, reproducibility, and measurable evidence over speed of implementation.
+
+### START NOW
+
+Perform **TASK-001 only**:
+
+- Audit the existing repository.
+- Inspect the current OCR implementations.
+- Create the dedicated branch.
+- Create the initial `BENCHMARK_PLAN.md`, `PROGRESS.md`, and `BENCHMARK_STATUS.json`.
+- Identify potential compatibility issues.
+- Explain the next task and its acceptance criteria.
+
+Then STOP and ask for my approval before starting TASK-002.
+
+Do not start downloading models or datasets yet.
